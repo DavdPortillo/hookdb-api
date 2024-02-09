@@ -64,7 +64,7 @@ public class UserService implements IUserService {
 
 	@Override
 	public Iterable<User> findAll() {
-		LOG.info("Finding all users");
+		LOG.info("Finding all userss");
 		return userRepository.findAll();
 	}
 
