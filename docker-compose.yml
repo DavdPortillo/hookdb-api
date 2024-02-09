@@ -1,7 +1,7 @@
 version: '3'
 services:
   api-app:
-    build: .
+    image: davdportillo/winning-station:latest 
     ports:
       - "9090:8080"
     depends_on:
