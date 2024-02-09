@@ -58,7 +58,7 @@ pipeline {
                     sh '''
                     ssh opc@158.179.219.214 <<EOF
                     docker pull davdportillo/winning-station:latest
-                    docker run -d -p 8080:8080 davdportillo/winning-station:latest
+                    docker run -d davdportillo/winning-station:latest
                     EOF
                     '''
                 }
