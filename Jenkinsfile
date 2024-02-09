@@ -34,6 +34,12 @@ pipeline {
                 sh 'mvn clean package -DskipTests'
             }
         }
+        stage('List target directory') {
+            steps {
+                sh 'ls -l target'
+         }
+    }
+
         stage('Build and Push Docker Images') {
             steps {
                 script {
