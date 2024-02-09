@@ -44,7 +44,7 @@ pipeline {
             steps {
                 script {
                     def gitCommit = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
-                    dir('API') {
+                    dir('target') {
                         docker.withRegistry('https://registry-1.docker.io', DOCKER_CREDENTIALS) {
                             sh """
                     docker buildx create --name multi-arch-builder --use
