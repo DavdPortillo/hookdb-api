@@ -34,11 +34,6 @@ pipeline {
                 sh 'mvn clean package -DskipTests'
             }
         }
-        stage('Add buildx to PATH') {
-            steps {
-                sh 'export PATH=$PATH:/var/jenkins_home/.docker'
-            }
-        }
         stage('Build and Push Docker Images') {
             steps {
                 script {
@@ -46,8 +41,6 @@ pipeline {
                     echo "Commit: $gitCommit"
                     docker.withRegistry('https://registry-1.docker.io', DOCKER_CREDENTIALS) {
                         sh """
-                        docker buildx rm multi-arch-builder || true
-                        docker run --privileged --rm tonistiigi/binfmt --install all
                         docker buildx create --name multi-arch-builder --use
                         docker buildx build --builder multi-arch-builder --platform linux/amd64,linux/arm64 -t davdportillo/winning-station:$gitCommit --build-arg GIT_COMMIT=$gitCommit --push .
                         docker buildx imagetools create --tag davdportillo/winning-station:latest davdportillo/winning-station:$gitCommit
