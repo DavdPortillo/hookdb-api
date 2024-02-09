@@ -36,7 +36,7 @@ pipeline {
         }
         stage('Print current directory') {
             steps {
-                sh 'pwd'
+                sh 'ls'
             }
         }
         stage('Build and Push Docker Images') {
