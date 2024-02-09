@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.winninginnovations</groupId>
 	<artifactId>VictoryStationAPI</artifactId>
-	<version>api</version>
+	<version>0.0.1</version>
 	<name>VictoryStationAPI</name>
 	<description>VictoryStationAPI</description>
 	<properties>
