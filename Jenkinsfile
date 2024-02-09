@@ -34,17 +34,15 @@ pipeline {
                 sh 'mvn clean package -DskipTests'
             }
         }
-        stage('List target directory') {
+        stage('Print current directory') {
             steps {
-                sh 'ls -l target'
+                sh 'pwd'
             }
         }
-
         stage('Build and Push Docker Images') {
             steps {
                 script {
                     def gitCommit = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
-                    dir('target') {
                         docker.withRegistry('https://registry-1.docker.io', DOCKER_CREDENTIALS) {
                             sh """
                     docker buildx create --name multi-arch-builder --use
@@ -54,7 +52,6 @@ pipeline {
                     docker buildx imagetools push davdportillo/winning-station:latest
                     """
                         }
-                    }
                 }
             }
         }
