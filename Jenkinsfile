@@ -42,11 +42,8 @@ pipeline {
                         sh """
                             echo "Portilleto13." | docker login -u "88davd@gmail.com" --password-stdin docker.io
                             docker buildx create --name multi-arch-builder --use
-                            docker buildx build --builder multi-arch-builder
-                            --platform linux/amd64,linux/arm64 -t davdportillo/winning-station:$gitCommit
-                            --build-arg GIT_COMMIT=$gitCommit --push .
-                            docker buildx imagetools create --tag davdportillo/winning-station:latest
-                            davdportillo/winning-station:$gitCommit
+                            docker buildx build --builder multi-arch-builder --platform linux/amd64,linux/arm64 -t davdportillo/winning-station:$gitCommit --build-arg GIT_COMMIT=$gitCommit --push .
+                            docker buildx imagetools create --tag davdportillo/winning-station:latest davdportillo/winning-station:$gitCommit
                             docker buildx imagetools push davdportillo/winning-station:$gitCommit
                             docker buildx imagetools push davdportillo/winning-station:latest
                             docker buildx rm multi-arch-builder
