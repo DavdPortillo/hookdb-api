@@ -18,7 +18,7 @@ pipeline {
         stage('SSH Test') {
             steps {
                 sshagent(credentials: [sshCredentials]) {
-                    sh 'ssh -o StrictHostKeyChecking=no opc@158.179.219.214 echo Conexión exitosa'
+                    sh 'ssh -o StrictHostKeyChecking=no opc@1582.179.219.214 echo Conexión exitosa'
                 }
             }
         }
@@ -84,6 +84,18 @@ EOF
 EOF
                     '''
                 }
+            }
+        }
+        post {
+            failure {
+                emailext(
+                    to: '88davd@gmail.com',
+                    subject: "Fallo en la Pipeline: ${currentBuild.fullDisplayName}",
+                    body: """Algo salió mal con la Pipeline: ${env.BUILD_URL}
+                    Resultado de la compilación: ${currentBuild.result}
+                    """,
+                    attachLog: true
+                )
             }
         }
     }
