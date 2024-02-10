@@ -15,7 +15,7 @@ pipeline {
     }
 
     stages {
-        stage('SSH Test') {
+        stage('SSH Tesst') {
             steps {
                 sshagent(credentials: [sshCredentials]) {
                     sh 'ssh -o StrictHostKeyChecking=no opc@158.179.219.214 echo Conexión exitosa'
