@@ -91,8 +91,8 @@ EOF
             failure {
                 emailext(
                     from: '88davd@gmail.com',
-                    subject: "Fallo en la Pipeline: ${currentBuild.fullDisplayName}",
-                    body: "Algo salió mal con la Pipeline: ${env.BUILD_URL}",
+                    subject: "Fallo en la Pipeline: ",
+                    body: "Algo salió mal con la Pipeline:",
                     to: '88davd@gmail.com',
                     
 
