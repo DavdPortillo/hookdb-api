@@ -65,6 +65,7 @@ pipeline {
                             git clone https://$GIT_USERNAME:$GIT_PASSWORD@github.com/DavdPortillo/WinningStation.git
                             mv WinningStation/docker-compose.yml .
                             rm -rf WinningStation
+                            docker compose down
                             docker compose pull
                             docker compose up -d
 EOF
