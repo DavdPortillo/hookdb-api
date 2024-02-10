@@ -15,7 +15,7 @@ public interface IUserService {
 	 * @param id ID del usuario.
 	 * @return El usuario con el ID especificado.
 	 */
-	public User findById(Long id);
+	User findById(Long id);
 
 	/**
 	 * Método que permite guardar un usuario.
@@ -23,20 +23,29 @@ public interface IUserService {
 	 * @param user Usuario a guardar.
 	 * @return El usuario guardado.
 	 */
-	public User save(User user);
+	User save(User user);
 
 	/**
 	 * Método que permite eliminar un usuario.
 	 * 
 	 * @param id ID del usuario a eliminar.
 	 */
-	public void delete(Long id);
+	void delete(Long id);
 
 	/**
 	 * Método que permite obtener todos los usuarios.
 	 * 
 	 * @return Lista de todos los usuarios.
 	 */
-	public Iterable<User> findAll();
+	Iterable<User> findAll();
+
+	/**
+	 * Busca un cliente por su correo electrónico.
+	 *
+	 * @param email El correo electrónico del cliente.
+	 * @return El cliente con el correo electrónico dado.
+	 * @throws ClientServiceException Cliente no encontrado.
+	 */
+	User findByEmail(final String email);
 
 }

@@ -12,5 +12,13 @@ import com.winninginnovations.entity.User;
  * 
  */
 public interface UserRepository extends JpaRepository<User, Long> {
+	
+	/**
+	 * Busca un user por su correo electrónico.
+	 *
+	 * @param email El correo electrónico del usuario.
+	 * @return El cliente con el correo electrónico dado.
+	 */
+	User findByEmail(final String email);
 
 }

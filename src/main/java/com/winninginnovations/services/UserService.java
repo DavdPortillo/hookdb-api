@@ -68,4 +68,15 @@ public class UserService implements IUserService {
 		return userRepository.findAll();
 	}
 
+	@Override
+	public User findByEmail(String email) {
+		LOG.info("Buscando Client por email: {}", email);
+		User client = userRepository.findByEmail(email);
+		if (client == null) {
+			LOG.warn("No se encontró Client con email: {}", email);
+		}
+		LOG.info("Se encontró Client: {}", client);
+		return client;
+	}
+
 }
