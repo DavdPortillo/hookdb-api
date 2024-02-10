@@ -15,7 +15,7 @@ pipeline {
     }
 
     stages {
-        stage('SSH Tesst') {
+        stage('SSH Test') {
             steps {
                 sshagent(credentials: [sshCredentials]) {
                     sh 'ssh -o StrictHostKeyChecking=no opc@158.179.219.214 echo Conexión exitosa'
@@ -51,7 +51,11 @@ pipeline {
                 }
             }
         }
-
+        stage('Cleanup') {
+            steps {
+                sh 'rm -rf *'
+            }
+        }
         stage('Deploy to Server') {
             steps {
                 withCredentials([usernamePassword(credentialsId: '2e9cf125-4d0e-4899-bef2-66231d695e96', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
