@@ -86,6 +86,7 @@ EOF
                 }
             }
         }
+    }
         post {
             failure {
                 emailext(
@@ -95,8 +96,7 @@ EOF
                     Resultado de la compilación: ${currentBuild.result}
                     """,
                     attachLog: true
-                )
-            }
+            )
         }
     }
 }
