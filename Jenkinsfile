@@ -90,12 +90,12 @@ EOF
         post {
             failure {
                 emailext(
-                    to: '88davd@gmail.com',
+                    from: '88davd@gmail.com',
                     subject: "Fallo en la Pipeline: ${currentBuild.fullDisplayName}",
                     body: """Algo salió mal con la Pipeline: ${env.BUILD_URL}
-                    Resultado de la compilación: ${currentBuild.result}
+                    to: '88davd@gmail.com',
                     """,
-                    attachLog: true
+
             )
         }
     }
