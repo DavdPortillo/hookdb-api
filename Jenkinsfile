@@ -58,6 +58,8 @@ pipeline {
                 sshagent(credentials: [sshCredentials]) {
                     sh '''
                         ssh opc@158.179.219.214 <<EOF
+                        git branch: 'main',
+                        credentialsId: '2e9cf125-4d0e-4899-bef2-66231d695e96',
                         git clone https://github.com/DavdPortillo/WinningStation.git
                         mv WinningStation/docker-compose.yml .
                         rm -rf WinningStation
