@@ -92,9 +92,9 @@ EOF
                 emailext(
                     from: '88davd@gmail.com',
                     subject: "Fallo en la Pipeline: ${currentBuild.fullDisplayName}",
-                    body: """Algo salió mal con la Pipeline: ${env.BUILD_URL}
+                    body: "Algo salió mal con la Pipeline: ${env.BUILD_URL}",
                     to: '88davd@gmail.com',
-                    """,
+                    
 
             )
         }
