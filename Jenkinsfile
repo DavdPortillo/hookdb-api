@@ -58,8 +58,10 @@ pipeline {
         }
         stage('Deploy to Server') {
             steps {
-                withCredentials([usernamePassword(credentialsId: DOCKER_CREDENTIALS, passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')],
-                [usernamePassword(credentialsId: '2e9cf125-4d0e-4899-bef2-66231d695e96', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
+                    withCredentials([
+            		usernamePassword(credentialsId: '2e9cf125-4d0e-4899-bef2-66231d695e96', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME'),
+            		usernamePassword(credentialsId: 'DOCKER_CREDENTIALS', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')
+        			]) {
                     sshagent(credentials: [sshCredentials]) {
                         sh '''
                             ssh opc@158.179.219.214 <<EOF
