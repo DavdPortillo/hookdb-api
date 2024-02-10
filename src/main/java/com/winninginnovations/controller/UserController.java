@@ -1,6 +1,8 @@
 package com.winninginnovations.controller;
 
-
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -73,18 +75,17 @@ public class UserController {
 	@ResponseStatus(HttpStatus.CREATED)
 	public User create(@RequestBody User user) {
 		LOGGER.info("Creando Client: {}", user);
-		try {
-			user.setPassword(passwordEncoder.encode(user.getPassword()));
-			Role userRole = roleRepository.findById(2L).orElse(null);
-			if (userRole != null) {
-				user.setRole(userRole);
-			}
-			User createdUser = userService.save(user);
-			LOGGER.info("Client creado: {}", createdUser);
-			return createdUser;
-		} catch (Exception e) {
-			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Error al crear User", e);
+		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		Role userRole = roleRepository.findById(2L).orElse(null);
+		if (userRole != null) {
+			user.setRole(userRole);
 		}
+		// Establece la fecha de registro al día actual
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		user.setDate(LocalDate.now().format(formatter));
+		User createdUser = userService.save(user);
+		LOGGER.info("Client creado: {}", createdUser);
+		return createdUser;
 	}
 
 	/**

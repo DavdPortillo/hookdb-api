@@ -67,7 +67,7 @@ public class User implements Serializable {
 	 * Contraseña del cliente. No puede ser nulo y debe tener al menos 6 caracteres.
 	 */
 	@NotNull
-	@Size(min = 6, max = 14)
+	@Size(min = 6, max = 150)
 	private String password;
 
 	/**
