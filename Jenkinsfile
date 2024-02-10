@@ -61,15 +61,28 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: '2e9cf125-4d0e-4899-bef2-66231d695e96', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                     sshagent(credentials: [sshCredentials]) {
                         sh '''
-                    ssh opc@158.179.219.214 <<EOF
-                    git clone https://$GIT_USERNAME:$GIT_PASSWORD@github.com/DavdPortillo/WinningStation.git
-                    mv WinningStation/docker-compose.yml .
-                    rm -rf WinningStation
-                    docker compose pull
-                    docker compose up -d
+                            ssh opc@158.179.219.214 <<EOF
+                            git clone https://$GIT_USERNAME:$GIT_PASSWORD@github.com/DavdPortillo/WinningStation.git
+                            mv WinningStation/docker-compose.yml .
+                            rm -rf WinningStation
+                            docker compose pull
+                            docker compose up -d
 EOF
                     '''
                     }
+                }
+            }
+        }
+        stage('Cleanup Docker Images on Server') {
+            steps {
+                sshagent(credentials: [sshCredentials]) {
+                    sh '''
+                        ssh opc@158.179.219.214 <<EOF
+
+                         # Eliminar las imágenes antiguas de Docker
+                        docker image prune -a -f
+EOF
+                    '''
                 }
             }
         }
