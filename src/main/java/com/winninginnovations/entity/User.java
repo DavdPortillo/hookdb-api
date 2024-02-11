@@ -31,7 +31,7 @@ import lombok.Data;
 public class User implements Serializable {
 
 	/**
-	 * ID único del cliente. Generado automáticamente.
+	 * Id único del cliente. Generado automáticamente.
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,7 +42,7 @@ public class User implements Serializable {
 	 */
 	@NotNull
 	@Size(min = 2, max = 50)
-	private String name;
+	private String username;
 
 	/**
 	 * Imagen del cliente.
@@ -50,10 +50,10 @@ public class User implements Serializable {
 	private String image;
 
 	/**
-	 * Fecha cuando se registro el cliente. No puede ser nulo.
+	 * Fecha cuando se registró el cliente. No puede ser nulo.
 	 */
 	@NotNull
-	private String date;
+	private String registerDate;
 
 	/**
 	 * Email del cliente. No puede ser null
@@ -67,7 +67,7 @@ public class User implements Serializable {
 	 * Contraseña del cliente. No puede ser nulo y debe tener al menos 6 caracteres.
 	 */
 	@NotNull
-	@Size(min = 6, max = 150)
+	@Size(min = 6, max = 100)
 	private String password;
 
 	/**
@@ -80,7 +80,7 @@ public class User implements Serializable {
 	 * Género del cliente.
 	 */
 	@Pattern(regexp = "^(masculino|male|femenino|female|otros|other)$", message = "El género debe ser masculino/male, femenino/female u otros/other")
-	private String genero;
+	private String gender;
 
 	/**
 	 * Año de nacimiento del cliente.
@@ -125,14 +125,14 @@ public class User implements Serializable {
 	private List<GameScore> gameScores;
 
 	/**
-	 * Criticas hechas por el usuario.
+	 * Críticas hechas por el usuario.
 	 */
 	@OneToMany
 	@JoinColumn(name = "review_id")
 	private List<Review> reviews;
 
 	/**
-	 * Likes o dislikes que hace un usuario hechos por el usuario.
+	 * Likes o dislikes que hace un usuario hecho por el usuario.
 	 */
 	@OneToMany
 	@JoinColumn(name = "review_vote_id")

@@ -167,7 +167,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
 		// Establece los detalles del usuario a partir del sujeto del token
 		userDetail.setId(Long.parseLong(jwtSubject[0]));
-		userDetail.setName(jwtSubject[1]);
+		userDetail.setUsername(jwtSubject[1]);
 		userDetail.setPassword(jwtSubject[2]);
 		// Busca el rol en la base de datos utilizando el ID
 		Long roleId = Long.parseLong(jwtSubject[3]);

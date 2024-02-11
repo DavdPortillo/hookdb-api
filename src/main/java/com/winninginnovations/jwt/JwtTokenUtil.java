@@ -73,7 +73,7 @@ public class JwtTokenUtil {
 			String role = user.getRole().getId().toString();
 			SecretKey key = Keys.hmacShaKeyFor(ConstantKey.KEY.getBytes(StandardCharsets.UTF_8));
 			String token = Jwts.builder()
-					.setSubject(String.format("%s,%s,%s,%s,%s", user.getId(), user.getName(), 
+					.setSubject(String.format("%s,%s,%s,%s,%s", user.getId(), user.getUsername(), 
 							user.getPassword(), role, user.getEmail()))
 					.setIssuer("ntt-api").setIssuedAt(new Date())
 					.setExpiration(new Date(System.currentTimeMillis() + EXPIRE_DURATION))

@@ -25,10 +25,6 @@ public class AuthResponse {
      */
     private String name;
 
-    /**
-     * El apellido del usuario.
-     */
-    private String surname;
 
     /**
      * El correo electrónico del usuario.

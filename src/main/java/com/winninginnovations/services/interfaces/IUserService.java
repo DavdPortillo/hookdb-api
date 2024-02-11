@@ -1,5 +1,8 @@
 package com.winninginnovations.services.interfaces;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.winninginnovations.entity.User;
 
 /**
@@ -33,19 +36,34 @@ public interface IUserService {
 	void delete(Long id);
 
 	/**
-	 * Método que permite obtener todos los usuarios.
+	 * Método que permite obtener todos los usuarios paginados.
 	 * 
-	 * @return Lista de todos los usuarios.
+	 * @return Lista de todos los usuarios paginados.
 	 */
-	Iterable<User> findAll();
+	Page<User> findAll(Pageable pageable);
 
 	/**
-	 * Busca un cliente por su correo electrónico.
-	 *
-	 * @param email El correo electrónico del cliente.
-	 * @return El cliente con el correo electrónico dado.
-	 * @throws ClientServiceException Cliente no encontrado.
+	 * Método que permite buscar usuarios por su nombre.
+	 * 
+	 * @param username Nombre del usuario.
+	 * @return Lista de usuarios con el nombre especificado.
 	 */
-	User findByEmail(final String email);
+	Page<User> findByUsernameContaining(final String username, final Pageable pageable);
+
+	/**
+	 * Método que permite buscar usuarios por su nombre.
+	 * 
+	 * @param email Nombre del usuario.
+	 * @return Lista de usuarios con el nombre especificado.
+	 */
+	Page<User> findByEmailContaining(final String email, final Pageable pageable);
+
+	/**
+	 * Método que permite buscar usuarios por su correo.
+	 * 
+	 * @param email Correo del usuario.
+	 * @return Lista de usuarios con el correo especificado.
+	 */
+	User findByEmail(String email);
 
 }

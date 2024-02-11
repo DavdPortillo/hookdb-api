@@ -10,7 +10,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -158,7 +157,7 @@ public class Game implements Serializable {
 	private List<Review> reviews;
 
 	/**
-	 * Criticas hechas por los usuarios.
+	 * Listas de juegos.
 	 */
 	@OneToMany
 	@JoinColumn(name = "gameslist_id")
@@ -181,7 +180,7 @@ public class Game implements Serializable {
 	/**
 	 * Tiene crossplay.
 	 */
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "crossplay_id")
 	private Crossplay crossplay;
 

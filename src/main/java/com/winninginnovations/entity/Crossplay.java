@@ -1,5 +1,6 @@
 package com.winninginnovations.entity;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import jakarta.persistence.Entity;
@@ -28,8 +29,9 @@ public class Crossplay implements Serializable {
 	/**
 	 * Tiene crossplay.
 	 */
-	private boolean hasCrossplay;
+	private String hasCrossplay;
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 
 }
