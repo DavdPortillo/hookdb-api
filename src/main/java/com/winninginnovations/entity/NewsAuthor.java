@@ -1,5 +1,6 @@
 package com.winninginnovations.entity;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import jakarta.persistence.Entity;
@@ -50,6 +51,7 @@ public class NewsAuthor implements Serializable {
 	/**
 	 * ID para la serialización.
 	 */
+	@Serial
 	private static final long serialVersionUID = 1L;
 
 }

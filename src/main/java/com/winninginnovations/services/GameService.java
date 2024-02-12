@@ -27,7 +27,7 @@ public class GameService implements IGameService {
 	/**
 	 * Repositorio de Game.
 	 */
-	private GameRepository gameRepository;
+	private final GameRepository gameRepository;
 
 	/**
 	 * Constructor de la clase.

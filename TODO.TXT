@@ -1,1 +1,1 @@
-Quitar initialization cuando no haga falta
+Estoy con news y como poder enlazarla cuando un usuario escribe un comentario en la noticia

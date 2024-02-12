@@ -1,5 +1,6 @@
 package com.winninginnovations.entity;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 
@@ -51,6 +52,7 @@ public class NewsComment implements Serializable {
 	@JoinColumn(name = "news_id")
 	private News news;
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 
 }
