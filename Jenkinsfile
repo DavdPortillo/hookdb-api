@@ -86,8 +86,7 @@ EOF
                 sshagent(credentials: [sshCredentials]) {
                     sh '''
                         ssh opc@158.179.219.214 <<EOF
-                        docker-compose -p test-api down
-                        rm docker-compose.yml
+                        docker compose -p test-api down
 EOF
                 '''
             }
@@ -106,10 +105,7 @@ EOF
                     sshagent(credentials: [sshCredentials]) {
                         sh '''
                             ssh opc@158.179.219.214 <<EOF
-                            git clone https://$GIT_USERNAME:$GIT_PASSWORD@github.com/DavdPortillo/WinningStation.git
-                            mv WinningStation/docker-compose.yml .
-                            rm -rf WinningStation
-                            
+
                             # Iniciar sesión en Docker Hub
                         	echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
                             docker compose down
