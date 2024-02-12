@@ -64,12 +64,13 @@ pipeline {
                             ssh opc@158.179.219.214 <<EOF
                             git clone https://$GIT_USERNAME:$GIT_PASSWORD@github.com/DavdPortillo/WinningStation.git
                             mv WinningStation/docker-compose.yml .
+                            mv WinningStation/docker-compose.test.yml .
                             rm -rf WinningStation
 
                             # Iniciar sesión en Docker Hub
                             echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-                            docker compose pull
-                            docker compose -p test-api up -d
+                            docker compose -f docker-compose.test.yml pull
+                            docker compose -f docker-compose.test.yml -p test-api up -d
 EOF
                         '''
             }
@@ -86,7 +87,8 @@ EOF
                 sshagent(credentials: [sshCredentials]) {
                     sh '''
                         ssh opc@158.179.219.214 <<EOF
-                        docker compose -p test-api down
+                        docker compose -f docker-compose.test.yml -p test-api down
+                        rm docker-compose.test.yml
 EOF
                 '''
             }
