@@ -1,1 +1,3 @@
 Estoy con news y como poder enlazarla cuando un usuario escribe un comentario en la noticia
+MIRAR CACHE
+pipeline entorno staging antes de deploy y probar end points
