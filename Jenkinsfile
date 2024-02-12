@@ -79,11 +79,13 @@ EOF
                     }
                     timeout(time: 1, unit: 'MINUTES') {
                         waitUntil {
-                            def response = sh(script: 'curl -s -o /dev/null -w "%{http_code}" http://158.179.219.214:9090/actuator/health', returnStdout: true).trim()
-                            return response == '200'
+                            script {
+                                def response = sh(script: 'curl -s -o /dev/null -w "%{http_code}" http://158.179.219.214:9090/actuator/health', returnStdout: true).trim()
+                                return response == '200'
+                            }
                         }
                     }
-        }
+                }
             }
             post {
                 success {
