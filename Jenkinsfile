@@ -80,8 +80,10 @@ EOF
                     timeout(time: 1, unit: 'MINUTES') {
                         waitUntil {
 
-                                sh(script: 'curl -s -o /dev/null -w "%{http_code}" http://158.179.219.214:1010/actuator/health', returnStdout: true).trim() == '200'
-
+                                echo "About to run curl command..."
+                                def response = sh(script: 'curl -s -o /dev/null -w "%{http_code}" http://158.179.219.214:1010/actuator/health', returnStdout: true).trim()
+                                echo "Curl command finished. Response: $response"
+                                return response == '200'
 
                         }
                     }
