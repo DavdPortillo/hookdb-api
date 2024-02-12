@@ -56,24 +56,21 @@ pipeline {
                 sh 'rm -rf *'
             }
         }
-stage('Test API') {
-             steps {
-                withCredentials([
-                usernamePassword(credentialsId: '2e9cf125-4d0e-4899-bef2-66231d695e96', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME'),
-                usernamePassword(credentialsId: DOCKER_CREDENTIALS, passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')
-                ]) {
-                sshagent(credentials: [sshCredentials]) {
-                    sh '''
-                        ssh opc@158.179.219.214 <<EOF
-                        git clone https://$GIT_USERNAME:$GIT_PASSWORD@github.com/DavdPortillo/WinningStation.git
-                        mv WinningStation/docker-compose.yml .
-                        mv WinningStation/docker-compose.test.yml .
-                        rm -rf WinningStation
+        stage('Test API') {
+            steps {
+                script {
+                    sshagent(credentials: [sshCredentials]) {
+                        sh '''
+                            ssh opc@158.179.219.214 <<EOF
+                            git clone https://$GIT_USERNAME:$GIT_PASSWORD@github.com/DavdPortillo/WinningStation.git
+                            mv WinningStation/docker-compose.yml .
+                            mv WinningStation/docker-compose.test.yml .
+                            rm -rf WinningStation
 
-                        # Iniciar sesión en Docker Hub
-                        echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-                        docker compose -f docker-compose.test.yml pull
-                        docker compose -f docker-compose.test.yml -p test-api up -d
+                            # Iniciar sesión en Docker Hub
+                            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+                            docker compose -f docker-compose.test.yml pull
+                            docker compose -f docker-compose.test.yml -p test-api up -d
 EOF
                         '''
             }
