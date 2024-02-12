@@ -79,9 +79,7 @@ EOF
                     }
                     timeout(time: 1, unit: 'MINUTES') {
                         waitUntil {
-
-                                sh 'curl -s -o /dev/null -w "%{http_code}" http://158.179.219.214:1010/actuator/health' == '200' ? true : false
-
+                                sh 'curl -s -o /dev/null -w "%{http_code}" http://158.179.219.214:1010/actuator/health' == '200' ? echo 'API en línea' : error 'API no disponible'
                         }
                     }
                 }
