@@ -79,7 +79,10 @@ EOF
                     }
                     timeout(time: 1, unit: 'MINUTES') {
                         waitUntil {
-                                sh 'curl http://158.179.219.214:1010/actuator/health | grep 'UP', returnStatus: true)'
+                               echo "About to run curl command..."
+                                def response = sh(script: 'curl -s http://158.179.219.214:1010/actuator/health | grep -q UP', returnStatus: true)
+                                echo "Curl command finished. Response: $response"
+                                return response == 0
 
                     }
                 }
