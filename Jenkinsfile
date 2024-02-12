@@ -80,14 +80,7 @@ EOF
                     timeout(time: 1, unit: 'MINUTES') {
                         waitUntil {
 
-                                echo "About to run curl command..."
-                                String response = sh(script: 'curl -s -o /dev/null -w "%{http_code}" http://158.179.219.214:1010/actuator/health', returnStdout: true).trim()
-                                echo "Curl command finished. Response: $response"
-                                if (response == '200') {
-                                    return true
-                                } else {
-                                    return false
-                                }
+                                sh 'curl -s -o /dev/null -w "%{http_code}" http://158.179.219.214:1010/actuator/health' == '200' ? true : false
 
                         }
                     }
