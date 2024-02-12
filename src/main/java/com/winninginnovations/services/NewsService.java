@@ -57,4 +57,10 @@ public class NewsService implements INewsService {
         LOG.info("Deleting news by id: {}", id);
         newsRepository.deleteById(id);
     }
+
+    @Override
+    public Iterable<News> findAll() {
+        LOG.info("Finding all news");
+        return newsRepository.findAll();
+    }
 }

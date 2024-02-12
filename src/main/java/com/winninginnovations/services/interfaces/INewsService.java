@@ -32,5 +32,12 @@ public interface INewsService {
      */
     void delete(Long id);
 
+    /**
+     * Método que permite obtener todas las noticias.
+     *
+     * @return Lista de todas las noticias.
+     */
+    Iterable<News> findAll();
+
 
 }

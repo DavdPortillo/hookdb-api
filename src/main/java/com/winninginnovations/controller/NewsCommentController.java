@@ -1,13 +1,19 @@
 package com.winninginnovations.controller;
 
+import com.winninginnovations.entity.News;
 import com.winninginnovations.entity.NewsComment;
+import com.winninginnovations.entity.User;
 import com.winninginnovations.services.interfaces.INewsCommentService;
+import com.winninginnovations.services.interfaces.INewsService;
+import com.winninginnovations.services.interfaces.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -30,6 +36,7 @@ public class NewsCommentController {
      */
     private final INewsCommentService newsCommentService;
 
+
     /**
      * Constructor para la inyección de dependencias.
      *
@@ -37,20 +44,13 @@ public class NewsCommentController {
      */
     public NewsCommentController(INewsCommentService newsCommentService) {
         this.newsCommentService = newsCommentService;
+
     }
 
-    /**
-     * Crear un comentario.
-     *
-     * @param newsComment Comentario a crear.
-     * @return El comentario creado.
-     */
-    @PostMapping
-    public NewsComment save(NewsComment newsComment) {
-        LOGGER.info("Saving news comment: {}", newsComment);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        newsComment.setDate(LocalDate.now().format(formatter));
-        return newsCommentService.save(newsComment);
+
+    @PostMapping("/{newsId}/{userId}")
+    public NewsComment createComment(@PathVariable Long newsId, @PathVariable Long userId, @RequestBody NewsComment newsComment) {
+        return newsCommentService.save(newsComment, newsId, userId);
     }
 }
 

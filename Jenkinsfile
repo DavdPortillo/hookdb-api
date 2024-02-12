@@ -85,7 +85,6 @@ EOF
                                 echo "Curl command finished. Response: $response"
                                 return response == 0
                         }
-
                     }
                 }
             }

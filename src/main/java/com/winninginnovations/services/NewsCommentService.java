@@ -1,7 +1,11 @@
 package com.winninginnovations.services;
 
+import com.winninginnovations.entity.News;
 import com.winninginnovations.entity.NewsComment;
+import com.winninginnovations.entity.User;
 import com.winninginnovations.repository.NewsCommentRepository;
+import com.winninginnovations.repository.NewsRepository;
+import com.winninginnovations.repository.UserRepository;
 import com.winninginnovations.services.interfaces.INewsCommentService;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
@@ -28,12 +32,28 @@ public class NewsCommentService implements INewsCommentService {
     private final NewsCommentRepository newsCommentRepository;
 
     /**
+     * Repositorio de News.
+     */
+    private final NewsRepository newsRepository;
+
+    /**
+     * Repositorio de User.
+     */
+    private final UserRepository userRepository;
+
+    /**
+     *
+     */
+
+    /**
      * Constructor de la clase.
      *
      * @param newsCommentRepository Repositorio de Game.
      */
-    public NewsCommentService(NewsCommentRepository newsCommentRepository) {
+    public NewsCommentService(NewsCommentRepository newsCommentRepository, NewsRepository newsRepository, UserRepository userRepository) {
         this.newsCommentRepository = newsCommentRepository;
+        this.newsRepository = newsRepository;
+        this.userRepository = userRepository;
     }
 
 
@@ -48,10 +68,16 @@ public class NewsCommentService implements INewsCommentService {
     }
 
     @Override
-    public NewsComment save(NewsComment newsComment) {
-        LOG.info("Saving game: {}", newsComment);
+    public NewsComment save(NewsComment newsComment, Long newsId, Long userId) {
+        News news = newsRepository.findById(newsId).orElseThrow(() -> new IllegalArgumentException("News not found"));
+        User user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not found"));
+
+        newsComment.setNews(news);
+        newsComment.setUser(user);
+
         return newsCommentRepository.save(newsComment);
     }
+
 
     @Override
     public void delete(Long id) {

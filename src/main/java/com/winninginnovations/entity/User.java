@@ -113,9 +113,9 @@ public class User implements Serializable {
 	/**
 	 * Comentarios hechos en las noticias por el usuario.
 	 */
-	@OneToMany
-	@JoinColumn(name = "news_comment_id")
+	@OneToMany(mappedBy = "user")
 	private List<NewsComment> newsComments;
+
 
 	/**
 	 * Puntuaciones que ha puntuado el usuario.

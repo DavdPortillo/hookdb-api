@@ -1,16 +1,10 @@
 package com.winninginnovations.entity;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -55,9 +49,10 @@ public class Game implements Serializable {
 	private String trailer;
 
 	/**
-	 * sinopsis del juego.
+	 * Sinopsis del juego.
 	 */
 	@NotNull
+	@Column(columnDefinition = "TEXT")
 	private String sinopsis;
 
 	/**
@@ -145,12 +140,10 @@ public class Game implements Serializable {
 	/**
 	 * Noticias del juego.
 	 */
-	@OneToMany
-	@JoinColumn(name = "news_id")
+	@OneToMany(mappedBy = "game")
 	private List<News> news;
-
 	/**
-	 * Criticas hechas por los usuarios.
+	 * Críticas hechas por los usuarios.
 	 */
 	@OneToMany
 	@JoinColumn(name = "review_id")
@@ -178,12 +171,13 @@ public class Game implements Serializable {
 	private List<Saga> sagas;
 
 	/**
-	 * Tiene crossplay.
+	 * Tiene Cross play.
 	 */
 	@ManyToOne
 	@JoinColumn(name = "crossplay_id")
 	private Crossplay crossplay;
 
+	@Serial
 	private static final long serialVersionUID = 1L;
 
 }

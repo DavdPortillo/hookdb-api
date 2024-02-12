@@ -23,7 +23,7 @@ public interface INewsCommentService {
      * @param newsComment Comentario a guardar.
      * @return El comentario guardado.
      */
-    NewsComment save(NewsComment newsComment);
+    NewsComment save(NewsComment newsComment, Long newsId, Long userId);
 
     /**
      * Método que permite eliminar un comentario.
