@@ -80,9 +80,11 @@ EOF
                     timeout(time: 1, unit: 'MINUTES') {
                         waitUntil {
                                 sh 'curl http://158.179.219.214:1010/actuator/health' | grep 'UP'
+                                return true
                     }
                 }
             }
+        }
             post {
                 success {
                     sshagent(credentials: [sshCredentials]) {
