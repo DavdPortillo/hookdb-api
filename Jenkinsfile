@@ -69,7 +69,7 @@ pipeline {
                             # Iniciar sesión en Docker Hub
                             echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
                             docker compose pull
-                            docker-compose -p test-api up -d
+                            docker compose -p test-api up -d
 EOF
                         '''
             }
