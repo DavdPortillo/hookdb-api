@@ -94,7 +94,7 @@ EOF
             echo 'Las pruebas fallaron.'
         }
     }
-}
+
         stage('Deploy to Server') {
             steps {
                     withCredentials([
