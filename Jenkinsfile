@@ -62,7 +62,8 @@ pipeline {
                 usernamePassword(credentialsId: '2e9cf125-4d0e-4899-bef2-66231d695e96', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME'),
                 usernamePassword(credentialsId: DOCKER_CREDENTIALS, passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')
                 ]) {
-                    sh '''
+                    sshagent(credentials: [sshCredentials]) {
+                        sh '''
                         ssh opc@158.179.219.214 <<EOF
                         git clone https://$GIT_USERNAME:$GIT_PASSWORD@github.com/DavdPortillo/WinningStation.git
                         mv WinningStation/docker-compose.yml .
@@ -75,37 +76,37 @@ pipeline {
                         docker compose -f docker-compose.test.yml -p test-api up -d
 EOF
                         '''
-            }
-            timeout(time: 1, unit: 'MINUTES') {
-                waitUntil {
-                    def response = sh(script: 'curl -s -o /dev/null -w "%{http_code}" http://158.179.219.214:9090/actuator/health', returnStdout: true).trim()
-                    return response == '200'
+                    }
+                    timeout(time: 1, unit: 'MINUTES') {
+                        waitUntil {
+                            def response = sh(script: 'curl -s -o /dev/null -w "%{http_code}" http://158.179.219.214:9090/actuator/health', returnStdout: true).trim()
+                            return response == '200'
+                        }
+                    }
                 }
             }
-        }
-    }
-        post {
-            success {
-                sshagent(credentials: [sshCredentials]) {
-                    sh '''
+            post {
+                success {
+                    sshagent(credentials: [sshCredentials]) {
+                        sh '''
                         ssh opc@158.179.219.214 <<EOF
                         docker compose -f docker-compose.test.yml -p test-api down
                         rm docker-compose.test.yml
 EOF
                 '''
+                    }
+                }
+                failure {
+                    echo 'Las pruebas fallaron.'
+                }
             }
         }
-            failure {
-                echo 'Las pruebas fallaron.'
-            }
-        }
-    }
         stage('Deploy to Server') {
             steps {
                     withCredentials([
-            		usernamePassword(credentialsId: '2e9cf125-4d0e-4899-bef2-66231d695e96', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME'),
-            		usernamePassword(credentialsId: DOCKER_CREDENTIALS, passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')
-        			]) {
+                    usernamePassword(credentialsId: '2e9cf125-4d0e-4899-bef2-66231d695e96', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME'),
+                    usernamePassword(credentialsId: DOCKER_CREDENTIALS, passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')
+                    ]) {
                     sshagent(credentials: [sshCredentials]) {
                         sh '''
                             ssh opc@158.179.219.214 <<EOF
@@ -114,7 +115,7 @@ EOF
                             rm -rf WinningStation
 
                             # Iniciar sesión en Docker Hub
-                        	echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+                            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
                             docker compose down
                             docker compose pull
                             docker compose up -d
@@ -122,7 +123,7 @@ EOF
 EOF
                     '''
                     }
-                }
+                    }
             }
         }
         stage('Cleanup Docker Images on Server') {
@@ -145,10 +146,9 @@ EOF
                     to: '88davd@gmail.com',
                     subject: "Fallo en la Pipeline: ${currentBuild.fullDisplayName}",
                     body: """Algo salió mal con la Pipeline: ${env.BUILD_URL}
-                    
                     """,
                     attachLog: true
             )
+            }
         }
-    }
 }
