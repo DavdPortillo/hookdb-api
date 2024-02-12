@@ -79,12 +79,10 @@ EOF
                     }
                     timeout(time: 1, unit: 'MINUTES') {
                         waitUntil {
-                            script {
-                                echo "About to run curl command..."
-                                def response = sh(script: 'curl -s -o /dev/null -w "%{http_code}" http://158.179.219.214:1010/actuator/health', returnStdout: true).trim()
-                                echo "Curl command finished. Response: $response"
-                                return response == '200'
-                            }
+
+                                sh(script: 'curl -s -o /dev/null -w "%{http_code}" http://158.179.219.214:1010/actuator/health', returnStdout: true).trim() == '200'
+
+
                         }
                     }
                 }
@@ -93,9 +91,9 @@ EOF
                 success {
                     sshagent(credentials: [sshCredentials]) {
                         sh '''
-                ssh opc@158.179.219.214 <<EOF
-                docker compose -f docker-compose.test.yml -p test-api down
-                rm docker-compose.test.yml
+                            ssh opc@158.179.219.214 <<EOF
+                            docker compose -f docker-compose.test.yml -p test-api down
+                            rm docker-compose.test.yml
 EOF
                 '''
                     }
