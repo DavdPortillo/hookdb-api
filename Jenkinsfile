@@ -81,6 +81,7 @@ EOF
                         waitUntil {
                             script {
                                 def response = sh(script: 'curl -s -o /dev/null -w "%{http_code}" http://158.179.219.214:1010/actuator/health', returnStdout: true).trim()
+                                echo "Response: $response"
                                 return response == '200'
                             }
                         }
@@ -106,15 +107,11 @@ EOF
         stage('Deploy to Server') {
             steps {
                     withCredentials([
-                    usernamePassword(credentialsId: '2e9cf125-4d0e-4899-bef2-66231d695e96', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME'),
                     usernamePassword(credentialsId: DOCKER_CREDENTIALS, passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')
                     ]) {
                     sshagent(credentials: [sshCredentials]) {
                         sh '''
                             ssh opc@158.179.219.214 <<EOF
-                            git clone https://$GIT_USERNAME:$GIT_PASSWORD@github.com/DavdPortillo/WinningStation.git
-                            mv WinningStation/docker-compose.yml .
-                            rm -rf WinningStation
 
                             # Iniciar sesión en Docker Hub
                             echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
