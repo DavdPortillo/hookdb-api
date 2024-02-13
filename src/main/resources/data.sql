@@ -44,9 +44,9 @@ VALUES (NULL, 1, 1,
         'URL de la imagen');
 
 INSERT INTO `news_comment` (`id`, `news_id`, `user_id`, `content`, `date`)
-VALUES (NULL, '1', '1', 'Vaya mierda de pagina, macho', '12-02-2024'),
-       (NULL, '1', '2', 'POLE', '13-02-2024'),
-       (NULL, '1', '1', 'La verdad es que si. SERGIO HIJO DE PUTA', '12-05-2024');
+VALUES (NULL, '1', '1', 'comentario1', '12-02-2024'),
+       (NULL, '1', '2', 'comentario2', '13-02-2024'),
+       (NULL, '1', '1', 'comentario3', '12-05-2024');
 
 
 INSERT INTO platform (name)
