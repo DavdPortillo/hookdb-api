@@ -26,7 +26,7 @@ public interface IGameService {
      * @param platformsIds Lista de IDs de las plataformas.
      * @return El juego guardado.
      */
-    Game save(Game game, List<Long> platformsIds);
+    Game save(Game game, List<Long> platformsIds, Long crossplayId, List<Long> genreIds);
 
     /**
      * Método que permite eliminar un juego.

@@ -1,6 +1,10 @@
 package com.winninginnovations.services;
 
+import com.winninginnovations.entity.Crossplay;
+import com.winninginnovations.entity.Genre;
 import com.winninginnovations.entity.Platform;
+import com.winninginnovations.repository.CrossplayRepository;
+import com.winninginnovations.repository.GenreRepository;
 import com.winninginnovations.repository.PlatformRepository;
 import com.winninginnovations.request.GameRequest;
 import org.slf4j.Logger;
@@ -40,13 +44,25 @@ public class GameService implements IGameService {
     private final PlatformRepository platformRepository;
 
     /**
+     * Repositorio de Crossplay.
+     */
+    private final CrossplayRepository crossplayRepository;
+
+    /**
+     * Repositorio de Genre.
+     */
+    private final GenreRepository genreRepository;
+
+    /**
      * Constructor de la clase.
      *
      * @param gameRepository Repositorio de Game.
      */
-    public GameService(GameRepository gameRepository, PlatformRepository platformRepository) {
+    public GameService(GameRepository gameRepository, PlatformRepository platformRepository, CrossplayRepository crossplayRepository, GenreRepository genreRepository) {
         this.gameRepository = gameRepository;
         this.platformRepository = platformRepository;
+        this.crossplayRepository = crossplayRepository;
+        this.genreRepository = genreRepository;
     }
 
     @Override
@@ -61,14 +77,39 @@ public class GameService implements IGameService {
     }
 
     @Override
-    public Game save(Game game, List<Long> platformsIds) {
-        if (platformsIds != null && !platformsIds.isEmpty()) {
-            List<Platform> platforms = platformRepository.findAllById(platformsIds);
-            game.setPlatforms(platforms);
+    public Game save(Game game, List<Long> platformsIds, Long crossplayId, List<Long> genreIds) {
+        if (platformsIds == null || platformsIds.isEmpty() || platformsIds.contains(null) || platformsIds.contains(0L)) {
+            throw new IllegalArgumentException("platformsIds no puede ser nulo, vacío o contener null o 0");
         }
+
+        if (crossplayId == null || crossplayId <= 0) {
+            throw new IllegalArgumentException("crossplayId no puede ser nulo o menor o igual a 0");
+        }
+
+        if (genreIds == null || genreIds.isEmpty() || genreIds.contains(null) || genreIds.contains(0L)) {
+            throw new IllegalArgumentException("genreIds no puede ser nulo, vacío o contener null o 0");
+        }
+
+        List<Platform> platforms = platformRepository.findAllById(platformsIds);
+        if (platforms.size() != platformsIds.size()) {
+            throw new IllegalArgumentException("No se encontraron todas las plataformas especificadas");
+        }
+
+        List<Genre> genres = genreRepository.findAllById(genreIds);
+        if (genres.size() != genreIds.size()) {
+            throw new IllegalArgumentException("No se encontraron todos los géneros especificados");
+        }
+
+        Crossplay crossplay = crossplayRepository.findById(crossplayId)
+                .orElseThrow(() -> new IllegalArgumentException("Crossplay no encontrado con id: " + crossplayId));
+
+        game.setPlatforms(platforms);
+        game.setGenres(genres);
+        game.setCrossplay(crossplay);
+
+
         return gameRepository.save(game);
     }
-
 
 
     @Override

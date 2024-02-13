@@ -4,6 +4,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -70,8 +71,12 @@ public class Game implements Serializable {
 	/**
 	 * Juegos que sigue el usuario.
 	 */
-	@OneToMany
-	@JoinColumn(name = "genre_id")
+	@NotNull
+	@ManyToMany
+	@JoinTable(
+			name = "game_genre",
+			joinColumns = @JoinColumn(name = "game_id"),
+			inverseJoinColumns = @JoinColumn(name = "genre_id"))
 	private List<Genre> genres;
 
 	/**
@@ -112,8 +117,12 @@ public class Game implements Serializable {
 	/**
 	 * Plataformas en las que está disponible el juego.
 	 */
-	@OneToMany
-	@JoinColumn(name = "platform_id")
+	@NotNull
+	@ManyToMany
+	@JoinTable(
+			name = "game_platform",
+			joinColumns = @JoinColumn(name = "game_id"),
+			inverseJoinColumns = @JoinColumn(name = "platform_id"))
 	private List<Platform> platforms;
 
 	/**
@@ -173,6 +182,7 @@ public class Game implements Serializable {
 	/**
 	 * Tiene Cross play.
 	 */
+	@NotNull
 	@ManyToOne
 	@JoinColumn(name = "crossplay_id")
 	private Crossplay crossplay;

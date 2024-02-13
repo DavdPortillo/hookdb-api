@@ -1,3 +1,4 @@
+revsar relacion muchos a muchos poner en todas las tablas si existe
 mirar los logs para que no salgan dos veeces controller.GameController : Finding all games services.GameService : Finding all games
 MIRAR CACHE
 pipeline entorno staging en FRONT antes de deploy y probar end points

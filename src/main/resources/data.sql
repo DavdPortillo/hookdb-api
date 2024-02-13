@@ -72,3 +72,63 @@ VALUES ('PC'),
        ('Sega Saturn'),
        ('Sega Dreamcast'),
        ('Atari 2600');
+
+
+INSERT INTO `game` (`complete_time`, `story_time`, `crossplay_id`, `developer_id`, `distributor_id`, `id`,
+                    `minimum_system_requirement_id`, `product_id`, `recommended_system_requirement_id`, `cover`,
+                    `release_year`, `sinopsis`, `title`, `trailer`)
+VALUES (20, 10, 2, NULL, NULL, 1, NULL, NULL, NULL, 'URL de la imagen del Resident Evil 2 Remake', '2019',
+        'Es la puesta al día del clásico original del género survival horror para Xbox One, PlayStation 4 y PC.',
+        'Resident Evil 2 Remake', 'URL del trailer del Resident Evil 2 Remake'),
+       (20, 10, 2, NULL, NULL, 2, NULL, NULL, NULL, 'URL de la imagen del Alan Wake 2', '2023',
+        'La historia sigue a Alan Wake, que ha estado atrapado en una dimensión alternativa durante 13 años, mientras intenta escapar escribiendo una historia de terror que involucra a una agente especial del FBI llamada Saga Anderson.',
+        'Alan Wake 2', 'URL del trailer del Alan Wake 2'),
+       (20, 10, 2, NULL, NULL, 3, NULL, NULL, NULL, 'URL de la imagen del Little Nightmares 2', '2021',
+        'La historia sigue a Mono, que debe trabajar junto con Six, la protagonista del juego anterior, para sobrevivir a los horrores de la Ciudad Pálida y descubrir sus oscuros secretos.',
+        'Little Nightmares 2', 'URL del trailer del Little Nightmares 2'),
+       (20, 10, 2, NULL, NULL, 4, NULL, NULL, NULL, 'URL de la imagen del Final Fantasy VII', '1997',
+        'La historia sigue a Cloud Strife, un mercenario que se une a la organización ecoterrorista AVALANCHA para detener el control mundial de la corporación Shinra que está drenando la vida del planeta para usarla como fuente de energía.',
+        'Final Fantasy VII', 'URL del trailer del Final Fantasy VII');
+
+
+
+INSERT INTO `game_platform` (`game_id`, `platform_id`)
+VALUES (1, 1), -- Resident Evil 2 Remake en PC
+       (1, 3), -- Resident Evil 2 Remake en PS4
+       (1, 4), -- Resident Evil 2 Remake en Xbox One
+       (1, 2), -- Resident Evil 2 Remake en PS5
+       (1, 5), -- Resident Evil 2 Remake en Xbox Series X
+       (2, 2), -- Alan Wake 2 en PS5
+       (2, 5), -- Alan Wake 2 en Xbox Series X
+       (2, 1), -- Alan Wake 2 en PC
+       (3, 6), -- Little Nightmares 2 en Nintendo Switch
+       (3, 3), -- Little Nightmares 2 en PS4
+       (3, 4), -- Little Nightmares 2 en Xbox One
+       (3, 1), -- Little Nightmares 2 en PC
+       (4, 13); -- Final Fantasy VII en PS1
+
+
+INSERT INTO genre (name)
+VALUES ('Acción'),
+       ('Aventura'),
+       ('Rol'),
+       ('Simulación'),
+       ('Estrategia'),
+       ('Deportes'),
+       ('Puzzle'),
+       ('Plataformas'),
+       ('Disparos'),
+       ('Lucha'),
+       ('Supervivencia'),
+       ('Horror'),
+       ('Carreras');
+
+
+INSERT INTO game_genre (game_id, genre_id)
+VALUES (1, 8),
+       (1, 11),
+       (1, 7),
+       (2, 11),
+       (3, 3),
+       (4, 11),
+       (4, 9);

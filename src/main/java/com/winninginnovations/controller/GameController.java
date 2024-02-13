@@ -19,62 +19,61 @@ import java.util.List;
 
 /**
  * Controlador para el juego.
- * 
+ *
  * @author David Portillo Hoyos
  */
 @RestController
 @RequestMapping("/game")
 public class GameController {
-	
-	
-	/**
-	 * Logger para la clase
-	 */
-	private static final Logger LOG = LoggerFactory.getLogger(GameController.class);
 
-	
-	/**
-	 * Servicio para los juegos.
-	 */
-	private final IGameService gameService;
 
-	/**
-	 * Constructor para la inyección de dependencias.
-	 * 
-	 * @param gameService Servicio para los juegos.
-	 */
-	public GameController(IGameService gameService) {
-		this.gameService = gameService;
-	}
-
-	/**
-	 * Crea un nuevo juego.
-	 * 
-	 * @param gameRequest La petición para guardar un juego.
-	 * @return El juego creado.
-	 */
-	@PostMapping
-	@ResponseStatus(HttpStatus.CREATED)
-	public Game createGame(@RequestBody GameRequest gameRequest) {
-		Game game = gameRequest.getGame();
-		if (game == null) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El objeto Game no puede ser null");
-		}
-		return gameService.save(game, gameRequest.getPlatformsIds());
-	}
-
-    
     /**
-	 * Encuentra todos los juegos.
-	 * 
-	 * @return Lista de juegos.
-	 */
+     * Logger para la clase
+     */
+    private static final Logger LOG = LoggerFactory.getLogger(GameController.class);
+
+
+    /**
+     * Servicio para los juegos.
+     */
+    private final IGameService gameService;
+
+    /**
+     * Constructor para la inyección de dependencias.
+     *
+     * @param gameService Servicio para los juegos.
+     */
+    public GameController(IGameService gameService) {
+        this.gameService = gameService;
+    }
+
+    /**
+     * Crea un nuevo juego.
+     *
+     * @param gameRequest La petición para guardar un juego.
+     * @return El juego creado.
+     */
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Game createGame(@RequestBody GameRequest gameRequest) {
+        Game game = gameRequest.getGame();
+        if (game == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El objeto Game no puede ser null");
+        }
+        return gameService.save(game, gameRequest.getPlatformsIds(), gameRequest.getCrossplayId(), gameRequest.getGenreIds());
+    }
+
+
+    /**
+     * Encuentra todos los juegos.
+     *
+     * @return Lista de juegos.
+     */
     @GetMapping
     public Iterable<Game> findAll() {
-    	LOG.info("Finding all games");
-    	return gameService.findAll();
+        LOG.info("Finding all games");
+        return gameService.findAll();
     }
-    
 
 
 }

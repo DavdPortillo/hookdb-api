@@ -14,5 +14,7 @@ import java.util.List;
 public class GameRequest {
     private Game game;
     private List<Long> platformsIds;
+    private Long crossplayId;
+    private List<Long> genreIds;
 }
 
