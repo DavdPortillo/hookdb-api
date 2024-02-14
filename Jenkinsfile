@@ -4,7 +4,7 @@ pipeline {
     environment {
         sshCredentials = 'ORACLE-SERVER'
         DOCKER_CREDENTIALS = 'API-DOCKER'
-        SONAR_TOKEN = 'sonar-token'
+        SONAR_TOKEN = 'sqp_78df2a11f53dc528fdd6b34beeaf586d7a6c42a5'
     }
 
     tools {
@@ -38,7 +38,13 @@ pipeline {
         stage('SonarQube analysis') {
             steps {
                 withSonarQubeEnv('Sonarqube') {
-                      sh 'mvn clean sonar:sonar -Dsonar.login=$SONAR_TOKEN'
+                      sh '''
+                          mvn clean verify sonar:sonar \
+                          -Dsonar.projectKey=winning-station-api \
+                          -Dsonar.projectName='winning-station-api' \
+                          -Dsonar.host.url=http://158.179.219.214:9000 \
+                          -Dsonar.login=$SONAR_TOKEN
+                      '''
                 }
             }
         }
