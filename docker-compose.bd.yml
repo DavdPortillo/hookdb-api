@@ -6,7 +6,7 @@ services:
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: macarronescontomate
-      MYSQL_DATABASE: WinningStation
+      MYSQL_DATABASE: VictoryStation
     ports:
       - 3306:3306
     volumes:
