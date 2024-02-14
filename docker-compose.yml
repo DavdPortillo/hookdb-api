@@ -1,6 +1,6 @@
 version: '3'
 services:
-  api-app:
+  WinningStation:
     image: davdportillo/winning-station:latest 
     ports:
       - "9090:8080"
