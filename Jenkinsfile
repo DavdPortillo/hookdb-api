@@ -39,7 +39,7 @@ pipeline {
             steps {
                 withSonarQubeEnv('Sonarqube') {
                       sh '''
-                          mvn clean sonar:sonar \
+                          mvn sonar:sonar \
                           -Dsonar.projectKey=winning-station-api \
                           -Dsonar.projectName='winning-station-api' \
                           -Dsonar.host.url=http://158.179.219.214:9000 \
