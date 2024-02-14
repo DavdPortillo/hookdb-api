@@ -4,6 +4,7 @@ pipeline {
     environment {
         sshCredentials = 'ORACLE-SERVER'
         DOCKER_CREDENTIALS = 'API-DOCKER'
+        SONAR_TOKEN = 'sonar-token'
     }
 
     tools {
@@ -32,6 +33,13 @@ pipeline {
         stage('Build App') {
             steps {
                 sh 'mvn clean package -DskipTests'
+            }
+        }
+        stage('SonarQube analysis') {
+            steps {
+                withSonarQubeEnv('Sonarqube') {
+                      sh 'mvn clean verify sonar:sonar -Dsonar.login=$SONAR_TOKEN'
+                }
             }
         }
         stage('Build and Push Docker Images') {

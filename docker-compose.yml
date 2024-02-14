@@ -4,3 +4,4 @@ services:
     image: davdportillo/winning-station:latest 
     ports:
       - "9090:8080"
+    restart: always
