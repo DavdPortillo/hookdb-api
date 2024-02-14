@@ -4,7 +4,7 @@ pipeline {
     environment {
         sshCredentials = 'ORACLE-SERVER'
         DOCKER_CREDENTIALS = 'API-DOCKER'
-        SONAR_TOKEN = 'sqp_78df2a11f53dc528fdd6b34beeaf586d7a6c42a5'
+        SONAR_TOKEN = 'sonar-token'
     }
 
     tools {
