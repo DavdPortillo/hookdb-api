@@ -1,5 +1,6 @@
 package com.winninginnovations.entity;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import jakarta.persistence.Entity;
@@ -12,26 +13,21 @@ import lombok.Data;
 
 /**
  * Clase que representa los juegos que tiene un juego.
- * 
+ *
+ * @author David Portillo Hoyos
  */
 @Data
 @Entity
 @Table(name = "number_player")
 public class NumberPlayer implements Serializable {
 
-	/**
-	 * ID único de la saga. Generado automáticamente.
-	 */
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+  /** Id único de la saga. Generado automáticamente. */
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-	/**
-	 * Número de jugadores.
-	 */
-	@NotNull
-	private Integer numberPlayers;
+  /** Número de jugadores. */
+  @NotNull private Integer numberPlayers;
 
-	private static final long serialVersionUID = 1L;
-
+  @Serial private static final long serialVersionUID = 1L;
 }

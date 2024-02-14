@@ -13,8 +13,11 @@ import java.util.List;
 @Data
 public class GameRequest {
     private Game game;
-    private List<Long> platformsIds;
+    private List<Long> platformIds;
     private Long crossplayId;
     private List<Long> genreIds;
+    private List<Long> developerIds;
+    private List<Long> distributorIds;
+    private List<Long> dlcIds;
 }
 

@@ -1,4 +1,6 @@
+Mirar para que al meter una noticia enlazar el id del autor como hago en la tabla juego
 revsar relacion muchos a muchos poner en todas las tablas si existe
 mirar los logs para que no salgan dos veeces controller.GameController : Finding all games services.GameService : Finding all games
+mirar los buicles infinitos donde he visto jsonignore porque lo mismo me interesa saber si la informacio y no ingnorarla jsonbackreference
 MIRAR CACHE
 pipeline entorno staging en FRONT antes de deploy y probar end points

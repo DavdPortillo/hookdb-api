@@ -1,5 +1,6 @@
 package com.winninginnovations.entity;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import jakarta.persistence.Entity;
@@ -13,34 +14,27 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 /**
- * Clase que representa las caracteristicas de un juego.
- * 
+ * Clase que representa las características de un juego.
+ *
+ * @author David Portillo Hoyos
  */
 @Data
 @Entity
 @Table(name = "feature")
 public class Feature implements Serializable {
 
-	/**
-	 * ID unico de las caracteristicas. Generado automaticamente.
-	 */
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+  /** Id único de las características. Generado automáticamente. */
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-	/**
-	 * Nombre de las caracteristicas.
-	 */
-	@NotNull
-	private String name;
+  /** Nombre de las características. */
+  @NotNull private String name;
 
-	/**
-	 * Numero de jugadores de las caracteristicas.
-	 */
-	@OneToOne
-	@JoinColumn(name = "number_player_id")
-	private NumberPlayer numberPlayers;
+  /** Número de jugadores de las características. */
+  @OneToOne
+  @JoinColumn(name = "number_player_id")
+  private NumberPlayer numberPlayers;
 
-	private static final long serialVersionUID = 1L;
-
+  @Serial private static final long serialVersionUID = 1L;
 }

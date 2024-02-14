@@ -1,5 +1,6 @@
 package com.winninginnovations.entity;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import jakarta.persistence.Entity;
@@ -12,26 +13,26 @@ import lombok.Data;
 
 /**
  * Clase que a los distribuidores de los juegos.
- * 
  */
 @Data
 @Entity
 @Table(name = "distributor")
 public class Distributor implements Serializable {
 
-	/**
-	 * ID único del distribuidor. Generado automáticamente.
-	 */
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    /**
+     * Id único del distribuidor. Generado automáticamente.
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	/**
-	 * Nombre del distribuidor.
-	 */
-	@NotNull
-	private String name;
+    /**
+     * Nombre del distribuidor.
+     */
+    @NotNull
+    private String name;
 
-	private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 
 }
