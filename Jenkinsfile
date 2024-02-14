@@ -38,7 +38,7 @@ pipeline {
         stage('SonarQube analysis') {
             steps {
                 withSonarQubeEnv('Sonarqube') {
-                      sh 'mvn clean verify sonar:sonar -Dsonar.login=$SONAR_TOKEN'
+                      sh 'mvn clean sonar:sonar -Dsonar.login=$SONAR_TOKEN'
                 }
             }
         }
