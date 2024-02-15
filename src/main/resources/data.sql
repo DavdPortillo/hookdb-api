@@ -197,7 +197,7 @@ VALUES (1, 1),
 
 
 INSERT INTO dlc (game_id, name)
-VALUES (1, 'Extra DLC Pack'),
+VALUES (1, 'Extra DLC Packk'),
        (1, 'Claire Costume: Elza Walker'),
        (1, 'Claire Costume: Military'),
        (1, 'Claire Costume: Noir'),
