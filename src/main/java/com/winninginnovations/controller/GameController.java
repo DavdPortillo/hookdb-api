@@ -54,14 +54,7 @@ public class GameController {
     if (game == null) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El objeto Game no puede ser null");
     }
-    return gameService.save(
-        game,
-        gameRequest.getPlatformIds(),
-        gameRequest.getCrossplayId(),
-        gameRequest.getGenreIds(),
-        gameRequest.getDeveloperIds(),
-        gameRequest.getDistributorIds(),
-        gameRequest.getDlcIds());
+    return gameService.save(gameRequest);
   }
 
   /**

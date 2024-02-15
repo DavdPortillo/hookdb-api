@@ -3,8 +3,9 @@ package com.winninginnovations.entity;
 import java.io.Serial;
 import java.io.Serializable;
 
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,54 +18,37 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.ToString;
 
-/**
- * Clase que representa a un comentario hecho por un usuario de una noticia.
- * 
- */
+/** Clase que representa a un comentario hecho por un usuario de una noticia. */
 @Data
 @Entity
 @Table(name = "news_comment")
 public class NewsComment implements Serializable {
 
-	/**
-	 * ID único del comentario. Generado automáticamente.
-	 */
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+  /** ID único del comentario. Generado automáticamente. */
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-	/**
-	 * Contenido del comentario. No puede ser nulo.
-	 */
-	@NotNull
-	@Size(min = 2, max = 2000)
-	private String content;
+  /** Contenido del comentario. No puede ser nulo. */
+  @NotNull
+  @Size(min = 2, max = 2000)
+  private String content;
 
-	/**
-	 * Date del comentario. No puede ser nulo.
-	 */
-	@NotNull
-	private String date;
+  /** Date del comentario. No puede ser nulo. */
+  @NotNull private String date;
 
-	/**
-	 * Noticia a la que pertenece el comentario. No puede ser nulo.
-     */
-	@JsonIgnore
-	@NotNull
-	@ManyToOne
-	@JoinColumn(name = "news_id")
-	private News news;
+  /** Noticia a la que pertenece el comentario. No puede ser nulo. */
+  @JsonIgnore
+  @NotNull
+  @ManyToOne
+  @JoinColumn(name = "news_id")
+  private News news;
 
-	/**
-	 * Usuario que hizo el comentario. No puede ser nulo.
-	 */
-	@JsonIgnore
-	@NotNull
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
+  /** Usuario que hizo el comentario. No puede ser nulo. */
+  @NotNull
+  @ManyToOne
+  @JoinColumn(name = "user_id")
+  private User user;
 
-	@Serial
-	private static final long serialVersionUID = 1L;
-
+  @Serial private static final long serialVersionUID = 1L;
 }

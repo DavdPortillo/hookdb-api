@@ -46,6 +46,9 @@ public class GameService implements IGameService {
   /** Repositorio de DLC */
   private final DLCRepository dlcRepository;
 
+  /** Repositorio de Language */
+  private final LanguageRepository languageRepository;
+
   /**
    * Constructor de la clase.
    *
@@ -58,7 +61,8 @@ public class GameService implements IGameService {
       GenreRepository genreRepository,
       DeveloperRepository developerRepository,
       DistributorRepository distributorRepository,
-      DLCRepository dlcRepository) {
+      DLCRepository dlcRepository,
+      LanguageRepository languageRepository) {
     this.gameRepository = gameRepository;
     this.platformRepository = platformRepository;
     this.crossplayRepository = crossplayRepository;
@@ -66,6 +70,7 @@ public class GameService implements IGameService {
     this.developerRepository = developerRepository;
     this.distributorRepository = distributorRepository;
     this.dlcRepository = dlcRepository;
+    this.languageRepository = languageRepository;
   }
 
   @Override
@@ -79,14 +84,16 @@ public class GameService implements IGameService {
   }
 
   @Override
-  public Game save(
-      Game game,
-      List<Long> platformsIds,
-      Long crossplayId,
-      List<Long> genreIds,
-      List<Long> developerId,
-      List<Long> distributorId,
-      List<Long> dlcIds) {
+  public Game save(GameRequest gameRequest) {
+
+    Game game = gameRequest.getGame();
+    List<Long> platformsIds = gameRequest.getPlatformIds();
+    Long crossplayId = gameRequest.getCrossplayId();
+    List<Long> genreIds = gameRequest.getGenreIds();
+    List<Long> developerIds = gameRequest.getDeveloperIds();
+    List<Long> distributorIds = gameRequest.getDistributorIds();
+    List<Long> dlcIds = gameRequest.getDlcIds();
+    List<Long> languageIds = gameRequest.getLanguageIds();
 
     if (platformsIds == null
         || platformsIds.isEmpty()
@@ -107,24 +114,28 @@ public class GameService implements IGameService {
       throw new IllegalArgumentException("genreIds no puede ser nulo, vacío o contener null o 0");
     }
 
-    if (developerId == null
-        || developerId.isEmpty()
-        || developerId.contains(null)
-        || developerId.contains(0L)) {
+    if (developerIds == null
+        || developerIds.isEmpty()
+        || developerIds.contains(null)
+        || developerIds.contains(0L)) {
       throw new IllegalArgumentException(
           "developerId no puede ser nulo, vacío o contener null o 0");
     }
 
-    if (distributorId == null
-        || distributorId.isEmpty()
-        || distributorId.contains(null)
-        || distributorId.contains(0L)) {
+    if (distributorIds == null
+        || distributorIds.isEmpty()
+        || distributorIds.contains(null)
+        || distributorIds.contains(0L)) {
       throw new IllegalArgumentException(
           "distributorId no puede ser nulo, vacío o contener null o 0");
     }
 
-    if (dlcIds == null || dlcIds.isEmpty() || dlcIds.contains(null) || dlcIds.contains(0L)) {
-      throw new IllegalArgumentException("dlcIds no puede ser nulo, vacío o contener null o 0");
+    if (languageIds == null
+        || languageIds.isEmpty()
+        || languageIds.contains(null)
+        || languageIds.contains(0L)) {
+      throw new IllegalArgumentException(
+          "languageIds no puede ser nulo, vacío o contener null o 0");
     }
 
     List<Platform> platforms = platformRepository.findAllById(platformsIds);
@@ -137,21 +148,29 @@ public class GameService implements IGameService {
       throw new IllegalArgumentException("No se encontraron todos los géneros especificados");
     }
 
-    List<Developer> developers = developerRepository.findAllById(developerId);
-    if (developers.size() != developerId.size()) {
+    List<Developer> developers = developerRepository.findAllById(developerIds);
+    if (developers.size() != developerIds.size()) {
       throw new IllegalArgumentException(
           "No se encontraron todos los desarrolladores especificados");
     }
 
-    List<Distributor> distributors = distributorRepository.findAllById(distributorId);
-    if (distributors.size() != distributorId.size()) {
+    List<Distributor> distributors = distributorRepository.findAllById(distributorIds);
+    if (distributors.size() != distributorIds.size()) {
       throw new IllegalArgumentException(
           "No se encontraron todos los distribuidores especificados");
     }
 
-    List<DLC> dlcs = dlcRepository.findAllById(dlcIds);
-    if (dlcs.size() != dlcIds.size()) {
-      throw new IllegalArgumentException("No se encontraron todos los DLCs especificados");
+    List<Language> languages = languageRepository.findAllById(languageIds);
+    if (languages.size() != languageIds.size()) {
+      throw new IllegalArgumentException("No se encontraron todos los idiomas especificados");
+    }
+
+    List<DLC> dlcs = null;
+    if (dlcIds != null && !dlcIds.isEmpty()) {
+      dlcs = dlcRepository.findAllById(dlcIds);
+      if (dlcs.size() != dlcIds.size()) {
+        throw new IllegalArgumentException("No se encontraron todos los DLCs especificados");
+      }
     }
 
     Crossplay crossplay =
@@ -167,7 +186,7 @@ public class GameService implements IGameService {
     game.setDevelopers(developers);
     game.setDistributors(distributors);
     game.setDlcs(dlcs);
-
+    game.setLanguages(languages);
     return gameRepository.save(game);
   }
 

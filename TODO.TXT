@@ -1,4 +1,5 @@
-Mirar para que al meter una noticia enlazar el id del autor como hago en la tabla juego
+mirar bien los datos de que seca en los comentarios de noticias cuando saca al user tambien.
+poner los secretos del front bien en la pipeline
 revsar relacion muchos a muchos poner en todas las tablas si existe
 mirar los logs para que no salgan dos veeces controller.GameController : Finding all games services.GameService : Finding all games
 mirar los buicles infinitos donde he visto jsonignore porque lo mismo me interesa saber si la informacio y no ingnorarla jsonbackreference

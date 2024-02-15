@@ -101,8 +101,12 @@ public class Game implements Serializable {
   private List<DLC> dlcs;
 
   /** Idiomas en los que está disponible el juego. */
-  @OneToMany
-  @JoinColumn(name = "language_id")
+  @NotNull
+  @ManyToMany
+  @JoinTable(
+      name = "game_language",
+      joinColumns = @JoinColumn(name = "game_id"),
+      inverseJoinColumns = @JoinColumn(name = "language_id"))
   private List<Language> languages;
 
   /** Plataformas en las que está disponible el juego. */
@@ -112,6 +116,7 @@ public class Game implements Serializable {
 
   /** Noticias del juego. */
   @OneToMany(mappedBy = "game")
+  @JsonManagedReference
   private List<News> news;
 
   /** Críticas hechas por los usuarios. */

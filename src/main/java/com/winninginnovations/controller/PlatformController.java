@@ -18,33 +18,30 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/platform")
 public class PlatformController {
 
-    /**
-     * Logger para la clase.
-     */
-    private static final Logger LOG = LoggerFactory.getLogger(PlatformController.class);
+  /** Logger para la clase. */
+  private static final Logger LOG = LoggerFactory.getLogger(PlatformController.class);
 
-    /**
-     * Servicio para las plataformas.
-     */
-    private final IPlatformService platformService;
+  /** Servicio para las plataformas. */
+  private final IPlatformService platformService;
 
-    /**
-     * Constructor para la inyección de dependencias.
-     *
-     * @param platformService Servicio para las plataformas.
-     */
-    public PlatformController(IPlatformService platformService) {
-        this.platformService = platformService;
-    }
+  /**
+   * Constructor para la inyección de dependencias.
+   *
+   * @param platformService Servicio para las plataformas.
+   */
+  public PlatformController(IPlatformService platformService) {
+    this.platformService = platformService;
+  }
 
-    /**
-     * Guarda una nueva plataforma.
-     *
-     * @param platform La plataforma a guardar.
-     */
-    @PostMapping
-    public Platform savePlatform(@RequestBody Platform platform) {
-        platformService.save(platform);
-        return platform;
-    }
+  /**
+   * Guarda una nueva plataforma.
+   *
+   * @param platform La plataforma a guardar.
+   * @return La plataforma guardada.
+   */
+  @PostMapping
+  public Platform savePlatform(@RequestBody Platform platform) {
+    platformService.save(platform);
+    return platform;
+  }
 }

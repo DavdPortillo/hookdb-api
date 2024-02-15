@@ -1,5 +1,6 @@
 package com.winninginnovations.entity;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import jakarta.persistence.Entity;
@@ -12,37 +13,27 @@ import lombok.Data;
 
 /**
  * Clase que representa los juegos que tiene un juego.
- * 
+ *
+ * @author David Portillo Hoyos
  */
 @Data
 @Entity
 @Table(name = "availability")
 public class Availability implements Serializable {
 
-	/**
-	 * ID unido del lenguaje. Generado automáticamente.
-	 */
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+  /** Id unido del lenguaje. Generado automáticamente. */
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-	/**
-	 * Idioma de la interfaz.
-	 */
-	@NotNull
-	private String interfaceLanguage;
+  /** Idioma de la interfaz. */
+  @NotNull private String interfaceLanguage;
 
-	/**
-	 * Idioma de los subtítulos.
-	 */
-	@NotNull
-	private String subtitleLanguage;
+  /** Idioma de los subtítulos. */
+  @NotNull private String subtitleLanguage;
 
-	/**
-	 * Idioma del audio.
-	 */
-	@NotNull
-	private String audioLanguage;
+  /** Idioma del audio. */
+  @NotNull private String audioLanguage;
 
-	private static final long serialVersionUID = 1L;
+  @Serial private static final long serialVersionUID = 1L;
 }

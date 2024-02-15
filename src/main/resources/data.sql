@@ -197,7 +197,7 @@ VALUES (1, 1),
 
 
 INSERT INTO dlc (game_id, name)
-VALUES (1, 'Extra DLC Packk'),
+VALUES (1, 'Extra DLC Pack'),
        (1, 'Claire Costume: Elza Walker'),
        (1, 'Claire Costume: Military'),
        (1, 'Claire Costume: Noir'),
@@ -210,3 +210,95 @@ VALUES (1, 'Extra DLC Packk'),
        (2, 'Night Springs Expansion'),
        (2, 'Lake House Expansion');
 
+
+INSERT INTO language (name)
+VALUES ('Español'),
+       ('Inglés'),
+       ('Francés'),
+       ('Alemán'),
+       ('Italiano'),
+       ('Portugués'),
+       ('Ruso'),
+       ('Chino'),
+       ('Japonés'),
+       ('Coreano');
+
+-- Resident Evil 2 Remake
+INSERT INTO game_language (game_id, language_id)
+VALUES (1, 1), -- Español
+       (1, 2)
+        ,      -- Inglés
+       (1, 3)
+        ,      -- Francés
+       (1, 4)
+        ,      -- Alemán
+       (1, 5)
+        ,      -- Italiano
+       (1, 6)
+        ,      -- Portugués
+       (1, 7)
+        ,      -- Ruso
+       (1, 8)
+        ,      -- Chino
+       (1, 9)
+        ,      -- Japonés
+       (1, 10)
+        ,
+-- Coreano
+
+-- Alan Wake 2
+       (2, 1)
+        ,      -- Español
+       (2, 2)
+        ,      -- Inglés
+       (2, 3)
+        ,      -- Francés
+       (2, 4)
+        ,      -- Alemán
+       (2, 5)
+        ,      -- Italiano
+       (2, 6)
+        ,      -- Portugués
+       (2, 7)
+        ,      -- Ruso
+       (2, 8)
+        ,      -- Chino
+       (2, 9)
+        ,      -- Japonés
+       (2, 10)
+        ,
+-- Coreano
+
+-- Little Nightmares 2
+       (3, 1)
+        ,      -- Español
+       (3, 2)
+        ,      -- Inglés
+       (3, 3)
+        ,      -- Francés
+       (3, 4)
+        ,      -- Alemán
+       (3, 5)
+        ,      -- Italiano
+       (3, 6)
+        ,      -- Portugués
+       (3, 7)
+        ,      -- Ruso
+       (3, 8)
+        ,      -- Chino
+       (3, 9)
+        ,      -- Japonés
+       (3, 10)
+        ,      -- Coreano
+       -- Final Fantasy 7 PSX
+       (4, 1)
+        ,      -- Español-
+       (4, 2)
+        ,      -- Inglés
+       (4, 3)
+        ,      -- Francés
+       (4, 4)
+        ,      -- Alemán
+       (4, 5)
+        ,      -- Italiano
+       (4, 9); -- Japonés
