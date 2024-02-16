@@ -2,7 +2,9 @@ package com.winninginnovations.services;
 
 import com.winninginnovations.entity.*;
 import com.winninginnovations.repository.*;
+import com.winninginnovations.request.AvailabilityRequest;
 import com.winninginnovations.request.GameRequest;
+import com.winninginnovations.request.LanguageRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,7 @@ import com.winninginnovations.services.interfaces.IGameService;
 
 import jakarta.transaction.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -49,6 +52,9 @@ public class GameService implements IGameService {
   /** Repositorio de Language */
   private final LanguageRepository languageRepository;
 
+  /** Repositorio de Availability. */
+  private final AvailabilityRepository availabilityRepository;
+
   /**
    * Constructor de la clase.
    *
@@ -62,7 +68,8 @@ public class GameService implements IGameService {
       DeveloperRepository developerRepository,
       DistributorRepository distributorRepository,
       DLCRepository dlcRepository,
-      LanguageRepository languageRepository) {
+      LanguageRepository languageRepository,
+      AvailabilityRepository availabilityRepository) {
     this.gameRepository = gameRepository;
     this.platformRepository = platformRepository;
     this.crossplayRepository = crossplayRepository;
@@ -71,6 +78,7 @@ public class GameService implements IGameService {
     this.distributorRepository = distributorRepository;
     this.dlcRepository = dlcRepository;
     this.languageRepository = languageRepository;
+    this.availabilityRepository = availabilityRepository;
   }
 
   @Override
@@ -93,7 +101,7 @@ public class GameService implements IGameService {
     List<Long> developerIds = gameRequest.getDeveloperIds();
     List<Long> distributorIds = gameRequest.getDistributorIds();
     List<Long> dlcIds = gameRequest.getDlcIds();
-    List<Long> languageIds = gameRequest.getLanguageIds();
+    List<LanguageRequest> languageRequests = gameRequest.getLanguages();
 
     if (platformsIds == null
         || platformsIds.isEmpty()
@@ -130,12 +138,8 @@ public class GameService implements IGameService {
           "distributorId no puede ser nulo, vacío o contener null o 0");
     }
 
-    if (languageIds == null
-        || languageIds.isEmpty()
-        || languageIds.contains(null)
-        || languageIds.contains(0L)) {
-      throw new IllegalArgumentException(
-          "languageIds no puede ser nulo, vacío o contener null o 0");
+    if (languageRequests == null || languageRequests.isEmpty()) {
+      throw new IllegalArgumentException("languageRequests no puede ser nulo o vacío");
     }
 
     List<Platform> platforms = platformRepository.findAllById(platformsIds);
@@ -160,11 +164,6 @@ public class GameService implements IGameService {
           "No se encontraron todos los distribuidores especificados");
     }
 
-    List<Language> languages = languageRepository.findAllById(languageIds);
-    if (languages.size() != languageIds.size()) {
-      throw new IllegalArgumentException("No se encontraron todos los idiomas especificados");
-    }
-
     List<DLC> dlcs = null;
     if (dlcIds != null && !dlcIds.isEmpty()) {
       dlcs = dlcRepository.findAllById(dlcIds);
@@ -179,6 +178,31 @@ public class GameService implements IGameService {
             .orElseThrow(
                 () ->
                     new IllegalArgumentException("Crossplay no encontrado con id: " + crossplayId));
+
+    List<Language> languages = new ArrayList<>();
+
+    for (LanguageRequest languageRequest : languageRequests) {
+      Language language =
+          languageRepository
+              .findById(languageRequest.getId())
+              .orElseThrow(
+                  () ->
+                      new IllegalArgumentException(
+                          "No se encontró el idioma con id: " + languageRequest.getId()));
+
+      for (AvailabilityRequest availabilityRequest : languageRequest.getAvailabilities()) {
+        Availability availability = new Availability();
+        availability.setInterfaceLanguage(availabilityRequest.getInterfaceLanguage());
+        availability.setSubtitleLanguage(availabilityRequest.getSubtitleLanguage());
+        availability.setAudioLanguage(availabilityRequest.getAudioLanguage());
+        availability.setLanguage(language);
+
+        availabilityRepository.save(availability);
+      }
+
+      languages.add(language);
+      languageRepository.save(language);
+    }
 
     game.setPlatforms(platforms);
     game.setGenres(genres);

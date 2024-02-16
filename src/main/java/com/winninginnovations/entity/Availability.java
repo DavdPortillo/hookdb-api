@@ -3,11 +3,8 @@ package com.winninginnovations.entity;
 import java.io.Serial;
 import java.io.Serializable;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -34,6 +31,12 @@ public class Availability implements Serializable {
 
   /** Idioma del audio. */
   @NotNull private String audioLanguage;
+
+  /** El lenguaje asociado con esta disponibilidad. */
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "language_id")
+  @JsonBackReference
+  private Language language;
 
   @Serial private static final long serialVersionUID = 1L;
 }

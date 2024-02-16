@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -28,8 +29,8 @@ public class Language implements Serializable {
   @NotNull private String name;
 
   /** La disponibilidad del lenguaje. */
-  @OneToMany
-  @JoinColumn(name = "availability_id")
+  @OneToMany(mappedBy = "language", cascade = CascadeType.ALL, orphanRemoval = true)
+  @JsonManagedReference
   private List<Availability> availability;
 
   @Serial private static final long serialVersionUID = 1L;

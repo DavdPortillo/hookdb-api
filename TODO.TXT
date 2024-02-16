@@ -1,3 +1,4 @@
+insertar noticia para relacionarla con los juegos para tener los datos
 mirar bien los datos de que seca en los comentarios de noticias cuando saca al user tambien.
 poner los secretos del front bien en la pipeline
 revsar relacion muchos a muchos poner en todas las tablas si existe

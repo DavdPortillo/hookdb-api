@@ -28,25 +28,6 @@ VALUES (1950, 1, 1, 'Teléfono del usuario', 'Idioma del usuario', 'País del us
         '$2a$10$GQ8EjxA1xo18wJC4Ea8ZQOD1wlg2kf9U4hdobBSipD4Nn3uWZ1HzW', 'user@user.com', NULL, 'URL de la imagen',
         '11/02/2024');
 
-INSERT INTO `news_author` (`id`, `name`, `surname`, `image`)
-VALUES (NULL, 'David', 'Portillo', 'imagen');
-
-INSERT INTO `news` (`game_id`, `id`, `news_author_id`, `content`, `date`, `headline`, `image`)
-VALUES (NULL, 1, 1,
-        'Se dice a menudo que los jugadores buscan innumerables maneras de superarse a sí mismos, y esta es una de las más complicadas. No nos referimos a completar Elden Ring con la mente o cosas similares, sino a derrotar a los jefes del juego de FromSoftware, a pesar de que estos son invisibles. Sí, has leído bien, derrotar a jefes que pueden enviarte al más allá con un solo soplido, sin siquiera poder verlos. Esta es la proeza de la streamer BioticNova. Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino. Luego está BioticNova, quien se desafió a sí misma a completar Elden Ring con los ojos abiertos, las manos en el mando, pero con todos los jefes del juego siendo invisibles.',
-        '2024-02-12',
-        'Hay una jugadora que se ha pasado Elden Ring con todos los enemigos invisibles. Ya solo nos queda terminar el soulslike con el PC apagado',
-        'URL de la imagen'),
-       (NULL, 2, 1,
-        'Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino. Luego está BioticNova, quien se desafió a sí misma a completar Elden Ring con los ojos abiertos, las manos en el mando, pero con todos los jefes del juego siendo invisibles. Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino. Luego está BioticNova, quien se desafió a sí misma a completar Elden Ring con los ojos abiertos, las manos en el mando, pero con todos los jefes del juego siendo invisibles.',
-        '2024-02-12',
-        'Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino.',
-        'URL de la imagen');
-
-INSERT INTO `news_comment` (`id`, `news_id`, `user_id`, `content`, `date`)
-VALUES (NULL, '1', '1', 'comentario1', '12-02-2024'),
-       (NULL, '1', '2', 'comentario2', '13-02-2024'),
-       (NULL, '1', '1', 'comentario3', '12-05-2024');
 
 
 INSERT INTO platform (name)
@@ -302,3 +283,30 @@ VALUES (1, 1), -- Español
        (4, 5)
         ,      -- Italiano
        (4, 9); -- Japonés
+
+
+INSERT INTO `news_author` (`id`, `name`, `surname`, `image`)
+VALUES (NULL, 'David', 'Portillo', 'imagen');
+
+INSERT INTO `news` (`game_id`, `id`, `news_author_id`, `content`, `date`, `headline`, `image`)
+VALUES (NULL, 1, 1,
+        'Se dice a menudo que los jugadores buscan innumerables maneras de superarse a sí mismos, y esta es una de las más complicadas. No nos referimos a completar Elden Ring con la mente o cosas similares, sino a derrotar a los jefes del juego de FromSoftware, a pesar de que estos son invisibles. Sí, has leído bien, derrotar a jefes que pueden enviarte al más allá con un solo soplido, sin siquiera poder verlos. Esta es la proeza de la streamer BioticNova. Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino. Luego está BioticNova, quien se desafió a sí misma a completar Elden Ring con los ojos abiertos, las manos en el mando, pero con todos los jefes del juego siendo invisibles.',
+        '2024-02-12',
+        'Hay una jugadora que se ha pasado Elden Ring con todos los enemigos invisibles. Ya solo nos queda terminar el soulslike con el PC apagado',
+        'URL de la imagen'),
+       (NULL, 2, 1,
+        'Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino. Luego está BioticNova, quien se desafió a sí misma a completar Elden Ring con los ojos abiertos, las manos en el mando, pero con todos los jefes del juego siendo invisibles. Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino. Luego está BioticNova, quien se desafió a sí misma a completar Elden Ring con los ojos abiertos, las manos en el mando, pero con todos los jefes del juego siendo invisibles.',
+        '2024-02-12',
+        'Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino.',
+        'URL de la imagen'),
+       (1, 3, 1,
+        'Capcom ha lanzado un nuevo parche que corrige errores y añade un nuevo idioma cuatro años después de su estreno[4].',
+        '2023-08-15',
+        'Resident Evil 2 se actualiza con correcciones y un nuevo idioma 4 años después de su estreno', -- headline
+        'image_url');
+
+
+INSERT INTO `news_comment` (`id`, `news_id`, `user_id`, `content`, `date`)
+VALUES (NULL, '1', '1', 'comentario1', '12-02-2024'),
+       (NULL, '1', '2', 'comentario2', '13-02-2024'),
+       (NULL, '1', '1', 'comentario3', '12-05-2024');
