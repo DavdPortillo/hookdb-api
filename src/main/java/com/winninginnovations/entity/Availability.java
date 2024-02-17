@@ -3,7 +3,7 @@ package com.winninginnovations.entity;
 import java.io.Serial;
 import java.io.Serializable;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -16,6 +16,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "availability")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Availability implements Serializable {
 
   /** Id unido del lenguaje. Generado automáticamente. */
@@ -33,15 +34,15 @@ public class Availability implements Serializable {
   @NotNull private String audioLanguage;
 
   /** El lenguaje asociado con esta disponibilidad. */
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "language_id")
-  @JsonBackReference
+  @JsonIdentityReference(alwaysAsId = true)
   private Language language;
 
   /** El juego asociado con esta disponibilidad. */
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "game_id")
-  @JsonBackReference
+  @JsonBackReference(value = "game-availability")
   private Game game;
 
   @Serial private static final long serialVersionUID = 1L;

@@ -19,6 +19,6 @@ public class GameRequest {
     private List<Long> developerIds;
     private List<Long> distributorIds;
     private List<Long> dlcIds;
-    private List<LanguageRequest> languages;
+    private List<AvailabilityRequest> availabilities;
 }
 

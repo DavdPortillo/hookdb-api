@@ -205,84 +205,57 @@ VALUES ('Español'),
        ('Coreano');
 
 -- Resident Evil 2 Remake
-INSERT INTO game_language (game_id, language_id)
-VALUES (1, 1), -- Español
-       (1, 2)
-        ,      -- Inglés
-       (1, 3)
-        ,      -- Francés
-       (1, 4)
-        ,      -- Alemán
-       (1, 5)
-        ,      -- Italiano
-       (1, 6)
-        ,      -- Portugués
-       (1, 7)
-        ,      -- Ruso
-       (1, 8)
-        ,      -- Chino
-       (1, 9)
-        ,      -- Japonés
-       (1, 10)
-        ,
--- Coreano
+INSERT INTO availability (game_id, language_id, interface_language, subtitle_language, audio_language)
+VALUES (1, 1, true, true, true), -- Español
+       (1, 2, true, true, true), -- Inglés
+       (1, 3, true, true, true), -- Francés
+       (1, 4, true, true, true), -- Alemán
+       (1, 5, true, true, true), -- Italiano
+       (1, 6, true, true, false), -- Portugués
+       (1, 7, true, true, false), -- Ruso
+       (1, 8, true, true, false), -- Chino
+       (1, 9, true, true, false), -- Japonés
+       (1, 10, true, true, false); -- Coreano
 
 -- Alan Wake 2
-       (2, 1)
-        ,      -- Español
-       (2, 2)
-        ,      -- Inglés
-       (2, 3)
-        ,      -- Francés
-       (2, 4)
-        ,      -- Alemán
-       (2, 5)
-        ,      -- Italiano
-       (2, 6)
-        ,      -- Portugués
-       (2, 7)
-        ,      -- Ruso
-       (2, 8)
-        ,      -- Chino
-       (2, 9)
-        ,      -- Japonés
-       (2, 10)
-        ,
--- Coreano
+INSERT INTO availability (game_id, language_id, interface_language, subtitle_language, audio_language)
+VALUES (2, 1, true, true, false), -- Español
+       (2, 2, true, true, true), -- Inglés
+       (2, 3, true, true, true), -- Francés
+       (2, 4, true, true, true), -- Alemán
+       (2, 5, true, true, false), -- Italiano
+       (2, 6, true, true, false), -- Portugués
+       (2, 7, true, true, false), -- Ruso
+       (2, 8, true, true, false), -- Chino
+       (2, 9, true, true, true), -- Japonés
+       (2, 10, false, true, false); -- Coreano
 
 -- Little Nightmares 2
-       (3, 1)
-        ,      -- Español
-       (3, 2)
-        ,      -- Inglés
-       (3, 3)
-        ,      -- Francés
-       (3, 4)
-        ,      -- Alemán
-       (3, 5)
-        ,      -- Italiano
-       (3, 6)
-        ,      -- Portugués
-       (3, 7)
-        ,      -- Ruso
-       (3, 8)
-        ,      -- Chino
-       (3, 9)
-        ,      -- Japonés
-       (3, 10)
-        ,      -- Coreano
-       -- Final Fantasy 7 PSX
-       (4, 1)
-        ,      -- Español-
-       (4, 2)
-        ,      -- Inglés
-       (4, 3)
-        ,      -- Francés
-       (4, 4)
-        ,      -- Alemán
-       (4, 5)
-        ,      -- Italiano
-       (4, 9); -- Japonés
+INSERT INTO availability (game_id, language_id, interface_language, subtitle_language, audio_language)
+VALUES (3, 1, true, true, false), -- Español
+       (3, 2, true, true, true), -- Inglés
+       (3, 3, true, true, false), -- Francés
+       (3, 4, true, true, false), -- Alemán
+       (3, 5, true, true, false), -- Italiano
+       (3, 6, true, true, false), -- Portugués
+       (3, 7, true, true, false), -- Ruso
+       (3, 8, true, true, false), -- Chino
+       (3, 9, true, true, false), -- Japonés
+       (3, 10, true, true, false); -- Coreano
+
+-- Final Fantasy 7 PSX
+INSERT INTO availability (game_id, language_id, interface_language, subtitle_language, audio_language)
+VALUES (4, 1, true, true, false), -- Español
+       (4, 2, true, true, false), -- Inglés
+       (4, 3, true, true, false), -- Francés
+       (4, 4, true, true, false), -- Alemán
+       (4, 5, true, true, false), -- Italiano
+       (4, 6, true, true, false), -- Portugués
+       (4, 7, true, true, false), -- Ruso
+       (4, 8, true, true, false), -- Chino
+       (4, 9, true, true, false), -- Japonés
+       (4, 10, true, true, false); -- Coreano
+
 
 
 INSERT INTO `news_author` (`id`, `name`, `surname`, `image`)

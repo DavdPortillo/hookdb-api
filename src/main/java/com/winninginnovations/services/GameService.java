@@ -101,7 +101,7 @@ public class GameService implements IGameService {
     List<Long> developerIds = gameRequest.getDeveloperIds();
     List<Long> distributorIds = gameRequest.getDistributorIds();
     List<Long> dlcIds = gameRequest.getDlcIds();
-    List<LanguageRequest> languageRequests = gameRequest.getLanguages();
+    List<AvailabilityRequest> availabilityRequests = gameRequest.getAvailabilities();
 
     if (platformsIds == null
         || platformsIds.isEmpty()
@@ -138,8 +138,8 @@ public class GameService implements IGameService {
           "distributorId no puede ser nulo, vacío o contener null o 0");
     }
 
-    if (languageRequests == null || languageRequests.isEmpty()) {
-      throw new IllegalArgumentException("languageRequests no puede ser nulo o vacío");
+    if (availabilityRequests == null || availabilityRequests.isEmpty()) {
+      throw new IllegalArgumentException("availabilityRequests no puede ser nulo o vacío");
     }
 
     List<Platform> platforms = platformRepository.findAllById(platformsIds);
@@ -179,29 +179,24 @@ public class GameService implements IGameService {
                 () ->
                     new IllegalArgumentException("Crossplay no encontrado con id: " + crossplayId));
 
-    List<Language> languages = new ArrayList<>();
-
-    for (LanguageRequest languageRequest : languageRequests) {
+    List<Availability> availabilities = new ArrayList<>();
+    for (AvailabilityRequest availabilityRequest : gameRequest.getAvailabilities()) {
       Language language =
           languageRepository
-              .findById(languageRequest.getId())
+              .findById(availabilityRequest.getLanguageId())
               .orElseThrow(
                   () ->
                       new IllegalArgumentException(
-                          "No se encontró el idioma con id: " + languageRequest.getId()));
-
-      for (AvailabilityRequest availabilityRequest : languageRequest.getAvailabilities()) {
-        Availability availability = new Availability();
-        availability.setInterfaceLanguage(availabilityRequest.getInterfaceLanguage());
-        availability.setSubtitleLanguage(availabilityRequest.getSubtitleLanguage());
-        availability.setAudioLanguage(availabilityRequest.getAudioLanguage());
-        availability.setLanguage(language);
-
-        availabilityRepository.save(availability);
-      }
-
-      languages.add(language);
-      languageRepository.save(language);
+                          "Idioma no encontrado con id: " + availabilityRequest.getLanguageId()));
+      Availability availability = new Availability();
+      availability.setInterfaceLanguage(availabilityRequest.getInterfaceLanguage());
+      availability.setSubtitleLanguage(availabilityRequest.getSubtitleLanguage());
+      availability.setAudioLanguage(availabilityRequest.getAudioLanguage());
+      availability.setLanguage(language);
+      availability.setGame(game);
+      availabilities.add(availability);
+      availabilityRepository.save(
+          availability); // Guarda la entidad Availability en la base de datos
     }
 
     game.setPlatforms(platforms);
@@ -210,7 +205,7 @@ public class GameService implements IGameService {
     game.setDevelopers(developers);
     game.setDistributors(distributors);
     game.setDlcs(dlcs);
-    game.setLanguages(languages);
+    game.setAvailabilities(availabilities);
     return gameRepository.save(game);
   }
 

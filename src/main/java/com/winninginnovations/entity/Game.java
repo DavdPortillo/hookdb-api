@@ -100,18 +100,10 @@ public class Game implements Serializable {
   @OneToMany(mappedBy = "game")
   private List<DLC> dlcs;
 
-  /** Idiomas en los que está disponible el juego. */
-  @NotNull
-  @ManyToMany
-  @JoinTable(
-      name = "game_language",
-      joinColumns = @JoinColumn(name = "game_id"),
-      inverseJoinColumns = @JoinColumn(name = "language_id"))
-  private List<Language> languages;
 
   @NotNull
   @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
-  @JsonManagedReference
+  @JsonManagedReference(value = "game-availability")
   private List<Availability> availabilities;
 
   /** Plataformas en las que está disponible el juego. */
