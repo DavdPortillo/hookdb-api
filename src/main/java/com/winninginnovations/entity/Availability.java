@@ -38,5 +38,11 @@ public class Availability implements Serializable {
   @JsonBackReference
   private Language language;
 
+  /** El juego asociado con esta disponibilidad. */
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "game_id")
+  @JsonBackReference
+  private Game game;
+
   @Serial private static final long serialVersionUID = 1L;
 }

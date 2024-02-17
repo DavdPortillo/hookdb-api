@@ -109,6 +109,11 @@ public class Game implements Serializable {
       inverseJoinColumns = @JoinColumn(name = "language_id"))
   private List<Language> languages;
 
+  @NotNull
+  @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
+  @JsonManagedReference
+  private List<Availability> availabilities;
+
   /** Plataformas en las que está disponible el juego. */
   @OneToMany
   @JoinColumn(name = "feature_id")

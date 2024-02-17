@@ -19,12 +19,12 @@ VALUES ('DirectX 12', 'NVIDIA RTX 2060', 'Windows 10', 'Intel Core i7-9700K', '1
 
 
 
-INSERT INTO `user` (`year`, `id`, `role_id`, `phone`, `language`, `country`, `username`, `password`, `email`, `gender`,
+INSERT INTO `user` (`year`, `id`, `role_id`, `language`, `country`, `username`, `password`, `email`, `gender`,
                     `image`, `register_date`)
-VALUES (1950, 1, 1, 'Teléfono del usuario', 'Idioma del usuario', 'País del usuario', 'Nombre del usuario',
+VALUES (1950, 1, 1, 'Idioma del usuario', 'País del usuario', 'Nombre del usuario',
         '$2a$10$GQ8EjxA1xo18wJC4Ea8ZQOD1wlg2kf9U4hdobBSipD4Nn3uWZ1HzW', 'admin@admin.com', NULL, 'URL de la imagen',
         '11/02/2024'),
-       (1950, 2, 2, 'Teléfono del usuario', 'Idioma del usuario', 'País del usuario', 'Nombre del usuario',
+       (1950, 2, 2, 'Idioma del usuario', 'País del usuario', 'Nombre del usuario',
         '$2a$10$GQ8EjxA1xo18wJC4Ea8ZQOD1wlg2kf9U4hdobBSipD4Nn3uWZ1HzW', 'user@user.com', NULL, 'URL de la imagen',
         '11/02/2024');
 
