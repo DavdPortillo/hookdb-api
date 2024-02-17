@@ -7,7 +7,7 @@ VALUES (1, 'true'),
        (2, 'false');
 
 INSERT INTO minimum_system_requirement (directx, graphics_card, operating_system, processor, ram, storage)
-VALUES ('DirectX 12', 'NVIDIA GTX 1650', 'Windows 10', 'Intel Core i5-9400F', '8 GB', '500 GB'),
+VALUES ('DirectX 12a', 'NVIDIA GTX 1650', 'Windows 10', 'Intel Core i5-9400F', '8 GB', '500 GB'),
        ('DirectX 11', 'AMD Radeon RX 57', 'Windows 10', 'AMD Ryzen 5 260', '8 GB', '1 TB'),
        ('DirectX 12', 'NVIDIA RTX 306', 'Windows 10', 'Intel Core i7-9700K', '16 GB', '1 TB SSD');
 
