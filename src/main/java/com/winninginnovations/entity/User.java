@@ -77,9 +77,6 @@ public class User implements Serializable {
   @Size(min = 2, max = 30)
   private String language;
 
-  /** Teléfono del cliente. */
-  @Size(min = 6, max = 20)
-  private String phone;
 
   /**
    * Rol del cliente. No puede ser nulo y se carga de manera inmediata cuando se carga la entidad
