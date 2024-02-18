@@ -187,7 +187,7 @@ VALUES (1, 'Extra DLC Pack'),
        (1, 'Samurai Edge - Albert Model'),
        (1, 'The Ghost Survivors'),
        (1, 'Original Ver. Soundtrack Swap'),
-       (3, 'The Nome\'s Attic'),
+       (3, 'The Nomes Attic'),
        (2, 'Night Springs Expansion'),
        (2, 'Lake House Expansion');
 
@@ -264,17 +264,17 @@ VALUES (NULL, 'David', 'Portillo', 'imagen');
 INSERT INTO `news` (`game_id`, `id`, `news_author_id`, `content`, `date`, `headline`, `image`)
 VALUES (NULL, 1, 1,
         'Se dice a menudo que los jugadores buscan innumerables maneras de superarse a sí mismos, y esta es una de las más complicadas. No nos referimos a completar Elden Ring con la mente o cosas similares, sino a derrotar a los jefes del juego de FromSoftware, a pesar de que estos son invisibles. Sí, has leído bien, derrotar a jefes que pueden enviarte al más allá con un solo soplido, sin siquiera poder verlos. Esta es la proeza de la streamer BioticNova. Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino. Luego está BioticNova, quien se desafió a sí misma a completar Elden Ring con los ojos abiertos, las manos en el mando, pero con todos los jefes del juego siendo invisibles.',
-        '2024-02-12',
+        '18/02/2024 20:34',
         'Hay una jugadora que se ha pasado Elden Ring con todos los enemigos invisibles. Ya solo nos queda terminar el soulslike con el PC apagado',
         'URL de la imagen'),
        (NULL, 2, 1,
         'Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino. Luego está BioticNova, quien se desafió a sí misma a completar Elden Ring con los ojos abiertos, las manos en el mando, pero con todos los jefes del juego siendo invisibles. Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino. Luego está BioticNova, quien se desafió a sí misma a completar Elden Ring con los ojos abiertos, las manos en el mando, pero con todos los jefes del juego siendo invisibles.',
-        '2024-02-12',
+        '18/02/2024 20:34',
         'Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino.',
         'URL de la imagen'),
        (1, 3, 1,
         'Capcom ha lanzado un nuevo parche que corrige errores y añade un nuevo idioma cuatro años después de su estreno[4].',
-        '2023-08-15',
+        '18/02/2024 20:34',
         'Resident Evil 2 se actualiza con correcciones y un nuevo idioma 4 años después de su estreno', -- headline
         'image_url');
 

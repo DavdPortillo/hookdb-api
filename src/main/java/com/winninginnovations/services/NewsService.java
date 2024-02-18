@@ -8,6 +8,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 /**
  * Clase que implementa la interfaz INewsService.
  *
@@ -49,6 +53,16 @@ public class NewsService implements INewsService {
     @Override
     public News save(News news) {
         LOG.info("Saving news: {}", news);
+
+        // Obtener la fecha y hora actual
+        LocalDateTime now = LocalDateTime.now();
+
+        // Formatear la fecha y hora al formato deseado
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        String formattedNow = now.format(formatter);
+
+        // Establecer la fecha y hora formateada
+        news.setDate(formattedNow);
         return newsRepository.save(news);
     }
 
@@ -64,3 +78,4 @@ public class NewsService implements INewsService {
         return newsRepository.findAll();
     }
 }
+
