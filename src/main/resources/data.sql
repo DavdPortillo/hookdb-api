@@ -284,4 +284,4 @@ VALUES (NULL, 1, 1,
 INSERT INTO `news_comment` (`id`, `news_id`, `user_id`, `content`, `date`)
 VALUES (NULL, '1', '1', 'comentario1', '2024-01-10T15:16:17.633882315'),
        (NULL, '1', '2', 'comentario2', '2024-01-20T18:16:17.633882315'),
-       (NULL, '1', '1', 'comentario3', '2024-02-30T20:16:17.633882315');
+       (NULL, '1', '1', 'comentario3', '2024-02-10T20:16:17.633882315');
