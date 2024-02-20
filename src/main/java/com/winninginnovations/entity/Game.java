@@ -107,8 +107,11 @@ public class Game implements Serializable {
   private List<Availability> availabilities;
 
   /** Plataformas en las que está disponible el juego. */
-  @OneToMany
-  @JoinColumn(name = "feature_id")
+  @ManyToMany
+  @JoinTable(
+          name = "game_feature",
+          joinColumns = @JoinColumn(name = "game_id"),
+          inverseJoinColumns = @JoinColumn(name = "feature_id"))
   private List<Feature> features;
 
   /** Noticias del juego. */
