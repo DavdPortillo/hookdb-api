@@ -271,17 +271,17 @@ VALUES (NULL, 1, 1,
         'URL de la imagen'),
        (NULL, 2, 1,
         'Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino. Luego está BioticNova, quien se desafió a sí misma a completar Elden Ring con los ojos abiertos, las manos en el mando, pero con todos los jefes del juego siendo invisibles. Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino. Luego está BioticNova, quien se desafió a sí misma a completar Elden Ring con los ojos abiertos, las manos en el mando, pero con todos los jefes del juego siendo invisibles.',
-        '2024-03-23T18:16:17.633882315',
+        '2024-01-23T18:16:17.633882315',
         'Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino.',
         'URL de la imagen'),
        (1, 3, 1,
         'Capcom ha lanzado un nuevo parche que corrige errores y añade un nuevo idioma cuatro años después de su estreno[4].',
-        '2024-01-30T18:16:17.633882315',
+        '2023-12-30T18:16:17.633882315',
         'Resident Evil 2 se actualiza con correcciones y un nuevo idioma 4 años después de su estreno', -- headline
         'image_url');
 
 
 INSERT INTO `news_comment` (`id`, `news_id`, `user_id`, `content`, `date`)
 VALUES (NULL, '1', '1', 'comentario1', '2024-01-10T15:16:17.633882315'),
-       (NULL, '1', '2', 'comentario2', '2024-02-20T18:16:17.633882315'),
-       (NULL, '1', '1', 'comentario3', '2024-03-30T20:16:17.633882315');
+       (NULL, '1', '2', 'comentario2', '2024-01-20T18:16:17.633882315'),
+       (NULL, '1', '1', 'comentario3', '2024-02-30T20:16:17.633882315');
