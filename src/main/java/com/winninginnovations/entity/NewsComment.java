@@ -2,17 +2,14 @@ package com.winninginnovations.entity;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -34,8 +31,13 @@ public class NewsComment implements Serializable {
   @Size(min = 2, max = 2000)
   private String content;
 
-  /** Date del comentario. No puede ser nulo. */
-  @NotNull private String date;
+  @NotNull private LocalDateTime date;
+
+  @PrePersist
+  protected void onCreate() {
+    ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Europe/Madrid"));
+    date = zdt.toLocalDateTime();
+  }
 
   /** Noticia a la que pertenece el comentario. No puede ser nulo. */
   @JsonIgnore

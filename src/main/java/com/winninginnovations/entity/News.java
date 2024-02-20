@@ -2,6 +2,10 @@ package com.winninginnovations.entity;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.Date;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -27,8 +31,13 @@ public class News implements Serializable {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  /** Fecha de la noticia. */
-  @NotNull private String date;
+  @NotNull private LocalDateTime date;
+
+  @PrePersist
+  protected void onCreate() {
+    ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Europe/Madrid"));
+    date = zdt.toLocalDateTime();
+  }
 
   /** Título de la noticia. */
   @NotNull

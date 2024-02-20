@@ -21,61 +21,47 @@ import java.util.Date;
 @Transactional
 public class NewsService implements INewsService {
 
-    /**
-     * Logger.
-     */
-    private static final Logger LOG = LoggerFactory.getLogger(News.class);
+  /** Logger. */
+  private static final Logger LOG = LoggerFactory.getLogger(News.class);
 
-    /**
-     * Repositorio de News.
-     */
-    private final NewsRepository newsRepository;
+  /** Repositorio de News. */
+  private final NewsRepository newsRepository;
 
-    /**
-     * Constructor de la clase.
-     *
-     * @param newsRepository Repositorio de News.
-     */
-    public NewsService(NewsRepository newsRepository) {
-        this.newsRepository = newsRepository;
+  /**
+   * Constructor de la clase.
+   *
+   * @param newsRepository Repositorio de News.
+   */
+  public NewsService(NewsRepository newsRepository) {
+    this.newsRepository = newsRepository;
+  }
+
+  @Override
+  public News findById(Long id) {
+    LOG.info("Finding news by id: {}", id);
+    News news = newsRepository.findById(id).orElse(null);
+    if (news == null) {
+      LOG.info("News not found");
     }
+    return news;
+  }
 
-    @Override
-    public News findById(Long id) {
-        LOG.info("Finding news by id: {}", id);
-        News news = newsRepository.findById(id).orElse(null);
-        if (news == null) {
-            LOG.info("News not found");
-        }
-        return news;
-    }
+  @Override
+  public News save(News news) {
+    LOG.info("Saving news: {}", news);
 
-    @Override
-    public News save(News news) {
-        LOG.info("Saving news: {}", news);
+    return newsRepository.save(news);
+  }
 
-        // Obtener la fecha y hora actual
-        LocalDateTime now = LocalDateTime.now();
+  @Override
+  public void delete(Long id) {
+    LOG.info("Deleting news by id: {}", id);
+    newsRepository.deleteById(id);
+  }
 
-        // Formatear la fecha y hora al formato deseado
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
-        String formattedNow = now.format(formatter);
-
-        // Establecer la fecha y hora formateada
-        news.setDate(formattedNow);
-        return newsRepository.save(news);
-    }
-
-    @Override
-    public void delete(Long id) {
-        LOG.info("Deleting news by id: {}", id);
-        newsRepository.deleteById(id);
-    }
-
-    @Override
-    public Iterable<News> findAll() {
-        LOG.info("Finding all news");
-        return newsRepository.findAll();
-    }
+  @Override
+  public Iterable<News> findAll() {
+    LOG.info("Finding all news");
+    return newsRepository.findAll();
+  }
 }
-

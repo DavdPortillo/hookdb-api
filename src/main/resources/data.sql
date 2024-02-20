@@ -206,34 +206,36 @@ VALUES ('Español'),
 
 -- Resident Evil 2 Remake
 INSERT INTO availability (game_id, language_id, interface_language, subtitle_language, audio_language)
-VALUES (1, 1, true, true, true), -- Español
-       (1, 2, true, true, true), -- Inglés
-       (1, 3, true, true, true), -- Francés
-       (1, 4, true, true, true), -- Alemán
-       (1, 5, true, true, true), -- Italiano
+VALUES (1, 1, true, true, true),  -- Español
+       (1, 2, true, true, true),  -- Inglés
+       (1, 3, true, true, true),  -- Francés
+       (1, 4, true, true, true),  -- Alemán
+       (1, 5, true, true, true),  -- Italiano
        (1, 6, true, true, false), -- Portugués
        (1, 7, true, true, false), -- Ruso
        (1, 8, true, true, false), -- Chino
        (1, 9, true, true, false), -- Japonés
-       (1, 10, true, true, false); -- Coreano
+       (1, 10, true, true, false);
+-- Coreano
 
 -- Alan Wake 2
 INSERT INTO availability (game_id, language_id, interface_language, subtitle_language, audio_language)
 VALUES (2, 1, true, true, false), -- Español
-       (2, 2, true, true, true), -- Inglés
-       (2, 3, true, true, true), -- Francés
-       (2, 4, true, true, true), -- Alemán
+       (2, 2, true, true, true),  -- Inglés
+       (2, 3, true, true, true),  -- Francés
+       (2, 4, true, true, true),  -- Alemán
        (2, 5, true, true, false), -- Italiano
        (2, 6, true, true, false), -- Portugués
        (2, 7, true, true, false), -- Ruso
        (2, 8, true, true, false), -- Chino
-       (2, 9, true, true, true), -- Japonés
-       (2, 10, false, true, false); -- Coreano
+       (2, 9, true, true, true),  -- Japonés
+       (2, 10, false, true, false);
+-- Coreano
 
 -- Little Nightmares 2
 INSERT INTO availability (game_id, language_id, interface_language, subtitle_language, audio_language)
 VALUES (3, 1, true, true, false), -- Español
-       (3, 2, true, true, true), -- Inglés
+       (3, 2, true, true, true),  -- Inglés
        (3, 3, true, true, false), -- Francés
        (3, 4, true, true, false), -- Alemán
        (3, 5, true, true, false), -- Italiano
@@ -241,7 +243,8 @@ VALUES (3, 1, true, true, false), -- Español
        (3, 7, true, true, false), -- Ruso
        (3, 8, true, true, false), -- Chino
        (3, 9, true, true, false), -- Japonés
-       (3, 10, true, true, false); -- Coreano
+       (3, 10, true, true, false);
+-- Coreano
 
 -- Final Fantasy 7 PSX
 INSERT INTO availability (game_id, language_id, interface_language, subtitle_language, audio_language)
@@ -257,29 +260,28 @@ VALUES (4, 1, true, true, false), -- Español
        (4, 10, true, true, false); -- Coreano
 
 
-
 INSERT INTO `news_author` (`id`, `name`, `surname`, `image`)
 VALUES (NULL, 'David', 'Portillo', 'imagen');
 
 INSERT INTO `news` (`game_id`, `id`, `news_author_id`, `content`, `date`, `headline`, `image`)
 VALUES (NULL, 1, 1,
         'Se dice a menudo que los jugadores buscan innumerables maneras de superarse a sí mismos, y esta es una de las más complicadas. No nos referimos a completar Elden Ring con la mente o cosas similares, sino a derrotar a los jefes del juego de FromSoftware, a pesar de que estos son invisibles. Sí, has leído bien, derrotar a jefes que pueden enviarte al más allá con un solo soplido, sin siquiera poder verlos. Esta es la proeza de la streamer BioticNova. Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino. Luego está BioticNova, quien se desafió a sí misma a completar Elden Ring con los ojos abiertos, las manos en el mando, pero con todos los jefes del juego siendo invisibles.',
-        '18/02/2024 20:34',
+        '2024-02-20T18:16:17.633882315',
         'Hay una jugadora que se ha pasado Elden Ring con todos los enemigos invisibles. Ya solo nos queda terminar el soulslike con el PC apagado',
         'URL de la imagen'),
        (NULL, 2, 1,
         'Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino. Luego está BioticNova, quien se desafió a sí misma a completar Elden Ring con los ojos abiertos, las manos en el mando, pero con todos los jefes del juego siendo invisibles. Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino. Luego está BioticNova, quien se desafió a sí misma a completar Elden Ring con los ojos abiertos, las manos en el mando, pero con todos los jefes del juego siendo invisibles.',
-        '18/02/2024 20:34',
+        '2024-03-23T18:16:17.633882315',
         'Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino.',
         'URL de la imagen'),
        (1, 3, 1,
         'Capcom ha lanzado un nuevo parche que corrige errores y añade un nuevo idioma cuatro años después de su estreno[4].',
-        '18/02/2024 20:34',
+        '2024-01-30T18:16:17.633882315',
         'Resident Evil 2 se actualiza con correcciones y un nuevo idioma 4 años después de su estreno', -- headline
         'image_url');
 
 
 INSERT INTO `news_comment` (`id`, `news_id`, `user_id`, `content`, `date`)
-VALUES (NULL, '1', '1', 'comentario1', '12-02-2024'),
-       (NULL, '1', '2', 'comentario2', '13-02-2024'),
-       (NULL, '1', '1', 'comentario3', '12-05-2024');
+VALUES (NULL, '1', '1', 'comentario1', '2024-01-10T15:16:17.633882315'),
+       (NULL, '1', '2', 'comentario2', '2024-02-20T18:16:17.633882315'),
+       (NULL, '1', '1', 'comentario3', '2024-03-30T20:16:17.633882315');
