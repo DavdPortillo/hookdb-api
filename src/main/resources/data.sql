@@ -317,3 +317,9 @@ VALUES (1, 1, NULL), -- Asociar el juego con ID 1 con la característica con ID 
        (3, 4, 3), -- Asociar el juego con ID 3 con la característica con ID 4 y NumberPlayer con ID 3
        (4, 5, 4); -- Asociar el juego con ID 4 con la característica con ID 5 y NumberPlayer con ID 4
 
+INSERT INTO `review` (`date`, `dislike`, `game_id`, `like`, `user_id`, `title`, `content`)
+VALUES
+    ('2023-01-30T18:16:17.633882315', 0, 1, 10, 1, 'Impresionante experiencia de juego', 'Resident Evil 2 Remake me ha proporcionado una experiencia de juego inolvidable. La atmósfera, los gráficos y la jugabilidad son excepcionales. Lo recomiendo encarecidamente a todos los amantes de los videojuegos.'),
+    ('2023-10-30T18:16:17.633882315', 2, 2, 8, 1, 'Buen juego con algunos defectos', 'Aunque disfruté jugando a The Witcher 3, sentí que la historia era un poco predecible y los controles a veces eran torpes. Sin embargo, el mundo del juego es hermoso y la música es fantástica.'),
+    ('2023-11-30T18:16:17.633882315', 1, 3, 9, 2, 'Un clásico atemporal', 'Super Mario Bros. es un clásico atemporal que sigue siendo tan divertido hoy como cuando se lanzó por primera vez. Aunque los gráficos son simples comparados con los juegos modernos, la jugabilidad es impecable.'),
+    ('2023-12-30T18:16:17.633882315', 3, 4, 7, 2, 'Prometedor pero decepcionante', 'Cyberpunk 2077 prometía mucho, pero al final resultó ser una decepción. A pesar de sus impresionantes gráficos y su interesante historia, los numerosos bugs y problemas técnicos arruinaron la experiencia de juego para mí.');

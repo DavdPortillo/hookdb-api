@@ -18,9 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/availability")
 public class AvailabilityController {
 
-  /** Logger para la clase. */
-  private static final Logger LOG = LoggerFactory.getLogger(AvailabilityController.class);
-
   /** Servicio para las plataformas. */
   private final IAvailabilityService availabilityService;
 
@@ -41,7 +38,6 @@ public class AvailabilityController {
    */
   @PostMapping
   public Availability saveAvailability(@RequestBody Availability availability) {
-    LOG.info("Saving availability: {}", availability);
     availabilityService.save(availability);
     return availability;
   }

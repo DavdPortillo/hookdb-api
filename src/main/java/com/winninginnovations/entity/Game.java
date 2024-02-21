@@ -119,8 +119,8 @@ public class Game implements Serializable {
   private List<News> news;
 
   /** Críticas hechas por los usuarios. */
-  @OneToMany
-  @JoinColumn(name = "review_id")
+  @OneToMany(mappedBy = "game" , cascade = CascadeType.ALL, orphanRemoval = true)
+  @JsonManagedReference("game-review")
   private List<Review> reviews;
 
   /** Listas de juegos. */

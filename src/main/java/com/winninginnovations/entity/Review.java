@@ -1,74 +1,73 @@
 package com.winninginnovations.entity;
 
+import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.Date;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 /**
- * Clase que representa una critica hecha por un usuario de una noticia.
- * 
+ * Clase que representa una crítica hecha por un usuario de una noticia.
+ *
+ * @author David Portillo Hoyos
  */
 @Data
 @Entity
 @Table(name = "review")
 public class Review implements Serializable {
 
-	/**
-	 * ID único del comentario. Generado automáticamente.
-	 */
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+  /** ID único del comentario. Generado automáticamente. */
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-	/**
-	 * Titulo del comentario. No puede ser nulo.
-	 */
-	@NotNull
-	@Size(min = 2, max = 60)
-	private String title;
+  /** Titulo del comentario. No puede ser nulo. */
+  @NotNull
+  @Size(min = 2, max = 60)
+  private String title;
 
-	/**
-	 * Contenido del comentario. No puede ser nulo.
-	 */
-	@NotNull
-	@Size(min = 2, max = 5000)
-	private String content;
+  /** Contenido del comentario. No puede ser nulo. */
+  @NotNull
+  @Size(min = 2, max = 5000)
+  private String content;
 
-	/**
-	 * Date del comentario. No puede ser nulo.
-	 */
-	@NotNull
-	private String date;
+  /** Fecha de creación del comentario. */
+  @NotNull private LocalDateTime date;
 
-	/**
-	 * Like del comentario.
-	 */
-	@Column(name = "`like`")
-	private Long like;
+  /** Cuando se crea el comentario se le asigna la fecha actual. */
+  @PrePersist
+  protected void onCreate() {
+    ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Europe/Madrid"));
+    date = zdt.toLocalDateTime();
+  }
 
-	/**
-	 * Dislike del comentario.
-	 */
-	private Long dislike;
+  /** Like del comentario. */
+  @Column(name = "`like`")
+  private Long like;
 
-	/**
-	 * Juego al que pertenece el comentario. No puede ser nulo.
-	 */
-	@ManyToOne
-	@JoinColumn(name = "game_id")
-	@NotNull
-	private Game game;
+  /** Dislike del comentario. */
+  private Long dislike;
 
-	private static final long serialVersionUID = 1L;
+  /** Juego al que pertenece el comentario. No puede ser nulo. */
+  @ManyToOne
+  @JoinColumn(name = "game_id")
+  @NotNull
+  @JsonBackReference("game-review")
+  private Game game;
 
+  /** Usuario que hizo el comentario. No puede ser nulo. */
+  @NotNull
+  @ManyToOne
+  @JoinColumn(name = "user_id")
+  @JsonBackReference
+  private User user;
+
+  @Serial private static final long serialVersionUID = 1L;
 }
