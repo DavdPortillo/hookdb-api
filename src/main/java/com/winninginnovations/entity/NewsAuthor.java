@@ -12,45 +12,33 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
-/**
- * Clase que representa el autor de una noticia.
- */
+/** Clase que representa el autor de una noticia. */
 @Data
 @Entity
 @Table(name = "news_author")
 public class NewsAuthor implements Serializable {
 
-    /**
-     * ID único del autor. Generado automáticamente.
-     */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  /** ID único del autor. Generado automáticamente. */
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    /**
-     * Nombre del autor.
-     */
-    @NotNull
-    @Size(min = 2, max = 30)
-    private String name;
+  /** Nombre del autor. */
+  @NotNull
+  @Size(min = 2, max = 30)
+  private String name;
 
-    /**
-     * Apellido del autor.
-     */
-    @NotNull
-    @Size(min = 2, max = 80)
-    private String surname;
+  /** Apellido del autor. */
+  @NotNull
+  @Size(min = 2, max = 80)
+  private String surname;
 
-    /**
-     * Imagen del autor.
-     */
-    @NotNull
-    private String image;
+  /** Imagen del autor. */
+  @NotNull private String image;
 
-    /**
-     * Id para la serialización.
-     */
-    @Serial
-    private static final long serialVersionUID = 1L;
+  /** alt de la imagen del autor. */
+  @NotNull private String alt;
 
+  /** Id para la serialización. */
+  @Serial private static final long serialVersionUID = 1L;
 }

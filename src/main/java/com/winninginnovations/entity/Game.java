@@ -27,6 +27,9 @@ public class Game implements Serializable {
   /** Imagen del juego. */
   @NotNull private String cover;
 
+  /** alt de la imagen del juego. */
+  @NotNull private String alt;
+
   /** Año de lanzamiento del juego. */
   @NotNull private String releaseYear;
 
@@ -100,19 +103,15 @@ public class Game implements Serializable {
   @OneToMany(mappedBy = "game")
   private List<DLC> dlcs;
 
-
   @NotNull
   @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
   @JsonManagedReference(value = "game-availability")
   private List<Availability> availabilities;
 
-  /** Plataformas en las que está disponible el juego. */
-  @ManyToMany
-  @JoinTable(
-          name = "game_feature",
-          joinColumns = @JoinColumn(name = "game_id"),
-          inverseJoinColumns = @JoinColumn(name = "feature_id"))
-  private List<Feature> features;
+  /** Características del juego. */
+  @OneToMany(mappedBy = "game")
+  @JsonManagedReference("game")
+  private List<GameFeature> gameFeatures;
 
   /** Noticias del juego. */
   @OneToMany(mappedBy = "game")

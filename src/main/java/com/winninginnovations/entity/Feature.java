@@ -2,14 +2,10 @@ package com.winninginnovations.entity;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -31,10 +27,9 @@ public class Feature implements Serializable {
   /** Nombre de las características. */
   @NotNull private String name;
 
-  /** Número de jugadores de las características. */
-  @OneToOne
-  @JoinColumn(name = "number_player_id")
-  private NumberPlayer numberPlayers;
+  @OneToMany(mappedBy = "feature")
+  @JsonManagedReference("feature")
+  private List<GameFeature> gameFeatures;
 
   @Serial private static final long serialVersionUID = 1L;
 }

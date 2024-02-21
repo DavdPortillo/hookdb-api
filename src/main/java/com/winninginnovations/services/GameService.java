@@ -3,8 +3,8 @@ package com.winninginnovations.services;
 import com.winninginnovations.entity.*;
 import com.winninginnovations.repository.*;
 import com.winninginnovations.request.AvailabilityRequest;
+import com.winninginnovations.request.GameFeatureRequest;
 import com.winninginnovations.request.GameRequest;
-import com.winninginnovations.request.LanguageRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -55,6 +55,15 @@ public class GameService implements IGameService {
   /** Repositorio de Availability. */
   private final AvailabilityRepository availabilityRepository;
 
+  /** Repositorio de Feature. */
+  private final FeatureRepository featureRepository;
+
+  /** Repositorio de NumberPlayer. */
+  private final NumberPlayerRepository numberPlayerRepository;
+
+  /** Repositorio de GameFeature. */
+  private final GameFeatureRepository gameFeatureRepository;
+
   /**
    * Constructor de la clase.
    *
@@ -69,7 +78,10 @@ public class GameService implements IGameService {
       DistributorRepository distributorRepository,
       DLCRepository dlcRepository,
       LanguageRepository languageRepository,
-      AvailabilityRepository availabilityRepository) {
+      AvailabilityRepository availabilityRepository,
+      FeatureRepository featureRepository,
+      NumberPlayerRepository numberPlayerRepository,
+      GameFeatureRepository gameFeatureRepository) {
     this.gameRepository = gameRepository;
     this.platformRepository = platformRepository;
     this.crossplayRepository = crossplayRepository;
@@ -79,6 +91,9 @@ public class GameService implements IGameService {
     this.dlcRepository = dlcRepository;
     this.languageRepository = languageRepository;
     this.availabilityRepository = availabilityRepository;
+    this.featureRepository = featureRepository;
+    this.numberPlayerRepository = numberPlayerRepository;
+    this.gameFeatureRepository = gameFeatureRepository;
   }
 
   @Override
@@ -94,6 +109,7 @@ public class GameService implements IGameService {
   @Override
   public Game save(GameRequest gameRequest) {
 
+    LOG.info("Saving game: {}", gameRequest);
     Game game = gameRequest.getGame();
     List<Long> platformsIds = gameRequest.getPlatformIds();
     Long crossplayId = gameRequest.getCrossplayId();
@@ -102,6 +118,7 @@ public class GameService implements IGameService {
     List<Long> distributorIds = gameRequest.getDistributorIds();
     List<Long> dlcIds = gameRequest.getDlcIds();
     List<AvailabilityRequest> availabilityRequests = gameRequest.getAvailabilities();
+    List<GameFeatureRequest> featureRequests = gameRequest.getGameFeatures();
 
     if (platformsIds == null
         || platformsIds.isEmpty()
@@ -140,6 +157,10 @@ public class GameService implements IGameService {
 
     if (availabilityRequests == null || availabilityRequests.isEmpty()) {
       throw new IllegalArgumentException("availabilityRequests no puede ser nulo o vacío");
+    }
+
+    if (featureRequests == null || featureRequests.isEmpty()) {
+      throw new IllegalArgumentException("featureRequests no puede ser nulo o vacío");
     }
 
     List<Platform> platforms = platformRepository.findAllById(platformsIds);
@@ -199,6 +220,36 @@ public class GameService implements IGameService {
           availability); // Guarda la entidad Availability en la base de datos
     }
 
+    List<GameFeature> gameFeatures = new ArrayList<>();
+    for (GameFeatureRequest gameFeatureRequest : gameRequest.getGameFeatures()) {
+      Feature feature =
+          featureRepository
+              .findById(gameFeatureRequest.getFeatureId())
+              .orElseThrow(
+                  () ->
+                      new IllegalArgumentException(
+                          "Feature no encontrada con id: " + gameFeatureRequest.getFeatureId()));
+      NumberPlayer numberPlayer = null;
+      if (gameFeatureRequest.getNumberPlayerId() != null) {
+        numberPlayer =
+            numberPlayerRepository
+                .findById(gameFeatureRequest.getNumberPlayerId())
+                .orElseThrow(
+                    () ->
+                        new IllegalArgumentException(
+                            "NumberPlayer no encontrado con id: "
+                                + gameFeatureRequest.getNumberPlayerId()));
+      }
+      GameFeature gameFeature = new GameFeature();
+      gameFeature.setFeature(feature);
+      gameFeature.setNumberPlayers(numberPlayer);
+      gameFeature =
+          gameFeatureRepository.save(
+              gameFeature); // Guarda la entidad GameFeature en la base de datos
+      gameFeatures.add(gameFeature);
+    }
+
+    game.setGameFeatures(gameFeatures);
     game.setPlatforms(platforms);
     game.setGenres(genres);
     game.setCrossplay(crossplay);

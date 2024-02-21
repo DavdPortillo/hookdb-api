@@ -47,6 +47,9 @@ public class News implements Serializable {
   /** Imagen de la noticia. */
   @NotNull private String image;
 
+  /** alt de la imagen de la noticia. */
+  @NotNull private String alt;
+
   /** Contenido de la noticia. */
   @NotNull
   @Column(columnDefinition = "TEXT")

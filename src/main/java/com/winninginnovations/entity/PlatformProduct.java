@@ -10,37 +10,26 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
-/**
- * Clase que representa a una plataforma de un producto.
- * 
- */
+/** Clase que representa a una plataforma de un producto. */
 @Data
 @Entity
 @Table(name = "platform_product")
 public class PlatformProduct implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+  /** */
+  private static final long serialVersionUID = 1L;
 
-	/**
-	 * ID único de la key. Generado automáticamente.
-	 */
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+  /** ID único de la key. Generado automáticamente. */
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-	/**
-	 * Nombre de la plataforma.
-	 */
-	@NotNull
-	private String name;
+  /** Nombre de la plataforma. */
+  @NotNull private String name;
 
-	/**
-	 * Imagen de la plataforma.
-	 */
-	@NotNull
-	private String image;
+  /** Imagen de la plataforma. */
+  @NotNull private String image;
 
+  /** alt de la imagen de la plataforma. */
+  @NotNull private String alt;
 }

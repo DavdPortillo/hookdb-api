@@ -1,5 +1,6 @@
 package com.winninginnovations.entity;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import jakarta.persistence.Entity;
@@ -13,46 +14,31 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
-/**
- * Clase que representa a una lista de juegos que le pertenecen a un usuario.
- * 
- */
+/** Clase que representa a una lista de juegos que le pertenecen a un usuario. */
 @Data
 @Entity
 @Table(name = "gameslist")
 public class GamesList implements Serializable {
 
-	/**
-	 * ID único de la lista de juegos. Generado automáticamente.
-	 */
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+  /** ID único de la lista de juegos. Generado automáticamente. */
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-	/**
-	 * Nombre de la lista de juegos. No puede ser nulo y debe tener entre 2 y 50
-	 * caracteres.
-	 */
-	@NotNull
-	@Size(min = 2, max = 50)
-	private String name;
+  /** Nombre de la lista de juegos. No puede ser nulo y debe tener entre 2 y 50 caracteres. */
+  @NotNull
+  @Size(min = 2, max = 50)
+  private String name;
 
-	/**
-	 * date de creación de la lista de juegos.
-	 */
-	@NotNull
-	private String date;
-	
-	/**
-	 * Juego al que pertenece el comentario. No puede ser nulo.
-	 */
-	@ManyToOne
-	@JoinColumn(name = "game_id")
-	@NotNull
-	private Game game;
+  /** date de creación de la lista de juegos. */
+  @NotNull private String date;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+  /** Juego al que pertenece la lista de juegos. No puede ser nulo. */
+  @ManyToOne
+  @JoinColumn(name = "game_id")
+  @NotNull
+  private Game game;
+
+  /** */
+  @Serial private static final long serialVersionUID = 1L;
 }

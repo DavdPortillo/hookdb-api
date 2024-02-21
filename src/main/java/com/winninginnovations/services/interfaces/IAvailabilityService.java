@@ -3,7 +3,7 @@ package com.winninginnovations.services.interfaces;
 import com.winninginnovations.entity.Availability;
 
 /**
- * Repositorio de la disponibilidad de los juegos.
+ * Interfaz que define los métodos que se pueden realizar sobre la disponibilidad de un juego.
  *
  * @author David Portillo Hoyos
  */

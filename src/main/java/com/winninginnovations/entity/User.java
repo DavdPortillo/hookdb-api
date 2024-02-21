@@ -44,6 +44,9 @@ public class User implements Serializable {
   /** Imagen del cliente. */
   private String image;
 
+  /** alt de la imagen del cliente. */
+  private String alt;
+
   /** Fecha cuando se registró el cliente. No puede ser nulo. */
   @NotNull private String registerDate;
 
@@ -76,7 +79,6 @@ public class User implements Serializable {
   /** Idioma del cliente. */
   @Size(min = 2, max = 30)
   private String language;
-
 
   /**
    * Rol del cliente. No puede ser nulo y se carga de manera inmediata cuando se carga la entidad

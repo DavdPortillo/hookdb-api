@@ -54,12 +54,12 @@ public class Review implements Serializable {
 	 * Like del comentario.
 	 */
 	@Column(name = "`like`")
-	private int like;
+	private Long like;
 
 	/**
 	 * Dislike del comentario.
 	 */
-	private int dislike;
+	private Long dislike;
 
 	/**
 	 * Juego al que pertenece el comentario. No puede ser nulo.
