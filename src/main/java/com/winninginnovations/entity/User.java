@@ -106,8 +106,7 @@ public class User implements Serializable {
   private List<FollowGame> followGames;
 
   /** Listas de juegos que ha creado el usuario. */
-  @OneToMany
-  @JoinColumn(name = "gameslist_id")
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
   private List<GamesList> gamesLists;
 
   @Serial private static final long serialVersionUID = 1L;

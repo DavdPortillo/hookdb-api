@@ -2,14 +2,12 @@ package com.winninginnovations.entity;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
@@ -30,14 +28,28 @@ public class GamesList implements Serializable {
   @Size(min = 2, max = 50)
   private String name;
 
-  /** date de creación de la lista de juegos. */
-  @NotNull private String date;
+  /** Fecha de creación del comentario. */
+  @NotNull private LocalDateTime date;
+
+  /** Cuando se crea el comentario se le asigna la fecha actual. */
+  @PrePersist
+  protected void onCreate() {
+    ZonedDateTime zdt = ZonedDateTime.now(ZoneId.of("Europe/Madrid"));
+    date = zdt.toLocalDateTime();
+  }
 
   /** Juego al que pertenece la lista de juegos. No puede ser nulo. */
-  @ManyToOne
-  @JoinColumn(name = "game_id")
-  @NotNull
-  private Game game;
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "user_id")
+  private User user;
+
+  /** Juegos que pertenecen a la lista de juegos. */
+  @ManyToMany
+  @JoinTable(
+      name = "gameslist_game",
+      joinColumns = @JoinColumn(name = "gameslist_id"),
+      inverseJoinColumns = @JoinColumn(name = "game_id"))
+  private List<Game> games;
 
   /** */
   @Serial private static final long serialVersionUID = 1L;

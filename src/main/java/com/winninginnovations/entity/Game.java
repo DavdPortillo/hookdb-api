@@ -4,7 +4,6 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -16,7 +15,7 @@ import lombok.Data;
 @Table(name = "game")
 public class Game implements Serializable {
 
-  /** ID único del juego. Generado automáticamente. */
+  /** Id único del juego. Generado automáticamente. */
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -119,14 +118,13 @@ public class Game implements Serializable {
   private List<News> news;
 
   /** Críticas hechas por los usuarios. */
-  @OneToMany(mappedBy = "game" , cascade = CascadeType.ALL, orphanRemoval = true)
+  @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
   @JsonManagedReference("game-review")
   private List<Review> reviews;
 
   /** Listas de juegos. */
-  @OneToMany
-  @JoinColumn(name = "gameslist_id")
-  private List<GamesList> gamesList;
+  @ManyToMany(mappedBy = "games")
+  private List<GamesList> gamesLists;
 
   /** Puntuaciones del juego. */
   @OneToMany
