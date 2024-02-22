@@ -4,6 +4,8 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -124,6 +126,7 @@ public class Game implements Serializable {
 
   /** Listas de juegos. */
   @ManyToMany(mappedBy = "games")
+  @JsonIgnore
   private List<GamesList> gamesLists;
 
   /** Puntuaciones del juego. */

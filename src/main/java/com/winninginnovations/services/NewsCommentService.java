@@ -21,67 +21,64 @@ import org.springframework.stereotype.Service;
 @Transactional
 public class NewsCommentService implements INewsCommentService {
 
-    /**
-     * Logger.
-     */
-    private static final Logger LOG = LoggerFactory.getLogger(NewsCommentService.class);
+  /** Logger. */
+  private static final Logger LOG = LoggerFactory.getLogger(NewsCommentService.class);
 
-    /**
-     * Repositorio de NewsComment.
-     */
-    private final NewsCommentRepository newsCommentRepository;
+  /** Repositorio de NewsComment. */
+  private final NewsCommentRepository newsCommentRepository;
 
-    /**
-     * Repositorio de News.
-     */
-    private final NewsRepository newsRepository;
+  /** Repositorio de News. */
+  private final NewsRepository newsRepository;
 
-    /**
-     * Repositorio de User.
-     */
-    private final UserRepository userRepository;
+  /** Repositorio de User. */
+  private final UserRepository userRepository;
 
-    /**
-     *
-     */
+  /** */
 
-    /**
-     * Constructor de la clase.
-     *
-     * @param newsCommentRepository Repositorio de Game.
-     */
-    public NewsCommentService(NewsCommentRepository newsCommentRepository, NewsRepository newsRepository, UserRepository userRepository) {
-        this.newsCommentRepository = newsCommentRepository;
-        this.newsRepository = newsRepository;
-        this.userRepository = userRepository;
+  /**
+   * Constructor de la clase.
+   *
+   * @param newsCommentRepository Repositorio de Game.
+   */
+  public NewsCommentService(
+      NewsCommentRepository newsCommentRepository,
+      NewsRepository newsRepository,
+      UserRepository userRepository) {
+    this.newsCommentRepository = newsCommentRepository;
+    this.newsRepository = newsRepository;
+    this.userRepository = userRepository;
+  }
+
+  @Override
+  public NewsComment findById(Long id) {
+    LOG.info("Finding comment by id: {}", id);
+    NewsComment newsComment = newsCommentRepository.findById(id).orElse(null);
+    if (newsComment == null) {
+      LOG.info("Comment not found by id {}", id);
     }
+    return newsComment;
+  }
 
+  @Override
+  public NewsComment save(NewsComment newsComment, Long newsId, Long userId) {
+    News news =
+        newsRepository
+            .findById(newsId)
+            .orElseThrow(() -> new IllegalArgumentException("News not found"));
+    User user =
+        userRepository
+            .findById(userId)
+            .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
-    @Override
-    public NewsComment findById(Long id) {
-        LOG.info("Finding game by id: {}", id);
-        NewsComment newsComment = newsCommentRepository.findById(id).orElse(null);
-        if (newsComment == null) {
-            LOG.info("Game not found");
-        }
-        return newsComment;
-    }
+    newsComment.setNews(news);
+    newsComment.setUser(user);
 
-    @Override
-    public NewsComment save(NewsComment newsComment, Long newsId, Long userId) {
-        News news = newsRepository.findById(newsId).orElseThrow(() -> new IllegalArgumentException("News not found"));
-        User user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not found"));
+    return newsCommentRepository.save(newsComment);
+  }
 
-        newsComment.setNews(news);
-        newsComment.setUser(user);
-
-        return newsCommentRepository.save(newsComment);
-    }
-
-
-    @Override
-    public void delete(Long id) {
-        LOG.info("Deleting game by id: {}", id);
-        newsCommentRepository.deleteById(id);
-    }
+  @Override
+  public void delete(Long id) {
+    LOG.info("Deleting game by id: {}", id);
+    newsCommentRepository.deleteById(id);
+  }
 }

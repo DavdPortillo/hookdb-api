@@ -20,12 +20,14 @@ VALUES ('DirectX 12', 'NVIDIA RTX 2060', 'Windows 10', 'Intel Core i7-9700K', '1
 
 
 INSERT INTO `user` (`year`, `id`, `role_id`, `language`, `country`, `username`, `password`, `email`, `gender`,
-                    `image`,`alt`, `register_date`)
+                    `image`, `alt`, `register_date`)
 VALUES (1950, 1, 1, 'Idioma del usuario', 'País del usuario', 'maricon_quien_lo_lea',
-        '$2a$10$GQ8EjxA1xo18wJC4Ea8ZQOD1wlg2kf9U4hdobBSipD4Nn3uWZ1HzW', 'admin@admin.com', NULL, 'URL de la imagen','alt',
+        '$2a$10$GQ8EjxA1xo18wJC4Ea8ZQOD1wlg2kf9U4hdobBSipD4Nn3uWZ1HzW', 'admin@admin.com', NULL, 'URL de la imagen',
+        'alt',
         '11/02/2024'),
        (1950, 2, 2, 'Idioma del usuario', 'País del usuario', 'panza',
-        '$2a$10$GQ8EjxA1xo18wJC4Ea8ZQOD1wlg2kf9U4hdobBSipD4Nn3uWZ1HzW', 'user@user.com', NULL, 'URL de la imagen','alt',
+        '$2a$10$GQ8EjxA1xo18wJC4Ea8ZQOD1wlg2kf9U4hdobBSipD4Nn3uWZ1HzW', 'user@user.com', NULL, 'URL de la imagen',
+        'alt',
         '11/02/2024');
 
 
@@ -56,18 +58,18 @@ VALUES ('PC'),
 
 
 INSERT INTO `game` (`complete_time`, `story_time`, `crossplay_id`, `id`,
-                    `minimum_system_requirement_id`, `product_id`, `recommended_system_requirement_id`, `cover`,`alt`,
+                    `minimum_system_requirement_id`, `product_id`, `recommended_system_requirement_id`, `cover`, `alt`,
                     `release_year`, `sinopsis`, `title`, `trailer`)
-VALUES (20, 10, 2, 1, NULL, NULL, NULL, 'URL de la imagen del Resident Evil 2 Remake','alt', '2019',
+VALUES (20, 10, 2, 1, NULL, NULL, NULL, 'URL de la imagen del Resident Evil 2 Remake', 'alt', '2019',
         'Es la puesta al día del clásico original del género survival horror para Xbox One, PlayStation 4 y PC.',
         'Resident Evil 2 Remake', 'URL del trailer del Resident Evil 2 Remake'),
-       (20, 10, 2, 2, NULL, NULL, NULL, 'URL de la imagen del Alan Wake 2','alt', '2023',
+       (20, 10, 2, 2, NULL, NULL, NULL, 'URL de la imagen del Alan Wake 2', 'alt', '2023',
         'La historia sigue a Alan Wake, que ha estado atrapado en una dimensión alternativa durante 13 años, mientras intenta escapar escribiendo una historia de terror que involucra a una agente especial del FBI llamada Saga Anderson.',
         'Alan Wake 2', 'URL del trailer del Alan Wake 2'),
-       (20, 10, 2, 3, NULL, NULL, NULL, 'URL de la imagen del Little Nightmares 2','alt', '2021',
+       (20, 10, 2, 3, NULL, NULL, NULL, 'URL de la imagen del Little Nightmares 2', 'alt', '2021',
         'La historia sigue a Mono, que debe trabajar junto con Six, la protagonista del juego anterior, para sobrevivir a los horrores de la Ciudad Pálida y descubrir sus oscuros secretos.',
         'Little Nightmares 2', 'URL del trailer del Little Nightmares 2'),
-       (20, 10, 2, 4, NULL, NULL, NULL, 'URL de la imagen del Final Fantasy VII','alt', '1997',
+       (20, 10, 2, 4, NULL, NULL, NULL, 'URL de la imagen del Final Fantasy VII', 'alt', '1997',
         'La historia sigue a Cloud Strife, un mercenario que se une a la organización ecoterrorista AVALANCHA para detener el control mundial de la corporación Shinra que está drenando la vida del planeta para usarla como fuente de energía.',
         'Final Fantasy VII', 'URL del trailer del Final Fantasy VII');
 
@@ -260,28 +262,28 @@ VALUES (4, 1, true, true, false), -- Español
        (4, 10, true, true, false); -- Coreano
 
 
-INSERT INTO `news_author` (`id`, `name`, `surname`, `image`,`alt`)
+INSERT INTO `news_author` (`id`, `name`, `surname`, `image`, `alt`)
 VALUES (NULL, 'David', 'Portillo', 'imagen', 'alt'),
        (NULL, 'Sergey', 'Rolando', 'imagen', 'alt'),
        (NULL, 'Paco', 'Porras', 'imagen', 'alt'),
        (NULL, 'Jesús', 'García', 'imagen', 'alt');
 
-INSERT INTO `news` (`game_id`, `id`, `news_author_id`, `content`, `date`, `headline`, `image`,`alt`)
+INSERT INTO `news` (`game_id`, `id`, `news_author_id`, `content`, `date`, `headline`, `image`, `alt`)
 VALUES (NULL, 1, 1,
         'Se dice a menudo que los jugadores buscan innumerables maneras de superarse a sí mismos, y esta es una de las más complicadas. No nos referimos a completar Elden Ring con la mente o cosas similares, sino a derrotar a los jefes del juego de FromSoftware, a pesar de que estos son invisibles. Sí, has leído bien, derrotar a jefes que pueden enviarte al más allá con un solo soplido, sin siquiera poder verlos. Esta es la proeza de la streamer BioticNova. Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino. Luego está BioticNova, quien se desafió a sí misma a completar Elden Ring con los ojos abiertos, las manos en el mando, pero con todos los jefes del juego siendo invisibles.',
         '2024-02-20T18:16:17.633882315',
         'Hay una jugadora que se ha pasado Elden Ring con todos los enemigos invisibles. Ya solo nos queda terminar el soulslike con el PC apagado',
-        'URL de la image','alt'),
+        'URL de la image', 'alt'),
        (NULL, 2, 1,
         'Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino. Luego está BioticNova, quien se desafió a sí misma a completar Elden Ring con los ojos abiertos, las manos en el mando, pero con todos los jefes del juego siendo invisibles. Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino. Luego está BioticNova, quien se desafió a sí misma a completar Elden Ring con los ojos abiertos, las manos en el mando, pero con todos los jefes del juego siendo invisibles.',
         '2024-01-23T18:16:17.633882315',
         'Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino.',
-        'URL de la imagen','alt'),
+        'URL de la imagen', 'alt'),
        (1, 3, 1,
         'Capcom ha lanzado un nuevo parche que corrige errores y añade un nuevo idioma cuatro años después de su estreno[4].',
         '2023-12-30T18:16:17.633882315',
         'Resident Evil 2 se actualiza con correcciones y un nuevo idioma 4 años después de su estreno', -- headline
-        'image_url','alt');
+        'image_url', 'alt');
 
 
 INSERT INTO `news_comment` (`id`, `news_id`, `user_id`, `content`, `date`)
@@ -311,15 +313,27 @@ VALUES (1),
 
 INSERT INTO `game_feature` (`game_id`, `feature_id`, `number_player_id`)
 VALUES (1, 1, NULL), -- Asociar el juego con ID 1 con la característica con ID 1 y sin NumberPlayer
-       (1, 2, 1), -- Asociar el juego con ID 1 con la característica con ID 2 y NumberPlayer con ID 1
+       (1, 2, 1),    -- Asociar el juego con ID 1 con la característica con ID 2 y NumberPlayer con ID 1
        (2, 1, NULL), -- Asociar el juego con ID 2 con la característica con ID 1 y sin NumberPlayer
-       (2, 3, 2), -- Asociar el juego con ID 2 con la característica con ID 3 y NumberPlayer con ID 2
-       (3, 4, 3), -- Asociar el juego con ID 3 con la característica con ID 4 y NumberPlayer con ID 3
+       (2, 3, 2),    -- Asociar el juego con ID 2 con la característica con ID 3 y NumberPlayer con ID 2
+       (3, 4, 3),    -- Asociar el juego con ID 3 con la característica con ID 4 y NumberPlayer con ID 3
        (4, 5, 4); -- Asociar el juego con ID 4 con la característica con ID 5 y NumberPlayer con ID 4
 
 INSERT INTO `review` (`date`, `dislike`, `game_id`, `like`, `user_id`, `title`, `content`)
-VALUES
-    ('2023-01-30T18:16:17.633882315', 0, 1, 10, 1, 'Impresionante experiencia de juego', 'Resident Evil 2 Remake me ha proporcionado una experiencia de juego inolvidable. La atmósfera, los gráficos y la jugabilidad son excepcionales. Lo recomiendo encarecidamente a todos los amantes de los videojuegos.'),
-    ('2023-10-30T18:16:17.633882315', 2, 2, 8, 1, 'Buen juego con algunos defectos', 'Aunque disfruté jugando a The Witcher 3, sentí que la historia era un poco predecible y los controles a veces eran torpes. Sin embargo, el mundo del juego es hermoso y la música es fantástica.'),
-    ('2023-11-30T18:16:17.633882315', 1, 3, 9, 2, 'Un clásico atemporal', 'Super Mario Bros. es un clásico atemporal que sigue siendo tan divertido hoy como cuando se lanzó por primera vez. Aunque los gráficos son simples comparados con los juegos modernos, la jugabilidad es impecable.'),
-    ('2023-12-30T18:16:17.633882315', 3, 4, 7, 2, 'Prometedor pero decepcionante', 'Cyberpunk 2077 prometía mucho, pero al final resultó ser una decepción. A pesar de sus impresionantes gráficos y su interesante historia, los numerosos bugs y problemas técnicos arruinaron la experiencia de juego para mí.');
+VALUES ('2023-01-30T18:16:17.633882315', 0, 1, 10, 1, 'Impresionante experiencia de juego',
+        'Resident Evil 2 Remake me ha proporcionado una experiencia de juego inolvidable. La atmósfera, los gráficos y la jugabilidad son excepcionales. Lo recomiendo encarecidamente a todos los amantes de los videojuegos.'),
+       ('2023-10-30T18:16:17.633882315', 2, 2, 8, 1, 'Buen juego con algunos defectos',
+        'Aunque disfruté jugando a The Witcher 3, sentí que la historia era un poco predecible y los controles a veces eran torpes. Sin embargo, el mundo del juego es hermoso y la música es fantástica.'),
+       ('2023-11-30T18:16:17.633882315', 1, 3, 9, 2, 'Un clásico atemporal',
+        'Super Mario Bros. es un clásico atemporal que sigue siendo tan divertido hoy como cuando se lanzó por primera vez. Aunque los gráficos son simples comparados con los juegos modernos, la jugabilidad es impecable.'),
+       ('2023-12-30T18:16:17.633882315', 3, 4, 7, 2, 'Prometedor pero decepcionante',
+        'Cyberpunk 2077 prometía mucho, pero al final resultó ser una decepción. A pesar de sus impresionantes gráficos y su interesante historia, los numerosos bugs y problemas técnicos arruinaron la experiencia de juego para mí.');
+
+
+INSERT INTO gameslist (`date`, `name`, `user_id`)
+VALUES ('2023-01-30T18:16:17.633882315', 'Fantasia Puterita', 1),
+       ('2023-10-30T18:16:17.633882315', 'De Locura', 2);
+
+INSERT INTO `gameslist_game` (`game_id`, `gameslist_id`)
+VALUES (1, 1),
+       (3, 1);

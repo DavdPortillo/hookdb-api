@@ -34,12 +34,6 @@ public class DLCService implements IDLCService {
     this.dlcRepository = dlcRepository;
   }
 
-  /**
-   * Guarda un dlc.
-   *
-   * @param dlc Dlc a guardar.
-   * @return Dlc guardado.
-   */
   public DLC save(DLC dlc) {
     LOG.info("Saving dlc: {}", dlc);
     dlcRepository.save(dlc);
