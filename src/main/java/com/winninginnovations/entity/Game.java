@@ -3,6 +3,7 @@ package com.winninginnovations.entity;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -130,8 +131,8 @@ public class Game implements Serializable {
   private List<GamesList> gamesLists;
 
   /** Puntuaciones del juego. */
-  @OneToMany
-  @JoinColumn(name = "game_score_id")
+  @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
+  @JsonManagedReference
   private List<GameScore> gameScores;
 
   /** Sagas a las que pertenece el juego. */

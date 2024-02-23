@@ -3,6 +3,7 @@ package com.winninginnovations.entity;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -86,8 +87,8 @@ public class User implements Serializable {
   private List<NewsComment> newsComments;
 
   /** Puntuaciones que ha puntuado el usuario. */
-  @OneToMany
-  @JoinColumn(name = "game_score_id")
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+  @JsonManagedReference
   private List<GameScore> gameScores;
 
   /** Críticas hechas por el usuario. */

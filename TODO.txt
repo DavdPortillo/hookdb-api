@@ -1,5 +1,5 @@
-creaer metodo andir juego a la lista en gamelist
-buscar juego(preguntar sergio)
+Buscar juego(preguntar sergio)
+juegos populares
 mirar bien los datos de que seca en los comentarios de noticias cuando saca al user tambien.
 mirar los logs para que no salgan dos veces controller.GameController : Finding all games services.GameService : Finding all games
 MIRAR CACHE

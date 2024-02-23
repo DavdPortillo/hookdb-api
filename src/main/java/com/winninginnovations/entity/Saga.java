@@ -22,8 +22,5 @@ public class Saga implements Serializable {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  /** Nombre del juego de la saga. */
-  @NotNull private String name;
-
   @Serial private static final long serialVersionUID = 1L;
 }

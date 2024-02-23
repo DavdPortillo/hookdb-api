@@ -19,4 +19,14 @@ public interface IGamesListService {
    * @return Lista de juegos guardada.
    */
   GamesList createGamesList(GamesList gamesList, Long idUser);
+
+  /**
+   * Añade un juego a la lista de juegos.
+   *
+   * @param idList Id de la lista a la que se va a añadir el juego.
+   * @param idUser Id del usuario que guarda la lista de juegos.
+   * @param idGame Id del juego que se va a añadir a la lista.
+   * @return Lista de juegos guardada.
+   */
+  GamesList addGameToList(Long idList, Long idUser, Long idGame);
 }

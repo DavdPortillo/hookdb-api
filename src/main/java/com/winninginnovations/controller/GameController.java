@@ -26,9 +26,6 @@ import java.util.List;
 @RequestMapping("/game")
 public class GameController {
 
-  /** Logger para la clase */
-  private static final Logger LOG = LoggerFactory.getLogger(GameController.class);
-
   /** Servicio para los juegos. */
   private final IGameService gameService;
 
@@ -64,7 +61,6 @@ public class GameController {
    */
   @GetMapping
   public Iterable<Game> findAll() {
-    LOG.info("Finding all games");
     return gameService.findAll();
   }
 }

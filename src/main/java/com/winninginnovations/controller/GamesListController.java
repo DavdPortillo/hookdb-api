@@ -2,6 +2,8 @@ package com.winninginnovations.controller;
 
 import com.winninginnovations.entity.GamesList;
 import com.winninginnovations.services.interfaces.IGamesListService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -31,8 +33,22 @@ public class GamesListController {
    * @param gamesList La lista de juegos a guardar.
    * @return Lista de juegos guardada.
    */
-  @PostMapping("/{idUser}")
+  @PostMapping("/user/{idUser}")
   public GamesList saveGamesList(@RequestBody GamesList gamesList, @PathVariable Long idUser) {
     return gamesListService.createGamesList(gamesList, idUser);
+  }
+
+  /**
+   * Añade un juego a la lista de juegos.
+   *
+   * @param idList Id de la lista a la que se va a añadir el juego.
+   * @param idUser Id del usuario que guarda la lista de juegos.
+   * @param idGame Id del juego que se va a añadir a la lista.
+   * @return Lista de juegos guardada.
+   */
+  @PostMapping("/list/{idList}/user/{idUser}/game/{idGame}")
+  public GamesList addGameToList(
+      @PathVariable Long idList, @PathVariable Long idUser, @PathVariable Long idGame) {
+    return gamesListService.addGameToList(idList, idUser, idGame);
   }
 }

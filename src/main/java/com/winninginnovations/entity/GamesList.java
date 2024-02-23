@@ -21,7 +21,7 @@ import lombok.Data;
 @Table(name = "gameslist")
 public class GamesList implements Serializable {
 
-  /** ID único de la lista de juegos. Generado automáticamente. */
+  /** Id único de la lista de juegos. Generado automáticamente. */
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -53,6 +53,7 @@ public class GamesList implements Serializable {
       name = "gameslist_game",
       joinColumns = @JoinColumn(name = "gameslist_id"),
       inverseJoinColumns = @JoinColumn(name = "game_id"))
+  @JsonIgnore
   private List<Game> games;
 
   /** */
