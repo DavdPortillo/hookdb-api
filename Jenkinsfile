@@ -54,8 +54,8 @@ pipeline {
         stage('Build and Push Docker Images') {
             steps {
                 script {
-                    String gitCommit = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
-                    gitCommit = gitCommitFull.substring(0, 7)
+                    String gitCommitFull = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
+                    String gitCommit = gitCommitFull.substring(0, 7)
                     docker.withRegistry('https://index.docker.io/v1/', DOCKER_CREDENTIALS) {
                         sh """
                             docker buildx create --name multi-arch-builder --use
