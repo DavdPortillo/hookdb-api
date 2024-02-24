@@ -8,6 +8,7 @@ import com.winninginnovations.repository.*;
 import com.winninginnovations.request.AvailabilityRequest;
 import com.winninginnovations.request.GameFeatureRequest;
 import com.winninginnovations.request.GameRequest;
+import com.winninginnovations.request.ProductRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -72,6 +73,30 @@ public class GameService implements IGameService {
   /** Repositorio de Saga. */
   private final SagaRepository sagaRepository;
 
+  /** Repositorio de SystemRequirement. */
+  private final SystemRequirementRepository systemRequirementRepository;
+
+  /** Repositorio de Product. */
+  private final ProductRepository productRepository;
+
+  /** Repositorio de LogoProduct. */
+  private final LogoProductRepository logoProductRepository;
+
+  /** Repositorio de EditionProduct. */
+  private final EditionProductRepository editionProductRepository;
+
+  /** Repositorio de PlatformProduct. */
+  private final PlatformProductRepository platformProductRepository;
+
+  /** Repositorio de VendorProduct. */
+  private final VendorProductRepository vendorProductRepository;
+
+  /** Repositorio de RegionProduct. */
+  private final RegionProductRepository regionProductRepository;
+
+  /** Repositorio de KeysProduct. */
+  private final KeysProductRepository keysProductRepository;
+
   /**
    * Constructor de la clase.
    *
@@ -90,7 +115,15 @@ public class GameService implements IGameService {
       FeatureRepository featureRepository,
       NumberPlayerRepository numberPlayerRepository,
       GameFeatureRepository gameFeatureRepository,
-      SagaRepository sagaRepository) {
+      SagaRepository sagaRepository,
+      SystemRequirementRepository systemRequirementRepository,
+      ProductRepository productRepository,
+      LogoProductRepository logoProductRepository,
+      EditionProductRepository editionProductRepository,
+      PlatformProductRepository platformProductRepository,
+      VendorProductRepository vendorProductRepository,
+      RegionProductRepository regionProductRepository,
+      KeysProductRepository keysProductRepository) {
     this.gameRepository = gameRepository;
     this.platformRepository = platformRepository;
     this.crossplayRepository = crossplayRepository;
@@ -104,6 +137,14 @@ public class GameService implements IGameService {
     this.numberPlayerRepository = numberPlayerRepository;
     this.gameFeatureRepository = gameFeatureRepository;
     this.sagaRepository = sagaRepository;
+    this.systemRequirementRepository = systemRequirementRepository;
+    this.productRepository = productRepository;
+    this.logoProductRepository = logoProductRepository;
+    this.editionProductRepository = editionProductRepository;
+    this.platformProductRepository = platformProductRepository;
+    this.vendorProductRepository = vendorProductRepository;
+    this.regionProductRepository = regionProductRepository;
+    this.keysProductRepository = keysProductRepository;
   }
 
   @Override
@@ -127,6 +168,7 @@ public class GameService implements IGameService {
                   GameDTO gDTO = new GameDTO();
                   gDTO.setId(g.getId());
                   gDTO.setTitle(g.getTitle());
+                  gDTO.setDate(g.getDate());
                   return gDTO;
                 })
             .collect(Collectors.toList()));
@@ -159,6 +201,13 @@ public class GameService implements IGameService {
     List<AvailabilityRequest> availabilityRequests = gameRequest.getAvailabilities();
     List<GameFeatureRequest> featureRequests = gameRequest.getGameFeatures();
     Saga saga = gameRequest.getSaga();
+    // Guarda los requisitos mínimos del sistema
+    SystemRequirement minimumSystemRequirement =
+        systemRequirementRepository.save(gameRequest.getMinimumSystemRequirement());
+
+    // Guarda los requisitos recomendados del sistema
+    SystemRequirement recommendedSystemRequirement =
+        systemRequirementRepository.save(gameRequest.getRecommendedSystemRequirement());
 
     if (platformsIds == null
         || platformsIds.isEmpty()
@@ -304,7 +353,35 @@ public class GameService implements IGameService {
               gameFeature); // Guarda la entidad GameFeature en la base de datos
       gameFeatures.add(gameFeature);
     }
+    List<Product> savedProducts = new ArrayList<>();
+    for (ProductRequest productRequest : gameRequest.getProducts()) {
+      Product product = new Product();
+      product.setPrice(productRequest.getPrice());
+      product.setLink(productRequest.getLink());
+      product.setLogoProduct(
+          logoProductRepository.findById(productRequest.getLogoProductId()).orElse(null));
+      product.setEditionProduct(
+          editionProductRepository.findById(productRequest.getEditionProductId()).orElse(null));
+      product.setPlatformProduct(
+          platformProductRepository.findById(productRequest.getPlatformProductId()).orElse(null));
+      product.setVendorProduct(
+          vendorProductRepository.findById(productRequest.getVendorProductId()).orElse(null));
+      product.setRegionProduct(
+          regionProductRepository.findById(productRequest.getRegionProductId()).orElse(null));
+      product.setKeysProduct(
+          keysProductRepository.findById(productRequest.getKeysProductId()).orElse(null));
+      Product savedProduct = productRepository.save(product);
+      savedProducts.add(savedProduct);
+    }
 
+    // Asigna los productos al juego
+    game.setProducts(savedProducts);
+
+    // Asigna los productos al juego
+    game.setProducts(savedProducts);
+
+    game.setMinimumSystemRequirement(minimumSystemRequirement);
+    game.setRecommendedSystemRequirement(recommendedSystemRequirement);
     game.setGameFeatures(gameFeatures);
     game.setPlatforms(platforms);
     game.setGenres(genres);

@@ -1,4 +1,4 @@
-package com.winninginnovations.services.interfaces;
+package com.winninginnovations.services;
 
 import com.winninginnovations.entity.Game;
 import com.winninginnovations.entity.Review;
@@ -6,6 +6,7 @@ import com.winninginnovations.entity.User;
 import com.winninginnovations.repository.GameRepository;
 import com.winninginnovations.repository.ReviewRepository;
 import com.winninginnovations.repository.UserRepository;
+import com.winninginnovations.services.interfaces.IReviewService;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

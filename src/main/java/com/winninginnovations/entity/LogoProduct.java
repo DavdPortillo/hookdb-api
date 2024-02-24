@@ -1,5 +1,6 @@
 package com.winninginnovations.entity;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import jakarta.persistence.Entity;
@@ -12,26 +13,21 @@ import lombok.Data;
 
 /**
  * Logo del producto
- * 
+ *
+ * @author David Portillo Hoyos
  */
 @Data
 @Entity
 @Table(name = "logo_product")
 public class LogoProduct implements Serializable {
 
-	/**
-	 * ID único de la key. Generado automáticamente.
-	 */
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+  /** Id único de la key. Generado automáticamente. */
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-	/**
-	 * Imagen del logo.
-	 */
-	@NotNull
-	private String logo;
+  /** Imagen del logo. */
+  @NotNull private String logo;
 
-	private static final long serialVersionUID = 1L;
-
+  @Serial private static final long serialVersionUID = 1L;
 }

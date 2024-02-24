@@ -1,5 +1,6 @@
 package com.winninginnovations.entity;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import jakarta.persistence.Entity;
@@ -12,27 +13,21 @@ import lombok.Data;
 
 /**
  * Clase que representa a una key del juego
- * 
+ *
+ * @author David Portillo Hoyos
  */
 @Data
 @Entity
 @Table(name = "region_product")
 public class RegionProduct implements Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	/**
-	 * ID unico de la region. Generado automaticamente.
-	 */
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+  @Serial private static final long serialVersionUID = 1L;
 
-	/**
-	 * Nombre de la region.
-	 */
-	@NotNull
-	private String name;
+  /** Id único de la region. Generado automáticamente. */
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
+  /** Nombre de la region. */
+  @NotNull private String name;
 }

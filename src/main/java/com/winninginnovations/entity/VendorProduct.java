@@ -1,5 +1,6 @@
 package com.winninginnovations.entity;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import jakarta.persistence.Entity;
@@ -12,26 +13,21 @@ import lombok.Data;
 
 /**
  * Clase que representa a un producto de un vendedor.
- * 
+ *
+ * @author David Portillo Hoyos
  */
 @Data
 @Entity
 @Table(name = "vendor_product")
 public class VendorProduct implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+  @Serial private static final long serialVersionUID = 1L;
 
-	/**
-	 * ID único de la key. Generado automáticamente.
-	 */
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+  /** Id único de la key. Generado automáticamente. */
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-	/**
-	 * Nombre del producto.
-	 */
-	@NotNull
-	private String name;
-
+  /** Nombre del producto. */
+  @NotNull private String name;
 }

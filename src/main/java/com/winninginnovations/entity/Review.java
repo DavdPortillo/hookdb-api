@@ -23,12 +23,12 @@ import lombok.Data;
 @Table(name = "review")
 public class Review implements Serializable {
 
-  /** ID único del comentario. Generado automáticamente. */
+  /** Id único del comentario. Generado automáticamente. */
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  /** Titulo del comentario. No puede ser nulo. */
+  /** Título del comentario. No puede ser nulo. */
   @NotNull
   @Size(min = 2, max = 60)
   private String title;
@@ -50,10 +50,10 @@ public class Review implements Serializable {
 
   /** Like del comentario. */
   @Column(name = "`like`")
-  private Long like;
+  private Integer like;
 
   /** Dislike del comentario. */
-  private Long dislike;
+  private Integer dislike;
 
   /** Juego al que pertenece el comentario. No puede ser nulo. */
   @ManyToOne
@@ -68,6 +68,7 @@ public class Review implements Serializable {
   @JoinColumn(name = "user_id")
   @JsonBackReference
   private User user;
+
 
   @Serial private static final long serialVersionUID = 1L;
 }

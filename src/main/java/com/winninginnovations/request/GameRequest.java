@@ -1,7 +1,9 @@
 package com.winninginnovations.request;
 
 import com.winninginnovations.entity.Game;
+import com.winninginnovations.entity.Product;
 import com.winninginnovations.entity.Saga;
+import com.winninginnovations.entity.SystemRequirement;
 import lombok.Data;
 
 import java.util.List;
@@ -23,5 +25,7 @@ public class GameRequest {
   private List<AvailabilityRequest> availabilities;
   private List<GameFeatureRequest> gameFeatures;
   private Saga saga;
-
+  private SystemRequirement minimumSystemRequirement;
+  private SystemRequirement recommendedSystemRequirement;
+  private List<ProductRequest> products;
 }

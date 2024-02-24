@@ -1,5 +1,6 @@
 package com.winninginnovations.entity;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import jakarta.persistence.Entity;
@@ -11,27 +12,22 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 /**
- * Edicion de producto
- * 
+ * Edición de producto
+ *
+ * @author David Portillo Hoyos
  */
 @Data
 @Entity
 @Table(name = "edition_product")
 public class EditionProduct implements Serializable {
 
-	/**
-	 * ID único de la edicion. Generado automáticamente.
-	 */
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+  /** Id único de la edición. Generado automáticamente. */
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-	/**
-	 * Nombre de la edicion.
-	 */
-	@NotNull
-	private String name;
+  /** Nombre de la edición. */
+  @NotNull private String name;
 
-	private static final long serialVersionUID = 1L;
-
+  @Serial private static final long serialVersionUID = 1L;
 }

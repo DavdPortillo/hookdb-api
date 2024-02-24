@@ -6,16 +6,25 @@ INSERT INTO `crossplay` (`id`, `has_crossplay`)
 VALUES (1, 'true'),
        (2, 'false');
 
-INSERT INTO minimum_system_requirement (directx, graphics_card, operating_system, processor, ram, storage)
-VALUES ('DirectX 12a', 'NVIDIA GTX 1650', 'Windows 10', 'Intel Core i5-9400F', '8 GB', '500 GB'),
+INSERT INTO system_requirement (directx, graphics_card, operating_system, processor, ram, storage)
+VALUES ('DirectX 12', 'NVIDIA GTX 1650', 'Windows 10', 'Intel Core i5-9400F', '8 GB', '500 GB'),
        ('DirectX 11', 'AMD Radeon RX 57', 'Windows 10', 'AMD Ryzen 5 260', '8 GB', '1 TB'),
-       ('DirectX 12', 'NVIDIA RTX 306', 'Windows 10', 'Intel Core i7-9700K', '16 GB', '1 TB SSD');
-
-
-INSERT INTO recommended_system_requirement (directx, graphics_card, operating_system, processor, ram, storage)
-VALUES ('DirectX 12', 'NVIDIA RTX 2060', 'Windows 10', 'Intel Core i7-9700K', '16 GB', '1 TB SSD'),
+       ('DirectX 12', 'NVIDIA RTX 306', 'Windows 10', 'Intel Core i7-9700K', '16 GB', '1 TB SSD'),
+       ('DirectX 12', 'NVIDIA RTX 2060', 'Windows 10', 'Intel Core i7-9700K', '16 GB', '1 TB SSD'),
        ('DirectX 12', 'AMD Radeon RX 5700 XT', 'Windows 10', 'AMD Ryzen 7 3700X', '16 GB', '1 TB SSD'),
-       ('DirectX 12', 'NVIDIA RTX 3080', 'Windows 10', 'Intel Core i9-9900K', '32 GB', '2 TB SSD');
+       ('DirectX 12', 'NVIDIA RTX 3080', 'Windows 10', 'Intel Core i9-9900K', '32 GB', '2 TB SSD'),
+       ('DirectX 12', 'NVIDIA RTX 3090', 'Windows 10', 'Intel Core i9-10900K', '32 GB', '2 TB SSD'),
+       ('DirectX 12', 'NVIDIA RTX 3080', 'Windows 10', 'Intel Core i9-10900K', '32 GB', '2 TB SSD'),
+       ('DirectX 12', 'NVIDIA RTX 3080', 'Windows 10', 'Intel Core i9-10900K', '32 GB', '2 TB SSD'),
+       ('DirectX 12', 'NVIDIA RTX 3080', 'Windows 10', 'Intel Core i9-10900K', '32 GB', '2 TB SSD'),
+       ('DirectX 12', 'NVIDIA RTX 3080', 'Windows 10', 'Intel Core i9-10900K', '32 GB', '2 TB SSD'),
+       ('DirectX 12', 'NVIDIA RTX 3080', 'Windows 10', 'Intel Core i9-10900K', '32 GB', '2 TB SSD'),
+       ('DirectX 12', 'NVIDIA RTX 3080', 'Windows 10', 'Intel Core i9-10900K', '32 GB', '2 TB SSD'),
+       ('DirectX 12', 'NVIDIA RTX 3080', 'Windows 10', 'Intel Core i9-10900K', '32 GB', '2 TB SSD'),
+       ('DirectX 12', 'NVIDIA RTX 3080', 'Windows 10', 'Intel Core i9-10900K', '32 GB', '2 TB SSD'),
+       ('DirectX 12', 'NVIDIA RTX 3080', 'Windows 10', 'Intel Core i9-10900K', '32 GB', '2 TB SSD'),
+       ('DirectX 12', 'NVIDIA RTX 3080', 'Windows 10', 'Intel Core i9-10900K', '32 GB', '2 TB SSD'),
+       ('DirectX 12', 'NVIDIA RTX 3080', 'Windows 10', 'Intel Core i9-10900K', '32 GB', '2 TB SSD');
 
 
 
@@ -59,22 +68,24 @@ VALUES ('PC'),
 INSERT INTO `saga` (`id`, `name`)
 VALUES ('1', 'Resident Evil');
 
-INSERT INTO `game` (`complete_time`, `story_time`, `crossplay_id`, `id`, `minimum_system_requirement_id`, `product_id`,
-                    `recommended_system_requirement_id`, `saga_id`, `alt`, `cover`, `release_year`, `sinopsis`, `title`,
+INSERT INTO `game` (`complete_time`, `story_time`, `crossplay_id`, `id`, `minimum_system_requirement_id`,
+                    `recommended_system_requirement_id`, `saga_id`, `alt`, `cover`, `date`, `sinopsis`, `title`,
                     `trailer`)
-VALUES (20, 10, 2, 1, NULL, NULL, NULL, '1', 'URL de la imagen del Resident Evil 2 Remake', 'alt', '2019',
+VALUES (20, 10, 2, 1, '1', '2', '1', 'URL de la imagen del Resident Evil 2 Remake', 'alt',
+        '25 de enero de 2019',
         'Es la puesta al día del clásico original del género survival horror para Xbox One, PlayStation 4 y PC.',
         'Resident Evil 2 Remake', 'URL del trailer del Resident Evil 2 Remake'),
-       (20, 10, 2, 2, NULL, NULL, NULL, NULL, 'URL de la imagen del Alan Wake 2', 'alt', '2023',
+       (20, 10, 2, 2, '3', '4', NULL, 'URL de la imagen del Alan Wake 2', 'alt', '27 de octubre de 2023',
         'La historia sigue a Alan Wake, que ha estado atrapado en una dimensión alternativa durante 13 años, mientras intenta escapar escribiendo una historia de terror que involucra a una agente especial del FBI llamada Saga Anderson.',
         'Alan Wake 2', 'URL del trailer del Alan Wake 2'),
-       (20, 10, 2, 3, NULL, NULL, NULL, NULL, 'URL de la imagen del Little Nightmares 2', 'alt', '2021',
+       (20, 10, 2, 3, '5', '6', NULL, 'URL de la imagen del Little Nightmares 2', 'alt',
+        '11 de febrero de 2021',
         'La historia sigue a Mono, que debe trabajar junto con Six, la protagonista del juego anterior, para sobrevivir a los horrores de la Ciudad Pálida y descubrir sus oscuros secretos.',
         'Little Nightmares 2', 'URL del trailer del Little Nightmares 2'),
-       (20, 10, 2, 4, NULL, NULL, NULL, NULL, 'URL de la imagen del Final Fantasy VII', 'alt', '1997',
+       (20, 10, 2, 4, '7', '8', NULL, 'URL de la imagen del Final Fantasy VII', 'alt', '31 de enero de 1997',
         'La historia sigue a Cloud Strife, un mercenario que se une a la organización ecoterrorista AVALANCHA para detener el control mundial de la corporación Shinra que está drenando la vida del planeta para usarla como fuente de energía.',
         'Final Fantasy VII', 'URL del trailer del Final Fantasy VII'),
-       (20, 10, 2, 5, NULL, NULL, NULL, '1', 'URL de la imagen del Resident Evil 3 Remake', 'alt', '2020',
+       (20, 10, 2, 5, '9', '10', '1', 'URL de la imagen del Resident Evil 3 Remake', 'alt', '3 de abril de 2020',
         'Es la puesta al día del clásico original del género survival horror para Xbox One, PlayStation 4 y PC.',
         'Resident Evil 3 Remake', 'URL del trailer del Resident Evil 3 Remake');
 
@@ -352,4 +363,25 @@ VALUES ('7', '2023-01-30T18:16:17.633882315', '1', NULL, '1'),
        ('9', '2023-01-30T18:16:17.633882315', '3', NULL, '2'),
        ('10', '2023-01-30T18:16:17.633882315', '4', NULL, '2');
 
+-- Inserta una edición
+INSERT INTO edition_product (name)
+VALUES ('Edición estándar');
 
+-- Inserta una plataforma
+INSERT INTO platform_product (name, image, alt)
+VALUES ('PlayStation 4', 'URL de la imagen de la plataforma', 'alt de la imagen de la plataforma');
+
+-- Inserta un vendedor
+INSERT INTO vendor_product (name)
+VALUES ('Nombre del vendedor');
+
+-- Inserta una región
+INSERT INTO region_product (name)
+VALUES ('Región del producto');
+
+-- Inserta una clave de producto
+INSERT INTO keys_product (name)
+VALUES ('Nombre de la clave del producto');
+
+INSERT INTO `logo_product` (`logo`)
+VALUES ('logo');

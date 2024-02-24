@@ -1,37 +1,44 @@
 package com.winninginnovations.entity;
 
+import java.io.Serial;
 import java.io.Serializable;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 /**
- * Clase que representa el voto de un usuario a una critica.
- * 
+ * Clase que representa el voto de un usuario a una crítica.
+ *
+ * @author David Portillo Hoyos
  */
 @Data
 @Entity
 @Table(name = "review_vote")
 public class ReviewVote implements Serializable {
 
-	/**
-	 * ID único del voto. Generado automáticamente.
-	 */
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+  /** Id único del voto. Generado automáticamente. */
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-	/**
-	 * Voto del usuario.
-	 */
-	@NotNull
-	private String vote;
+  /** Voto del usuario. */
+  @NotNull private Integer vote;
 
-	private static final long serialVersionUID = 1L;
+  /** Usuario que emitió el voto. No puede ser nulo. */
+  @NotNull
+  @ManyToOne
+  @JoinColumn(name = "user_id")
+  @JsonBackReference
+  private User user;
 
+  /** Comentario al que se emitió el voto. No puede ser nulo. */
+  @NotNull
+  @ManyToOne
+  @JoinColumn(name = "review_id")
+  @JsonBackReference
+  private Review review;
+
+  @Serial private static final long serialVersionUID = 1L;
 }

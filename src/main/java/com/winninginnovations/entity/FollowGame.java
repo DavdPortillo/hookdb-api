@@ -1,5 +1,6 @@
 package com.winninginnovations.entity;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import jakarta.persistence.Entity;
@@ -14,38 +15,28 @@ import lombok.Data;
 
 /**
  * Clase que representa el seguimiento de un juego por parte de un usuario.
- * 
+ *
+ * @author David Portillo Hoyos
  */
 @Data
 @Entity
 @Table(name = "follow_game")
 public class FollowGame implements Serializable {
 
-	/**
-	 * ID único del seguimiento. Generado automáticamente.
-	 */
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+  /** Id único del seguimiento. Generado automáticamente. */
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-	// isFollowing
-	/**
-	 * Seguimiento del usuario.
-	 */
-	private String isFollowing;
-	
-	
-	/**
-	 * Juego al que pertenece el seguimiento. No puede ser nulo.
-	 */
-	@NotNull
-	@ManyToOne
-	@JoinColumn(name = "game_id")
-	private Game game;
+  /** Seguimiento del usuario. */
+  private String isFollowing;
 
-	/**
-	 * ID único del seguimiento. Generado automáticamente.
-	 */
-	private static final long serialVersionUID = 1L;
+  /** Juego al que pertenece el seguimiento. No puede ser nulo. */
+  @NotNull
+  @ManyToOne
+  @JoinColumn(name = "game_id")
+  private Game game;
 
+  /** Id único del seguimiento. Generado automáticamente. */
+  @Serial private static final long serialVersionUID = 1L;
 }

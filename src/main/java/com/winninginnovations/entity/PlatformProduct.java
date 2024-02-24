@@ -1,5 +1,6 @@
 package com.winninginnovations.entity;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import jakarta.persistence.Entity;
@@ -10,16 +11,20 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
-/** Clase que representa a una plataforma de un producto. */
+/**
+ * Clase que representa a una plataforma de un producto.
+ *
+ * @author David Portillo Hoyos
+ */
 @Data
 @Entity
 @Table(name = "platform_product")
 public class PlatformProduct implements Serializable {
 
   /** */
-  private static final long serialVersionUID = 1L;
+  @Serial private static final long serialVersionUID = 1L;
 
-  /** ID único de la key. Generado automáticamente. */
+  /** Id único de la key. Generado automáticamente. */
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;

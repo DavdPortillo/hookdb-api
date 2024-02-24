@@ -87,7 +87,7 @@ public class User implements Serializable {
   private List<NewsComment> newsComments;
 
   /** Puntuaciones que ha puntuado el usuario. */
-  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   @JsonManagedReference
   private List<GameScore> gameScores;
 

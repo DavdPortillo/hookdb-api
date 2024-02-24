@@ -33,7 +33,7 @@ public class Game implements Serializable {
   @NotNull private String alt;
 
   /** Año de lanzamiento del juego. */
-  @NotNull private String releaseYear;
+  @NotNull private String date;
 
   /** Trailer del juego. */
   @NotNull private String trailer;
@@ -77,19 +77,20 @@ public class Game implements Serializable {
   private List<Distributor> distributors;
 
   /** Requisitos mínimos del sistema. */
-  @ManyToOne
+  @NotNull
+  @OneToOne
   @JoinColumn(name = "minimum_system_requirement_id")
-  private MinimumSystemRequirement minimumSystemRequirement;
+  private SystemRequirement minimumSystemRequirement;
 
   /** Requisitos recomendados del sistema. */
-  @ManyToOne
+  @NotNull
+  @OneToOne
   @JoinColumn(name = "recommended_system_requirement_id")
-  private RecommendedSystemRequirement recommendedSystemRequirement;
+  private SystemRequirement recommendedSystemRequirement;
 
   /** Key del juego. */
-  @ManyToOne
-  @JoinColumn(name = "product_id")
-  private Product product;
+  @OneToMany(mappedBy = "game")
+  private List<Product> products;
 
   /** Plataformas en las que está disponible el juego. */
   @NotNull
