@@ -55,13 +55,14 @@ pipeline {
             steps {
                 script {
                     String gitCommit = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
+                    String gitCommit = gitCommitFull.substring(0, 7) // Solo los primeros 7 caracteres
                     docker.withRegistry('https://index.docker.io/v1/', DOCKER_CREDENTIALS) {
                         sh """
                             docker buildx create --name multi-arch-builder --use
                             docker buildx build --builder multi-arch-builder --platform linux/amd64,linux/arm64 -t davdportillo/winning-station:$gitCommit --build-arg GIT_COMMIT=$gitCommit --push .
                             docker buildx imagetools create --tag davdportillo/winning-station:latest davdportillo/winning-station:$gitCommit
-                            docker buildx imagetools push davdportillo/winning-station:$gitCommit
                             docker buildx imagetools push davdportillo/winning-station:latest
+                            docker buildx imagetools push davdportillo/winning-station:$gitCommit
                             docker buildx rm multi-arch-builder
                         """
                     }
