@@ -70,7 +70,7 @@ public class NewsController {
 
     // Si se proporcionó un ID de juego, obtén el juego y asígnalo a la noticia
     if (gameId != null) {
-      Game game = gameService.findById(gameId);
+      Game game = gameService.findByIdGame(gameId);
       if (game == null) {
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El juego no existe");
       }

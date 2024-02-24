@@ -25,7 +25,7 @@ public class DLC implements Serializable {
 
   /** Juego al que pertenece el dlc. */
   @NotNull
-  @JsonBackReference
+  @JsonBackReference("game-dlc")
   @ManyToOne
   @JoinColumn(name = "game_id")
   private Game game;

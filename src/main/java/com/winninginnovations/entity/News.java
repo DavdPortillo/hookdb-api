@@ -67,6 +67,6 @@ public class News implements Serializable {
   /** Noticias del juego. */
   @ManyToOne
   @JoinColumn(name = "game_id")
-  @JsonBackReference
+  @JsonBackReference("game-news")
   private Game game;
 }

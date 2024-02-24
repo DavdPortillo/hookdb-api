@@ -1,5 +1,7 @@
 package com.winninginnovations.services.interfaces;
 
+import com.winninginnovations.DTO.GameAndSagaDTO;
+import com.winninginnovations.DTO.GameDTO;
 import com.winninginnovations.entity.Game;
 import com.winninginnovations.request.GameRequest;
 
@@ -11,14 +13,6 @@ import java.util.List;
  * @author David Portillo Hoyos
  */
 public interface IGameService {
-
-  /**
-   * Método que permite obtener un juego por su ID.
-   *
-   * @param id Id del juego.
-   * @return El juego con el ID especificado.
-   */
-  Game findById(Long id);
 
   /**
    * Método que permite guardar un juego.
@@ -41,4 +35,20 @@ public interface IGameService {
    * @return Lista de todos los juegos.
    */
   Iterable<Game> findAll();
+
+  /**
+   * Método que permite obtener un juego por su id.
+   *
+   * @param id Id del juego a buscar.
+   * @return El juego encontrado.
+   */
+  GameAndSagaDTO findById(Long id);
+
+  /**
+   * Método que permite obtener un juego por su id.
+   *
+   * @param id Id del juego a buscar.
+   * @return El juego encontrado.
+   */
+  Game findByIdGame(Long id);
 }

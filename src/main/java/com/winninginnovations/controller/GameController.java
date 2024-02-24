@@ -1,21 +1,16 @@
 package com.winninginnovations.controller;
 
+import com.fasterxml.jackson.annotation.JsonView;
+import com.winninginnovations.DTO.GameAndSagaDTO;
+import com.winninginnovations.DTO.GameDTO;
 import com.winninginnovations.request.GameRequest;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import com.winninginnovations.entity.Game;
 import com.winninginnovations.services.interfaces.IGameService;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.util.List;
 
 /**
  * Controlador para el juego.
@@ -62,5 +57,11 @@ public class GameController {
   @GetMapping
   public Iterable<Game> findAll() {
     return gameService.findAll();
+  }
+
+  @GetMapping("/{id}")
+  public ResponseEntity<GameAndSagaDTO> getGame(@PathVariable Long id) {
+    GameAndSagaDTO game = gameService.findById(id);
+    return ResponseEntity.ok(game);
   }
 }

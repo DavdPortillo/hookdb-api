@@ -56,22 +56,27 @@ VALUES ('PC'),
        ('Sega Dreamcast'),
        ('Atari 2600');
 
+INSERT INTO `saga` (`id`, `name`)
+VALUES ('1', 'Resident Evil');
 
-INSERT INTO `game` (`complete_time`, `story_time`, `crossplay_id`, `id`,
-                    `minimum_system_requirement_id`, `product_id`, `recommended_system_requirement_id`, `cover`, `alt`,
-                    `release_year`, `sinopsis`, `title`, `trailer`)
-VALUES (20, 10, 2, 1, NULL, NULL, NULL, 'URL de la imagen del Resident Evil 2 Remake', 'alt', '2019',
+INSERT INTO `game` (`complete_time`, `story_time`, `crossplay_id`, `id`, `minimum_system_requirement_id`, `product_id`,
+                    `recommended_system_requirement_id`, `saga_id`, `alt`, `cover`, `release_year`, `sinopsis`, `title`,
+                    `trailer`)
+VALUES (20, 10, 2, 1, NULL, NULL, NULL, '1', 'URL de la imagen del Resident Evil 2 Remake', 'alt', '2019',
         'Es la puesta al día del clásico original del género survival horror para Xbox One, PlayStation 4 y PC.',
         'Resident Evil 2 Remake', 'URL del trailer del Resident Evil 2 Remake'),
-       (20, 10, 2, 2, NULL, NULL, NULL, 'URL de la imagen del Alan Wake 2', 'alt', '2023',
+       (20, 10, 2, 2, NULL, NULL, NULL, NULL, 'URL de la imagen del Alan Wake 2', 'alt', '2023',
         'La historia sigue a Alan Wake, que ha estado atrapado en una dimensión alternativa durante 13 años, mientras intenta escapar escribiendo una historia de terror que involucra a una agente especial del FBI llamada Saga Anderson.',
         'Alan Wake 2', 'URL del trailer del Alan Wake 2'),
-       (20, 10, 2, 3, NULL, NULL, NULL, 'URL de la imagen del Little Nightmares 2', 'alt', '2021',
+       (20, 10, 2, 3, NULL, NULL, NULL, NULL, 'URL de la imagen del Little Nightmares 2', 'alt', '2021',
         'La historia sigue a Mono, que debe trabajar junto con Six, la protagonista del juego anterior, para sobrevivir a los horrores de la Ciudad Pálida y descubrir sus oscuros secretos.',
         'Little Nightmares 2', 'URL del trailer del Little Nightmares 2'),
-       (20, 10, 2, 4, NULL, NULL, NULL, 'URL de la imagen del Final Fantasy VII', 'alt', '1997',
+       (20, 10, 2, 4, NULL, NULL, NULL, NULL, 'URL de la imagen del Final Fantasy VII', 'alt', '1997',
         'La historia sigue a Cloud Strife, un mercenario que se une a la organización ecoterrorista AVALANCHA para detener el control mundial de la corporación Shinra que está drenando la vida del planeta para usarla como fuente de energía.',
-        'Final Fantasy VII', 'URL del trailer del Final Fantasy VII');
+        'Final Fantasy VII', 'URL del trailer del Final Fantasy VII'),
+       (20, 10, 2, 5, NULL, NULL, NULL, '1', 'URL de la imagen del Resident Evil 3 Remake', 'alt', '2020',
+        'Es la puesta al día del clásico original del género survival horror para Xbox One, PlayStation 4 y PC.',
+        'Resident Evil 3 Remake', 'URL del trailer del Resident Evil 3 Remake');
 
 
 
@@ -341,8 +346,10 @@ VALUES (1, 1),
 
 
 INSERT INTO `game_score` (`score`, `date`, `game_id`, `id`, `user_id`)
-VALUES ('7', '2024-02-14 19:02:04.000000', '1', NULL, '1'),
-       ('8', '2024-02-14 19:02:04.000000', '1', NULL, '2'),
-       ('8', '2024-02-14 19:02:04.000000', '2', NULL, '1'),
-       ('9', '2024-02-14 19:02:04.000000', '3', NULL, '2'),
-       ('10', '2024-02-14 19:02:04.000000', '4', NULL, '2');
+VALUES ('7', '2023-01-30T18:16:17.633882315', '1', NULL, '1'),
+       ('8', '2023-01-30T18:16:17.633882315', '1', NULL, '2'),
+       ('8', '2023-01-30T18:16:17.633882315', '2', NULL, '1'),
+       ('9', '2023-01-30T18:16:17.633882315', '3', NULL, '2'),
+       ('10', '2023-01-30T18:16:17.633882315', '4', NULL, '2');
+
+

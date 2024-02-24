@@ -3,11 +3,11 @@ package com.winninginnovations.entity;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -101,7 +101,7 @@ public class Game implements Serializable {
   private List<Platform> platforms;
 
   /** Dlcs del juego. */
-  @JsonManagedReference
+  @JsonManagedReference("game-dlc")
   @OneToMany(mappedBy = "game")
   private List<DLC> dlcs;
 
@@ -117,7 +117,7 @@ public class Game implements Serializable {
 
   /** Noticias del juego. */
   @OneToMany(mappedBy = "game")
-  @JsonManagedReference
+  @JsonManagedReference("game-news")
   private List<News> news;
 
   /** Críticas hechas por los usuarios. */
@@ -132,13 +132,14 @@ public class Game implements Serializable {
 
   /** Puntuaciones del juego. */
   @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
-  @JsonManagedReference
+  @JsonManagedReference("game-score")
   private List<GameScore> gameScores;
 
-  /** Sagas a las que pertenece el juego. */
-  @OneToMany
+  /** Saga a la que pertenece el juego. */
+  @ManyToOne
   @JoinColumn(name = "saga_id")
-  private List<Saga> sagas;
+  @JsonBackReference
+  private Saga saga;
 
   /** Tiene Cross play. */
   @NotNull

@@ -1,5 +1,8 @@
 package com.winninginnovations.services;
 
+import com.winninginnovations.DTO.GameAndSagaDTO;
+import com.winninginnovations.DTO.GameDTO;
+import com.winninginnovations.DTO.SagaDTO;
 import com.winninginnovations.entity.*;
 import com.winninginnovations.repository.*;
 import com.winninginnovations.request.AvailabilityRequest;
@@ -15,6 +18,8 @@ import jakarta.transaction.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Implementación de los métodos de la interfaz IGameService.
@@ -64,6 +69,9 @@ public class GameService implements IGameService {
   /** Repositorio de GameFeature. */
   private final GameFeatureRepository gameFeatureRepository;
 
+  /** Repositorio de Saga. */
+  private final SagaRepository sagaRepository;
+
   /**
    * Constructor de la clase.
    *
@@ -81,7 +89,8 @@ public class GameService implements IGameService {
       AvailabilityRepository availabilityRepository,
       FeatureRepository featureRepository,
       NumberPlayerRepository numberPlayerRepository,
-      GameFeatureRepository gameFeatureRepository) {
+      GameFeatureRepository gameFeatureRepository,
+      SagaRepository sagaRepository) {
     this.gameRepository = gameRepository;
     this.platformRepository = platformRepository;
     this.crossplayRepository = crossplayRepository;
@@ -94,16 +103,46 @@ public class GameService implements IGameService {
     this.featureRepository = featureRepository;
     this.numberPlayerRepository = numberPlayerRepository;
     this.gameFeatureRepository = gameFeatureRepository;
+    this.sagaRepository = sagaRepository;
   }
 
   @Override
-  public Game findById(Long id) {
+  public GameAndSagaDTO findById(Long id) {
     LOG.info("Finding game by id: {}", id);
     Game game = gameRepository.findById(id).orElse(null);
     if (game == null) {
       LOG.info("Game not found");
+      return null;
     }
-    return game;
+
+    // Convert Saga to SagaDTO
+    Saga saga = game.getSaga();
+    SagaDTO sagaDTO = new SagaDTO();
+    sagaDTO.setId(saga.getId());
+    sagaDTO.setName(saga.getName());
+    sagaDTO.setGames(
+        saga.getGames().stream()
+            .map(
+                g -> {
+                  GameDTO gDTO = new GameDTO();
+                  gDTO.setId(g.getId());
+                  gDTO.setTitle(g.getTitle());
+                  return gDTO;
+                })
+            .collect(Collectors.toList()));
+
+    // Create GameAndSagaDTO
+    GameAndSagaDTO gameAndSagaDTO = new GameAndSagaDTO();
+    gameAndSagaDTO.setGame(game);
+    gameAndSagaDTO.setSaga(sagaDTO);
+
+    return gameAndSagaDTO;
+  }
+
+  @Override
+  public Game findByIdGame(Long id) {
+    LOG.info("Finding game by id: {}", id);
+    return gameRepository.findById(id).orElse(null);
   }
 
   @Override
@@ -119,6 +158,7 @@ public class GameService implements IGameService {
     List<Long> dlcIds = gameRequest.getDlcIds();
     List<AvailabilityRequest> availabilityRequests = gameRequest.getAvailabilities();
     List<GameFeatureRequest> featureRequests = gameRequest.getGameFeatures();
+    Saga saga = gameRequest.getSaga();
 
     if (platformsIds == null
         || platformsIds.isEmpty()
@@ -190,6 +230,22 @@ public class GameService implements IGameService {
       dlcs = dlcRepository.findAllById(dlcIds);
       if (dlcs.size() != dlcIds.size()) {
         throw new IllegalArgumentException("No se encontraron todos los DLCs especificados");
+      }
+    }
+
+    if (saga != null) {
+      // Busca la saga existente por su ID
+      Optional<Saga> existingSaga = sagaRepository.findById(saga.getId());
+
+      if (existingSaga.isPresent()) {
+        // Si la saga ya existe, úsala
+        game.setSaga(existingSaga.get());
+      } else {
+        // Si la saga no existe, crea una nueva
+        Saga newSaga = new Saga();
+        newSaga.setName(saga.getName());
+        Saga savedSaga = sagaRepository.save(newSaga);
+        game.setSaga(savedSaga);
       }
     }
 

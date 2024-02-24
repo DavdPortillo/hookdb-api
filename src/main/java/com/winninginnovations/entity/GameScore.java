@@ -55,7 +55,7 @@ public class GameScore implements Serializable {
   /** Juego que fue puntuado. */
   @ManyToOne
   @JoinColumn(name = "game_id")
-  @JsonBackReference
+  @JsonBackReference("game-score")
   private Game game;
 
   @Serial private static final long serialVersionUID = 1L;

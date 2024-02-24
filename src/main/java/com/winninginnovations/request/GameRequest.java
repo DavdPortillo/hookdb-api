@@ -1,6 +1,7 @@
 package com.winninginnovations.request;
 
 import com.winninginnovations.entity.Game;
+import com.winninginnovations.entity.Saga;
 import lombok.Data;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class GameRequest {
   private List<Long> distributorIds;
   private List<Long> dlcIds;
   private List<AvailabilityRequest> availabilities;
-  private List<GameFeatureRequest> gameFeatures; // Lista de GameFeatureRequest
+  private List<GameFeatureRequest> gameFeatures;
+  private Saga saga;
 
 }
