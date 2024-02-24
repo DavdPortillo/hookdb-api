@@ -55,7 +55,7 @@ pipeline {
             steps {
                 script {
                     String gitCommit = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
-                    gitCommit = gitCommitFull.substring(0, 7) // Solo los primeros 7 caracteres del commit
+                    gitCommit = gitCommitFull.substring(0, 7)
                     docker.withRegistry('https://index.docker.io/v1/', DOCKER_CREDENTIALS) {
                         sh """
                             docker buildx create --name multi-arch-builder --use
