@@ -3,9 +3,7 @@ package com.winninginnovations.entity;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -17,7 +15,11 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
-/** Clase que representa a un usuario del sistema. */
+/**
+ * Clase que representa a un usuario del sistema.
+ *
+ * @author David Portillo Hoyos
+ */
 @Data
 @Entity
 @Table(name = "user")
@@ -97,13 +99,12 @@ public class User implements Serializable {
   private List<Review> reviews;
 
   /** Likes o dislikes que hace un usuario hecho por el usuario. */
-  @OneToMany
-  @JoinColumn(name = "review_vote_id")
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
   private List<ReviewVote> reviewVotes;
 
   /** Juegos que sigue el usuario. */
-  @OneToMany
-  @JoinColumn(name = "follow_game_id")
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+  @JsonManagedReference
   private List<FollowGame> followGames;
 
   /** Listas de juegos que ha creado el usuario. */

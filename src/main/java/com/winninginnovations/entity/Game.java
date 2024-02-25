@@ -49,7 +49,7 @@ public class Game implements Serializable {
   /** Tiempo de completar el juego al 100%. */
   @NotNull private Double completeTime;
 
-  /** Juegos que sigue el usuario. */
+  /** Géneros del juego */
   @NotNull
   @ManyToMany
   @JoinTable(
@@ -135,6 +135,11 @@ public class Game implements Serializable {
   @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
   @JsonManagedReference("game-score")
   private List<GameScore> gameScores;
+
+  /** Usuarios que siguen o ignoran el juego. */
+  @OneToMany(mappedBy = "game", cascade = CascadeType.ALL)
+  @JsonManagedReference
+  private List<FollowGame> followGames;
 
   /** Saga a la que pertenece el juego. */
   @ManyToOne

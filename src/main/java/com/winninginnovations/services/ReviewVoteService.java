@@ -51,17 +51,27 @@ public class ReviewVoteService implements IReviewVoteService {
 
   @Override
   public ReviewVote voteReview(Long userId, Long reviewId, Integer vote) {
+
+    LOG.info(
+        "El usuario con ID {} está votando la review con ID {} con el voto {}",
+        userId,
+        reviewId,
+        vote);
     // Validar el voto
     if (vote != 1 && vote != -1) {
       throw new IllegalArgumentException("El voto debe ser +1 o -1");
     }
 
     // Encuentra al usuario por su ID
-    User user = userRepository.findById(userId)
+    User user =
+        userRepository
+            .findById(userId)
             .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
 
     // Encuentra la revisión por su ID
-    Review review = reviewRepository.findById(reviewId)
+    Review review =
+        reviewRepository
+            .findById(reviewId)
             .orElseThrow(() -> new IllegalArgumentException("Review no encontrada"));
 
     // Verificar que el usuario no esté votando su propia revisión
@@ -94,5 +104,4 @@ public class ReviewVoteService implements IReviewVoteService {
 
     return reviewVoteRepository.findByUserAndReview(user, review);
   }
-
 }

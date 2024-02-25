@@ -3,6 +3,7 @@ package com.winninginnovations.services;
 import com.winninginnovations.DTO.GameAndSagaDTO;
 import com.winninginnovations.DTO.GameDTO;
 import com.winninginnovations.DTO.SagaDTO;
+import com.winninginnovations.DTO.ScoreAverageResultDTO;
 import com.winninginnovations.entity.*;
 import com.winninginnovations.repository.*;
 import com.winninginnovations.request.AvailabilityRequest;
@@ -18,6 +19,7 @@ import com.winninginnovations.services.interfaces.IGameService;
 import jakarta.transaction.Transactional;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -391,6 +393,48 @@ public class GameService implements IGameService {
     game.setDlcs(dlcs);
     game.setAvailabilities(availabilities);
     return gameRepository.save(game);
+  }
+
+  public ScoreAverageResultDTO calculateAverageScore(Long gameId) {
+    Game game =
+        gameRepository.findById(gameId).orElseThrow(() -> new RuntimeException("Game not found"));
+
+    // Obtén todas las puntuaciones del juego
+    List<GameScore> gameScores = game.getGameScores();
+
+    // Calcula la puntuación media
+    Double averageScore = gameScores.stream().mapToInt(GameScore::getScore).average().orElse(0.0);
+
+    ScoreAverageResultDTO result = new ScoreAverageResultDTO();
+    result.setAverageScore(averageScore);
+    result.setScoreCount(gameScores.size());
+
+    return result;
+  }
+
+  public ScoreAverageResultDTO calculateAverageScoreOfLast100(Long gameId) {
+    Game game =
+        gameRepository.findById(gameId).orElseThrow(() -> new RuntimeException("Game not found"));
+
+    // Obtén todas las puntuaciones del juego
+    List<GameScore> gameScores = game.getGameScores();
+
+    // Ordena las puntuaciones por ID y selecciona las últimas 100
+    List<GameScore> last100GameScores =
+        gameScores.stream()
+            .sorted(Comparator.comparing(GameScore::getId).reversed())
+            .limit(100)
+            .collect(Collectors.toList());
+
+    // Calcula la puntuación media de las últimas 100 puntuaciones
+    Double averageScoreOfLast100 =
+        last100GameScores.stream().mapToInt(GameScore::getScore).average().orElse(0.0);
+
+    ScoreAverageResultDTO result = new ScoreAverageResultDTO();
+    result.setAverageScore(averageScoreOfLast100);
+    result.setScoreCount(last100GameScores.size());
+
+    return result;
   }
 
   @Override

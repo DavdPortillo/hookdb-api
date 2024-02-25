@@ -285,12 +285,12 @@ VALUES (NULL, 'David', 'Portillo', 'imagen', 'alt'),
        (NULL, 'Jesús', 'García', 'imagen', 'alt');
 
 INSERT INTO `news` (`game_id`, `id`, `news_author_id`, `content`, `date`, `headline`, `image`, `alt`)
-VALUES (NULL, 1, 1,
+VALUES (2, 1, 1,
         'Se dice a menudo que los jugadores buscan innumerables maneras de superarse a sí mismos, y esta es una de las más complicadas. No nos referimos a completar Elden Ring con la mente o cosas similares, sino a derrotar a los jefes del juego de FromSoftware, a pesar de que estos son invisibles. Sí, has leído bien, derrotar a jefes que pueden enviarte al más allá con un solo soplido, sin siquiera poder verlos. Esta es la proeza de la streamer BioticNova. Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino. Luego está BioticNova, quien se desafió a sí misma a completar Elden Ring con los ojos abiertos, las manos en el mando, pero con todos los jefes del juego siendo invisibles.',
         '2024-02-20T18:16:17.633882315',
         'Hay una jugadora que se ha pasado Elden Ring con todos los enemigos invisibles. Ya solo nos queda terminar el soulslike con el PC apagado',
         'URL de la image', 'alt'),
-       (NULL, 2, 1,
+       (1, 2, 1,
         'Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino. Luego está BioticNova, quien se desafió a sí misma a completar Elden Ring con los ojos abiertos, las manos en el mando, pero con todos los jefes del juego siendo invisibles. Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino. Luego está BioticNova, quien se desafió a sí misma a completar Elden Ring con los ojos abiertos, las manos en el mando, pero con todos los jefes del juego siendo invisibles.',
         '2024-01-23T18:16:17.633882315',
         'Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino.',
@@ -385,3 +385,17 @@ VALUES ('Nombre de la clave del producto');
 
 INSERT INTO `logo_product` (`logo`)
 VALUES ('logo');
+
+INSERT INTO `product` (`price`, `edition_product_id`, `game_id`, `id`, `keys_product_id`, `logo_product_id`,
+                       `platform_product_id`, `region_product_id`, `vendor_product_id`, `link`)
+VALUES ('39.99', '1', '1', NULL, '1', '1', '1', '1', '1',
+        'https://miro.medium.com/v2/resize:fit:933/1*w4DxUy0PMoqeq25UXfyL0g@2x.jpeg');
+
+
+INSERT INTO `review_vote` (`vote`, `id`, `review_id`, `user_id`)
+VALUES ('1', NULL, '2', '1');
+
+
+INSERT INTO `follow_game` (`is_following`, `game_id`, `user_id`)
+VALUES ('1', '2', '1'),
+       ('-1', '1', '1');

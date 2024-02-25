@@ -2,6 +2,7 @@ package com.winninginnovations.DTO;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -10,9 +11,8 @@ import java.util.List;
  * @author David Portillo Hoyos
  */
 @Data
-public class SagaDTO {
+public class SagaDTO implements Serializable {
   private Long id;
   private String name;
   private List<GameDTO> games;
-
 }

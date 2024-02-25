@@ -3,6 +3,7 @@ package com.winninginnovations.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.winninginnovations.DTO.GameAndSagaDTO;
 import com.winninginnovations.DTO.GameDTO;
+import com.winninginnovations.DTO.ScoreAverageResultDTO;
 import com.winninginnovations.request.GameRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -59,9 +60,37 @@ public class GameController {
     return gameService.findAll();
   }
 
+  /**
+   * Encuentra un juego por su id.
+   *
+   * @param id Id del juego a buscar.
+   * @return El juego encontrado.
+   */
   @GetMapping("/{id}")
   public ResponseEntity<GameAndSagaDTO> getGame(@PathVariable Long id) {
     GameAndSagaDTO game = gameService.findById(id);
     return ResponseEntity.ok(game);
+  }
+
+  /**
+   * Encuentra el promedio de puntuación de un juego.
+   *
+   * @param gameId Id del juego.
+   * @return El promedio de puntuación del juego.
+   */
+  @GetMapping("/average-score/{gameId}")
+  public ScoreAverageResultDTO getAverageScore(@PathVariable Long gameId) {
+    return gameService.calculateAverageScore(gameId);
+  }
+
+  /**
+   * Encuentra el promedio de los últimos 100 puntajes de un juego.
+   *
+   * @param gameId Id del juego.
+   * @return El promedio de los últimos 100 puntajes del juego.
+   */
+  @GetMapping("/average-score-last-100/{gameId}")
+  public ScoreAverageResultDTO getAverageScoreOfLast100(@PathVariable Long gameId) {
+    return gameService.calculateAverageScoreOfLast100(gameId);
   }
 }
