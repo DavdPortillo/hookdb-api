@@ -16,7 +16,7 @@ es mas como un titulo que se le da al usuario por su actividad en la pagina.
 Tambien se pueden poner logros por ejemplo si escribe 10 reviews se le da un logro
 contador de cuantas reviews ha escrito el usuario y de cuantos mensajes ha escrito
 contador de likes dislikes
-
+idea: trofeos
 
 
 

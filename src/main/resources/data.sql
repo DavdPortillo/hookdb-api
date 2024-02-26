@@ -33,11 +33,11 @@ INSERT INTO `user` (`year`, `id`, `role_id`, `language`, `country`, `username`, 
 VALUES (1950, 1, 1, 'Idioma del usuario', 'País del usuario', 'maricon_quien_lo_lea',
         '$2a$10$GQ8EjxA1xo18wJC4Ea8ZQOD1wlg2kf9U4hdobBSipD4Nn3uWZ1HzW', 'admin@admin.com', NULL, 'URL de la imagen',
         'alt',
-        '11/02/2024'),
+        '2024/11/02'),
        (1950, 2, 2, 'Idioma del usuario', 'País del usuario', 'panza',
         '$2a$10$GQ8EjxA1xo18wJC4Ea8ZQOD1wlg2kf9U4hdobBSipD4Nn3uWZ1HzW', 'user@user.com', NULL, 'URL de la imagen',
         'alt',
-        '11/02/2024');
+        '2024/11/02');
 
 
 
@@ -70,24 +70,25 @@ VALUES ('1', 'Resident Evil');
 
 INSERT INTO `game` (`complete_time`, `story_time`, `crossplay_id`, `id`, `minimum_system_requirement_id`,
                     `recommended_system_requirement_id`, `saga_id`, `alt`, `cover`, `date`, `sinopsis`, `title`,
+                    `popularity`,
                     `trailer`)
 VALUES (20, 10, 2, 1, '1', '2', '1', 'URL de la imagen del Resident Evil 2 Remake', 'alt',
-        '25 de enero de 2019',
+        '2019/01/25',
         'Es la puesta al día del clásico original del género survival horror para Xbox One, PlayStation 4 y PC.',
-        'Resident Evil 2 Remake', 'URL del trailer del Resident Evil 2 Remake'),
-       (20, 10, 2, 2, '3', '4', NULL, 'URL de la imagen del Alan Wake 2', 'alt', '27 de octubre de 2023',
+        'Resident Evil 2 Remake', 0, 'URL del trailer del Resident Evil 2 Remake'),
+       (20, 10, 2, 2, '3', '4', NULL, 'URL de la imagen del Alan Wake 2', 'alt', '2023/02/11',
         'La historia sigue a Alan Wake, que ha estado atrapado en una dimensión alternativa durante 13 años, mientras intenta escapar escribiendo una historia de terror que involucra a una agente especial del FBI llamada Saga Anderson.',
-        'Alan Wake 2', 'URL del trailer del Alan Wake 2'),
+        'Alan Wake 2', 0, 'URL del trailer del Alan Wake 2'),
        (20, 10, 2, 3, '5', '6', NULL, 'URL de la imagen del Little Nightmares 2', 'alt',
-        '11 de febrero de 2021',
+        '2021/02/11',
         'La historia sigue a Mono, que debe trabajar junto con Six, la protagonista del juego anterior, para sobrevivir a los horrores de la Ciudad Pálida y descubrir sus oscuros secretos.',
-        'Little Nightmares 2', 'URL del trailer del Little Nightmares 2'),
-       (20, 10, 2, 4, '7', '8', NULL, 'URL de la imagen del Final Fantasy VII', 'alt', '31 de enero de 1997',
+        'Little Nightmares 2', 0, 'URL del trailer del Little Nightmares 2'),
+       (20, 10, 2, 4, '7', '8', NULL, 'URL de la imagen del Final Fantasy VII', 'alt', '1997/01/31',
         'La historia sigue a Cloud Strife, un mercenario que se une a la organización ecoterrorista AVALANCHA para detener el control mundial de la corporación Shinra que está drenando la vida del planeta para usarla como fuente de energía.',
-        'Final Fantasy VII', 'URL del trailer del Final Fantasy VII'),
-       (20, 10, 2, 5, '9', '10', '1', 'URL de la imagen del Resident Evil 3 Remake', 'alt', '3 de abril de 2020',
+        'Final Fantasy VII', 0, 'URL del trailer del Final Fantasy VII'),
+       (20, 10, 2, 5, '9', '10', '1', 'URL de la imagen del Resident Evil 3 Remake', 'alt', '2020/04/03',
         'Es la puesta al día del clásico original del género survival horror para Xbox One, PlayStation 4 y PC.',
-        'Resident Evil 3 Remake', 'URL del trailer del Resident Evil 3 Remake');
+        'Resident Evil 3 Remake', 0, 'URL del trailer del Resident Evil 3 Remake');
 
 
 
@@ -287,7 +288,7 @@ VALUES (NULL, 'David', 'Portillo', 'imagen', 'alt'),
 INSERT INTO `news` (`game_id`, `id`, `news_author_id`, `content`, `date`, `headline`, `image`, `alt`)
 VALUES (2, 1, 1,
         'Se dice a menudo que los jugadores buscan innumerables maneras de superarse a sí mismos, y esta es una de las más complicadas. No nos referimos a completar Elden Ring con la mente o cosas similares, sino a derrotar a los jefes del juego de FromSoftware, a pesar de que estos son invisibles. Sí, has leído bien, derrotar a jefes que pueden enviarte al más allá con un solo soplido, sin siquiera poder verlos. Esta es la proeza de la streamer BioticNova. Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino. Luego está BioticNova, quien se desafió a sí misma a completar Elden Ring con los ojos abiertos, las manos en el mando, pero con todos los jefes del juego siendo invisibles.',
-        '2024-02-20T18:16:17.633882315',
+        '2024-01-23T18:16:17.633882315',
         'Hay una jugadora que se ha pasado Elden Ring con todos los enemigos invisibles. Ya solo nos queda terminar el soulslike con el PC apagado',
         'URL de la image', 'alt'),
        (1, 2, 1,
