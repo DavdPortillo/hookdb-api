@@ -1,16 +1,12 @@
-Al hacer post traer Saga
 
-
-
+Buscar juego(preguntar sergio)
+juegos populares
 Se entra al juego se sume mas uno en popularidad.
-Lo siguen muchos usuarios se sume tambien con cada sguir dos puntos.
+
 
 
 REPASAR TODA LA BD EN PHPMYADMIN PAR NO ENCONTRARME IDS QUE NO EXISTEN
-cambiar url de controlador reviewvote por una mas euser friendly
-Repasar servicio de like dislike de reviewvote
-Buscar juego(preguntar sergio)
-juegos populares
+cambiar url de controladores por una mas euser friendly
 mirar los logs para que no salgan dos veces controller.GameController : Finding all games services.GameService : Finding all games
 MIRAR CACHE
 borrar usuario y que se borre todo lo relacionado

@@ -61,7 +61,7 @@ public class Game implements Serializable {
   private List<Genre> genres;
 
   /** Desarrollador del juego. */
-  //@NotNull
+  @NotNull
   @ManyToMany
   @JoinTable(
       name = "game_developer",
@@ -95,7 +95,7 @@ public class Game implements Serializable {
   private List<Product> products;
 
   /** Plataformas en las que está disponible el juego. */
-  //@NotNull
+  @NotNull
   @ManyToMany
   @JoinTable(
       name = "game_platform",

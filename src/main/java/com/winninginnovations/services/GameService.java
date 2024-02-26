@@ -12,6 +12,7 @@ import com.winninginnovations.request.GameRequest;
 import com.winninginnovations.request.ProductRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import com.winninginnovations.services.interfaces.IGameService;
@@ -21,7 +22,6 @@ import jakarta.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -190,125 +190,76 @@ public class GameService implements IGameService {
   }
 
   @Override
-  public Game save(GameRequest gameRequest) {
-
+  public GameAndSagaDTO save(GameRequest gameRequest) {
     LOG.info("Saving game: {}", gameRequest);
+
     Game game = gameRequest.getGame();
-    List<Long> platformsIds = gameRequest.getPlatformIds();
-    Long crossplayId = gameRequest.getCrossplayId();
-    List<Long> genreIds = gameRequest.getGenreIds();
-    List<Long> developerIds = gameRequest.getDeveloperIds();
-    List<Long> distributorIds = gameRequest.getDistributorIds();
-    List<Long> dlcIds = gameRequest.getDlcIds();
-    List<AvailabilityRequest> availabilityRequests = gameRequest.getAvailabilities();
-    List<GameFeatureRequest> featureRequests = gameRequest.getGameFeatures();
-    Saga saga = gameRequest.getSaga();
-    // Guarda los requisitos mínimos del sistema
-    SystemRequirement minimumSystemRequirement =
-        systemRequirementRepository.save(gameRequest.getMinimumSystemRequirement());
-
-    // Guarda los requisitos recomendados del sistema
-    SystemRequirement recommendedSystemRequirement =
-        systemRequirementRepository.save(gameRequest.getRecommendedSystemRequirement());
-
-    if (platformsIds == null
-        || platformsIds.isEmpty()
-        || platformsIds.contains(null)
-        || platformsIds.contains(0L)) {
-      throw new IllegalArgumentException(
-          "platformsIds no puede ser nulo, vacío o contener null o 0");
-    }
-
-    if (crossplayId == null || crossplayId <= 0) {
-      throw new IllegalArgumentException("crossplayId no puede ser nulo o menor o igual a 0");
-    }
-
-    if (genreIds == null
-        || genreIds.isEmpty()
-        || genreIds.contains(null)
-        || genreIds.contains(0L)) {
-      throw new IllegalArgumentException("genreIds no puede ser nulo, vacío o contener null o 0");
-    }
-
-    if (developerIds == null
-        || developerIds.isEmpty()
-        || developerIds.contains(null)
-        || developerIds.contains(0L)) {
-      throw new IllegalArgumentException(
-          "developerId no puede ser nulo, vacío o contener null o 0");
-    }
-
-    if (distributorIds == null
-        || distributorIds.isEmpty()
-        || distributorIds.contains(null)
-        || distributorIds.contains(0L)) {
-      throw new IllegalArgumentException(
-          "distributorId no puede ser nulo, vacío o contener null o 0");
-    }
-
-    if (availabilityRequests == null || availabilityRequests.isEmpty()) {
-      throw new IllegalArgumentException("availabilityRequests no puede ser nulo o vacío");
-    }
-
-    if (featureRequests == null || featureRequests.isEmpty()) {
-      throw new IllegalArgumentException("featureRequests no puede ser nulo o vacío");
-    }
-
-    List<Platform> platforms = platformRepository.findAllById(platformsIds);
-    if (platforms.size() != platformsIds.size()) {
-      throw new IllegalArgumentException("No se encontraron todas las plataformas especificadas");
-    }
-
-    List<Genre> genres = genreRepository.findAllById(genreIds);
-    if (genres.size() != genreIds.size()) {
-      throw new IllegalArgumentException("No se encontraron todos los géneros especificados");
-    }
-
-    List<Developer> developers = developerRepository.findAllById(developerIds);
-    if (developers.size() != developerIds.size()) {
-      throw new IllegalArgumentException(
-          "No se encontraron todos los desarrolladores especificados");
-    }
-
-    List<Distributor> distributors = distributorRepository.findAllById(distributorIds);
-    if (distributors.size() != distributorIds.size()) {
-      throw new IllegalArgumentException(
-          "No se encontraron todos los distribuidores especificados");
-    }
-
-    List<DLC> dlcs = null;
-    if (dlcIds != null && !dlcIds.isEmpty()) {
-      dlcs = dlcRepository.findAllById(dlcIds);
-      if (dlcs.size() != dlcIds.size()) {
-        throw new IllegalArgumentException("No se encontraron todos los DLCs especificados");
-      }
-    }
-
-    if (saga != null) {
-      // Busca la saga existente por su ID
-      Optional<Saga> existingSaga = sagaRepository.findById(saga.getId());
-
-      if (existingSaga.isPresent()) {
-        // Si la saga ya existe, úsala
-        game.setSaga(existingSaga.get());
-      } else {
-        // Si la saga no existe, crea una nueva
-        Saga newSaga = new Saga();
-        newSaga.setName(saga.getName());
-        Saga savedSaga = sagaRepository.save(newSaga);
-        game.setSaga(savedSaga);
-      }
-    }
-
-    Crossplay crossplay =
+    game.setMinimumSystemRequirement(
+        systemRequirementRepository.save(gameRequest.getMinimumSystemRequirement()));
+    game.setRecommendedSystemRequirement(
+        systemRequirementRepository.save(gameRequest.getRecommendedSystemRequirement()));
+    game.setPlatforms(
+        validateAndGetEntities(gameRequest.getPlatformIds(), platformRepository, "plataformas"));
+    game.setGenres(validateAndGetEntities(gameRequest.getGenreIds(), genreRepository, "géneros"));
+    game.setDevelopers(
+        validateAndGetEntities(
+            gameRequest.getDeveloperIds(), developerRepository, "desarrolladores"));
+    game.setDistributors(
+        validateAndGetEntities(
+            gameRequest.getDistributorIds(), distributorRepository, "distribuidores"));
+    game.setDlcs(validateAndGetEntities(gameRequest.getDlcIds(), dlcRepository, "DLCs"));
+    game.setCrossplay(
         crossplayRepository
-            .findById(crossplayId)
+            .findById(gameRequest.getCrossplayId())
             .orElseThrow(
                 () ->
-                    new IllegalArgumentException("Crossplay no encontrado con id: " + crossplayId));
+                    new IllegalArgumentException(
+                        "Crossplay no encontrado con id: " + gameRequest.getCrossplayId())));
+    game.setAvailabilities(createAvailabilities(gameRequest.getAvailabilities(), game));
+    game.setSaga(getOrCreateSaga(gameRequest.getSaga()));
+    game.setGameFeatures(createGameFeatures(gameRequest.getGameFeatures()));
 
+    Game savedGame = gameRepository.save(game);
+    savedGame.setProducts(createProducts(gameRequest.getProducts(), savedGame));
+
+    return findById(savedGame.getId());
+  }
+
+  private <T> List<T> validateAndGetEntities(
+      List<Long> ids, JpaRepository<T, Long> repository, String entityName) {
+    if (ids != null && !ids.isEmpty()) {
+      List<T> entities = repository.findAllById(ids);
+      if (entities.size() != ids.size()) {
+        throw new IllegalArgumentException(
+            "No se encontraron todos los " + entityName + " especificados");
+      }
+      return entities;
+    }
+    return null;
+  }
+
+  private Saga getOrCreateSaga(Saga saga) {
+    if (saga == null) {
+      return null;
+    }
+
+    return sagaRepository
+        .findById(saga.getId())
+        .orElseGet(
+            () -> {
+              Saga newSaga = new Saga();
+              newSaga.setName(saga.getName());
+              return sagaRepository.save(newSaga);
+            });
+  }
+
+  private List<Availability> createAvailabilities(
+      List<AvailabilityRequest> availabilityRequests, Game game) {
+    if (availabilityRequests == null || availabilityRequests.isEmpty()) {
+      throw new IllegalArgumentException("La lista de disponibilidades no puede ser nula ni vacía");
+    }
     List<Availability> availabilities = new ArrayList<>();
-    for (AvailabilityRequest availabilityRequest : gameRequest.getAvailabilities()) {
+    for (AvailabilityRequest availabilityRequest : availabilityRequests) {
       Language language =
           languageRepository
               .findById(availabilityRequest.getLanguageId())
@@ -326,9 +277,16 @@ public class GameService implements IGameService {
       availabilityRepository.save(
           availability); // Guarda la entidad Availability en la base de datos
     }
+    return availabilities;
+  }
 
+  private List<GameFeature> createGameFeatures(List<GameFeatureRequest> gameFeatureRequests) {
+    if (gameFeatureRequests == null || gameFeatureRequests.isEmpty()) {
+      throw new IllegalArgumentException(
+          "La lista de características del juego no puede ser nula ni vacía");
+    }
     List<GameFeature> gameFeatures = new ArrayList<>();
-    for (GameFeatureRequest gameFeatureRequest : gameRequest.getGameFeatures()) {
+    for (GameFeatureRequest gameFeatureRequest : gameFeatureRequests) {
       Feature feature =
           featureRepository
               .findById(gameFeatureRequest.getFeatureId())
@@ -355,9 +313,17 @@ public class GameService implements IGameService {
               gameFeature); // Guarda la entidad GameFeature en la base de datos
       gameFeatures.add(gameFeature);
     }
+    return gameFeatures;
+  }
+
+  private List<Product> createProducts(List<ProductRequest> productRequests, Game game) {
+    if (productRequests == null || productRequests.isEmpty()) {
+      throw new IllegalArgumentException("La lista de productos no puede ser nula ni vacía");
+    }
     List<Product> savedProducts = new ArrayList<>();
-    for (ProductRequest productRequest : gameRequest.getProducts()) {
+    for (ProductRequest productRequest : productRequests) {
       Product product = new Product();
+      product.setGame(game); // Asociar el producto con el juego
       product.setPrice(productRequest.getPrice());
       product.setLink(productRequest.getLink());
       product.setLogoProduct(
@@ -375,24 +341,7 @@ public class GameService implements IGameService {
       Product savedProduct = productRepository.save(product);
       savedProducts.add(savedProduct);
     }
-
-    // Asigna los productos al juego
-    game.setProducts(savedProducts);
-
-    // Asigna los productos al juego
-    game.setProducts(savedProducts);
-
-    game.setMinimumSystemRequirement(minimumSystemRequirement);
-    game.setRecommendedSystemRequirement(recommendedSystemRequirement);
-    game.setGameFeatures(gameFeatures);
-    game.setPlatforms(platforms);
-    game.setGenres(genres);
-    game.setCrossplay(crossplay);
-    game.setDevelopers(developers);
-    game.setDistributors(distributors);
-    game.setDlcs(dlcs);
-    game.setAvailabilities(availabilities);
-    return gameRepository.save(game);
+    return savedProducts;
   }
 
   public ScoreAverageResultDTO calculateAverageScore(Long gameId) {

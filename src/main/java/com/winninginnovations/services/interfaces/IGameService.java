@@ -21,7 +21,7 @@ public interface IGameService {
    * @param gameRequest Parámetros para guardar el juego.
    * @return El juego guardado.
    */
-  Game save(GameRequest gameRequest);
+  GameAndSagaDTO save(GameRequest gameRequest);
 
   /**
    * Método que permite eliminar un juego.

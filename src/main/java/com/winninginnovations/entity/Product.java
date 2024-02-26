@@ -31,35 +31,42 @@ public class Product implements Serializable {
   @NotNull private String link;
 
   /** Logo del producto. */
+  @NotNull
   @ManyToOne
   @JoinColumn(name = "logo_product_id")
   private LogoProduct logoProduct;
 
   /** Edición del producto. */
+  @NotNull
   @ManyToOne
   @JoinColumn(name = "edition_product_id")
   private EditionProduct editionProduct;
 
   /** Plataforma del producto. */
+  @NotNull
   @ManyToOne
   @JoinColumn(name = "platform_product_id")
   private PlatformProduct platformProduct;
 
   /** Vendor del producto. */
+  @NotNull
   @ManyToOne
   @JoinColumn(name = "vendor_product_id")
   private VendorProduct vendorProduct;
 
   /** Región del producto. */
+  @NotNull
   @ManyToOne
   @JoinColumn(name = "region_product_id")
   private RegionProduct regionProduct;
 
   /** Keys del producto. */
+  @NotNull
   @ManyToOne
   @JoinColumn(name = "keys_product_id")
   private KeysProduct keysProduct;
 
+  @NotNull
   @ManyToOne
   @JoinColumn(name = "game_id")
   @JsonIgnore

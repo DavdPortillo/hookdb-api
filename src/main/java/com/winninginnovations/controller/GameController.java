@@ -42,7 +42,7 @@ public class GameController {
    */
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
-  public Game createGame(@RequestBody GameRequest gameRequest) {
+  public GameAndSagaDTO createGame(@RequestBody GameRequest gameRequest) {
     Game game = gameRequest.getGame();
     if (game == null) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El objeto Game no puede ser null");
