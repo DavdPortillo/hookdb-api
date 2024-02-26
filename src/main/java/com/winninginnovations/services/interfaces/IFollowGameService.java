@@ -1,6 +1,6 @@
 package com.winninginnovations.services.interfaces;
 
-import com.winninginnovations.DTO.GameFollowDTO;
+import com.winninginnovations.dto.GameFollowDTO;
 
 /**
  * Interfaz que define los métodos que se pueden realizar sobre el seguimiento de un juego.

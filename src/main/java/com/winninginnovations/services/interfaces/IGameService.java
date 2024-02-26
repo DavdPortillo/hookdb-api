@@ -1,12 +1,9 @@
 package com.winninginnovations.services.interfaces;
 
-import com.winninginnovations.DTO.GameAndSagaDTO;
-import com.winninginnovations.DTO.GameDTO;
-import com.winninginnovations.DTO.ScoreAverageResultDTO;
+import com.winninginnovations.dto.GameAndSagaDTO;
+import com.winninginnovations.dto.ScoreAverageResultDTO;
 import com.winninginnovations.entity.Game;
 import com.winninginnovations.request.GameRequest;
-
-import java.util.List;
 
 /**
  * Interface que define los métodos que debe implementar la clase Game.

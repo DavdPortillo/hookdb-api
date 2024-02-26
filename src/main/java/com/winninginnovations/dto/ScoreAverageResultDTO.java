@@ -1,4 +1,4 @@
-package com.winninginnovations.DTO;
+package com.winninginnovations.dto;
 
 import lombok.Data;
 

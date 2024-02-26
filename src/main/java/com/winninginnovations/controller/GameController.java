@@ -1,9 +1,7 @@
 package com.winninginnovations.controller;
 
-import com.fasterxml.jackson.annotation.JsonView;
-import com.winninginnovations.DTO.GameAndSagaDTO;
-import com.winninginnovations.DTO.GameDTO;
-import com.winninginnovations.DTO.ScoreAverageResultDTO;
+import com.winninginnovations.dto.GameAndSagaDTO;
+import com.winninginnovations.dto.ScoreAverageResultDTO;
 import com.winninginnovations.request.GameRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

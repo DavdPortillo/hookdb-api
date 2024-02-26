@@ -1,6 +1,7 @@
 
+Juegos populares y novedades
 Buscar juego(preguntar sergio)
-juegos populares
+
 Se entra al juego se sume mas uno en popularidad.
 
 

@@ -1,9 +1,7 @@
 package com.winninginnovations.services;
 
 import com.winninginnovations.entity.DLC;
-import com.winninginnovations.entity.Distributor;
 import com.winninginnovations.repository.DLCRepository;
-import com.winninginnovations.repository.DistributorRepository;
 import com.winninginnovations.services.interfaces.IDLCService;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;

@@ -1,9 +1,9 @@
 package com.winninginnovations.services;
 
-import com.winninginnovations.DTO.GameAndSagaDTO;
-import com.winninginnovations.DTO.GameDTO;
-import com.winninginnovations.DTO.SagaDTO;
-import com.winninginnovations.DTO.ScoreAverageResultDTO;
+import com.winninginnovations.dto.GameAndSagaDTO;
+import com.winninginnovations.dto.GameDTO;
+import com.winninginnovations.dto.SagaDTO;
+import com.winninginnovations.dto.ScoreAverageResultDTO;
 import com.winninginnovations.entity.*;
 import com.winninginnovations.repository.*;
 import com.winninginnovations.request.AvailabilityRequest;

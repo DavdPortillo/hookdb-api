@@ -1,6 +1,6 @@
 package com.winninginnovations.services;
 
-import com.winninginnovations.DTO.GameFollowDTO;
+import com.winninginnovations.dto.GameFollowDTO;
 import com.winninginnovations.entity.FollowGame;
 import com.winninginnovations.entity.Game;
 import com.winninginnovations.entity.News;
@@ -55,6 +55,7 @@ public class FollowGameService implements IFollowGameService {
   }
 
   public GameFollowDTO followOrIgnoreGame(Long userId, Long gameId, Integer action) {
+    LOGGER.info("User {} is {} game {}", userId, action == 1 ? "following" : "ignoring", gameId);
     User user =
         userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
     Game game =

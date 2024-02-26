@@ -1,4 +1,4 @@
-package com.winninginnovations.DTO;
+package com.winninginnovations.dto;
 
 import com.winninginnovations.entity.Game;
 import lombok.Data;

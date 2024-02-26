@@ -3,8 +3,6 @@ package com.winninginnovations.controller;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -49,9 +47,6 @@ public class UserController {
     this.roleRepository = roleRepository;
     this.passwordEncoder = passwordEncoder;
   }
-
-  /** Logger para la clase */
-  private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
   /**
    * Crea un nuevo cliente.

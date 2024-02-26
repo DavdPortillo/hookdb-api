@@ -2,8 +2,6 @@ package com.winninginnovations.services.interfaces;
 
 import com.winninginnovations.entity.GamesList;
 
-import java.util.List;
-
 /**
  * Interfaz que define los métodos que se pueden realizar sobre la lista de juegos.
  *

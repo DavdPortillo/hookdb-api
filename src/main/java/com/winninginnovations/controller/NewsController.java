@@ -5,10 +5,7 @@ import com.winninginnovations.entity.News;
 import com.winninginnovations.entity.NewsAuthor;
 import com.winninginnovations.services.interfaces.IGameService;
 import com.winninginnovations.services.interfaces.INewsAuthorService;
-import com.winninginnovations.services.interfaces.INewsCommentService;
 import com.winninginnovations.services.interfaces.INewsService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -21,9 +18,6 @@ import org.springframework.web.server.ResponseStatusException;
 @RestController
 @RequestMapping("/news")
 public class NewsController {
-
-  /** Logger para la clase */
-  private static final Logger LOGGER = LoggerFactory.getLogger(News.class);
 
   /** Servicio para los comentarios de noticias. */
   private final INewsService newsService;
@@ -77,14 +71,12 @@ public class NewsController {
       news.setGame(game);
     }
 
-    LOGGER.info("Saving news: {}", news);
     return newsService.save(news);
   }
 
   /** Obtener todas las noticias. */
   @GetMapping
   public Iterable<News> findAll() {
-    LOGGER.info("Finding all news");
     return newsService.findAll();
   }
 }

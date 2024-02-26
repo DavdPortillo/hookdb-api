@@ -1,6 +1,6 @@
 package com.winninginnovations.controller;
 
-import com.winninginnovations.DTO.GameFollowDTO;
+import com.winninginnovations.dto.GameFollowDTO;
 import com.winninginnovations.services.interfaces.IFollowGameService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

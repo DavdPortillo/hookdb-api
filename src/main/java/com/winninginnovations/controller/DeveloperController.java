@@ -1,9 +1,7 @@
 package com.winninginnovations.controller;
 
 import com.winninginnovations.entity.Developer;
-import com.winninginnovations.entity.Genre;
 import com.winninginnovations.services.interfaces.IDeveloperService;
-import com.winninginnovations.services.interfaces.IGenreService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;

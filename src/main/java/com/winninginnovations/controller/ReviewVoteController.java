@@ -2,8 +2,7 @@ package com.winninginnovations.controller;
 
 import com.winninginnovations.entity.ReviewVote;
 import com.winninginnovations.services.interfaces.IReviewVoteService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.*;
 
 /**

@@ -2,8 +2,6 @@ package com.winninginnovations.controller;
 
 import com.winninginnovations.entity.GamesList;
 import com.winninginnovations.services.interfaces.IGamesListService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**

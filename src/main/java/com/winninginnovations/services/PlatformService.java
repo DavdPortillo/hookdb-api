@@ -1,6 +1,5 @@
 package com.winninginnovations.services;
 
-import com.winninginnovations.entity.NewsAuthor;
 import com.winninginnovations.entity.Platform;
 import com.winninginnovations.repository.PlatformRepository;
 import com.winninginnovations.services.interfaces.IPlatformService;
@@ -18,32 +17,27 @@ import org.springframework.stereotype.Service;
 @Transactional
 public class PlatformService implements IPlatformService {
 
-    /**
-     * Logger.
-     */
-    private static final Logger LOG = LoggerFactory.getLogger(PlatformService.class);
+  /** Logger. */
+  private static final Logger LOG = LoggerFactory.getLogger(PlatformService.class);
 
-    /**
-     * Repositorio de Platform.
-     */
-    private final PlatformRepository platformRepository;
+  /** Repositorio de Platform. */
+  private final PlatformRepository platformRepository;
 
-    /**
-     * Constructor de la clase.
-     *
-     * @param platformRepository Repositorio de Platform.
-     */
-    public PlatformService(PlatformRepository platformRepository) {
-        this.platformRepository = platformRepository;
-    }
+  /**
+   * Constructor de la clase.
+   *
+   * @param platformRepository Repositorio de Platform.
+   */
+  public PlatformService(PlatformRepository platformRepository) {
+    this.platformRepository = platformRepository;
+  }
 
-
-    /**
-     * @param platform Plataforma a guardar.
-     */
-    @Override
-    public void save(Platform platform) {
-        LOG.info("Saving platform: {}", platform);
-        platformRepository.save(platform);
-    }
+  /**
+   * @param platform Plataforma a guardar.
+   */
+  @Override
+  public void save(Platform platform) {
+    LOG.info("Saving platform: {}", platform);
+    platformRepository.save(platform);
+  }
 }

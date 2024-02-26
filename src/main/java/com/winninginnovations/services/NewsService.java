@@ -8,9 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+
 
 /**
  * Clase que implementa la interfaz INewsService.
@@ -22,7 +20,7 @@ import java.util.Date;
 public class NewsService implements INewsService {
 
   /** Logger. */
-  private static final Logger LOG = LoggerFactory.getLogger(News.class);
+  private static final Logger LOG = LoggerFactory.getLogger(NewsService.class);
 
   /** Repositorio de News. */
   private final NewsRepository newsRepository;
