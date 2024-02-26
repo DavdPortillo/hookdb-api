@@ -26,7 +26,7 @@ public class GameFeature implements Serializable {
   /** Juego. */
   @ManyToOne
   @JoinColumn(name = "game_id")
-  @JsonBackReference("game")
+  @JsonBackReference("game-feature")
   private Game game;
 
   /** Característica. */

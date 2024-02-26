@@ -1,7 +1,5 @@
 Se entra al juego se sume mas uno en popularidad.
 Lo siguen muchos usuarios se sume tambien con cada sguir dos puntos.
-Los juegos con puntuaciones más altas podrían considerarse más populares.
-Los juegos con más comentarios o críticas podrían ser más populares.
 
 
 REPASAR TODA LA BD EN PHPMYADMIN PAR NO ENCONTRARME IDS QUE NO EXISTEN
@@ -17,3 +15,56 @@ es mas como un titulo que se le da al usuario por su actividad en la pagina.
 Tambien se pueden poner logros por ejemplo si escribe 10 reviews se le da un logro
 contador de cuantas reviews ha escrito el usuario y de cuantos mensajes ha escrito
 contador de likes dislikes
+
+
+
+
+Entiendo, quieres que la popularidad solo se aplique a los juegos que aún no han salido. Cuando el juego se lanza, su popularidad se restablece a null y desaparece de la lista de los más populares. Aquí te dejo un ejemplo de cómo podrías implementarlo:
+
+Primero, añade un campo releaseDate en tu entidad Game para saber cuándo se lanza el juego:
+
+Java
+
+/** Fecha de lanzamiento del juego. */
+@NotNull private LocalDate releaseDate;
+Código generado por IA. Revisar y usar cuidadosamente. Más información sobre preguntas frecuentes.
+Luego, en tu controlador o servicio, cuando se haga un GET a un juego, verifica si el juego aún no se ha lanzado antes de incrementar el contador:
+
+Java
+
+public Game getGame(Long id) {
+    Game game = gameRepository.findById(id).orElseThrow(() -> new GameNotFoundException(id));
+    if (game.getReleaseDate().isAfter(LocalDate.now())) {
+        game.setPopularityCount(game.getPopularityCount() + 1);
+        gameRepository.save(game);
+    }
+    return game;
+}
+Código generado por IA. Revisar y usar cuidadosamente. Más información sobre preguntas frecuentes.
+Para obtener los 5 juegos más populares que aún no se han lanzado, puedes hacer una consulta que ordene los juegos por popularityCount en orden descendente, filtre los juegos que se lanzarán en el futuro y limite los resultados a 5:
+
+Java
+
+public List<Game> getTop5PopularUpcomingGames() {
+    return gameRepository.findTop5ByReleaseDateAfterAndOrderByPopularityCountDesc(LocalDate.now());
+}
+Código generado por IA. Revisar y usar cuidadosamente. Más información sobre preguntas frecuentes.
+Y añade este método en tu repositorio GameRepository:
+
+Java
+
+List<Game> findTop5ByReleaseDateAfterAndOrderByPopularityCountDesc(LocalDate date);
+Código generado por IA. Revisar y usar cuidadosamente. Más información sobre preguntas frecuentes.
+Finalmente, puedes crear un trabajo programado que se ejecute cada día a medianoche para restablecer la popularidad de los juegos que se lanzan ese día:
+
+Java
+
+@Scheduled(cron = "0 0 * * *")
+public void resetPopularityOfReleasedGames() {
+    List<Game> games = gameRepository.findByReleaseDate(LocalDate.now());
+    for (Game game : games) {
+        game.setPopularityCount(null);
+        gameRepository.save(game);
+    }
+}
+Código generado por IA. Revisar y usar cuidadosamente. Más información sobre preguntas frecuentes.

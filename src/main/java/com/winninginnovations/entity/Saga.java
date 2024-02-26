@@ -5,7 +5,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -18,7 +20,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "saga")
-// @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Saga implements Serializable {
 
   /** Id único de la saga. Generado automáticamente. */
@@ -31,7 +33,7 @@ public class Saga implements Serializable {
 
   /** Juegos de la saga. */
   @OneToMany(mappedBy = "saga", cascade = CascadeType.ALL, orphanRemoval = true)
-  @JsonManagedReference
+  @JsonManagedReference("saga-game")
   private List<Game> games = new ArrayList<>();
 
   @Serial private static final long serialVersionUID = 1L;

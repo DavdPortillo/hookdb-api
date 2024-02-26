@@ -5,7 +5,6 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
@@ -66,7 +65,7 @@ public class Review implements Serializable {
   @NotNull
   @ManyToOne
   @JoinColumn(name = "user_id")
-  @JsonBackReference
+  @JsonBackReference("user-review")
   private User user;
 
 

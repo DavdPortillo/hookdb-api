@@ -90,12 +90,12 @@ public class User implements Serializable {
 
   /** Puntuaciones que ha puntuado el usuario. */
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-  @JsonManagedReference
+  @JsonManagedReference("user-score")
   private List<GameScore> gameScores;
 
   /** Críticas hechas por el usuario. */
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-  @JsonManagedReference
+  @JsonManagedReference("user-review")
   private List<Review> reviews;
 
   /** Likes o dislikes que hace un usuario hecho por el usuario. */

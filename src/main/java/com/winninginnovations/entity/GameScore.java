@@ -49,7 +49,7 @@ public class GameScore implements Serializable {
   /** Usuario que puntuó el juego. */
   @ManyToOne
   @JoinColumn(name = "user_id")
-  @JsonBackReference
+  @JsonBackReference("user-score")
   private User user;
 
   /** Juego que fue puntuado. */

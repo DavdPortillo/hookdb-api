@@ -396,6 +396,9 @@ public class GameService implements IGameService {
   }
 
   public ScoreAverageResultDTO calculateAverageScore(Long gameId) {
+
+    LOG.info("Calculating average score of game with id: {}", gameId);
+
     Game game =
         gameRepository.findById(gameId).orElseThrow(() -> new RuntimeException("Game not found"));
 
@@ -413,6 +416,9 @@ public class GameService implements IGameService {
   }
 
   public ScoreAverageResultDTO calculateAverageScoreOfLast100(Long gameId) {
+
+    LOG.info("Calculating average score of last 100 of game with id: {}", gameId);
+
     Game game =
         gameRepository.findById(gameId).orElseThrow(() -> new RuntimeException("Game not found"));
 
@@ -424,7 +430,7 @@ public class GameService implements IGameService {
         gameScores.stream()
             .sorted(Comparator.comparing(GameScore::getId).reversed())
             .limit(100)
-            .collect(Collectors.toList());
+            .toList();
 
     // Calcula la puntuación media de las últimas 100 puntuaciones
     Double averageScoreOfLast100 =

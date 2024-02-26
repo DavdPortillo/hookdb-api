@@ -1,7 +1,6 @@
 package com.winninginnovations.request;
 
 import com.winninginnovations.entity.Game;
-import com.winninginnovations.entity.Product;
 import com.winninginnovations.entity.Saga;
 import com.winninginnovations.entity.SystemRequirement;
 import lombok.Data;

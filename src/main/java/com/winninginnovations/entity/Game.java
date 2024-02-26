@@ -7,7 +7,6 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -38,6 +37,9 @@ public class Game implements Serializable {
   /** Trailer del juego. */
   @NotNull private String trailer;
 
+  /** Popularidad del juego. */
+  private Long popularityCount;
+
   /** Sinopsis del juego. */
   @NotNull
   @Column(columnDefinition = "TEXT")
@@ -50,7 +52,7 @@ public class Game implements Serializable {
   @NotNull private Double completeTime;
 
   /** Géneros del juego */
-  @NotNull
+  //@NotNull
   @ManyToMany
   @JoinTable(
       name = "game_genre",
@@ -59,7 +61,7 @@ public class Game implements Serializable {
   private List<Genre> genres;
 
   /** Desarrollador del juego. */
-  @NotNull
+  //@NotNull
   @ManyToMany
   @JoinTable(
       name = "game_developer",
@@ -68,7 +70,7 @@ public class Game implements Serializable {
   private List<Developer> developers;
 
   /** Distribuidor del juego. */
-  @NotNull
+  //@NotNull
   @ManyToMany
   @JoinTable(
       name = "game_distributor",
@@ -77,13 +79,13 @@ public class Game implements Serializable {
   private List<Distributor> distributors;
 
   /** Requisitos mínimos del sistema. */
-  @NotNull
+  //@NotNull
   @OneToOne
   @JoinColumn(name = "minimum_system_requirement_id")
   private SystemRequirement minimumSystemRequirement;
 
   /** Requisitos recomendados del sistema. */
-  @NotNull
+  //@NotNull
   @OneToOne
   @JoinColumn(name = "recommended_system_requirement_id")
   private SystemRequirement recommendedSystemRequirement;
@@ -93,7 +95,7 @@ public class Game implements Serializable {
   private List<Product> products;
 
   /** Plataformas en las que está disponible el juego. */
-  @NotNull
+  //@NotNull
   @ManyToMany
   @JoinTable(
       name = "game_platform",
@@ -106,14 +108,14 @@ public class Game implements Serializable {
   @OneToMany(mappedBy = "game")
   private List<DLC> dlcs;
 
-  @NotNull
+  //@NotNull
   @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
   @JsonManagedReference(value = "game-availability")
   private List<Availability> availabilities;
 
   /** Características del juego. */
   @OneToMany(mappedBy = "game")
-  @JsonManagedReference("game")
+  @JsonManagedReference("game-feature")
   private List<GameFeature> gameFeatures;
 
   /** Noticias del juego. */
@@ -136,19 +138,19 @@ public class Game implements Serializable {
   @JsonManagedReference("game-score")
   private List<GameScore> gameScores;
 
+  /** Saga a la que pertenece el juego. */
+  @ManyToOne
+  @JoinColumn(name = "saga_id")
+  @JsonBackReference("saga-game")
+  private Saga saga;
+
   /** Usuarios que siguen o ignoran el juego. */
   @OneToMany(mappedBy = "game", cascade = CascadeType.ALL)
   @JsonManagedReference
   private List<FollowGame> followGames;
 
-  /** Saga a la que pertenece el juego. */
-  @ManyToOne
-  @JoinColumn(name = "saga_id")
-  @JsonBackReference
-  private Saga saga;
-
   /** Tiene Cross play. */
-  @NotNull
+  //@NotNull
   @ManyToOne
   @JoinColumn(name = "crossplay_id")
   private Crossplay crossplay;
