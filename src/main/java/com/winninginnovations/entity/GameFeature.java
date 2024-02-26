@@ -3,6 +3,7 @@ package com.winninginnovations.entity;
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.ToString;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -27,12 +28,14 @@ public class GameFeature implements Serializable {
   @ManyToOne
   @JoinColumn(name = "game_id")
   @JsonBackReference("game-feature")
+  @ToString.Exclude
   private Game game;
 
   /** Característica. */
   @ManyToOne
   @JoinColumn(name = "feature_id")
   @JsonBackReference("feature")
+  @ToString.Exclude
   private Feature feature;
 
   /** Número de jugadores de las características. */

@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.ToString;
 
 /** Clase que representa los dlcs que tiene un juego. */
 @Data
@@ -28,6 +29,7 @@ public class DLC implements Serializable {
   @JsonBackReference("game-dlc")
   @ManyToOne
   @JoinColumn(name = "game_id")
+  @ToString.Exclude
   private Game game;
 
   @Serial private static final long serialVersionUID = 1L;

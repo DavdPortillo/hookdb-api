@@ -30,7 +30,7 @@ public class ReviewVote implements Serializable {
   @NotNull
   @ManyToOne
   @JoinColumn(name = "user_id")
-  @JsonBackReference
+  @JsonBackReference("user-review-vote")
   private User user;
 
   /** Comentario al que se emitió el voto. No puede ser nulo. */

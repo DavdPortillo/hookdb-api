@@ -43,14 +43,14 @@ public class FollowGame implements Serializable {
   @NotNull
   @ManyToOne
   @JoinColumn(name = "game_id")
-  @JsonBackReference
+  @JsonBackReference("game-follow-user")
   private Game game;
 
   /** Usuario al que pertenece el seguimiento. No puede ser nulo. */
   @NotNull
   @ManyToOne
   @JoinColumn(name = "user_id")
-  @JsonBackReference
+  @JsonBackReference("user-follow-game")
   private User user;
 
   /** Id único del seguimiento. Generado automáticamente. */

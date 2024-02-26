@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.ToString;
 
 /**
  * Clase que representa los juegos que tiene un juego.
@@ -37,12 +38,14 @@ public class Availability implements Serializable {
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "language_id")
   @JsonIdentityReference(alwaysAsId = true)
+  @ToString.Exclude
   private Language language;
 
   /** El juego asociado con esta disponibilidad. */
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "game_id")
   @JsonBackReference(value = "game-availability")
+  @ToString.Exclude
   private Game game;
 
   @Serial private static final long serialVersionUID = 1L;

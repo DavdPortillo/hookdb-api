@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.ToString;
 
 /**
  * Clase que representa a una key del juego
@@ -62,6 +63,7 @@ public class Product implements Serializable {
   @ManyToOne
   @JoinColumn(name = "game_id")
   @JsonIgnore
+  @ToString.Exclude
   private Game game;
 
   @Serial private static final long serialVersionUID = 1L;

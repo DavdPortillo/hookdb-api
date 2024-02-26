@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.ToString;
 
 /**
  * Clase que representa una noticia.
@@ -68,5 +69,6 @@ public class News implements Serializable {
   @ManyToOne
   @JoinColumn(name = "game_id")
   @JsonBackReference("game-news")
+  @ToString.Exclude
   private Game game;
 }

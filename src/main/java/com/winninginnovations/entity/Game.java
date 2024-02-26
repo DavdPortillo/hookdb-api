@@ -52,7 +52,7 @@ public class Game implements Serializable {
   @NotNull private Double completeTime;
 
   /** Géneros del juego */
-  //@NotNull
+  @NotNull
   @ManyToMany
   @JoinTable(
       name = "game_genre",
@@ -70,7 +70,7 @@ public class Game implements Serializable {
   private List<Developer> developers;
 
   /** Distribuidor del juego. */
-  //@NotNull
+  @NotNull
   @ManyToMany
   @JoinTable(
       name = "game_distributor",
@@ -79,13 +79,13 @@ public class Game implements Serializable {
   private List<Distributor> distributors;
 
   /** Requisitos mínimos del sistema. */
-  //@NotNull
+  @NotNull
   @OneToOne
   @JoinColumn(name = "minimum_system_requirement_id")
   private SystemRequirement minimumSystemRequirement;
 
   /** Requisitos recomendados del sistema. */
-  //@NotNull
+  @NotNull
   @OneToOne
   @JoinColumn(name = "recommended_system_requirement_id")
   private SystemRequirement recommendedSystemRequirement;
@@ -108,7 +108,7 @@ public class Game implements Serializable {
   @OneToMany(mappedBy = "game")
   private List<DLC> dlcs;
 
-  //@NotNull
+  @NotNull
   @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
   @JsonManagedReference(value = "game-availability")
   private List<Availability> availabilities;
@@ -144,13 +144,13 @@ public class Game implements Serializable {
   @JsonBackReference("saga-game")
   private Saga saga;
 
-  /** Usuarios que siguen o ignoran el juego. */
-  @OneToMany(mappedBy = "game", cascade = CascadeType.ALL)
-  @JsonManagedReference
-  private List<FollowGame> followGames;
+//  /** Usuarios que siguen o ignoran el juego. */
+//  @OneToMany(mappedBy = "game", cascade = CascadeType.ALL)
+//  @JsonManagedReference
+//  private List<FollowGame> followGames;
 
   /** Tiene Cross play. */
-  //@NotNull
+  @NotNull
   @ManyToOne
   @JoinColumn(name = "crossplay_id")
   private Crossplay crossplay;

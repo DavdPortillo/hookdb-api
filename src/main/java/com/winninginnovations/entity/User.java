@@ -100,11 +100,12 @@ public class User implements Serializable {
 
   /** Likes o dislikes que hace un usuario hecho por el usuario. */
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference("user-review-vote")
   private List<ReviewVote> reviewVotes;
 
   /** Juegos que sigue el usuario. */
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-  @JsonManagedReference
+  @JsonManagedReference("user-follow-game")
   private List<FollowGame> followGames;
 
   /** Listas de juegos que ha creado el usuario. */
