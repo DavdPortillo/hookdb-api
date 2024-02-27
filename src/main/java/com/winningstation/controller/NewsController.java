@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 /**
  * Controlador para news.
  *
@@ -78,5 +80,15 @@ public class NewsController {
   @GetMapping
   public Iterable<News> findAll() {
     return newsService.findAll();
+  }
+
+  @GetMapping("/user/{id}")
+  public List<News> findNewsFromFollowedGames(@PathVariable Long id) {
+    return newsService.findNewsFromFollowedGames(id);
+  }
+
+  @GetMapping("/user/{id}/exceptUnfollowedGames")
+  public List<News> getNewsExceptUnfollowedGames(@PathVariable Long id) {
+    return newsService.getNewsExceptUnfollowedGames(id);
   }
 }

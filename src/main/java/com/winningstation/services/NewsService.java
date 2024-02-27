@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-
+import java.util.List;
 
 /**
  * Clase que implementa la interfaz INewsService.
@@ -61,5 +61,17 @@ public class NewsService implements INewsService {
   public Iterable<News> findAll() {
     LOG.info("Finding all news");
     return newsRepository.findAll();
+  }
+
+  @Override
+  public List<News> findNewsFromFollowedGames(Long userId) {
+    LOG.info("Finding news from followed games by user: {}", userId);
+    return newsRepository.findNewsFromFollowedGames(userId);
+  }
+
+  @Override
+  public List<News> getNewsExceptUnfollowedGames(Long userId) {
+    LOG.info("Finding news from followed games by user: {}", userId);
+    return newsRepository.findNewsExceptUnfollowedGames(userId);
   }
 }
