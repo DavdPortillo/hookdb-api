@@ -1,10 +1,8 @@
 package com.winningstation.services;
 
-import com.winningstation.dto.GameAndSagaDTO;
-import com.winningstation.dto.GameDTO;
-import com.winningstation.dto.SagaDTO;
-import com.winningstation.dto.ScoreAverageResultDTO;
+import com.winningstation.dto.*;
 import com.winningstation.entity.*;
+import com.winningstation.projection.GamePopularityProjection;
 import com.winningstation.repository.*;
 import com.winningstation.request.AvailabilityRequest;
 import com.winningstation.request.GameFeatureRequest;
@@ -12,6 +10,7 @@ import com.winningstation.request.GameRequest;
 import com.winningstation.request.ProductRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -160,10 +159,9 @@ public class GameService implements IGameService {
     }
 
     // Si el juego aún no se ha lanzado, incrementa el contador de popularidad
-    if (game.getDate().isAfter(LocalDate.now())) {
-      game.setPopularity(game.getPopularity() + 1);
-      gameRepository.save(game);
-    }
+
+    game.setPopularity(game.getPopularity() + 1);
+    gameRepository.save(game);
 
     return convertToGameAndSagaDTO(game);
   }
@@ -401,6 +399,19 @@ public class GameService implements IGameService {
     result.setScoreCount(last100GameScores.size());
 
     return result;
+  }
+
+  @Override
+  public List<GamePopularityProjection> findTop5ByDateAfterAndOrderByPopularityDesc() {
+    LOG.info("Finding top 5 popular unreleased games");
+    return gameRepository.findTop5ByDateAfterAndOrderByPopularityDesc(
+        LocalDate.now(), PageRequest.of(0, 5));
+  }
+
+  @Override
+  public List<GamePopularityProjection> findByDateAfterAndOrderByPopularityDesc() {
+    LOG.info("Finding all popular unreleased games");
+    return gameRepository.findByDateAfterAndOrderByPopularityDesc(LocalDate.now());
   }
 
   @Override

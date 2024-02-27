@@ -3,7 +3,10 @@ package com.winningstation.services.interfaces;
 import com.winningstation.dto.GameAndSagaDTO;
 import com.winningstation.dto.ScoreAverageResultDTO;
 import com.winningstation.entity.Game;
+import com.winningstation.projection.GamePopularityProjection;
 import com.winningstation.request.GameRequest;
+
+import java.util.List;
 
 /**
  * Interface que define los métodos que debe implementar la clase Game.
@@ -66,4 +69,18 @@ public interface IGameService {
    * @return Lista de juegos que pertenecen al género.
    */
   ScoreAverageResultDTO calculateAverageScoreOfLast100(Long gameId);
+
+  /**
+   * Método que permite obtener los juegos más populares a partir de una fecha dada.
+   *
+   * @return Lista de juegos más populares.
+   */
+  List<GamePopularityProjection> findByDateAfterAndOrderByPopularityDesc();
+
+  /**
+   * Método que permite obtener los 5 juegos más populares a partir de una fecha dada.
+   *
+   * @return Lista de juegos más populares.
+   */
+  List<GamePopularityProjection> findTop5ByDateAfterAndOrderByPopularityDesc();
 }

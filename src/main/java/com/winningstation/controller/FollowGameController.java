@@ -1,13 +1,12 @@
 package com.winningstation.controller;
 
-import com.winningstation.dto.GameFollowDTO;
+import com.winningstation.entity.FollowGame;
 import com.winningstation.services.interfaces.IFollowGameService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Controlador para el seguimiento de juegos.
@@ -31,8 +30,27 @@ public class FollowGameController {
   }
 
   @PostMapping("/users/{userId}/games/{gameId}/followOrIgnore/{action}")
-  public ResponseEntity<GameFollowDTO> followOrIgnoreGame(@PathVariable Long userId, @PathVariable Long gameId, @PathVariable Integer action) {
-    GameFollowDTO gameFollowDTO = followGameService.followOrIgnoreGame(userId, gameId, action);
-    return new ResponseEntity<>(gameFollowDTO, HttpStatus.OK);
+  public ResponseEntity<FollowGame> followOrIgnoreGame(
+      @PathVariable Long userId, @PathVariable Long gameId, @PathVariable Integer action) {
+    FollowGame followGame = followGameService.followOrIgnoreGame(userId, gameId, action);
+    return new ResponseEntity<>(followGame, HttpStatus.OK);
+  }
+
+  @GetMapping("userId/{userId}/followedOrIgnoreGames")
+  public ResponseEntity<List<FollowGame>> getFollowedOrIgnoreGames(@PathVariable Long userId) {
+    List<FollowGame> followedGames = followGameService.getFollowedOrIgnoredGames(userId);
+    return new ResponseEntity<>(followedGames, HttpStatus.OK);
+  }
+
+  @GetMapping("userId/{userId}/ignoredGames")
+  public ResponseEntity<List<FollowGame>> getIgnoredGames(@PathVariable Long userId) {
+    List<FollowGame> ignoredGames = followGameService.getIgnoredGames(userId);
+    return new ResponseEntity<>(ignoredGames, HttpStatus.OK);
+  }
+
+  @GetMapping("userId/{userId}/followedGames")
+  public ResponseEntity<List<FollowGame>> getFollowedGames(@PathVariable Long userId) {
+    List<FollowGame> followedGames = followGameService.getFollowedGames(userId);
+    return new ResponseEntity<>(followedGames, HttpStatus.OK);
   }
 }

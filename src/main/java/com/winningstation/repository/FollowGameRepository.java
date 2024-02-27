@@ -6,6 +6,8 @@ import com.winningstation.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Repositorio para el seguimiento de juegos. *
  *
@@ -15,4 +17,6 @@ import org.springframework.stereotype.Repository;
 public interface FollowGameRepository extends JpaRepository<FollowGame, Long> {
 
   FollowGame findByUserAndGame(User user, Game game);
+
+  List<FollowGame> findByUser(User user);
 }

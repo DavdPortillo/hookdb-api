@@ -1,9 +1,7 @@
 package com.winningstation.services;
 
-import com.winningstation.dto.GameFollowDTO;
 import com.winningstation.entity.FollowGame;
 import com.winningstation.entity.Game;
-import com.winningstation.entity.News;
 import com.winningstation.entity.User;
 import com.winningstation.repository.FollowGameRepository;
 import com.winningstation.repository.GameRepository;
@@ -54,7 +52,8 @@ public class FollowGameService implements IFollowGameService {
     this.userRepository = userRepository;
   }
 
-  public GameFollowDTO followOrIgnoreGame(Long userId, Long gameId, Integer action) {
+  @Override
+  public FollowGame followOrIgnoreGame(Long userId, Long gameId, Integer action) {
     LOGGER.info("User {} is {} game {}", userId, action == 1 ? "following" : "ignoring", gameId);
     User user =
         userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
@@ -80,13 +79,34 @@ public class FollowGameService implements IFollowGameService {
       followGameRepository.save(followGame);
     }
 
-    GameFollowDTO gameFollowDTO = new GameFollowDTO();
-    gameFollowDTO.setId(game.getId());
-    gameFollowDTO.setTitle(game.getTitle());
+    return followGame;
+  }
 
-    List<Long> newsIds = game.getNews().stream().map(News::getId).collect(Collectors.toList());
-    gameFollowDTO.setNewsIds(newsIds);
+  @Override
+  public List<FollowGame> getFollowedOrIgnoredGames(Long userId) {
+    LOGGER.info("Getting followed games for user {}", userId);
+    User user =
+        userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+    return followGameRepository.findByUser(user);
+  }
 
-    return gameFollowDTO;
+  @Override
+  public List<FollowGame> getFollowedGames(Long userId) {
+    LOGGER.info("Getting followed games for user {}", userId);
+    User user =
+        userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+    return followGameRepository.findByUser(user).stream()
+        .filter(followGame -> followGame.getIsFollowing() == 1)
+        .collect(Collectors.toList());
+  }
+
+  @Override
+  public List<FollowGame> getIgnoredGames(Long userId) {
+    LOGGER.info("Getting ignored games for user {}", userId);
+    User user =
+        userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+    return followGameRepository.findByUser(user).stream()
+        .filter(followGame -> followGame.getIsFollowing() == -1)
+        .collect(Collectors.toList());
   }
 }

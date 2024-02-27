@@ -136,7 +136,7 @@ public class Game implements Serializable {
 
   /** Puntuaciones del juego. */
   @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
-  @JsonManagedReference("game-score")
+  @JsonIgnore
   private List<GameScore> gameScores;
 
   /** Saga a la que pertenece el juego. */
@@ -145,10 +145,10 @@ public class Game implements Serializable {
   @JsonBackReference("saga-game")
   private Saga saga;
 
-  //  /** Usuarios que siguen o ignoran el juego. */
-  //  @OneToMany(mappedBy = "game", cascade = CascadeType.ALL)
-  //  @JsonManagedReference
-  //  private List<FollowGame> followGames;
+  /** Usuarios que siguen o ignoran el juego. */
+  @OneToMany(mappedBy = "game", cascade = CascadeType.ALL)
+  @JsonManagedReference("game-follow-user")
+  private List<FollowGame> followGames;
 
   /** Tiene Cross play. */
   @NotNull

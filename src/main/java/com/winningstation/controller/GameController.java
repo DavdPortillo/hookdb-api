@@ -2,6 +2,7 @@ package com.winningstation.controller;
 
 import com.winningstation.dto.GameAndSagaDTO;
 import com.winningstation.dto.ScoreAverageResultDTO;
+import com.winningstation.projection.GamePopularityProjection;
 import com.winningstation.request.GameRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import com.winningstation.entity.Game;
 import com.winningstation.services.interfaces.IGameService;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
 
 /**
  * Controlador para el juego.
@@ -87,8 +90,28 @@ public class GameController {
    * @param gameId Id del juego.
    * @return El promedio de los últimos 100 puntajes del juego.
    */
-  @GetMapping("/average-score-last-100/{gameId}")
+  @GetMapping("/average-score-last-100/id-game/{gameId}")
   public ScoreAverageResultDTO getAverageScoreOfLast100(@PathVariable Long gameId) {
     return gameService.calculateAverageScoreOfLast100(gameId);
+  }
+
+  /**
+   * Encuentra los 5 juegos más populares.
+   *
+   * @return Lista de los 5 juegos más populares
+   */
+  @GetMapping("/top-5-popular")
+  public List<GamePopularityProjection> getTop5Popular() {
+    return gameService.findTop5ByDateAfterAndOrderByPopularityDesc();
+  }
+
+  /**
+   * Encuentra los juegos más populares.
+   *
+   * @return Lista de los juegos más populares
+   */
+  @GetMapping("/popular")
+  public List<GamePopularityProjection> getPopular() {
+    return gameService.findByDateAfterAndOrderByPopularityDesc();
   }
 }
