@@ -71,6 +71,14 @@ public interface IGameService {
   ScoreAverageResultDTO calculateAverageScoreOfLast100(Long gameId);
 
   /**
+   * Método que permite convertir un juego a un DTO.
+   *
+   * @param game Juego a convertir.
+   * @return Juego convertido a DTO.
+   */
+  GameAndSagaDTO convertToGameAndSagaDTO(Game game);
+
+  /**
    * Método que permite obtener los juegos más populares a partir de una fecha dada.
    *
    * @return Lista de juegos más populares.

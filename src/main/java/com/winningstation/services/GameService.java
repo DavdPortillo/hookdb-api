@@ -208,23 +208,25 @@ public class GameService implements IGameService {
     return convertToGameAndSagaDTO(savedGame);
   }
 
-  private GameAndSagaDTO convertToGameAndSagaDTO(Game game) {
-    // Convert Saga to SagaDTO
+  public GameAndSagaDTO convertToGameAndSagaDTO(Game game) {
     Saga saga = game.getSaga();
     SagaDTO sagaDTO = new SagaDTO();
-    sagaDTO.setId(saga.getId());
-    sagaDTO.setName(saga.getName());
-    sagaDTO.setGames(
-        saga.getGames().stream()
-            .map(
-                g -> {
-                  GameDTO gDTO = new GameDTO();
-                  gDTO.setId(g.getId());
-                  gDTO.setTitle(g.getTitle());
-                  gDTO.setDate(g.getDate());
-                  return gDTO;
-                })
-            .collect(Collectors.toList()));
+
+    if (saga != null) {
+      sagaDTO.setId(saga.getId());
+      sagaDTO.setName(saga.getName());
+      sagaDTO.setGames(
+          saga.getGames().stream()
+              .map(
+                  g -> {
+                    GameDTO gDTO = new GameDTO();
+                    gDTO.setId(g.getId());
+                    gDTO.setTitle(g.getTitle());
+                    gDTO.setDate(g.getDate());
+                    return gDTO;
+                  })
+              .collect(Collectors.toList()));
+    }
 
     // Create GameAndSagaDTO
     GameAndSagaDTO gameAndSagaDTO = new GameAndSagaDTO();

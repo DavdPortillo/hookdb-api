@@ -17,7 +17,7 @@ import org.hibernate.annotations.CreationTimestamp;
 @Table(name = "news_comment")
 public class NewsComment implements Serializable {
 
-  /** ID único del comentario. Generado automáticamente. */
+  /** Id único del comentario. Generado automáticamente. */
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;

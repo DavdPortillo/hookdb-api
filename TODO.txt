@@ -1,8 +1,4 @@
-
-Juegos populares y novedades
 Buscar juego(preguntar sergio)
-
-Se entra al juego se sume mas uno en popularidad.
 
 
 
@@ -18,19 +14,3 @@ contador de cuantas reviews ha escrito el usuario y de cuantos mensajes ha escri
 contador de likes dislikes
 idea: meter los trofeos delos juegos
 
-
-
-Código generado por IA. Revisar y usar cuidadosamente. Más información sobre preguntas frecuentes.
-Finalmente, puedes crear un trabajo programado que se ejecute cada día a medianoche para restablecer la popularidad de los juegos que se lanzan ese día:
-
-Java
-
-@Scheduled(cron = "0 0 * * *")
-public void resetPopularityOfReleasedGames() {
-    List<Game> games = gameRepository.findByReleaseDate(LocalDate.now());
-    for (Game game : games) {
-        game.setPopularityCount(null);
-        gameRepository.save(game);
-    }
-}
-Código generado por IA. Revisar y usar cuidadosamente. Más información sobre preguntas frecuentes.
