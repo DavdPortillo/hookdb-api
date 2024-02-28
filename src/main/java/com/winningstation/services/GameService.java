@@ -11,6 +11,7 @@ import com.winningstation.request.ProductRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +23,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -414,6 +416,52 @@ public class GameService implements IGameService {
   public List<GamePopularityProjection> findByDateAfterAndOrderByPopularityDesc() {
     LOG.info("Finding all popular unreleased games");
     return gameRepository.findByDateAfterAndOrderByPopularityDesc(LocalDate.now());
+  }
+
+  @Override
+  public List<GameSearchDTO> searchGames(String keyword) {
+    List<Game> games = gameRepository.search(keyword, Pageable.unpaged());
+    return games.stream()
+        .map(
+            game -> {
+              GameSearchDTO dto = new GameSearchDTO();
+              dto.setId(game.getId());
+              dto.setTitle(game.getTitle());
+              dto.setCover(game.getCover());
+              dto.setAlt(game.getAlt());
+              dto.setDate(game.getDate());
+              String developers =
+                  game.getDevelopers().stream()
+                      .map(Developer::getName)
+                      .collect(Collectors.joining(", "));
+              dto.setDeveloper(developers);
+              dto.setScore(calculateAverageScore(game.getId()).getAverageScore());
+              return dto;
+            })
+        .collect(Collectors.toList());
+  }
+
+  @Override
+  public List<GameSearchDTO> searchTop5Games(String keyword) {
+    List<Game> games = gameRepository.search(keyword, PageRequest.of(0, 5));
+    return games.stream()
+        .map(
+            game -> {
+              GameSearchDTO dto = new GameSearchDTO();
+              dto.setId(game.getId());
+              dto.setTitle(game.getTitle());
+              dto.setCover(game.getCover());
+              dto.setAlt(game.getAlt());
+              dto.setDate(game.getDate());
+              String developers =
+                  game.getDevelopers().stream()
+                      .map(Developer::getName)
+                      .collect(Collectors.joining(", "));
+              dto.setDeveloper(developers);
+              dto.setScore(calculateAverageScore(game.getId()).getAverageScore());
+              return dto;
+            })
+        .collect(Collectors.toList());
   }
 
   @Override

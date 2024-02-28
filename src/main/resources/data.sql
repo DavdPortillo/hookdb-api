@@ -280,8 +280,8 @@ VALUES (4, 1, true, true, false), -- Español
 
 
 INSERT INTO `news_author` (`id`, `name`, `surname`, `image`, `alt`)
-VALUES (NULL, 'David', 'Portillo', 'imagen', 'alt'),
-       (NULL, 'Sergey', 'Rolando', 'imagen', 'alt'),
+VALUES (NULL, 'David', 'Portillo', 'https://miro.medium.com/v2/resize:fit:1024/0*wATbQ49jziZTyhZH.jpg', 'alt'),
+       (NULL, 'Sergey', 'Ronaldo', 'https://miro.medium.com/v2/resize:fit:933/1*w4DxUy0PMoqeq25UXfyL0g@2x.jpeg', 'alt'),
        (NULL, 'Paco', 'Porras', 'imagen', 'alt'),
        (NULL, 'Jesús', 'García', 'imagen', 'alt');
 

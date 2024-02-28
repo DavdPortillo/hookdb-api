@@ -1,6 +1,7 @@
 package com.winningstation.services.interfaces;
 
 import com.winningstation.dto.GameAndSagaDTO;
+import com.winningstation.dto.GameSearchDTO;
 import com.winningstation.dto.ScoreAverageResultDTO;
 import com.winningstation.entity.Game;
 import com.winningstation.projection.GamePopularityProjection;
@@ -91,4 +92,18 @@ public interface IGameService {
    * @return Lista de juegos más populares.
    */
   List<GamePopularityProjection> findTop5ByDateAfterAndOrderByPopularityDesc();
+
+  /**
+   * Método que permite buscar juegos por título donde tiene más peso la popularidad.
+   *
+   * @return Lista de juegos más populares.
+   */
+  List<GameSearchDTO> searchGames(String keyword);
+
+  /**
+   * Método que permite buscar sugerencias 5 por título donde tiene más peso la popularidad.
+   *
+   * @return Lista de juegos más populares.
+   */
+  List<GameSearchDTO> searchTop5Games(String keyword);
 }

@@ -1,6 +1,7 @@
 package com.winningstation.controller;
 
 import com.winningstation.dto.GameAndSagaDTO;
+import com.winningstation.dto.GameSearchDTO;
 import com.winningstation.dto.ScoreAverageResultDTO;
 import com.winningstation.projection.GamePopularityProjection;
 import com.winningstation.request.GameRequest;
@@ -106,12 +107,24 @@ public class GameController {
   }
 
   /**
-   * Encuentra los juegos más populares.
+   * Encuentra los juegos
    *
    * @return Lista de los juegos más populares
    */
-  @GetMapping("/popular")
-  public List<GamePopularityProjection> getPopular() {
-    return gameService.findByDateAfterAndOrderByPopularityDesc();
+  @GetMapping("/search/{keyword}")
+  public ResponseEntity<List<GameSearchDTO>> searchGames(@PathVariable String keyword) {
+    List<GameSearchDTO> games = gameService.searchGames(keyword);
+    return new ResponseEntity<>(games, HttpStatus.OK);
+  }
+
+  /**
+   * Encuentra los 5 juegos dependiendo de la keyword y la popularidad.
+   *
+   * @return Lista de los juegos más populares
+   */
+  @GetMapping("/search-top-5/{keyword}")
+  public ResponseEntity<List<GameSearchDTO>> searchTop5Games(@PathVariable String keyword) {
+    List<GameSearchDTO> games = gameService.searchTop5Games(keyword);
+    return new ResponseEntity<>(games, HttpStatus.OK);
   }
 }
