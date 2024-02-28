@@ -126,7 +126,7 @@ public class Game implements Serializable {
 
   /** Críticas hechas por los usuarios. */
   @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
-  @JsonManagedReference("game-review")
+  @JsonIgnore
   private List<Review> reviews;
 
   /** Listas de juegos. */

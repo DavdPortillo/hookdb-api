@@ -57,7 +57,6 @@ public class Review implements Serializable {
   @NotNull
   @ManyToOne
   @JoinColumn(name = "user_id")
-  @JsonBackReference("user-review")
   private User user;
 
   @Serial private static final long serialVersionUID = 1L;

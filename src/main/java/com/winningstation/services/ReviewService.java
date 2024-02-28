@@ -12,6 +12,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Clase que representa los comentarios hechos por los usuarios.
  *
@@ -72,5 +75,30 @@ public class ReviewService implements IReviewService {
     review.setGame(game);
 
     return reviewRepository.save(review);
+  }
+
+  /**
+   * Encuentra todas las críticas de un juego.
+   *
+   * @param gameId Id del juego.
+   * @return Lista de críticas del juego.
+   */
+  @Override
+  public Iterable<Review> findAllByGameId(Long gameId) {
+    LOG.info("Buscando críticas del juego con id: {}", gameId);
+    return reviewRepository.findAllByGameId(gameId);
+  }
+
+  @Override
+  public Map<String, Integer> getReviewVotes(Long reviewId) {
+    Review review =
+        reviewRepository
+            .findById(reviewId)
+            .orElseThrow(
+                () -> new RuntimeException("No se encontró la crítica con el id: " + reviewId));
+    Map<String, Integer> votes = new HashMap<>();
+    votes.put("likes", review.getLike());
+    votes.put("dislikes", review.getDislike());
+    return votes;
   }
 }

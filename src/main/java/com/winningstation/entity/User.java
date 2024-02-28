@@ -97,7 +97,7 @@ public class User implements Serializable {
 
   /** Críticas hechas por el usuario. */
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-  @JsonManagedReference("user-review")
+  @JsonIgnore
   private List<Review> reviews;
 
   /** Likes o dislikes que hace un usuario hecho por el usuario. */
