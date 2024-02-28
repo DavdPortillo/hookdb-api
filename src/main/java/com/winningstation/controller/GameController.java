@@ -107,6 +107,16 @@ public class GameController {
   }
 
   /**
+   * Encuentra los juegos más populares.
+   *
+   * @return Lista de los juegos más populares
+   */
+  @GetMapping("/popular")
+  public List<GamePopularityProjection> getPopular() {
+    return gameService.findByDateAfterAndOrderByPopularityDesc();
+  }
+
+  /**
    * Encuentra los juegos
    *
    * @return Lista de los juegos más populares
