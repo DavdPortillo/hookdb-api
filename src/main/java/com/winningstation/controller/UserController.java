@@ -79,9 +79,9 @@ public class UserController {
    * @param pageable La paginación.
    * @return El cliente con el nombre especificado.
    */
-  @GetMapping("/username")
+  @GetMapping("/username/{username}")
   public ResponseEntity<Page<User>> getUsersByUsername(
-      @RequestParam String username, Pageable pageable) {
+      @PathVariable String username, Pageable pageable) {
     return ResponseEntity.ok(userService.findByUsernameContaining(username, pageable));
   }
 
@@ -92,8 +92,8 @@ public class UserController {
    * @param pageable La paginación.
    * @return El cliente con el correo especificado.
    */
-  @GetMapping("/email")
-  public ResponseEntity<Page<User>> getUsersByEmail(@RequestParam String email, Pageable pageable) {
+  @GetMapping("/email/{email}")
+  public ResponseEntity<Page<User>> getUsersByEmail(@PathVariable String email, Pageable pageable) {
     return ResponseEntity.ok(userService.findByEmailContaining(email, pageable));
   }
 
