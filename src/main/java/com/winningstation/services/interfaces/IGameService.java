@@ -106,4 +106,13 @@ public interface IGameService {
    * @return Lista de juegos más populares.
    */
   List<GameSearchDTO> searchTop5Games(String keyword);
+
+  /**
+   * Método que permite actualizar un juego.
+   *
+   * @param id Id del juego a actualizar.
+   * @param gameRequest Parámetros para actualizar el juego.
+   * @return El juego actualizado.
+   */
+  GameAndSagaDTO updateGame(Long id, GameRequest gameRequest);
 }

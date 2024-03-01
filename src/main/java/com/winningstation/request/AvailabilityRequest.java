@@ -9,6 +9,7 @@ import lombok.Data;
  */
 @Data
 public class AvailabilityRequest {
+  private Long id;
   private Long languageId;
   private String interfaceLanguage;
   private String subtitleLanguage;

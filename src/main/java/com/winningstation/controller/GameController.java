@@ -137,4 +137,19 @@ public class GameController {
     List<GameSearchDTO> games = gameService.searchTop5Games(keyword);
     return new ResponseEntity<>(games, HttpStatus.OK);
   }
+
+  /**
+   * Actualiza un juego.
+   *
+   * @param gameRequest La petición para actualizar un juego.
+   * @return El juego actualizado.
+   */
+  @PutMapping("/{id}")
+  public GameAndSagaDTO updateGame(@PathVariable Long id, @RequestBody GameRequest gameRequest) {
+    Game game = gameRequest.getGame();
+    if (game == null) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El objeto Game no puede ser null");
+    }
+    return gameService.updateGame(id, gameRequest);
+  }
 }
