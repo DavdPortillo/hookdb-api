@@ -2,6 +2,7 @@ package com.winningstation.entity;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
@@ -15,10 +16,18 @@ import lombok.ToString;
 @Table(name = "dlc")
 public class DLC implements Serializable {
 
-  /** ID único del dlc. Generado automáticamente. */
+  /** Id único del dlc. Generado automáticamente. */
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+
+  /** Año de lanzamiento del dlc */
+  @NotNull private LocalDate date;
+
+  /** Sinopsis del dlc. */
+  @NotNull
+  @Column(columnDefinition = "TEXT")
+  private String sinopsis;
 
   /** Nombre del dlc. */
   @NotNull private String name;

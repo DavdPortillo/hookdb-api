@@ -196,19 +196,28 @@ VALUES (1, 1),
        (4, 4);
 
 
-INSERT INTO dlc (game_id, name)
-VALUES (1, 'Extra DLC Pack'),
-       (1, 'Claire Costume: Elza Walker'),
-       (1, 'Claire Costume: Military'),
-       (1, 'Claire Costume: Noir'),
-       (1, 'Leon Costume: Arklay Sheriff'),
-       (1, 'Leon Costume: Noir'),
-       (1, 'Samurai Edge - Albert Model'),
-       (1, 'The Ghost Survivors'),
-       (1, 'Original Ver. Soundtrack Swap'),
-       (3, 'The Nomes Attic'),
-       (2, 'Night Springs Expansion'),
-       (2, 'Lake House Expansion');
+INSERT INTO dlc (game_id, name, date, sinopsis)
+VALUES (1, 'Extra DLC Pack', '2019/02/15',
+        'Un paquete de contenido descargable que incluye los siguientes elementos: - Modo de juego "The 4th Survivor" - Modo de juego "The Tofu Survivor" - Traje de Claire: "Elza Walker" - Traje de Claire: "Military" - Traje de Claire: "Noir" - Traje de Leon: "Arklay Sheriff" - Traje de Leon: "Noir" - Modelo de pistola "Samurai Edge - Albert Model"'),
+       (1, 'Claire Costume: Elza Walker', '2019/02/15',
+        'Un traje de Claire inspirado en Elza Walker, el personaje original de Resident Evil 2 que fue eliminado y reemplazado por Claire Redfield.'),
+       (1, 'Claire Costume: Military', '2019/02/15', 'Un traje de Claire inspirado en un uniforme militar.'),
+       (1, 'Claire Costume: Noir', '2019/02/15', 'Un traje de Claire inspirado en el cine'),
+       (1, 'Leon Costume: Arklay Sheriff', '2019/02/15', 'Un traje de Leon inspirado en el sheriff de Arklay County.'),
+       (1, 'Leon Costume: Noir', '2019/02/15', 'Un traje de Leon inspirado en el cine.'),
+       (1, 'Samurai Edge - Albert Model', '2019/02/15',
+        'Un modelo de pistola Samurai Edge que se puede usar en el juego.'),
+       (1, 'The Ghost Survivors', '2019/02/15',
+        'Un modo de juego adicional que se puede jugar después de completar la historia principal.'),
+       (1, 'Original Ver. Soundtrack Swap', '2019/02/15',
+        'Un intercambio de banda sonora que permite a los jugadores cambiar la banda sonora del juego a la banda sonora original de 1998.'),
+       (3, 'The Nomes Attic', '2021/02/11',
+        'Un paquete de contenido descargable que incluye los siguientes elementos: - Modo de juego "The Nomes Attic"'),
+       (2, 'Night Springs Expansion', '2021/02/11',
+        'Un paquete de contenido descargable que incluye los siguientes elementos: - Modo de juego "Night Springs Expansion"'),
+       (2, 'Lake House Expansion', '2021/02/11',
+        'Un paquete de contenido descargable que incluye los siguientes elementos: - Modo de juego "Lake House Expansion"');
+
 
 
 INSERT INTO language (name)
