@@ -59,7 +59,7 @@ public class News implements Serializable {
 
   /** Noticias del juego. */
   @ManyToOne
-  @JoinColumn(name = "game_id")
+  @JoinColumn(name = "game_id",foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
   @JsonBackReference("game-news")
   @ToString.Exclude
   private Game game;

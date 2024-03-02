@@ -3,6 +3,7 @@ package com.winningstation.entity;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
@@ -58,6 +59,9 @@ public class Review implements Serializable {
   @ManyToOne
   @JoinColumn(name = "user_id")
   private User user;
+
+  @OneToMany(mappedBy = "review", cascade = CascadeType.ALL, orphanRemoval = true)
+  private List<ReviewVote> votes;
 
   @Serial private static final long serialVersionUID = 1L;
 }

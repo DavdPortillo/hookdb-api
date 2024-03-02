@@ -33,6 +33,7 @@ public class ReviewVote implements Serializable {
   @JsonBackReference("user-review-vote")
   private User user;
 
+
   /** Comentario al que se emitió el voto. No puede ser nulo. */
   @NotNull
   @ManyToOne

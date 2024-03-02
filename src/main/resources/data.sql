@@ -88,7 +88,11 @@ VALUES (20, 10, 2, 1, '1', '2', '1', 'URL de la imagen del Resident Evil 2 Remak
         'Final Fantasy VII', 0, 'URL del trailer del Final Fantasy VII'),
        (20, 10, 2, 5, '9', '10', '1', 'URL de la imagen del Resident Evil 3 Remake', 'alt', '2020/04/03',
         'Es la puesta al día del clásico original del género survival horror para Xbox One, PlayStation 4 y PC.',
-        'Resident Evil 3 Remake', 0, 'URL del trailer del Resident Evil 3 Remake');
+        'Resident Evil 3 Remake', 0, 'URL del trailer del Resident Evil 3 Remake'),
+         (20, 10, 2, 6, '11', '12', '1', 'URL de la imagen del Resident Evil 4', 'alt', '2005/01/11',
+        'Es la puesta al día del clásico original del género survival horror para Xbox One, PlayStation 4 y PC.',
+        'Resident Evil 4', 0, 'URL del trailer del Resident Evil 4');
+
 
 
 
@@ -375,26 +379,42 @@ VALUES ('7', '2023-01-30T18:16:17.633882315', '1', NULL, '1'),
 
 -- Inserta una edición
 INSERT INTO edition_product (name)
-VALUES ('Edición estándar');
+VALUES ('Edición estándar'),
+       ('Edición coleccionista'),
+       ('Edición limitada'),
+       ('Edición especial');
 
 -- Inserta una plataforma
 INSERT INTO platform_product (name, image, alt)
-VALUES ('PlayStation 4', 'URL de la imagen de la plataforma', 'alt de la imagen de la plataforma');
+VALUES ('PlayStation 4', 'URL de la imagen de la plataforma', 'alt de la imagen de la plataforma'),
+       ('PlayStation 5', 'URL de la imagen de la plataforma', 'alt de la imagen de la plataforma'),
+       ('Xbox One', 'URL de la imagen de la plataforma', 'alt de la imagen de la plataforma'),
+       ('Xbox Series X', 'URL de la imagen de la plataforma', 'alt de la imagen de la plataforma'),
+       ('PC', 'URL de la imagen de la plataforma', 'alt de la imagen de la plataforma'),
+       ('Nintendo Switch', 'URL de la imagen de la plataforma', 'alt de la imagen de la plataforma');
 
 -- Inserta un vendedor
 INSERT INTO vendor_product (name)
-VALUES ('Nombre del vendedor');
+VALUES ('Nombre del vendedor'),
+       ('Nombre del vendedor 2'),
+       ('Nombre del vendedor 3');
 
 -- Inserta una región
 INSERT INTO region_product (name)
-VALUES ('Región del producto');
+VALUES ('Región del producto'),
+       ('Región del producto 2'),
+       ('Región del producto 3');
 
 -- Inserta una clave de producto
 INSERT INTO keys_product (name)
-VALUES ('Nombre de la clave del producto');
+VALUES ('Nombre de la clave del producto'),
+       ('Nombre de la clave del producto 2'),
+       ('Nombre de la clave del producto 3');
 
 INSERT INTO `logo_product` (`logo`)
-VALUES ('logo');
+VALUES ('logo'),
+       ('logo 2'),
+       ('logo 3');
 
 INSERT INTO `product` (`price`, `edition_product_id`, `game_id`, `id`, `keys_product_id`, `logo_product_id`,
                        `platform_product_id`, `region_product_id`, `vendor_product_id`, `link`)

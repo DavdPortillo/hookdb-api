@@ -3,6 +3,9 @@ package com.winningstation.repository;
 import com.winningstation.entity.GamesList;
 import com.winningstation.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -21,4 +24,8 @@ public interface GamesListRepository extends JpaRepository<GamesList, Long> {
    * @return Lista de juegos.
    */
   GamesList findByNameAndUser(String name, User user);
+
+  @Modifying
+  @Query(value = "DELETE FROM gameslist_game WHERE game_id = :gameId", nativeQuery = true)
+  void deleteAssociationsByGameId(@Param("gameId") Long gameId);
 }

@@ -81,18 +81,18 @@ public class Game implements Serializable {
 
   /** Requisitos mínimos del sistema. */
   @NotNull
-  @OneToOne
+  @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "minimum_system_requirement_id")
   private SystemRequirement minimumSystemRequirement;
 
   /** Requisitos recomendados del sistema. */
   @NotNull
-  @OneToOne
+  @OneToOne(cascade = CascadeType.ALL)
   @JoinColumn(name = "recommended_system_requirement_id")
   private SystemRequirement recommendedSystemRequirement;
 
   /** Key del juego. */
-  @OneToMany(mappedBy = "game")
+  @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<Product> products;
 
   /** Plataformas en las que está disponible el juego. */
@@ -106,7 +106,7 @@ public class Game implements Serializable {
 
   /** Dlcs del juego. */
   @JsonManagedReference("game-dlc")
-  @OneToMany(mappedBy = "game")
+  @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<DLC> dlcs;
 
   @NotNull
@@ -115,12 +115,12 @@ public class Game implements Serializable {
   private List<Availability> availabilities;
 
   /** Características del juego. */
-  @OneToMany(mappedBy = "game")
+  @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
   @JsonManagedReference("game-feature")
   private List<GameFeature> gameFeatures;
 
   /** Noticias del juego. */
-  @OneToMany(mappedBy = "game")
+  @OneToMany(mappedBy = "game",cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
   @JsonManagedReference("game-news")
   private List<News> news;
 
@@ -135,7 +135,7 @@ public class Game implements Serializable {
   private List<GamesList> gamesLists;
 
   /** Puntuaciones del juego. */
-  @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
+  @OneToMany(mappedBy = "game", cascade = CascadeType.REMOVE, orphanRemoval = true)
   @JsonIgnore
   private List<GameScore> gameScores;
 
@@ -155,6 +155,8 @@ public class Game implements Serializable {
   @ManyToOne
   @JoinColumn(name = "crossplay_id")
   private Crossplay crossplay;
+
+
 
   @Serial private static final long serialVersionUID = 1L;
 }

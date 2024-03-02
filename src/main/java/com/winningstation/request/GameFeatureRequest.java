@@ -9,6 +9,7 @@ import lombok.Data;
  */
 @Data
 public class GameFeatureRequest {
+  private Long id; // Id de la característica
   private Long featureId; // Id de la característica
   private Long numberPlayerId; // Id del número de jugadores, puede ser null
 }

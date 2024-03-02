@@ -3,9 +3,13 @@ package com.winningstation.services.interfaces;
 import com.winningstation.dto.GameAndSagaDTO;
 import com.winningstation.dto.GameSearchDTO;
 import com.winningstation.dto.ScoreAverageResultDTO;
-import com.winningstation.entity.Game;
+import com.winningstation.entity.*;
 import com.winningstation.projection.GamePopularityProjection;
+import com.winningstation.request.AvailabilityRequest;
+import com.winningstation.request.GameFeatureRequest;
 import com.winningstation.request.GameRequest;
+import com.winningstation.request.ProductRequest;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
@@ -115,4 +119,98 @@ public interface IGameService {
    * @return El juego actualizado.
    */
   GameAndSagaDTO updateGame(Long id, GameRequest gameRequest);
+
+  /**
+   * Obtiene o crea una saga.
+   *
+   * @param saga Saga a obtener o crear.
+   * @return La saga obtenida o creada.
+   */
+  Saga getOrCreateSaga(Saga saga);
+
+  /**
+   * Permite crear availability a partir de una petición.
+   *
+   * @param availabilityRequests Lista de peticiones de availability.
+   * @param game Juego al que pertenecen las availability.
+   * @return Lista de availability creadas.
+   */
+  List<Availability> createAvailabilities(
+      List<AvailabilityRequest> availabilityRequests, Game game);
+
+  /**
+   * Método que permite crear productos a partir de una petición.
+   *
+   * @param gameFeatureRequests Lista de peticiones de productos.
+   * @return Lista de productos creados.
+   */
+  List<GameFeature> createGameFeatures(List<GameFeatureRequest> gameFeatureRequests);
+
+  /**
+   * Método que permite actualizar un juego a partir de una petición.
+   *
+   * @param game Juego a actualizar.
+   * @param gameRequest Petición para actualizar el juego.
+   */
+  void updateGameFromRequest(Game game, GameRequest gameRequest);
+
+  /**
+   * Permite actualizar los requerimientos de un sistema.
+   *
+   * @param existingReq Requerimiento de sistema existente.
+   * @param newReq Requerimiento de sistema nuevo.
+   * @return Requerimiento de sistema actualizado.
+   */
+  SystemRequirement updateSystemRequirement(
+      SystemRequirement existingReq, SystemRequirement newReq);
+
+  /**
+   * Permite actualizar las availability de un juego.
+   *
+   * @param game Juego al que pertenecen las availability.
+   * @param availabilityRequest Petición de availability.
+   * @return La availability actualizada.
+   */
+  Availability updateAvailability(Game game, AvailabilityRequest availabilityRequest);
+
+  /**
+   * Permite actualizar las características de un juego.
+   *
+   * @param game Juego al que pertenecen las características.
+   * @param gameFeatureRequest Petición de características.
+   * @return La característica actualizada.
+   */
+  GameFeature updateGameFeature(Game game, GameFeatureRequest gameFeatureRequest);
+
+  /**
+   * Permite actualizar un producto.
+   *
+   * @param game Juego al que pertenece el producto.
+   * @param productRequest Petición de producto.
+   * @return El producto actualizado.
+   */
+  Product updateProduct(Game game, ProductRequest productRequest);
+
+  /**
+   * Permite validar y obtener entidades a partir de una lista de ids.
+   *
+   * @param ids Lista de ids.
+   * @param repository Repositorio de la entidad.
+   * @param entityName Nombre de la entidad.
+   * @param <T> Tipo de la entidad.
+   * @return Lista de entidades obtenidas.
+   */
+  <T> List<T> validateAndGetEntities(
+      List<Long> ids, JpaRepository<T, Long> repository, String entityName);
+
+  /**
+   * Permite crear productos a partir de una petición.
+   *
+   * @param productRequests Lista de peticiones de productos.
+   * @param game Juego al que pertenecen los productos.
+   * @return Lista de productos creados.
+   */
+  List<Product> createProducts(List<ProductRequest> productRequests, Game game);
+
+
 }

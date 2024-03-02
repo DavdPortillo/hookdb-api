@@ -41,6 +41,12 @@ public class GameService implements IGameService {
   /** Repositorio de Game. */
   private final GameRepository gameRepository;
 
+  /** Repositorio de GameScore. */
+  private final GameScoreRepository gameScoreRepository;
+
+  /** Repositorio de GamesList. */
+  private final GamesListRepository gamesListRepository;
+
   /** Repositorio de plataforma */
   private final PlatformRepository platformRepository;
 
@@ -58,6 +64,9 @@ public class GameService implements IGameService {
 
   /** Repositorio de DLC */
   private final DLCRepository dlcRepository;
+
+  /** Repositorio de News */
+  private final NewsRepository newsRepository;
 
   /** Repositorio de Language */
   private final LanguageRepository languageRepository;
@@ -127,7 +136,10 @@ public class GameService implements IGameService {
       PlatformProductRepository platformProductRepository,
       VendorProductRepository vendorProductRepository,
       RegionProductRepository regionProductRepository,
-      KeysProductRepository keysProductRepository) {
+      KeysProductRepository keysProductRepository,
+      GameScoreRepository gameScoreRepository,
+      GamesListRepository gamesListRepository,
+      NewsRepository newsRepository) {
     this.gameRepository = gameRepository;
     this.platformRepository = platformRepository;
     this.crossplayRepository = crossplayRepository;
@@ -149,6 +161,9 @@ public class GameService implements IGameService {
     this.vendorProductRepository = vendorProductRepository;
     this.regionProductRepository = regionProductRepository;
     this.keysProductRepository = keysProductRepository;
+    this.gameScoreRepository = gameScoreRepository;
+    this.gamesListRepository = gamesListRepository;
+    this.newsRepository = newsRepository;
   }
 
   @Override
@@ -210,6 +225,7 @@ public class GameService implements IGameService {
     return convertToGameAndSagaDTO(savedGame);
   }
 
+  @Override
   public GameAndSagaDTO convertToGameAndSagaDTO(Game game) {
     Saga saga = game.getSaga();
     SagaDTO sagaDTO = new SagaDTO();
@@ -238,7 +254,8 @@ public class GameService implements IGameService {
     return gameAndSagaDTO;
   }
 
-  private <T> List<T> validateAndGetEntities(
+  @Override
+  public <T> List<T> validateAndGetEntities(
       List<Long> ids, JpaRepository<T, Long> repository, String entityName) {
     if (ids != null && !ids.isEmpty()) {
       List<T> entities = repository.findAllById(ids);
@@ -251,7 +268,8 @@ public class GameService implements IGameService {
     return null;
   }
 
-  private Saga getOrCreateSaga(Saga saga) {
+  @Override
+  public Saga getOrCreateSaga(Saga saga) {
     if (saga == null) {
       return null;
     }
@@ -266,7 +284,8 @@ public class GameService implements IGameService {
             });
   }
 
-  private List<Availability> createAvailabilities(
+  @Override
+  public List<Availability> createAvailabilities(
       List<AvailabilityRequest> availabilityRequests, Game game) {
     if (availabilityRequests == null || availabilityRequests.isEmpty()) {
       throw new IllegalArgumentException("La lista de disponibilidades no puede ser nula ni vacía");
@@ -293,7 +312,8 @@ public class GameService implements IGameService {
     return availabilities;
   }
 
-  private List<GameFeature> createGameFeatures(List<GameFeatureRequest> gameFeatureRequests) {
+  @Override
+  public List<GameFeature> createGameFeatures(List<GameFeatureRequest> gameFeatureRequests) {
     if (gameFeatureRequests == null || gameFeatureRequests.isEmpty()) {
       throw new IllegalArgumentException(
           "La lista de características del juego no puede ser nula ni vacía");
@@ -329,7 +349,8 @@ public class GameService implements IGameService {
     return gameFeatures;
   }
 
-  private List<Product> createProducts(List<ProductRequest> productRequests, Game game) {
+  @Override
+  public List<Product> createProducts(List<ProductRequest> productRequests, Game game) {
     if (productRequests == null || productRequests.isEmpty()) {
       throw new IllegalArgumentException("La lista de productos no puede ser nula ni vacía");
     }
@@ -357,6 +378,7 @@ public class GameService implements IGameService {
     return savedProducts;
   }
 
+  @Override
   public ScoreAverageResultDTO calculateAverageScore(Long gameId) {
 
     LOG.info("Calculating average score of game with id: {}", gameId);
@@ -377,6 +399,7 @@ public class GameService implements IGameService {
     return result;
   }
 
+  @Override
   public ScoreAverageResultDTO calculateAverageScoreOfLast100(Long gameId) {
 
     LOG.info("Calculating average score of last 100 of game with id: {}", gameId);
@@ -467,6 +490,13 @@ public class GameService implements IGameService {
   @Override
   public void delete(Long id) {
     LOG.info("Deleting game by id: {}", id);
+
+    // Elimina todos los GameScore asociados
+    gameScoreRepository.deleteByGameId(id);
+    gamesListRepository.deleteAssociationsByGameId(id);
+    newsRepository.setGameIdToNullByGameId(id);
+
+    // Ahora puedes eliminar el Game
     gameRepository.deleteById(id);
   }
 
@@ -484,74 +514,18 @@ public class GameService implements IGameService {
             .findById(id)
             .orElseThrow(() -> new RuntimeException("Game not found with id: " + id));
 
-    if (Objects.nonNull(gameRequest.getGame().getTitle())) {
-      game.setTitle(gameRequest.getGame().getTitle());
-    }
-    if (Objects.nonNull(gameRequest.getGame().getCover())) {
-      game.setCover(gameRequest.getGame().getCover());
-    }
-    if (Objects.nonNull(gameRequest.getGame().getAlt())) {
-      game.setAlt(gameRequest.getGame().getAlt());
-    }
-    if (Objects.nonNull(gameRequest.getGame().getDate())) {
-      game.setDate(gameRequest.getGame().getDate());
-    }
-    if (Objects.nonNull(gameRequest.getGame().getPopularity())) {
-      game.setPopularity(gameRequest.getGame().getPopularity());
-    }
+    updateGameFromRequest(game, gameRequest);
 
     if (gameRequest.getMinimumSystemRequirement() != null) {
-      SystemRequirement newMinReq = gameRequest.getMinimumSystemRequirement();
-      SystemRequirement existingMinReq = game.getMinimumSystemRequirement();
-
-      if (newMinReq.getOperatingSystem() != null) {
-        existingMinReq.setOperatingSystem(newMinReq.getOperatingSystem());
-      }
-      if (newMinReq.getProcessor() != null) {
-        existingMinReq.setProcessor(newMinReq.getProcessor());
-      }
-      if (newMinReq.getRam() != null) {
-        existingMinReq.setRam(newMinReq.getRam());
-      }
-      if (newMinReq.getGraphicsCard() != null) {
-        existingMinReq.setGraphicsCard(newMinReq.getGraphicsCard());
-      }
-      if (newMinReq.getDirectX() != null) {
-        existingMinReq.setDirectX(newMinReq.getDirectX());
-      }
-      if (newMinReq.getStorage() != null) {
-        existingMinReq.setStorage(newMinReq.getStorage());
-      }
-
-      game.setMinimumSystemRequirement(systemRequirementRepository.save(existingMinReq));
-    }
-    if (Objects.nonNull(gameRequest.getGame().getRecommendedSystemRequirement())) {
-      game.setRecommendedSystemRequirement(gameRequest.getGame().getRecommendedSystemRequirement());
+      game.setMinimumSystemRequirement(
+          updateSystemRequirement(
+              game.getMinimumSystemRequirement(), gameRequest.getMinimumSystemRequirement()));
     }
     if (gameRequest.getRecommendedSystemRequirement() != null) {
-      SystemRequirement newRecReq = gameRequest.getRecommendedSystemRequirement();
-      SystemRequirement existingRecReq = game.getRecommendedSystemRequirement();
-
-      if (newRecReq.getOperatingSystem() != null) {
-        existingRecReq.setOperatingSystem(newRecReq.getOperatingSystem());
-      }
-      if (newRecReq.getProcessor() != null) {
-        existingRecReq.setProcessor(newRecReq.getProcessor());
-      }
-      if (newRecReq.getRam() != null) {
-        existingRecReq.setRam(newRecReq.getRam());
-      }
-      if (newRecReq.getGraphicsCard() != null) {
-        existingRecReq.setGraphicsCard(newRecReq.getGraphicsCard());
-      }
-      if (newRecReq.getDirectX() != null) {
-        existingRecReq.setDirectX(newRecReq.getDirectX());
-      }
-      if (newRecReq.getStorage() != null) {
-        existingRecReq.setStorage(newRecReq.getStorage());
-      }
-
-      game.setRecommendedSystemRequirement(systemRequirementRepository.save(existingRecReq));
+      game.setRecommendedSystemRequirement(
+          updateSystemRequirement(
+              game.getRecommendedSystemRequirement(),
+              gameRequest.getRecommendedSystemRequirement()));
     }
 
     if (gameRequest.getPlatformIds() != null) {
@@ -581,7 +555,19 @@ public class GameService implements IGameService {
 
     if (gameRequest.getDlcIds() != null) {
       List<DLC> dlcs = validateAndGetEntities(gameRequest.getDlcIds(), dlcRepository, "DLCs");
-      game.setDlcs(dlcs);
+
+      // Obtén la lista actual de dlcs del juego
+      List<DLC> currentDlcs = game.getDlcs();
+
+      // Elimina los dlcs que ya no están presentes
+      currentDlcs.removeIf(dlc -> !dlcs.contains(dlc));
+
+      // Añade los nuevos dlcs
+      for (DLC dlc : dlcs) {
+        if (!currentDlcs.contains(dlc)) {
+          currentDlcs.add(dlc);
+        }
+      }
     }
     if (gameRequest.getCrossplayId() != null) {
       Crossplay existingCrossplay =
@@ -597,81 +583,18 @@ public class GameService implements IGameService {
     if (gameRequest.getAvailabilities() != null) {
       List<Availability> newAvailabilities = new ArrayList<>();
       for (AvailabilityRequest availabilityRequest : gameRequest.getAvailabilities()) {
-        Availability availability;
-        if (availabilityRequest.getId() != null) {
-          availability =
-              availabilityRepository
-                  .findById(availabilityRequest.getId())
-                  .orElseThrow(
-                      () ->
-                          new IllegalArgumentException(
-                              "Disponibilidad no encontrada con id: "
-                                  + availabilityRequest.getId()));
-          if (!game.getAvailabilities().contains(availability)) {
-            throw new IllegalArgumentException(
-                "La Availability con id: "
-                    + availabilityRequest.getId()
-                    + " no pertenece al juego");
-          }
-        } else {
-          availability = new Availability();
-        }
-        availability.setInterfaceLanguage(availabilityRequest.getInterfaceLanguage());
-        availability.setSubtitleLanguage(availabilityRequest.getSubtitleLanguage());
-        availability.setAudioLanguage(availabilityRequest.getAudioLanguage());
-        availability.setLanguage(
-            languageRepository
-                .findById(availabilityRequest.getLanguageId())
-                .orElseThrow(
-                    () ->
-                        new IllegalArgumentException(
-                            "Idioma no encontrado con id: "
-                                + availabilityRequest.getLanguageId())));
-        availability.setGame(game);
-
-        newAvailabilities.add(availabilityRepository.save(availability));
+        newAvailabilities.add(updateAvailability(game, availabilityRequest));
       }
-      game.getAvailabilities().clear();
+      // Añade las nuevas disponibilidades a la lista del juego
       game.getAvailabilities().addAll(newAvailabilities);
     }
 
     if (gameRequest.getGameFeatures() != null) {
       List<GameFeature> newGameFeatures = new ArrayList<>();
       for (GameFeatureRequest gameFeatureRequest : gameRequest.getGameFeatures()) {
-        GameFeature gameFeature;
-        if (gameFeatureRequest.getFeatureId() != null) {
-          gameFeature =
-              gameFeatureRepository
-                  .findById(gameFeatureRequest.getFeatureId())
-                  .orElseThrow(
-                      () ->
-                          new IllegalArgumentException(
-                              "GameFeature no encontrada con id: "
-                                  + gameFeatureRequest.getFeatureId()));
-          if (!game.getGameFeatures().contains(gameFeature)) {
-            throw new IllegalArgumentException(
-                "La GameFeature con id: "
-                    + gameFeatureRequest.getFeatureId()
-                    + " no pertenece al juego");
-          }
-        } else {
-          gameFeature = new GameFeature();
-        }
-        // establece los campos de gameFeature...
-        if (gameFeatureRequest.getNumberPlayerId() != null) {
-          NumberPlayer numberPlayer =
-              numberPlayerRepository
-                  .findById(gameFeatureRequest.getNumberPlayerId())
-                  .orElseThrow(
-                      () ->
-                          new IllegalArgumentException(
-                              "NumberPlayer no encontrado con id: "
-                                  + gameFeatureRequest.getNumberPlayerId()));
-          gameFeature.setNumberPlayers(numberPlayer);
-        }
-        newGameFeatures.add(gameFeatureRepository.save(gameFeature));
+        newGameFeatures.add(updateGameFeature(game, gameFeatureRequest));
       }
-      game.getGameFeatures().clear();
+      // Añade las nuevas características a la lista del juego
       game.getGameFeatures().addAll(newGameFeatures);
     }
 
@@ -683,94 +606,237 @@ public class GameService implements IGameService {
     if (gameRequest.getProducts() != null) {
       List<Product> newProducts = new ArrayList<>();
       for (ProductRequest productRequest : gameRequest.getProducts()) {
-        Product product;
-        if (productRequest.getId() != null) {
-          product =
-              productRepository
-                  .findById(productRequest.getId())
-                  .orElseThrow(
-                      () ->
-                          new IllegalArgumentException(
-                              "Product no encontrado con id: " + productRequest.getId()));
-          if (!game.getProducts().contains(product)) {
-            throw new IllegalArgumentException(
-                "El Product con id: " + productRequest.getId() + " no pertenece al juego");
-          }
-        } else {
-          product = new Product();
-        }
-        product.setGame(game); // Asociar el producto con el juego
-        product.setPrice(productRequest.getPrice());
-        product.setLink(productRequest.getLink());
-        if (productRequest.getLogoProductId() != null) {
-          product.setLogoProduct(
-              logoProductRepository
-                  .findById(productRequest.getLogoProductId())
-                  .orElseThrow(
-                      () ->
-                          new IllegalArgumentException(
-                              "LogoProduct no encontrado con id: "
-                                  + productRequest.getLogoProductId())));
-        }
-        if (productRequest.getEditionProductId() != null) {
-          product.setEditionProduct(
-              editionProductRepository
-                  .findById(productRequest.getEditionProductId())
-                  .orElseThrow(
-                      () ->
-                          new IllegalArgumentException(
-                              "EditionProduct no encontrado con id: "
-                                  + productRequest.getEditionProductId())));
-        }
-        if (productRequest.getPlatformProductId() != null) {
-          product.setPlatformProduct(
-              platformProductRepository
-                  .findById(productRequest.getPlatformProductId())
-                  .orElseThrow(
-                      () ->
-                          new IllegalArgumentException(
-                              "PlatformProduct no encontrado con id: "
-                                  + productRequest.getPlatformProductId())));
-        }
-        if (productRequest.getVendorProductId() != null) {
-          product.setVendorProduct(
-              vendorProductRepository
-                  .findById(productRequest.getVendorProductId())
-                  .orElseThrow(
-                      () ->
-                          new IllegalArgumentException(
-                              "VendorProduct no encontrado con id: "
-                                  + productRequest.getVendorProductId())));
-        }
-        if (productRequest.getRegionProductId() != null) {
-          product.setRegionProduct(
-              regionProductRepository
-                  .findById(productRequest.getRegionProductId())
-                  .orElseThrow(
-                      () ->
-                          new IllegalArgumentException(
-                              "RegionProduct no encontrado con id: "
-                                  + productRequest.getRegionProductId())));
-        }
-        if (productRequest.getKeysProductId() != null) {
-          product.setKeysProduct(
-              keysProductRepository
-                  .findById(productRequest.getKeysProductId())
-                  .orElseThrow(
-                      () ->
-                          new IllegalArgumentException(
-                              "KeysProduct no encontrado con id: "
-                                  + productRequest.getKeysProductId())));
-        }
-
-
-        newProducts.add(productRepository.save(product));
+        newProducts.add(updateProduct(game, productRequest));
       }
-      game.getProducts().clear();
+      // Añade los nuevos productos a la lista del juego
       game.getProducts().addAll(newProducts);
     }
 
     Game savedGame = gameRepository.save(game);
     return convertToGameAndSagaDTO(savedGame);
+  }
+
+  @Override
+  public void updateGameFromRequest(Game game, GameRequest gameRequest) {
+    if (Objects.nonNull(gameRequest.getGame().getTitle())) {
+      game.setTitle(gameRequest.getGame().getTitle());
+    }
+    if (Objects.nonNull(gameRequest.getGame().getCover())) {
+      game.setCover(gameRequest.getGame().getCover());
+    }
+    if (Objects.nonNull(gameRequest.getGame().getAlt())) {
+      game.setAlt(gameRequest.getGame().getAlt());
+    }
+    if (Objects.nonNull(gameRequest.getGame().getDate())) {
+      game.setDate(gameRequest.getGame().getDate());
+    }
+    if (Objects.nonNull(gameRequest.getGame().getTrailer())) {
+      game.setTrailer(gameRequest.getGame().getTrailer());
+    }
+    if (Objects.nonNull(gameRequest.getGame().getSinopsis())) {
+      game.setSinopsis(gameRequest.getGame().getSinopsis());
+    }
+    if (Objects.nonNull(gameRequest.getGame().getStoryTime())) {
+      game.setStoryTime(gameRequest.getGame().getStoryTime());
+    }
+    if (Objects.nonNull(gameRequest.getGame().getCompleteTime())) {
+      game.setCompleteTime(gameRequest.getGame().getCompleteTime());
+    }
+  }
+
+  @Override
+  public SystemRequirement updateSystemRequirement(
+      SystemRequirement existingReq, SystemRequirement newReq) {
+    if (newReq.getOperatingSystem() != null) {
+      existingReq.setOperatingSystem(newReq.getOperatingSystem());
+    }
+    if (newReq.getProcessor() != null) {
+      existingReq.setProcessor(newReq.getProcessor());
+    }
+    if (newReq.getRam() != null) {
+      existingReq.setRam(newReq.getRam());
+    }
+    if (newReq.getGraphicsCard() != null) {
+      existingReq.setGraphicsCard(newReq.getGraphicsCard());
+    }
+    if (newReq.getDirectX() != null) {
+      existingReq.setDirectX(newReq.getDirectX());
+    }
+    if (newReq.getStorage() != null) {
+      existingReq.setStorage(newReq.getStorage());
+    }
+    return systemRequirementRepository.save(existingReq);
+  }
+
+  @Override
+  public Availability updateAvailability(Game game, AvailabilityRequest availabilityRequest) {
+    Availability availability;
+    if (availabilityRequest.getId() != null) {
+      availability =
+          availabilityRepository
+              .findById(availabilityRequest.getId())
+              .orElseThrow(
+                  () ->
+                      new IllegalArgumentException(
+                          "Disponibilidad no encontrada con id: " + availabilityRequest.getId()));
+      if (!game.getAvailabilities().contains(availability)) {
+        throw new IllegalArgumentException(
+            "La Availability con id: " + availabilityRequest.getId() + " no pertenece al juego");
+      }
+      // Elimina la disponibilidad antigua de la lista del juego
+      game.getAvailabilities().remove(availability);
+    } else {
+      availability = new Availability();
+    }
+    // Se establecen los idiomas de la interfaz, los subtítulos y el audio
+    availability.setInterfaceLanguage(availabilityRequest.getInterfaceLanguage());
+    availability.setSubtitleLanguage(availabilityRequest.getSubtitleLanguage());
+    availability.setAudioLanguage(availabilityRequest.getAudioLanguage());
+    // Se establece el idioma
+    availability.setLanguage(
+        languageRepository
+            .findById(availabilityRequest.getLanguageId())
+            .orElseThrow(
+                () ->
+                    new IllegalArgumentException(
+                        "Idioma no encontrado con id: " + availabilityRequest.getLanguageId())));
+    // Se establece el juego
+    availability.setGame(game);
+    // Se guarda la disponibilidad en el repositorio y se añade a la lista de nuevas
+    // disponibilidades
+    return availabilityRepository.save(availability);
+  }
+
+  @Override
+  public GameFeature updateGameFeature(Game game, GameFeatureRequest gameFeatureRequest) {
+    GameFeature gameFeature;
+    if (gameFeatureRequest.getId() != null) {
+      gameFeature =
+          gameFeatureRepository
+              .findById(gameFeatureRequest.getId())
+              .orElseThrow(
+                  () ->
+                      new IllegalArgumentException(
+                          "GameFeature no encontrada con id: " + gameFeatureRequest.getId()));
+      if (!game.getGameFeatures().contains(gameFeature)) {
+        throw new IllegalArgumentException(
+            "La GameFeature con id: " + gameFeatureRequest.getId() + " no pertenece al juego");
+      }
+      // Elimina la característica antigua de la lista del juego
+      game.getGameFeatures().remove(gameFeature);
+    } else {
+      gameFeature = new GameFeature();
+    }
+    // Establece los campos de gameFeature...
+    Feature feature =
+        featureRepository
+            .findById(gameFeatureRequest.getFeatureId())
+            .orElseThrow(
+                () ->
+                    new IllegalArgumentException(
+                        "Feature no encontrada con id: " + gameFeatureRequest.getFeatureId()));
+    gameFeature.setFeature(feature); // Aquí se actualiza el featureId
+    if (gameFeatureRequest.getNumberPlayerId() != null) {
+      NumberPlayer numberPlayer =
+          numberPlayerRepository
+              .findById(gameFeatureRequest.getNumberPlayerId())
+              .orElseThrow(
+                  () ->
+                      new IllegalArgumentException(
+                          "NumberPlayer no encontrado con id: "
+                              + gameFeatureRequest.getNumberPlayerId()));
+      gameFeature.setNumberPlayers(numberPlayer);
+    } else {
+      gameFeature.setNumberPlayers(null);
+    }
+    return gameFeatureRepository.save(gameFeature);
+  }
+
+  @Override
+  public Product updateProduct(Game game, ProductRequest productRequest) {
+    Product product;
+    if (productRequest.getId() != null) {
+      product =
+          productRepository
+              .findById(productRequest.getId())
+              .orElseThrow(
+                  () ->
+                      new IllegalArgumentException(
+                          "Product no encontrado con id: " + productRequest.getId()));
+      if (!game.getProducts().contains(product)) {
+        throw new IllegalArgumentException(
+            "El Product con id: " + productRequest.getId() + " no pertenece al juego");
+      }
+    } else {
+      product = new Product();
+    }
+    product.setGame(game); // Asociar el producto con el juego
+    if (productRequest.getPrice() != null) {
+      product.setPrice(productRequest.getPrice());
+    }
+    if (productRequest.getLink() != null) {
+      product.setLink(productRequest.getLink());
+    }
+    if (productRequest.getLogoProductId() != null) {
+      product.setLogoProduct(
+          logoProductRepository
+              .findById(productRequest.getLogoProductId())
+              .orElseThrow(
+                  () ->
+                      new IllegalArgumentException(
+                          "LogoProduct no encontrado con id: "
+                              + productRequest.getLogoProductId())));
+    }
+    if (productRequest.getEditionProductId() != null) {
+      product.setEditionProduct(
+          editionProductRepository
+              .findById(productRequest.getEditionProductId())
+              .orElseThrow(
+                  () ->
+                      new IllegalArgumentException(
+                          "EditionProduct no encontrado con id: "
+                              + productRequest.getEditionProductId())));
+    }
+    if (productRequest.getPlatformProductId() != null) {
+      product.setPlatformProduct(
+          platformProductRepository
+              .findById(productRequest.getPlatformProductId())
+              .orElseThrow(
+                  () ->
+                      new IllegalArgumentException(
+                          "PlatformProduct no encontrado con id: "
+                              + productRequest.getPlatformProductId())));
+    }
+    if (productRequest.getVendorProductId() != null) {
+      product.setVendorProduct(
+          vendorProductRepository
+              .findById(productRequest.getVendorProductId())
+              .orElseThrow(
+                  () ->
+                      new IllegalArgumentException(
+                          "VendorProduct no encontrado con id: "
+                              + productRequest.getVendorProductId())));
+    }
+    if (productRequest.getRegionProductId() != null) {
+      product.setRegionProduct(
+          regionProductRepository
+              .findById(productRequest.getRegionProductId())
+              .orElseThrow(
+                  () ->
+                      new IllegalArgumentException(
+                          "RegionProduct no encontrado con id: "
+                              + productRequest.getRegionProductId())));
+    }
+    if (productRequest.getKeysProductId() != null) {
+      product.setKeysProduct(
+          keysProductRepository
+              .findById(productRequest.getKeysProductId())
+              .orElseThrow(
+                  () ->
+                      new IllegalArgumentException(
+                          "KeysProduct no encontrado con id: "
+                              + productRequest.getKeysProductId())));
+    }
+    return productRepository.save(product);
   }
 }

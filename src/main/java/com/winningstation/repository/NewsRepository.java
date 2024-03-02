@@ -2,6 +2,7 @@ package com.winningstation.repository;
 
 import com.winningstation.entity.News;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -29,4 +30,8 @@ public interface NewsRepository extends JpaRepository<News, Long> {
 
   @Query("SELECT n FROM News n WHERE n.game NOT IN (SELECT f.game FROM FollowGame f WHERE f.user.id = :userId AND f.isFollowing = -1)")
   List<News> findNewsExceptUnfollowedGames(@Param("userId") Long userId);
+
+  @Modifying
+  @Query(value = "UPDATE news SET game_id = NULL WHERE game_id = :gameId", nativeQuery = true)
+  void setGameIdToNullByGameId(@Param("gameId") Long gameId);
 }
