@@ -1,6 +1,5 @@
 package com.winningstation.controller;
 
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -24,26 +23,13 @@ public class UserController {
   /** Servicio para los clientes. */
   private final IUserService userService;
 
-  /** Repositorio para los roles. */
-  private final RoleRepository roleRepository;
-
-  /** Codificador de contraseñas. */
-  private final BCryptPasswordEncoder passwordEncoder;
-
   /**
    * Constructor para la inyección de dependencias.
    *
    * @param userService El servicio para los clientes.
-   * @param roleRepository El repositorio para los roles.
-   * @param passwordEncoder El codificador de contraseñas.
    */
-  public UserController(
-      IUserService userService,
-      RoleRepository roleRepository,
-      BCryptPasswordEncoder passwordEncoder) {
+  public UserController(IUserService userService) {
     this.userService = userService;
-    this.roleRepository = roleRepository;
-    this.passwordEncoder = passwordEncoder;
   }
 
   /**
@@ -55,8 +41,6 @@ public class UserController {
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   public User create(@RequestBody User user) {
-    user.setPassword(passwordEncoder.encode(user.getPassword()));
-    roleRepository.findById(2L).ifPresent(user::setRole);
 
     return userService.save(user);
   }
@@ -117,5 +101,24 @@ public class UserController {
   @ResponseStatus(HttpStatus.NO_CONTENT)
   public void delete(@PathVariable Long id) {
     userService.delete(id);
+  }
+
+  /**
+   * Actualiza un cliente por su ID.
+   *
+   * @param id El ID del cliente.
+   * @param updatedUser El cliente actualizado.
+   * @param oldPassword La contraseña antigua.
+   * @param newPassword La contraseña nueva.
+   * @return El cliente actualizado.
+   */
+  @PutMapping("/{id}")
+  public ResponseEntity<User> updateUser(
+      @PathVariable Long id,
+      @RequestBody User updatedUser,
+      @RequestParam(required = false) String oldPassword,
+      @RequestParam(required = false) String newPassword) {
+    User user = userService.updateUser(id, updatedUser, oldPassword, newPassword);
+    return ResponseEntity.ok(user);
   }
 }
