@@ -86,7 +86,7 @@ public class User implements Serializable {
   private Role role;
 
   /** Comentarios hechos en las noticias por el usuario. */
-  @OneToMany(mappedBy = "user")
+  @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL)
   @JsonIgnore
   private List<NewsComment> newsComments;
 

@@ -1,4 +1,4 @@
-edit and delete user
+repasar en la base de datos delete user
 cambiar lo que se puede a boolean mejor que string
 ORGANIZAR LOS ENDPOINTS QUE HACEN FALTAN PARA BORRAR SERVICIOS Y CONTROLADORES POR EJEMPLO COMO AVAILABILITIES QUE NO HACE HACE FALTA CREARLO YA QUE LO CREA EL JUEGO
 NO ASI LENGUAJE QEU SI HACE FALTA CREARLO CON SU ENDPOINT
@@ -8,7 +8,28 @@ REPASAR TODA LA BD EN PHPMYADMIN PAR NO ENCONTRARME IDS QUE NO EXISTEN
 cambiar url de controladores por una mas euser friendly
 mirar los logs para que no salgan dos veces controller.GameController : Finding all games services.GameService : Finding all games
 MIRAR CACHE
-borrar usuario y que se borre todo lo relacionado
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Decir a sergio que el usuario puede tener un RANGO visible cuando escribe las reviews y que dependiendo de los mensajes escritos se le va subiendo el rango
 es mas como un titulo que se le da al usuario por su actividad en la pagina.
 Tambien se pueden poner logros por ejemplo si escribe 10 reviews se le da un logro
