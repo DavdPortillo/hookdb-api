@@ -49,4 +49,15 @@ public class GamesListController {
       @PathVariable Long idList, @PathVariable Long idUser, @PathVariable Long idGame) {
     return gamesListService.addGameToList(idList, idUser, idGame);
   }
+
+  /**
+   * Encuentra las listas de juegos de un usuario.
+   *
+   * @param idUser Id del usuario.
+   * @return Lista de juegos guardada.
+   */
+  @GetMapping("/user/{idUser}")
+  public GamesList findGamesListByUser(@PathVariable Long idUser) {
+    return gamesListService.findGamesListByUser(idUser);
+  }
 }

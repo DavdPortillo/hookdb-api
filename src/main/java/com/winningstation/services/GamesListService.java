@@ -90,4 +90,14 @@ public class GamesListService implements IGamesListService {
     gamesList.getGames().add(game);
     return gamesListRepository.save(gamesList);
   }
+
+  @Override
+  public GamesList findGamesListByUser(Long idUser) {
+    LOGGER.info("Finding game list for user {}", idUser);
+    User user =
+        userRepository
+            .findById(idUser)
+            .orElseThrow(() -> new IllegalArgumentException("User not found"));
+    return gamesListRepository.findByUser(user);
+  }
 }

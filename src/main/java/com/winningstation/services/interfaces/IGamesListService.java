@@ -27,4 +27,12 @@ public interface IGamesListService {
    * @return Lista de juegos guardada.
    */
   GamesList addGameToList(Long idList, Long idUser, Long idGame);
+
+  /**
+   * Encuentra las listas de juegos de un usuario.
+   *
+   * @param idUser Id del usuario.
+   * @return Lista de juegos guardada.
+   */
+  GamesList findGamesListByUser(Long idUser);
 }

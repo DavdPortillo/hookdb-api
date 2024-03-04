@@ -28,4 +28,11 @@ public interface GamesListRepository extends JpaRepository<GamesList, Long> {
   @Modifying
   @Query(value = "DELETE FROM gameslist_game WHERE game_id = :gameId", nativeQuery = true)
   void deleteAssociationsByGameId(@Param("gameId") Long gameId);
+
+  /**
+   * Encuentra las listas de juegos de un usuario.
+   *
+   * @param user Usuario.
+   */
+  GamesList findByUser(User user);
 }
