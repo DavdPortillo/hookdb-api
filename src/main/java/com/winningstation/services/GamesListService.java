@@ -1,8 +1,7 @@
 package com.winningstation.services;
 
-import com.winningstation.entity.Game;
-import com.winningstation.entity.GamesList;
-import com.winningstation.entity.User;
+import com.winningstation.dto.GameListDTO;
+import com.winningstation.entity.*;
 import com.winningstation.repository.GameRepository;
 import com.winningstation.repository.GamesListRepository;
 import com.winningstation.repository.UserRepository;
@@ -11,6 +10,10 @@ import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Servicio que permite realizar operaciones sobre la lista de juegos.
@@ -33,6 +36,8 @@ public class GamesListService implements IGamesListService {
   /** Repositorio de juego. */
   private final GameRepository gameRepository;
 
+  private final GameService gameService;
+
   /**
    * Constructor de la clase.
    *
@@ -41,10 +46,12 @@ public class GamesListService implements IGamesListService {
   public GamesListService(
       GamesListRepository gamesListRepository,
       UserRepository userRepository,
-      GameRepository gameRepository) {
+      GameRepository gameRepository,
+      GameService gameService) {
     this.gamesListRepository = gamesListRepository;
     this.userRepository = userRepository;
     this.gameRepository = gameRepository;
+    this.gameService = gameService;
   }
 
   @Override
@@ -99,5 +106,52 @@ public class GamesListService implements IGamesListService {
             .findById(idUser)
             .orElseThrow(() -> new IllegalArgumentException("User not found"));
     return gamesListRepository.findByUser(user);
+  }
+
+  @Override
+  public List<GameListDTO> getGamesByList(Long gamesListId) {
+    LOGGER.info("Finding games for list {}", gamesListId);
+    Optional<GamesList> gamesList = gamesListRepository.findById(gamesListId);
+
+    if (gamesList.isPresent()) {
+      return gamesList.get().getGames().stream()
+          .map(
+              game -> {
+                GameListDTO gameResponse = new GameListDTO();
+                gameResponse.setId(game.getId());
+                gameResponse.setName(game.getTitle());
+                gameResponse.setImage(game.getCover());
+                gameResponse.setYear(game.getDate().getYear());
+                gameResponse.setRate(gameService.calculateAverageScore(game.getId()));
+                gameResponse.setGenres(
+                    game.getGenres().stream().map(Genre::getName).collect(Collectors.toList()));
+                gameResponse.setPlatforms(
+                    game.getPlatforms().stream()
+                        .map(Platform::getName)
+                        .collect(Collectors.toList()));
+                return gameResponse;
+              })
+          .collect(Collectors.toList());
+    } else {
+      throw new IllegalArgumentException("Games list not found");
+    }
+  }
+
+  @Override
+  public void deleteGameFromList(Long idList, Long idGame) {
+    LOGGER.info("Deleting game {} from list {}", idGame, idList);
+    GamesList gamesList =
+        gamesListRepository
+            .findById(idList)
+            .orElseThrow(() -> new IllegalArgumentException("Game list not found"));
+    Game game =
+        gameRepository
+            .findById(idGame)
+            .orElseThrow(() -> new IllegalArgumentException("Game not found"));
+    if (!gamesList.getGames().contains(game)) {
+      throw new IllegalArgumentException("Game is not in the list");
+    }
+    gamesList.getGames().remove(game);
+    gamesListRepository.save(gamesList);
   }
 }

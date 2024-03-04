@@ -1,8 +1,13 @@
 package com.winningstation.controller;
 
+import com.winningstation.dto.GameListDTO;
 import com.winningstation.entity.GamesList;
 import com.winningstation.services.interfaces.IGamesListService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Controlador para la lista de juegos.
@@ -59,5 +64,28 @@ public class GamesListController {
   @GetMapping("/user/{idUser}")
   public GamesList findGamesListByUser(@PathVariable Long idUser) {
     return gamesListService.findGamesListByUser(idUser);
+  }
+
+  /**
+   * Encuentra los juegos de una lista.
+   *
+   * @param gamesListId Id de la lista de juegos.
+   * @return Lista de juegos guardada.
+   */
+  @GetMapping("/{gamesListId}/games")
+  public ResponseEntity<List<GameListDTO>> getGamesListGames(@PathVariable Long gamesListId) {
+    List<GameListDTO> gameResponses = gamesListService.getGamesByList(gamesListId);
+    return new ResponseEntity<>(gameResponses, HttpStatus.OK);
+  }
+
+  /**
+   * Elimina un juego de la lista de juegos.
+   *
+   * @param idList Id de la lista de juegos.
+   * @param idGame Id del juego a eliminar.
+   */
+  @DeleteMapping("/{idList}/game/{idGame}")
+  public void deleteGameFromList(@PathVariable Long idList, @PathVariable Long idGame) {
+    gamesListService.deleteGameFromList(idList, idGame);
   }
 }

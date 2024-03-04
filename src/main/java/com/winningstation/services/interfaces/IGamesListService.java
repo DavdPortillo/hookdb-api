@@ -1,6 +1,9 @@
 package com.winningstation.services.interfaces;
 
+import com.winningstation.dto.GameListDTO;
 import com.winningstation.entity.GamesList;
+
+import java.util.List;
 
 /**
  * Interfaz que define los métodos que se pueden realizar sobre la lista de juegos.
@@ -35,4 +38,17 @@ public interface IGamesListService {
    * @return Lista de juegos guardada.
    */
   GamesList findGamesListByUser(Long idUser);
+
+  /**
+   * Encuentra los juegos de una lista.
+   *
+   * @param idList Id de la lista.
+   * @return Lista de juegos guardada.
+   */
+  List<GameListDTO> getGamesByList(Long idList);
+
+  /**
+   * Elimina un juego de la lista de juegos.
+   */
+    void deleteGameFromList(Long idList, Long idGame);
 }
