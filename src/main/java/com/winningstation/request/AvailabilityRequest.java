@@ -11,7 +11,7 @@ import lombok.Data;
 public class AvailabilityRequest {
   private Long id;
   private Long languageId;
-  private String interfaceLanguage;
-  private String subtitleLanguage;
-  private String audioLanguage;
+  private Boolean interfaceLanguage;
+  private Boolean subtitleLanguage;
+  private Boolean audioLanguage;
 }

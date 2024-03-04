@@ -138,20 +138,17 @@ public class GamesListService implements IGamesListService {
   }
 
   @Override
-  public void deleteGameFromList(Long idList, Long idGame) {
-    LOGGER.info("Deleting game {} from list {}", idGame, idList);
-    GamesList gamesList =
-        gamesListRepository
-            .findById(idList)
-            .orElseThrow(() -> new IllegalArgumentException("Game list not found"));
-    Game game =
-        gameRepository
-            .findById(idGame)
-            .orElseThrow(() -> new IllegalArgumentException("Game not found"));
-    if (!gamesList.getGames().contains(game)) {
+  public void deleteGameFromList(Long gamesListId, Long gameId) {
+    GamesList gamesList = gamesListRepository.findById(gamesListId)
+            .orElseThrow(() -> new IllegalArgumentException("Games list not found with id: " + gamesListId));
+    Game game = gameRepository.findById(gameId)
+            .orElseThrow(() -> new IllegalArgumentException("Game not found with id: " + gameId));
+
+    if (gamesList.getGames().contains(game)) {
+      gamesList.getGames().remove(game);
+      gamesListRepository.save(gamesList);
+    } else {
       throw new IllegalArgumentException("Game is not in the list");
     }
-    gamesList.getGames().remove(game);
-    gamesListRepository.save(gamesList);
   }
 }

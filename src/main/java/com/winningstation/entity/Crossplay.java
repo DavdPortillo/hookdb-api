@@ -15,7 +15,7 @@ import lombok.Data;
 public class Crossplay implements Serializable {
 
 	/**
-	 * ID único de la saga. Generado automáticamente.
+	 * Id único de la saga. Generado automáticamente.
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +24,7 @@ public class Crossplay implements Serializable {
 	/**
 	 * Tiene crossplay.
 	 */
-	private String hasCrossplay;
+	private Boolean hasCrossplay;
 
 	@Serial
 	private static final long serialVersionUID = 1L;

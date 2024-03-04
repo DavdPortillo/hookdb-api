@@ -29,7 +29,7 @@ public class FollowGameController {
     this.followGameService = followGameService;
   }
 
-  @PostMapping("/users/{userId}/games/{gameId}/followOrIgnore/{action}")
+  @PostMapping("/user/{userId}/game/{gameId}/followOrIgnore/{action}")
   public ResponseEntity<FollowGame> followOrIgnoreGame(
       @PathVariable Long userId, @PathVariable Long gameId, @PathVariable Integer action) {
     FollowGame followGame = followGameService.followOrIgnoreGame(userId, gameId, action);

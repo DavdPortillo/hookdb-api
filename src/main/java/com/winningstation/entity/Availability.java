@@ -26,13 +26,13 @@ public class Availability implements Serializable {
   private Long id;
 
   /** Idioma de la interfaz. */
-  @NotNull private String interfaceLanguage;
+  @NotNull private Boolean interfaceLanguage;
 
   /** Idioma de los subtítulos. */
-  @NotNull private String subtitleLanguage;
+  @NotNull private Boolean subtitleLanguage;
 
   /** Idioma del audio. */
-  @NotNull private String audioLanguage;
+  @NotNull private Boolean audioLanguage;
 
   /** El lenguaje asociado con esta disponibilidad. */
   @ManyToOne(fetch = FetchType.EAGER)

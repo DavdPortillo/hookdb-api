@@ -492,7 +492,10 @@ public class GameService implements IGameService {
     LOG.info("Deleting game by id: {}", id);
 
     // Elimina todos los GameScore asociados
+
     gameScoreRepository.deleteByGameId(id);
+
+
     gamesListRepository.deleteAssociationsByGameId(id);
     newsRepository.setGameIdToNullByGameId(id);
 

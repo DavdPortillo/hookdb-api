@@ -3,8 +3,8 @@ VALUES (1, 'ROLE_ADMIN'),
        (2, 'ROLE_USER');
 
 INSERT INTO `crossplay` (`id`, `has_crossplay`)
-VALUES (1, 'true'),
-       (2, 'false');
+VALUES (1, true),
+       (2, false);
 
 INSERT INTO system_requirement (directx, graphics_card, operating_system, processor, ram, storage)
 VALUES ('DirectX 12', 'NVIDIA GTX 1650', 'Windows 10', 'Intel Core i5-9400F', '8 GB', '500 GB'),
