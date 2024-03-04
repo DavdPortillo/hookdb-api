@@ -1,6 +1,7 @@
 package com.winningstation.repository;
 
 import com.winningstation.dto.GameSearchDTO;
+import com.winningstation.dto.ScoreAverageResultDTO;
 import com.winningstation.projection.GamePopularityProjection;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -54,4 +55,21 @@ public interface GameRepository extends JpaRepository<Game, Long> {
   @Query(
       "SELECT g FROM Game g WHERE LOWER(g.title) LIKE LOWER(CONCAT('%', :keyword, '%')) ORDER BY g.popularity DESC")
   List<Game> search(@Param("keyword") String keyword, Pageable pageable);
+
+  /**
+   * Cálculo de la puntuación media y el número de puntuaciones de un juego.
+   *
+   * @param gameId Id del juego.
+   * @return Resultado con la puntuación media y el número de puntuaciones.
+   */
+  @Query(
+      "SELECT new com.winningstation.dto.ScoreAverageResultDTO(AVG(gs.score), COUNT(gs)) FROM GameScore gs WHERE gs.game.id = :gameId")
+  ScoreAverageResultDTO findAverageScoreAndCount(@Param("gameId") Long gameId);
+
+  @Query(
+          "SELECT new com.winningstation.dto.ScoreAverageResultDTO(AVG(gs.score), COUNT(gs)) " +
+                  "FROM GameScore gs " +
+                  "WHERE gs.game.id = :gameId " +
+                  "ORDER BY gs.date DESC")
+  List<ScoreAverageResultDTO> findAverageScoreAndCountForGame(@Param("gameId") Long gameId, Pageable pageable);
 }

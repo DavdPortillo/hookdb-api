@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -380,52 +381,13 @@ public class GameService implements IGameService {
 
   @Override
   public ScoreAverageResultDTO calculateAverageScore(Long gameId) {
-
-    LOG.info("Calculating average score of game with id: {}", gameId);
-
-    Game game =
-        gameRepository.findById(gameId).orElseThrow(() -> new RuntimeException("Game not found"));
-
-    // Obtén todas las puntuaciones del juego
-    List<GameScore> gameScores = game.getGameScores();
-
-    // Calcula la puntuación media
-    Double averageScore = gameScores.stream().mapToInt(GameScore::getScore).average().orElse(0.0);
-
-    ScoreAverageResultDTO result = new ScoreAverageResultDTO();
-    result.setAverageScore(averageScore);
-    result.setScoreCount(gameScores.size());
-
-    return result;
+    return gameRepository.findAverageScoreAndCount(gameId);
   }
 
   @Override
-  public ScoreAverageResultDTO calculateAverageScoreOfLast100(Long gameId) {
-
-    LOG.info("Calculating average score of last 100 of game with id: {}", gameId);
-
-    Game game =
-        gameRepository.findById(gameId).orElseThrow(() -> new RuntimeException("Game not found"));
-
-    // Obtén todas las puntuaciones del juego
-    List<GameScore> gameScores = game.getGameScores();
-
-    // Ordena las puntuaciones por ID y selecciona las últimas 100
-    List<GameScore> last100GameScores =
-        gameScores.stream()
-            .sorted(Comparator.comparing(GameScore::getId).reversed())
-            .limit(100)
-            .toList();
-
-    // Calcula la puntuación media de las últimas 100 puntuaciones
-    Double averageScoreOfLast100 =
-        last100GameScores.stream().mapToInt(GameScore::getScore).average().orElse(0.0);
-
-    ScoreAverageResultDTO result = new ScoreAverageResultDTO();
-    result.setAverageScore(averageScoreOfLast100);
-    result.setScoreCount(last100GameScores.size());
-
-    return result;
+  public List<ScoreAverageResultDTO> calculateAverageScoreOfLast100(Long gameId) {
+    Pageable topHundred = PageRequest.of(0, 100, Sort.by(Sort.Direction.DESC, "date"));
+    return gameRepository.findAverageScoreAndCountForGame(gameId, topHundred);
   }
 
   @Override
@@ -494,7 +456,6 @@ public class GameService implements IGameService {
     // Elimina todos los GameScore asociados
 
     gameScoreRepository.deleteByGameId(id);
-
 
     gamesListRepository.deleteAssociationsByGameId(id);
     newsRepository.setGameIdToNullByGameId(id);

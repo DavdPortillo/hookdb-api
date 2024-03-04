@@ -1,11 +1,15 @@
 package com.winningstation.services;
 
+import com.winningstation.dto.NewsDTO;
 import com.winningstation.entity.News;
 import com.winningstation.repository.NewsRepository;
 import com.winningstation.services.interfaces.INewsService;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -73,5 +77,11 @@ public class NewsService implements INewsService {
   public List<News> getNewsExceptUnfollowedGames(Long userId) {
     LOG.info("Finding news from followed games by user: {}", userId);
     return newsRepository.findNewsExceptUnfollowedGames(userId);
+  }
+
+  @Override
+  public List<NewsDTO> getLatestNewsWithSelectedFields() {
+    Pageable topFifteen = PageRequest.of(0, 15, Sort.by(Sort.Direction.DESC, "date"));
+    return newsRepository.findLatestNewsWithSelectedFields(topFifteen);
   }
 }

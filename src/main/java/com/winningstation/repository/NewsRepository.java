@@ -1,6 +1,8 @@
 package com.winningstation.repository;
 
+import com.winningstation.dto.NewsDTO;
 import com.winningstation.entity.News;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -28,10 +30,17 @@ public interface NewsRepository extends JpaRepository<News, Long> {
       "SELECT n FROM News n WHERE n.game IN (SELECT f.game FROM FollowGame f WHERE f.user.id = :userId AND f.isFollowing = 1)")
   List<News> findNewsFromFollowedGames(@Param("userId") Long userId);
 
-  @Query("SELECT n FROM News n WHERE n.game NOT IN (SELECT f.game FROM FollowGame f WHERE f.user.id = :userId AND f.isFollowing = -1)")
+  @Query(
+      "SELECT n FROM News n WHERE n.game NOT IN (SELECT f.game FROM FollowGame f WHERE f.user.id = :userId AND f.isFollowing = -1)")
   List<News> findNewsExceptUnfollowedGames(@Param("userId") Long userId);
 
   @Modifying
   @Query(value = "UPDATE news SET game_id = NULL WHERE game_id = :gameId", nativeQuery = true)
   void setGameIdToNullByGameId(@Param("gameId") Long gameId);
+
+  @Query(
+      "SELECT new com.winningstation.dto.NewsDTO(n.id,n.image,n.alt, n.headline, n.newsAuthor.name,n.newsAuthor.surname, size(n.newsComment), n.date) "
+              + "FROM News n "
+              + "ORDER BY n.date DESC")
+  List<NewsDTO> findLatestNewsWithSelectedFields(Pageable pageable);
 }

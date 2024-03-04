@@ -1,6 +1,8 @@
 package com.winningstation.services.interfaces;
 
+import com.winningstation.dto.NewsDTO;
 import com.winningstation.entity.News;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
@@ -59,4 +61,11 @@ public interface INewsService {
    *     ignorado.
    */
   List<News> getNewsExceptUnfollowedGames(Long userId);
+
+  /**
+   * Método que permite obtener las últimas noticias con los campos seleccionados.
+   *
+   * @return Lista de las últimas noticias con los campos seleccionados.
+   */
+  List<NewsDTO> getLatestNewsWithSelectedFields();
 }

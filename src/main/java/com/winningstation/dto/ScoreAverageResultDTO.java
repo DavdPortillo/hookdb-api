@@ -1,5 +1,6 @@
 package com.winningstation.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -10,7 +11,8 @@ import java.io.Serializable;
  * @author David Portillo Hoyos
  */
 @Data
+@AllArgsConstructor
 public class ScoreAverageResultDTO implements Serializable {
   private Double averageScore;
-  private Integer scoreCount;
+  private Long scoreCount;
 }

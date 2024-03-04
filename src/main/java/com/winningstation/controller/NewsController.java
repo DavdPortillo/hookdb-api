@@ -1,5 +1,6 @@
 package com.winningstation.controller;
 
+import com.winningstation.dto.NewsDTO;
 import com.winningstation.entity.Game;
 import com.winningstation.entity.News;
 import com.winningstation.entity.NewsAuthor;
@@ -91,4 +92,10 @@ public class NewsController {
   public List<News> getNewsExceptUnfollowedGames(@PathVariable Long id) {
     return newsService.getNewsExceptUnfollowedGames(id);
   }
+
+  @GetMapping("/main")
+    public List<NewsDTO> getLatestNewsWithSelectedFields() {
+        return newsService.getLatestNewsWithSelectedFields();
+    }
+
 }

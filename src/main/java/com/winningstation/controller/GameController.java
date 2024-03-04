@@ -92,7 +92,7 @@ public class GameController {
    * @return El promedio de los últimos 100 puntajes del juego.
    */
   @GetMapping("/average-score-last-100/id-game/{gameId}")
-  public ScoreAverageResultDTO getAverageScoreOfLast100(@PathVariable Long gameId) {
+  public List<ScoreAverageResultDTO> getAverageScoreOfLast100(@PathVariable Long gameId) {
     return gameService.calculateAverageScoreOfLast100(gameId);
   }
 

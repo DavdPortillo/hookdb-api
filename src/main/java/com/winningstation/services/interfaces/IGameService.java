@@ -73,7 +73,7 @@ public interface IGameService {
    * @param gameId Id del juego.
    * @return Lista de juegos que pertenecen al género.
    */
-  ScoreAverageResultDTO calculateAverageScoreOfLast100(Long gameId);
+  List<ScoreAverageResultDTO> calculateAverageScoreOfLast100(Long gameId);
 
   /**
    * Método que permite convertir un juego a un DTO.
@@ -211,6 +211,4 @@ public interface IGameService {
    * @return Lista de productos creados.
    */
   List<Product> createProducts(List<ProductRequest> productRequests, Game game);
-
-
 }
