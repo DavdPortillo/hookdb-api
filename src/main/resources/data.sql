@@ -103,16 +103,18 @@ VALUES (20, 10, 2, 1, '1', '2', '1', 'URL de la imagen del Resident Evil 2 Remak
         '2025/04/01',
         'Un juego de aventura, rol y ritmo para Windows y Nintendo Switch.',
         'Everhood 2', 0, 'URL del trailer del Everhood 2'),
-       (20, 10, 2, 9, '17', '18', NULL, 'URL de la imagen del Everhood 2', 'alt',
-        '2025/04/01',
-        'Un juego de aventura, rol y ritmo para Windows y Nintendo Switch.',
-        'Everhood 2', 0, 'URL del trailer del Everhood 2'),
-       (20, 10, 2, 9, '17', '18', NULL, 'URL de la imagen del Everhood 2', 'alt',
-        '2025/04/01',
-        'Un juego de aventura, rol y ritmo para Windows y Nintendo Switch.',
-        'Everhood 2', 0, 'URL del trailer del Everhood 2');
-
-
+         (20, 10, 2, 10, '19', '20', NULL, 'URL de la imagen del The Last of Us Part III', 'alt', '2025/12/31',
+        'Un juego de acción y aventura para PS5 aún sin fecha de lanzamiento.',
+        'The Last of Us Part III', 0, 'URL del trailer del The Last of Us Part III'),
+         (20, 10, 2, 11, '21', '22', NULL, 'URL de la imagen del The Elder Scrolls VI', 'alt', '2025/12/31',
+        'Un juego de rol de acción para PS5, Xbox Series X y Windows aún sin fecha de lanzamiento.',
+        'The Elder Scrolls VI', 0, 'URL del trailer del The Elder Scrolls VI'),
+         (20, 10, 2, 12, '23', '24', NULL, 'URL de la imagen del The Witcher 4', 'alt', '2025/12/31',
+        'Un juego de rol de acción para PS5, Xbox Series X y Windows aún sin fecha de lanzamiento.',
+        'The Witcher 4', 0, 'URL del trailer del The Witcher 4'),
+         (20, 10, 2, 13, '25', '26', NULL, 'URL de la imagen del Cyberpunk 2078', 'alt', '2025/12/31',
+        'Un juego de rol de acción para PS5, Xbox Series X y Windows aún sin fecha de lanzamiento.',
+        'Cyberpunk 2078', 0, 'URL del trailer del Cyberpunk 2078');
 
 
 
