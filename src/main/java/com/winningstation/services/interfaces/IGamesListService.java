@@ -1,7 +1,9 @@
 package com.winningstation.services.interfaces;
 
 import com.winningstation.dto.GameListDTO;
+import com.winningstation.dto.ListDTO;
 import com.winningstation.entity.GamesList;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -32,14 +34,6 @@ public interface IGamesListService {
   GamesList addGameToList(Long idList, Long idUser, Long idGame);
 
   /**
-   * Encuentra las listas de juegos de un usuario.
-   *
-   * @param idUser Id del usuario.
-   * @return Lista de juegos guardada.
-   */
-  GamesList findGamesListByUser(Long idUser);
-
-  /**
    * Encuentra los juegos de una lista.
    *
    * @param idList Id de la lista.
@@ -47,8 +41,30 @@ public interface IGamesListService {
    */
   List<GameListDTO> getGamesByList(Long idList);
 
+  /** Elimina un juego de la lista de juegos. */
+  void deleteGameFromList(Long idList, Long idGame);
+
   /**
-   * Elimina un juego de la lista de juegos.
+   * Encuentra las listas de juegos de un usuario.
+   *
+   * @param userId Id del usuario.
+   * @return Lista de juegos guardada.
    */
-    void deleteGameFromList(Long idList, Long idGame);
+  List<ListDTO> findListByUserId(Long userId);
+
+  /**
+   * Elimina una lista de juegos.
+   *
+   * @param idList Id de la lista de juegos.
+   */
+  void deleteList(Long idList);
+
+  /**
+   * Edita el nombre de una lista de juegos.
+   *
+   * @param id Id de la lista de juegos.
+   * @param newName Nuevo nombre de la lista de juegos.
+   * @return Nombre de la lista de juegos actualizado.
+   */
+  String updateGamesListName(Long id, String newName);
 }

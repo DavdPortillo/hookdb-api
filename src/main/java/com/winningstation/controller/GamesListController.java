@@ -1,6 +1,7 @@
 package com.winningstation.controller;
 
 import com.winningstation.dto.GameListDTO;
+import com.winningstation.dto.ListDTO;
 import com.winningstation.entity.GamesList;
 import com.winningstation.services.interfaces.IGamesListService;
 import org.springframework.http.HttpStatus;
@@ -56,17 +57,6 @@ public class GamesListController {
   }
 
   /**
-   * Encuentra las listas de juegos de un usuario.
-   *
-   * @param idUser Id del usuario.
-   * @return Lista de juegos guardada.
-   */
-  @GetMapping("/user/{idUser}")
-  public GamesList findGamesListByUser(@PathVariable Long idUser) {
-    return gamesListService.findGamesListByUser(idUser);
-  }
-
-  /**
    * Encuentra los juegos de una lista.
    *
    * @param gamesListId Id de la lista de juegos.
@@ -87,5 +77,39 @@ public class GamesListController {
   @DeleteMapping("/{idList}/game/{idGame}")
   public void deleteGameFromList(@PathVariable Long idList, @PathVariable Long idGame) {
     gamesListService.deleteGameFromList(idList, idGame);
+  }
+
+  /**
+   * Encuentra las listas de juegos de un usuario.
+   *
+   * @param userId Id del usuario.
+   * @return Lista de juegos guardada.
+   */
+  @GetMapping("/user/{userId}/lists")
+  public List<ListDTO> findListByUserId(@PathVariable Long userId) {
+    return gamesListService.findListByUserId(userId);
+  }
+
+  /**
+   * Elimina una lista de juegos.
+   *
+   * @param idList Id de la lista de juegos.
+   */
+  @DeleteMapping("/{idList}")
+  public void deleteList(@PathVariable Long idList) {
+    gamesListService.deleteList(idList);
+  }
+
+  /**
+   * Actualiza una lista de juegos.
+   *
+   * @param id Id de la lista de juegos.
+   * @param newName Nuevo nombre de la lista de juegos.
+   */
+  @PutMapping("/{id}")
+  public ResponseEntity<String> updateGamesListName(
+      @PathVariable Long id, @RequestBody String newName) {
+    String updatedName = gamesListService.updateGamesListName(id, newName);
+    return ResponseEntity.ok(updatedName);
   }
 }

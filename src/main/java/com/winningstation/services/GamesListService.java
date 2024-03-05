@@ -1,6 +1,7 @@
 package com.winningstation.services;
 
 import com.winningstation.dto.GameListDTO;
+import com.winningstation.dto.ListDTO;
 import com.winningstation.entity.*;
 import com.winningstation.repository.GameRepository;
 import com.winningstation.repository.GamesListRepository;
@@ -99,16 +100,6 @@ public class GamesListService implements IGamesListService {
   }
 
   @Override
-  public GamesList findGamesListByUser(Long idUser) {
-    LOGGER.info("Finding game list for user {}", idUser);
-    User user =
-        userRepository
-            .findById(idUser)
-            .orElseThrow(() -> new IllegalArgumentException("User not found"));
-    return gamesListRepository.findByUser(user);
-  }
-
-  @Override
   public List<GameListDTO> getGamesByList(Long gamesListId) {
     LOGGER.info("Finding games for list {}", gamesListId);
     Optional<GamesList> gamesList = gamesListRepository.findById(gamesListId);
@@ -139,9 +130,14 @@ public class GamesListService implements IGamesListService {
 
   @Override
   public void deleteGameFromList(Long gamesListId, Long gameId) {
-    GamesList gamesList = gamesListRepository.findById(gamesListId)
-            .orElseThrow(() -> new IllegalArgumentException("Games list not found with id: " + gamesListId));
-    Game game = gameRepository.findById(gameId)
+    GamesList gamesList =
+        gamesListRepository
+            .findById(gamesListId)
+            .orElseThrow(
+                () -> new IllegalArgumentException("Games list not found with id: " + gamesListId));
+    Game game =
+        gameRepository
+            .findById(gameId)
             .orElseThrow(() -> new IllegalArgumentException("Game not found with id: " + gameId));
 
     if (gamesList.getGames().contains(game)) {
@@ -150,5 +146,38 @@ public class GamesListService implements IGamesListService {
     } else {
       throw new IllegalArgumentException("Game is not in the list");
     }
+  }
+
+  @Override
+  public List<ListDTO> findListByUserId(Long userId) {
+    LOGGER.info("Finding game list for user {}", userId);
+    return gamesListRepository.findListByUserId(userId);
+  }
+
+  @Override
+  public void deleteList(Long idList) {
+    LOGGER.info("Deleting game list {}", idList);
+    GamesList gamesList =
+        gamesListRepository
+            .findById(idList)
+            .orElseThrow(() -> new IllegalArgumentException("Game list not found"));
+    gamesListRepository.delete(gamesList);
+  }
+
+  public String updateGamesListName(Long id, String newName) {
+    // Buscar la lista de juegos
+    GamesList gamesList =
+        gamesListRepository
+            .findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("Game list not found"));
+
+    // Actualizar el nombre
+    gamesList.setName(newName);
+
+    // Guardar la lista actualizada
+    GamesList updatedGamesList = gamesListRepository.save(gamesList);
+
+    // Devolver el nuevo nombre
+    return updatedGamesList.getName();
   }
 }

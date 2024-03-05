@@ -1,5 +1,6 @@
 package com.winningstation.repository;
 
+import com.winningstation.dto.ListDTO;
 import com.winningstation.entity.GamesList;
 import com.winningstation.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -7,6 +8,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * Repositorio de la lista de juegos.
@@ -33,7 +36,15 @@ public interface GamesListRepository extends JpaRepository<GamesList, Long> {
   /**
    * Encuentra las listas de juegos de un usuario.
    *
-   * @param user Usuario.
+   * @param userId id del usuario.
+   * @return Lista de juegos.
    */
-  GamesList findByUser(User user);
+  @Query(
+          "SELECT new com.winningstation.dto.ListDTO(g.id, g.name, g.date, COUNT(game.id)) "
+                  + "FROM GamesList g "
+                  + "LEFT JOIN g.games game "
+                  + "WHERE g.user.id = :userId "
+                  + "GROUP BY g.id")
+  List<ListDTO> findListByUserId(@Param("userId") Long userId);
+
 }
