@@ -112,4 +112,17 @@ public class GamesListController {
     String updatedName = gamesListService.updateGamesListName(id, newName);
     return ResponseEntity.ok(updatedName);
   }
+
+  /**
+   * Encuentra las listas de juegos de un usuario por un patrón de nombre.
+   *
+   * @param userId Id del usuario.
+   * @param namePattern Patrón de nombre.
+   * @return Lista de juegos guardada.
+   */
+  @GetMapping("/user/{userId}/lists/{namePattern}")
+  public List<ListDTO> findListByUserIdAndNamePattern(
+      @PathVariable Long userId, @PathVariable String namePattern) {
+    return gamesListService.findListByUserIdAndNamePattern(userId, namePattern);
+  }
 }

@@ -67,4 +67,13 @@ public interface IGamesListService {
    * @return Nombre de la lista de juegos actualizado.
    */
   String updateGamesListName(Long id, String newName);
+
+    /**
+     * Encuentra las listas de juegos de un usuario por un patrón de nombre.
+     *
+     * @param userId Id del usuario.
+     * @param namePattern Patrón de nombre.
+     * @return Lista de juegos guardada.
+     */
+    List<ListDTO> findListByUserIdAndNamePattern(Long userId, String namePattern);
 }

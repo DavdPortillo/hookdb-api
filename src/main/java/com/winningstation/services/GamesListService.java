@@ -164,6 +164,7 @@ public class GamesListService implements IGamesListService {
     gamesListRepository.delete(gamesList);
   }
 
+  @Override
   public String updateGamesListName(Long id, String newName) {
     // Buscar la lista de juegos
     GamesList gamesList =
@@ -179,5 +180,11 @@ public class GamesListService implements IGamesListService {
 
     // Devolver el nuevo nombre
     return updatedGamesList.getName();
+  }
+
+  @Override
+  public List<ListDTO> findListByUserIdAndNamePattern(Long userId, String namePattern) {
+    LOGGER.info("Finding game list for user {} with name pattern {}", userId, namePattern);
+    return gamesListRepository.findListByUserIdAndNamePattern(userId, namePattern);
   }
 }
