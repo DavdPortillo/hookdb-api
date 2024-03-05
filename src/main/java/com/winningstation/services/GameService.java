@@ -385,14 +385,14 @@ public class GameService implements IGameService {
   }
 
   @Override
-  public List<GamePopularityProjection> findTop5ByDateAfterAndOrderByPopularityDesc() {
+  public List<GamePopularityDTO> findTop5ByDateAfterAndOrderByPopularityDesc() {
     LOG.info("Finding top 5 popular unreleased games");
     return gameRepository.findTop5ByDateAfterAndOrderByPopularityDesc(
         LocalDate.now(), PageRequest.of(0, 5));
   }
 
   @Override
-  public List<GamePopularityProjection> findByDateAfterAndOrderByPopularityDesc() {
+  public List<GamePopularityDTO> findByDateAfterAndOrderByPopularityDesc() {
     LOG.info("Finding all popular unreleased games");
     return gameRepository.findByDateAfterAndOrderByPopularityDesc(LocalDate.now());
   }

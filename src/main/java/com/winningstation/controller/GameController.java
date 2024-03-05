@@ -1,6 +1,7 @@
 package com.winningstation.controller;
 
 import com.winningstation.dto.GameAndSagaDTO;
+import com.winningstation.dto.GamePopularityDTO;
 import com.winningstation.dto.GameSearchDTO;
 import com.winningstation.dto.ScoreAverageResultDTO;
 import com.winningstation.projection.GamePopularityProjection;
@@ -102,7 +103,7 @@ public class GameController {
    * @return Lista de los 5 juegos más populares
    */
   @GetMapping("/top-5-popular")
-  public List<GamePopularityProjection> getTop5Popular() {
+  public List<GamePopularityDTO> getTop5Popular() {
     return gameService.findTop5ByDateAfterAndOrderByPopularityDesc();
   }
 
@@ -112,7 +113,7 @@ public class GameController {
    * @return Lista de los juegos más populares
    */
   @GetMapping("/popular")
-  public List<GamePopularityProjection> getPopular() {
+  public List<GamePopularityDTO> getPopular() {
     return gameService.findByDateAfterAndOrderByPopularityDesc();
   }
 
@@ -157,5 +158,4 @@ public class GameController {
   public void deleteGame(@PathVariable Long id) {
     gameService.delete(id);
   }
-
 }
