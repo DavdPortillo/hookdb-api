@@ -15,4 +15,5 @@ public class GameDTO implements Serializable {
   private Long id;
   private String title;
   private LocalDate date;
+
 }

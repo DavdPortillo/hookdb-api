@@ -63,9 +63,6 @@ public class GameService implements IGameService {
   /** Repositorio de Distributor. */
   private final DistributorRepository distributorRepository;
 
-  /** Repositorio de DLC */
-  private final DLCRepository dlcRepository;
-
   /** Repositorio de News */
   private final NewsRepository newsRepository;
 
@@ -123,7 +120,6 @@ public class GameService implements IGameService {
       GenreRepository genreRepository,
       DeveloperRepository developerRepository,
       DistributorRepository distributorRepository,
-      DLCRepository dlcRepository,
       LanguageRepository languageRepository,
       AvailabilityRepository availabilityRepository,
       FeatureRepository featureRepository,
@@ -147,7 +143,6 @@ public class GameService implements IGameService {
     this.genreRepository = genreRepository;
     this.developerRepository = developerRepository;
     this.distributorRepository = distributorRepository;
-    this.dlcRepository = dlcRepository;
     this.languageRepository = languageRepository;
     this.availabilityRepository = availabilityRepository;
     this.featureRepository = featureRepository;
@@ -208,7 +203,6 @@ public class GameService implements IGameService {
     game.setDistributors(
         validateAndGetEntities(
             gameRequest.getDistributorIds(), distributorRepository, "distribuidores"));
-    game.setDlcs(validateAndGetEntities(gameRequest.getDlcIds(), dlcRepository, "DLCs"));
     game.setCrossplay(
         crossplayRepository
             .findById(gameRequest.getCrossplayId())
@@ -517,22 +511,6 @@ public class GameService implements IGameService {
       game.setDistributors(distributors);
     }
 
-    if (gameRequest.getDlcIds() != null) {
-      List<DLC> dlcs = validateAndGetEntities(gameRequest.getDlcIds(), dlcRepository, "DLCs");
-
-      // Obtén la lista actual de dlcs del juego
-      List<DLC> currentDlcs = game.getDlcs();
-
-      // Elimina los dlcs que ya no están presentes
-      currentDlcs.removeIf(dlc -> !dlcs.contains(dlc));
-
-      // Añade los nuevos dlcs
-      for (DLC dlc : dlcs) {
-        if (!currentDlcs.contains(dlc)) {
-          currentDlcs.add(dlc);
-        }
-      }
-    }
     if (gameRequest.getCrossplayId() != null) {
       Crossplay existingCrossplay =
           crossplayRepository

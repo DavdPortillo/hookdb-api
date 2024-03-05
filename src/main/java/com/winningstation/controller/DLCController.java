@@ -4,10 +4,9 @@ import com.winningstation.entity.DLC;
 import com.winningstation.services.interfaces.IDLCService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Clase que controla las peticiones relacionadas con los contenidos descargables de los
@@ -16,9 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/dlc")
 public class DLCController {
-
-  /** Logger para la clase. */
-  private static final Logger LOG = LoggerFactory.getLogger(DLCController.class);
 
   /** Servicio para los contenidos descargables. */
   private final IDLCService dlcService;
@@ -39,9 +35,51 @@ public class DLCController {
    * @return El contenido descargable guardado.
    */
   @PostMapping
-  public DLC saveDLC(@RequestBody DLC dlc) {
-    LOG.info("Saving DLC: {}", dlc);
-    dlcService.save(dlc);
-    return dlc;
+  public DLC save(@RequestBody DLC dlc) {
+    return dlcService.save(dlc, dlc.getGame().getId());
+  }
+
+  /**
+   * Elimina un contenido descargable.
+   *
+   * @param dlcId id del contenido descargable a eliminar.
+   */
+  @DeleteMapping("{dlcId}")
+  public void delete(@PathVariable Long dlcId) {
+    dlcService.delete(dlcId);
+  }
+
+  /**
+   * Edita un contenido descargable.
+   *
+   * @param id id del contenido descargable a editar.
+   * @param dlcRequest contenido descargable con los datos actualizados.
+   * @return contenido descargable actualizado.
+   */
+  @PutMapping("{id}")
+  public DLC update(@PathVariable Long id, @RequestBody DLC dlcRequest) {
+    return dlcService.update(id, dlcRequest);
+  }
+
+  /**
+   * Obtiene todos los contenidos descargables de un juego.
+   *
+   * @param dlcId id del contenido descargable a obtener.
+   * @return contenido descargable obtenido.
+   */
+  @GetMapping("game/{dlcId}")
+  public List<DLC> getById(@PathVariable Long dlcId) {
+    return dlcService.getByGameId(dlcId);
+  }
+
+  /**
+   * Encuentra contenidos descargables por su nombre.
+   *
+   * @param name Nombre del contenido descargable a buscar.
+   * @return Lista de contenidos descargables encontrados.
+   */
+  @GetMapping("name/{name}")
+  public List<DLC> findByNameContaining(@PathVariable String name) {
+    return dlcService.findByNameContaining(name);
   }
 }

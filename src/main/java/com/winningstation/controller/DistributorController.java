@@ -4,10 +4,9 @@ import com.winningstation.entity.Distributor;
 import com.winningstation.services.interfaces.IDistributorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Clase que controla las peticiones relacionadas con los distribuidores de los juegos.
@@ -17,9 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/distributor")
 public class DistributorController {
-
-  /** Logger para la clase. */
-  private static final Logger LOG = LoggerFactory.getLogger(DistributorController.class);
 
   /** Servicio para los distribuidores. */
   private final IDistributorService distributorService;
@@ -41,8 +37,33 @@ public class DistributorController {
    */
   @PostMapping
   public Distributor saveDistributor(@RequestBody Distributor distributor) {
-    LOG.info("Saving distributor: {}", distributor);
     distributorService.save(distributor);
     return distributor;
+  }
+
+  /**
+   * Busca un distribuidor por su nombre.
+   *
+   * @param name Nombre del distribuidor a buscar.
+   * @return Distribuidor encontrado.
+   */
+  @GetMapping("/search/{name}")
+  public List<Distributor> findDistributorByName(@PathVariable String name) {
+    return distributorService.findByName(name);
+  }
+
+  @DeleteMapping("/{id}")
+  public void deleteDistributor(@PathVariable Long id) {
+    distributorService.delete(id);
+  }
+
+  @PutMapping("/{id}/name")
+  public String editDistributorName(@PathVariable Long id, @RequestBody String name) {
+    return distributorService.editName(id, name);
+  }
+
+  @GetMapping
+  public List<Distributor> findAllDistributors() {
+    return distributorService.findAll();
   }
 }
