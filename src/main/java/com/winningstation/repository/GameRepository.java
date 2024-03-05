@@ -1,6 +1,5 @@
 package com.winningstation.repository;
 
-import com.winningstation.dto.GamePopularityDTO;
 import com.winningstation.dto.GameSearchDTO;
 import com.winningstation.dto.ScoreAverageResultDTO;
 import com.winningstation.projection.GamePopularityProjection;
@@ -31,9 +30,11 @@ public interface GameRepository extends JpaRepository<Game, Long> {
    * @param pageable Objeto que permite la paginación de los resultados.
    * @return Lista de juegos más populares.
    */
-  @Query("SELECT new com.winningstation.dto.GamePopularityDTO(g.id, g.title, g.cover, g.alt, g.popularity, g.date) FROM Game g WHERE g.date > :date ORDER BY g.popularity DESC")
-  List<GamePopularityDTO> findTop5ByDateAfterAndOrderByPopularityDesc(LocalDate date, Pageable pageable);
-
+  @Query(
+      value =
+          "SELECT g.id AS id, g.title AS title, g.cover AS cover, g.alt AS alt,g.popularity AS popularity ,g.date AS date FROM Game g WHERE g.date > :date ORDER BY g.popularity DESC")
+  List<GamePopularityProjection> findTop5ByDateAfterAndOrderByPopularityDesc(
+      LocalDate date, Pageable pageable);
 
   /**
    * Método que permite obtener los juegos más populares a partir de una fecha dada.
@@ -44,7 +45,7 @@ public interface GameRepository extends JpaRepository<Game, Long> {
   @Query(
       value =
           "SELECT g.id AS id, g.title AS title, g.cover AS cover, g.alt AS alt,g.popularity AS popularity,g.date AS date  FROM Game g WHERE g.date > :date ORDER BY g.popularity DESC")
-  List<GamePopularityDTO> findByDateAfterAndOrderByPopularityDesc(LocalDate date);
+  List<GamePopularityProjection> findByDateAfterAndOrderByPopularityDesc(LocalDate date);
 
   /**
    * Método que permite buscar juegos por título donde tiene más peso la popularidad.

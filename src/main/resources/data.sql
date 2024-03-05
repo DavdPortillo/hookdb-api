@@ -91,7 +91,29 @@ VALUES (20, 10, 2, 1, '1', '2', '1', 'URL de la imagen del Resident Evil 2 Remak
         'Resident Evil 3 Remake', 0, 'URL del trailer del Resident Evil 3 Remake'),
          (20, 10, 2, 6, '11', '12', '1', 'URL de la imagen del Resident Evil 4', 'alt', '2005/01/11',
         'Es la puesta al día del clásico original del género survival horror para Xbox One, PlayStation 4 y PC.',
-        'Resident Evil 4', 0, 'URL del trailer del Resident Evil 4');
+        'Resident Evil 4', 0, 'URL del trailer del Resident Evil 4'),
+       (20, 10, 2, 7, '13', '14', NULL, 'URL de la imagen del Sea Fantasy', 'alt',
+        '2025/02/18',
+        'Un juego de rol de acción para Windows y consolas.',
+        'Sea Fantasy', 0, 'URL del trailer del Sea Fantasy'),
+       (20, 10, 2, 8, '15', '16', NULL, 'URL de la imagen del Death Stranding 2: On the Beach', 'alt', '2025/09/30',
+        'Un juego de acción para PS5 aún sin fecha de lanzamiento.',
+        'Death Stranding 2: On the Beach', 0, 'URL del trailer del Death Stranding 2: On the Beach'),
+       (20, 10, 2, 9, '17', '18', NULL, 'URL de la imagen del Everhood 2', 'alt',
+        '2025/04/01',
+        'Un juego de aventura, rol y ritmo para Windows y Nintendo Switch.',
+        'Everhood 2', 0, 'URL del trailer del Everhood 2'),
+       (20, 10, 2, 9, '17', '18', NULL, 'URL de la imagen del Everhood 2', 'alt',
+        '2025/04/01',
+        'Un juego de aventura, rol y ritmo para Windows y Nintendo Switch.',
+        'Everhood 2', 0, 'URL del trailer del Everhood 2'),
+       (20, 10, 2, 9, '17', '18', NULL, 'URL de la imagen del Everhood 2', 'alt',
+        '2025/04/01',
+        'Un juego de aventura, rol y ritmo para Windows y Nintendo Switch.',
+        'Everhood 2', 0, 'URL del trailer del Everhood 2');
+
+
+
 
 
 
