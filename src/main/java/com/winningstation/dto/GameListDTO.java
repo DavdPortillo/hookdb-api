@@ -11,6 +11,7 @@ public class GameListDTO implements Serializable {
   private Long id;
   private String name;
   private String image;
+  private String alt;
   private int year;
   private ScoreAverageResultDTO rate;
   private List<String> genres;

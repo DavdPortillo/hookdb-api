@@ -112,6 +112,7 @@ public class GamesListService implements IGamesListService {
                 gameResponse.setId(game.getId());
                 gameResponse.setName(game.getTitle());
                 gameResponse.setImage(game.getCover());
+                gameResponse.setAlt(game.getAlt());
                 gameResponse.setYear(game.getDate().getYear());
                 gameResponse.setRate(gameService.calculateAverageScore(game.getId()));
                 gameResponse.setGenres(

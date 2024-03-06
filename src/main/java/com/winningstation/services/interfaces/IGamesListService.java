@@ -3,7 +3,6 @@ package com.winningstation.services.interfaces;
 import com.winningstation.dto.GameListDTO;
 import com.winningstation.dto.ListDTO;
 import com.winningstation.entity.GamesList;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
