@@ -1,11 +1,11 @@
 package com.winningstation.controller;
 
 import com.winningstation.entity.Language;
+import com.winningstation.entity.PlatformProduct;
 import com.winningstation.services.interfaces.ILanguageService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Controlador de la entidad Language.
@@ -38,5 +38,29 @@ public class LanguageController {
   public Language saveLanguage(@RequestBody Language language) {
     languageService.save(language);
     return language;
+  }
+
+  /** Obtener todos los registros */
+  @GetMapping
+  public List<Language> findAll() {
+    return languageService.findAll();
+  }
+
+  /** Obtener por su nombre */
+  @GetMapping("/{name}")
+  public List<Language> findByName(@PathVariable String name) {
+    return languageService.findByName(name);
+  }
+
+  /** Actualizar un producto */
+  @PutMapping("/{id}")
+  public String update(@PathVariable Long id, @RequestBody String request) {
+    return languageService.update(id, request);
+  }
+
+  /** Eliminar un producto */
+  @DeleteMapping("/{id}")
+  public void deleteById(@PathVariable Long id) {
+    languageService.deleteById(id);
   }
 }

@@ -7,7 +7,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/** Clase que controla las peticiones relacionadas con los géneros de los juegos. */
+/**
+ * Clase que controla las peticiones relacionadas con los géneros de los juegos.
+ *
+ * @author David Portillo Hoyos
+ */
 @RestController
 @RequestMapping("/genre")
 public class GenreController {

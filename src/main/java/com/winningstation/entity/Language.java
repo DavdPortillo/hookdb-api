@@ -29,6 +29,7 @@ public class Language implements Serializable {
   @NotNull private String name;
 
   /** La disponibilidad del lenguaje. */
+  @JsonIgnore
   @OneToMany(mappedBy = "language", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<Availability> availability;
 
