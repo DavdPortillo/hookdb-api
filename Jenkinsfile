@@ -131,15 +131,20 @@ EOF
                     sshagent(credentials: [sshCredentials]) {
                         sh '''
                             ssh opc@158.179.219.214 <<EOF
-
-                            # Iniciar sesión en Docker Hub
-                            echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-                            docker compose down
-                            docker compose pull
-                            docker compose up -d
-                            rm docker-compose.yml
+                            cd k8s
+                            cp deployment.template.yaml deployment.yaml
+                            sed -i 's|davdportillo/winning-station:latest|davdportillo/winning-station:${GIT_COMMIT}|' deployment.yaml
+                            kubectl apply -f deployment.yaml
 EOF
+
                     '''
+
+                    //                             # Iniciar sesión en Docker Hub
+                    //                             echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+                    //                             docker compose down
+                    //                             docker compose pull
+                    //                             docker compose up -d
+                    //                             rm docker-compose.yml
                     }
                     }
             }
