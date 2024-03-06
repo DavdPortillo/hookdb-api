@@ -132,7 +132,7 @@ EOF
                     script {
                         String gitCommitFull = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
                         String gitCommit = gitCommitFull.substring(0, 7)
-                        sh '''
+                        sh """
                             ssh opc@158.179.219.214 <<EOF
                             cd k8s
                             cp app-deployment-template.yaml app-deployment.yaml
@@ -140,7 +140,7 @@ EOF
                             kubectl apply -f app-deployment.yaml
 EOF
 
-                    '''
+                    """
 
                     //                             # Iniciar sesión en Docker Hub
                     //                             echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
