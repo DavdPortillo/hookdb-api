@@ -134,7 +134,7 @@ EOF
                             cd k8s
                             cp app-deployment-template.yaml app-deployment.yaml
                             sed -i 's|davdportillo/winning-station:latest|davdportillo/winning-station:'${GIT_COMMIT}'|' app-deployment.yaml
-                            kubectl apply -f deployment.yaml
+                            kubectl apply -f app-deployment.yaml
 EOF
 
                     '''
