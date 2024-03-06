@@ -124,9 +124,6 @@ pipeline {
 //         }
         stage('Deploy to Server') {
             steps {
-                    withCredentials([
-                    usernamePassword(credentialsId: DOCKER_CREDENTIALS, passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')
-                    ]) {
                     sshagent(credentials: [sshCredentials]) {
                     script {
                         String gitCommitFull = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
@@ -147,7 +144,6 @@ EOF
                     //                             docker compose pull
                     //                             docker compose up -d
                     //                             rm docker-compose.yml
-                    }
                     }
                     }
             }
