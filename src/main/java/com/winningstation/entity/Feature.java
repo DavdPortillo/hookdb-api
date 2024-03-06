@@ -4,6 +4,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -27,8 +28,8 @@ public class Feature implements Serializable {
   /** Nombre de las características. */
   @NotNull private String name;
 
+  @JsonIgnore
   @OneToMany(mappedBy = "feature")
-  @JsonManagedReference("feature")
   private List<GameFeature> gameFeatures;
 
   @Serial private static final long serialVersionUID = 1L;
