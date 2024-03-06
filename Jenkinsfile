@@ -137,13 +137,6 @@ pipeline {
 EOF
 
                     """
-
-                    //                             # Iniciar sesión en Docker Hub
-                    //                             echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-                    //                             docker compose down
-                    //                             docker compose pull
-                    //                             docker compose up -d
-                    //                             rm docker-compose.yml
                     }
                     }
             }
