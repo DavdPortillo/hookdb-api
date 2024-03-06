@@ -129,6 +129,9 @@ EOF
                     usernamePassword(credentialsId: DOCKER_CREDENTIALS, passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')
                     ]) {
                     sshagent(credentials: [sshCredentials]) {
+                    script {
+                        String gitCommitFull = sh(script: 'git rev-parse HEAD', returnStdout: true).trim()
+                        String gitCommit = gitCommitFull.substring(0, 7)
                         sh '''
                             ssh opc@158.179.219.214 <<EOF
                             cd k8s
@@ -145,6 +148,7 @@ EOF
                     //                             docker compose pull
                     //                             docker compose up -d
                     //                             rm docker-compose.yml
+                    }
                     }
                     }
             }
