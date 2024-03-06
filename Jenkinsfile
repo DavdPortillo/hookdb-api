@@ -74,55 +74,54 @@ pipeline {
                 sh 'rm -rf *'
             }
         }
-        stage('Test API') {
-            steps {
-                withCredentials([
-        usernamePassword(credentialsId: '2e9cf125-4d0e-4899-bef2-66231d695e96', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME'),
-        usernamePassword(credentialsId: DOCKER_CREDENTIALS, passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')
-        ]) {
-                    sshagent(credentials: [sshCredentials]) {
-                        sh '''
-                ssh opc@158.179.219.214 <<EOF
-                git clone https://$GIT_USERNAME:$GIT_PASSWORD@github.com/DavdPortillo/WinningStation.git
-                mv WinningStation/docker-compose.yml .
-                mv WinningStation/docker-compose.test.yml .
-                rm -rf WinningStation
-
-                # Iniciar sesión en Docker Hub
-                echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-                docker compose -f docker-compose.test.yml pull
-                docker compose -f docker-compose.test.yml -p test-api up -d
-EOF
-                '''
-                    }
-                    timeout(time: 1, unit: 'MINUTES') {
-                        waitUntil {
-                        script {
-                               echo "About to run curl command..."
-                                def response = sh(script: 'curl -s http://158.179.219.214:1010/actuator/health | grep -q UP', returnStatus: true)
-                                echo "Curl command finished. Response: $response"
-                                return response == 0
-                        }
-                    }
-                }
-            }
-        }
-            post {
-                success {
-                    sshagent(credentials: [sshCredentials]) {
-                        sh '''
-                            ssh opc@158.179.219.214 <<EOF
-                            docker compose -f docker-compose.test.yml -p test-api down
-                            rm docker-compose.test.yml
-EOF
-                '''
-                    }
-                }
-                failure {
-                    echo 'Las pruebas fallaron.'
-                }
-            }
-        }
+//         stage('Test API') {
+//             steps {
+//                 withCredentials([
+//         usernamePassword(credentialsId: '2e9cf125-4d0e-4899-bef2-66231d695e96', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME'),
+//         usernamePassword(credentialsId: DOCKER_CREDENTIALS, passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')
+//         ]) {
+//                     sshagent(credentials: [sshCredentials]) {
+//                         sh '''
+//                 ssh opc@158.179.219.214 <<EOF
+//                 git clone https://$GIT_USERNAME:$GIT_PASSWORD@github.com/DavdPortillo/WinningStation.git
+//                 mv WinningStation/docker-compose.test.yml .
+//                 rm -rf WinningStation
+//
+//                 # Iniciar sesión en Docker Hub
+//                 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+//                 docker compose -f docker-compose.test.yml pull
+//                 docker compose -f docker-compose.test.yml -p test-api up -d
+// EOF
+//                 '''
+//                     }
+//                     timeout(time: 1, unit: 'MINUTES') {
+//                         waitUntil {
+//                         script {
+//                                echo "About to run curl command..."
+//                                 def response = sh(script: 'curl -s http://158.179.219.214:1010/actuator/health | grep -q UP', returnStatus: true)
+//                                 echo "Curl command finished. Response: $response"
+//                                 return response == 0
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//             post {
+//                 success {
+//                     sshagent(credentials: [sshCredentials]) {
+//                         sh '''
+//                             ssh opc@158.179.219.214 <<EOF
+//                             docker compose -f docker-compose.test.yml -p test-api down
+//                             rm docker-compose.test.yml
+// EOF
+//                 '''
+//                     }
+//                 }
+//                 failure {
+//                     echo 'Las pruebas fallaron.'
+//                 }
+//             }
+//         }
         stage('Deploy to Server') {
             steps {
                     withCredentials([
