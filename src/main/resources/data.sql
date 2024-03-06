@@ -409,10 +409,10 @@ VALUES ('2023-01-30T18:16:17.633882315', 'Fantasia Puterita', 1),
 
 INSERT INTO `gameslist_game` (`game_id`, `gameslist_id`)
 VALUES (1, 1),
-       (3, 1)
+       (3, 1),
        (6,2),
-       (7,2)
-       (4,3)
+       (7,2),
+       (4,3),
        (1,3);
 
 
@@ -476,3 +476,5 @@ VALUES ('1', NULL, '2', '1');
 INSERT INTO `follow_game` (`is_following`, `game_id`, `user_id`)
 VALUES ('1', '2', '1'),
        ('-1', '1', '1');
+
+
