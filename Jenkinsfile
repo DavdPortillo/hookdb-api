@@ -133,7 +133,7 @@ EOF
                             ssh opc@158.179.219.214 <<EOF
                             cd k8s
                             cp app-deployment-template app-deployment.yaml
-                            sed -i 's/davdportillo\/winning-station:latest/davdportillo\/winning-station:${GIT_COMMIT}|' app-deployment.yaml
+                            sed -i 's/davdportillo\/winning-station:latest/davdportillo\/winning-station:${GIT_COMMIT}/' app-deployment.yaml
                             kubectl apply -f deployment.yaml
 EOF
 
