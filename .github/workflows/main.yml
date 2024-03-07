@@ -10,4 +10,4 @@ jobs:
           host: 158.179.219.214
           username: opc
           key: ${{ secrets.ORACLE_SERVER }}
-          script: echo "Conexión exitosa"
+          script: echo "Conexión exitosaa"
