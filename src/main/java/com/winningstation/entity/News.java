@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -50,6 +51,7 @@ public class News implements Serializable {
 
   /** Comentarios de la noticia. */
   @OneToMany(mappedBy = "news")
+  @JsonIgnore
   private List<NewsComment> newsComment;
 
   @NotNull
@@ -59,7 +61,9 @@ public class News implements Serializable {
 
   /** Noticias del juego. */
   @ManyToOne
-  @JoinColumn(name = "game_id",foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
+  @JoinColumn(
+      name = "game_id",
+      foreignKey = @ForeignKey(name = "none", value = ConstraintMode.NO_CONSTRAINT))
   @JsonBackReference("game-news")
   @ToString.Exclude
   private Game game;

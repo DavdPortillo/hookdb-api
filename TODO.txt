@@ -1,3 +1,4 @@
+mirar como se hace en tiempo real lo de las puntaciones de los juegos y los likes dislike
 Review, ReviewVote, FollowGame, Platform, NewsComment, News
 REPASAR TODA LA BD EN PHPMYADMIN PAR NO ENCONTRARME IDS QUE NO EXISTEN
 cambiar url de controladores por una mas euser friendly

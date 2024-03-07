@@ -54,11 +54,15 @@ public class FollowGameService implements IFollowGameService {
 
   @Override
   public FollowGame followOrIgnoreGame(Long userId, Long gameId, Integer action) {
-    LOGGER.info("User {} is {} game {}", userId, action == 1 ? "following" : action == -1 ? "ignoring" : "neither following nor ignoring", gameId);
+    LOGGER.info(
+        "User {} is {} game {}",
+        userId,
+        action == 1 ? "following" : action == -1 ? "ignoring" : "neither following nor ignoring",
+        gameId);
     User user =
-            userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+        userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
     Game game =
-            gameRepository.findById(gameId).orElseThrow(() -> new RuntimeException("Game not found"));
+        gameRepository.findById(gameId).orElseThrow(() -> new RuntimeException("Game not found"));
 
     if (action < -1 || action > 1) {
       throw new RuntimeException("Invalid action. Must be -1, 0 or 1.");
@@ -81,7 +85,6 @@ public class FollowGameService implements IFollowGameService {
 
     return followGame;
   }
-
 
   @Override
   public List<FollowGame> getFollowedOrIgnoredGames(Long userId) {

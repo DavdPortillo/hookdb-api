@@ -148,6 +148,7 @@ public class Game implements Serializable {
   /** Usuarios que siguen o ignoran el juego. */
   @OneToMany(mappedBy = "game", cascade = CascadeType.ALL)
   @JsonManagedReference("game-follow-user")
+  @JsonIgnore
   private List<FollowGame> followGames;
 
   /** Tiene Cross play. */
