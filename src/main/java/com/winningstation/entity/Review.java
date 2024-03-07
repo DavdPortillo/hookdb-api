@@ -1,11 +1,18 @@
 package com.winningstation.entity;
 
+import java.io.IOException;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -20,6 +27,7 @@ import org.hibernate.annotations.CreationTimestamp;
 @Data
 @Entity
 @Table(name = "review")
+@JsonSerialize(using = ReviewSerializer.class)
 public class Review implements Serializable {
 
   /** Id único del comentario. Generado automáticamente. */
@@ -42,10 +50,10 @@ public class Review implements Serializable {
 
   /** Like del comentario. */
   @Column(name = "`like`")
-  private Integer like;
+  private Integer like = 0;
 
   /** Dislike del comentario. */
-  private Integer dislike;
+  private Integer dislike = 0;
 
   /** Juego al que pertenece el comentario. No puede ser nulo. */
   @ManyToOne
@@ -60,8 +68,53 @@ public class Review implements Serializable {
   @JoinColumn(name = "user_id")
   private User user;
 
+  @JsonIgnore
   @OneToMany(mappedBy = "review", cascade = CascadeType.ALL, orphanRemoval = true)
   private List<ReviewVote> votes;
 
   @Serial private static final long serialVersionUID = 1L;
+}
+
+class ReviewSerializer extends StdSerializer<Review> {
+
+  public ReviewSerializer() {
+    this(null);
+  }
+
+  public ReviewSerializer(Class<Review> t) {
+    super(t);
+  }
+
+  @Override
+  public void serialize(Review review, JsonGenerator jgen, SerializerProvider provider)
+      throws IOException {
+
+    jgen.writeStartObject();
+    jgen.writeNumberField("id", review.getId());
+    jgen.writeStringField("title", review.getTitle());
+    jgen.writeStringField("content", review.getContent());
+    jgen.writeStringField("date", review.getDate().toString());
+
+    // Usuario
+    User user = review.getUser();
+    jgen.writeObjectFieldStart("user");
+    jgen.writeStringField("image", user.getImage());
+    jgen.writeStringField("alt", user.getAlt());
+    jgen.writeStringField("username", user.getUsername());
+    jgen.writeNumberField("gameScoresCount", user.getGameScores().size());
+    jgen.writeNumberField("reviewsCount", user.getReviews().size());
+    jgen.writeEndObject();
+
+    // Buscar la puntuación del juego
+    GameScore gameScore =
+        user.getGameScores().stream()
+            .filter(score -> score.getGame().equals(review.getGame()))
+            .findFirst()
+            .orElse(null);
+    if (gameScore != null) {
+      jgen.writeNumberField("gameScore", gameScore.getScore());
+    }
+
+    jgen.writeEndObject(); // Fin del objeto 'user'
+  }
 }

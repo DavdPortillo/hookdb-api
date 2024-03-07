@@ -29,6 +29,6 @@ public class ReviewVoteController {
   @PostMapping("/user/{userId}/review/{reviewId}/vote/{vote}")
   public ReviewVote voteReview(
       @PathVariable Long userId, @PathVariable Long reviewId, @PathVariable Integer vote) {
-    return reviewVoteService.voteReview(reviewId, userId, vote);
+    return reviewVoteService.voteReview(userId, reviewId, vote);
   }
 }

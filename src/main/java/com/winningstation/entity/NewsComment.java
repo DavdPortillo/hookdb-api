@@ -1,10 +1,15 @@
 package com.winningstation.entity;
 
+import java.io.IOException;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -15,6 +20,7 @@ import org.hibernate.annotations.CreationTimestamp;
 @Data
 @Entity
 @Table(name = "news_comment")
+@JsonSerialize(using = NewsCommentSerializer.class)
 public class NewsComment implements Serializable {
 
   /** Id único del comentario. Generado automáticamente. */
@@ -43,4 +49,35 @@ public class NewsComment implements Serializable {
   private User user;
 
   @Serial private static final long serialVersionUID = 1L;
+}
+
+class NewsCommentSerializer extends StdSerializer<NewsComment> {
+
+  public NewsCommentSerializer() {
+    this(null);
+  }
+
+  public NewsCommentSerializer(Class<NewsComment> t) {
+    super(t);
+  }
+
+  @Override
+  public void serialize(NewsComment newsComment, JsonGenerator jgen, SerializerProvider provider)
+      throws IOException {
+
+    jgen.writeStartObject();
+    jgen.writeNumberField("id", newsComment.getId());
+    jgen.writeStringField("content", newsComment.getContent());
+    jgen.writeStringField("date", newsComment.getDate().toString());
+
+    // Usuario
+    User user = newsComment.getUser();
+    jgen.writeObjectFieldStart("user");
+    jgen.writeStringField("image", user.getImage());
+    jgen.writeStringField("alt", user.getAlt());
+    jgen.writeStringField("username", user.getUsername());
+    jgen.writeEndObject();
+
+    jgen.writeEndObject();
+  }
 }

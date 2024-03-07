@@ -61,21 +61,28 @@ public class ReviewService implements IReviewService {
     LOG.info("Guardando crítica: {}", review);
 
     User user =
-        userRepository
-            .findById(userId)
-            .orElseThrow(
-                () -> new RuntimeException("No se encontró el usuario con el id: " + userId));
+            userRepository
+                    .findById(userId)
+                    .orElseThrow(
+                            () -> new RuntimeException("No se encontró el usuario con el id: " + userId));
     review.setUser(user);
 
     Game game =
-        gameRepository
-            .findById(gameId)
-            .orElseThrow(
-                () -> new RuntimeException("No se encontró el juego con el id: " + gameId));
+            gameRepository
+                    .findById(gameId)
+                    .orElseThrow(
+                            () -> new RuntimeException("No se encontró el juego con el id: " + gameId));
+    if (review.getLike() == null) {
+      review.setLike(0);
+    }
+    if (review.getDislike() == null) {
+      review.setDislike(0);
+    }
     review.setGame(game);
 
     return reviewRepository.save(review);
   }
+
 
   /**
    * Encuentra todas las críticas de un juego.
