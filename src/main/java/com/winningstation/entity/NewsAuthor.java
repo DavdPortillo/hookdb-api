@@ -18,7 +18,7 @@ import lombok.Data;
 @Table(name = "news_author")
 public class NewsAuthor implements Serializable {
 
-  /** ID único del autor. Generado automáticamente. */
+  /** Id único del autor. Generado automáticamente. */
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;

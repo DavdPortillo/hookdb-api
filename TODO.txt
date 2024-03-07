@@ -1,4 +1,4 @@
-Genre, NewsAuthor, GameScore, Review, ReviewVote, FollowGame, Platform, NewsComment, News
+NewsAuthor, GameScore, Review, ReviewVote, FollowGame, Platform, NewsComment, News
 REPASAR TODA LA BD EN PHPMYADMIN PAR NO ENCONTRARME IDS QUE NO EXISTEN
 cambiar url de controladores por una mas euser friendly
 mirar los logs para que no salgan dos veces controller.GameController : Finding all games services.GameService : Finding all games
