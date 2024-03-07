@@ -1,11 +1,13 @@
-name: Hello World Workflow
-
+name: SSH Connection Test
 on: [push]
-
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Hello world action step
-      run: echo Hello, world!
+      - name: Test SSH connection
+        uses: appleboy/ssh-action@master
+        with:
+          host: 158.179.219.214
+          username: opc
+          key: ${{ secrets.ORACLE_SERVER }}
+          script: echo "Conexión exitosa"
