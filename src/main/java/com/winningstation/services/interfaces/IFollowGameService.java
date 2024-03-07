@@ -26,22 +26,30 @@ public interface IFollowGameService {
    * @param userId Id del usuario.
    * @return Lista de juegos seguidos por el usuario.
    */
-    List<FollowGame> getFollowedOrIgnoredGames(Long userId);
+  List<FollowGame> getFollowedOrIgnoredGames(Long userId);
 
-    /**
-     * Método que permite obtener los juegos seguidos por un usuario.
-     *
-     * @param userId Id del usuario.
-     * @return Lista de juegos seguidos por el usuario.
-     */
-    List<FollowGame> getFollowedGames(Long userId);
+  /**
+   * Método que permite obtener los juegos seguidos por un usuario.
+   *
+   * @param userId Id del usuario.
+   * @return Lista de juegos seguidos por el usuario.
+   */
+  List<FollowGame> getFollowedGames(Long userId);
 
-    /**
-     * Método que permite obtener los juegos ignorados por un usuario.
-     *
-     * @param userId Id del usuario.
-     * @return Lista de juegos ignorados por el usuario.
-     */
-    List<FollowGame> getIgnoredGames(Long userId);
+  /**
+   * Método que permite obtener los juegos ignorados por un usuario.
+   *
+   * @param userId Id del usuario.
+   * @return Lista de juegos ignorados por el usuario.
+   */
+  List<FollowGame> getIgnoredGames(Long userId);
 
+  /**
+   * Método que permite obtener el seguimiento de un juego por un usuario.
+   *
+   * @param userId Id del usuario.
+   * @param gameId Id del juego.
+   * @return Objeto con la información del seguimiento.
+   */
+  Integer getFollowGame(Long userId, Long gameId);
 }

@@ -53,4 +53,11 @@ public class FollowGameController {
     List<FollowGame> followedGames = followGameService.getFollowedGames(userId);
     return new ResponseEntity<>(followedGames, HttpStatus.OK);
   }
+
+  @GetMapping("userId/{userId}/game/{gameId}")
+  public ResponseEntity<Integer> getFollowGame(
+      @PathVariable Long userId, @PathVariable Long gameId) {
+    Integer followGame = followGameService.getFollowGame(userId, gameId);
+    return new ResponseEntity<>(followGame, HttpStatus.OK);
+  }
 }

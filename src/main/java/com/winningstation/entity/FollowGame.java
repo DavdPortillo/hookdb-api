@@ -36,7 +36,7 @@ public class FollowGame implements Serializable {
   private Long id;
 
   /** Seguimiento del usuario. */
-  private Integer isFollowing;
+  private Integer isFollowing = 0;
 
   /** Juego al que pertenece el seguimiento. No puede ser nulo. */
   @NotNull

@@ -109,4 +109,24 @@ public class FollowGameService implements IFollowGameService {
         .filter(followGame -> followGame.getIsFollowing() == -1)
         .collect(Collectors.toList());
   }
+
+  @Override
+  public Integer getFollowGame(Long userId, Long gameId) {
+    LOGGER.info("Getting follow game for user {} and game {}", userId, gameId);
+    User user =
+        userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
+    if (user == null) {
+      throw new RuntimeException("User not found");
+    }
+    Game game =
+        gameRepository.findById(gameId).orElseThrow(() -> new RuntimeException("Game not found"));
+    if (game == null) {
+      throw new RuntimeException("Game not found");
+    }
+    FollowGame followGame = followGameRepository.findByUserAndGame(user, game);
+    if (followGame == null) {
+      return 0; // Devuelve 0 si no se encuentra ningún registro de seguimiento
+    }
+    return followGame.getIsFollowing();
+  }
 }
