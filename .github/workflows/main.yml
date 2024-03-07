@@ -1,4 +1,4 @@
-name: SSH Connection Test
+name: SSH Connection Test and Checkout
 on: [push]
 jobs:
   test:
@@ -10,4 +10,6 @@ jobs:
           host: 158.179.219.214
           username: opc
           key: ${{ secrets.ORACLE_SERVER }}
-          script: echo "Conexión exitosaa"
+          script: echo "Conexión exitosa"
+      - name: Checkout
+        uses: actions/checkout@v2
