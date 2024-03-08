@@ -5,6 +5,8 @@ import com.winningstation.dto.GameSearchDTO;
 import com.winningstation.dto.ScoreAverageResultDTO;
 import com.winningstation.projection.GamePopularityProjection;
 import com.winningstation.request.GameRequest;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +24,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/game")
+@Tag(name = "Game Controller", description = "Controlador para gestionar los juegos")
 public class GameController {
 
   /** Servicio para los juegos. */
@@ -44,6 +47,10 @@ public class GameController {
    */
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
+  @Operation(
+      summary = "Crea un nuevo juego",
+      description =
+          "Crea un nuevo juego basado en la petición proporcionada y devuelve el juego creado")
   public GameAndSagaDTO createGame(@RequestBody GameRequest gameRequest) {
     Game game = gameRequest.getGame();
     if (game == null) {
@@ -58,17 +65,23 @@ public class GameController {
    * @return Lista de juegos.
    */
   @GetMapping
+  @Operation(
+      summary = "Obtiene todos los juegos",
+      description = "Devuelve una lista de todos los juegos")
   public Iterable<Game> findAll() {
     return gameService.findAll();
   }
 
   /**
-   * Encuentra un juego por su id.
+   * Encuentra un juego por su ID.
    *
-   * @param id Id del juego a buscar.
+   * @param id Id del juego.
    * @return El juego encontrado.
    */
   @GetMapping("/{id}")
+  @Operation(
+      summary = "Obtiene un juego por su ID",
+      description = "Devuelve un juego basado en su ID")
   public ResponseEntity<GameAndSagaDTO> getGame(@PathVariable Long id) {
     GameAndSagaDTO game = gameService.findById(id);
     return ResponseEntity.ok(game);
@@ -81,6 +94,9 @@ public class GameController {
    * @return El promedio de puntuación del juego.
    */
   @GetMapping("/average-score/{gameId}")
+  @Operation(
+      summary = "Obtiene el promedio de puntuación de un juego",
+      description = "Devuelve el promedio de puntuación de un juego basado en su ID")
   public ScoreAverageResultDTO getAverageScore(@PathVariable Long gameId) {
     return gameService.calculateAverageScore(gameId);
   }
@@ -92,6 +108,9 @@ public class GameController {
    * @return El promedio de los últimos 100 puntajes del juego.
    */
   @GetMapping("/average-score-last-100/id-game/{gameId}")
+  @Operation(
+      summary = "Obtiene el promedio de los últimos 100 puntajes de un juego",
+      description = "Devuelve el promedio de los últimos 100 puntajes de un juego basado en su ID")
   public List<ScoreAverageResultDTO> getAverageScoreOfLast100(@PathVariable Long gameId) {
     return gameService.calculateAverageScoreOfLast100(gameId);
   }
@@ -102,6 +121,9 @@ public class GameController {
    * @return Lista de los 5 juegos más populares
    */
   @GetMapping("/top-5-popular")
+  @Operation(
+      summary = "Obtiene los 5 juegos más populares",
+      description = "Devuelve una lista de los 5 juegos más populares")
   public List<GamePopularityProjection> getTop5Popular() {
     return gameService.findTop5ByDateAfterAndOrderByPopularityDesc();
   }
@@ -112,6 +134,9 @@ public class GameController {
    * @return Lista de los juegos más populares
    */
   @GetMapping("/popular")
+  @Operation(
+      summary = "Obtiene los juegos más populares",
+      description = "Devuelve una lista de los juegos más populares")
   public List<GamePopularityProjection> getPopular() {
     return gameService.findByDateAfterAndOrderByPopularityDesc();
   }
@@ -122,6 +147,9 @@ public class GameController {
    * @return Lista de los juegos más populares
    */
   @GetMapping("/name/{keyword}")
+  @Operation(
+      summary = "Busca juegos por palabra clave",
+      description = "Devuelve una lista de juegos que coinciden con la palabra clave proporcionada")
   public ResponseEntity<List<GameSearchDTO>> searchGames(@PathVariable String keyword) {
     List<GameSearchDTO> games = gameService.searchGames(keyword);
     return new ResponseEntity<>(games, HttpStatus.OK);
@@ -132,7 +160,11 @@ public class GameController {
    *
    * @return Lista de los juegos más populares
    */
-  @GetMapping("/search-top-5/{keyword}")
+  @GetMapping("/search-five-suggestions/{keyword}")
+  @Operation(
+      summary = "Busca los 5 juegos más populares por palabra clave",
+      description =
+          "Devuelve una lista de los 5 juegos más populares que coinciden con la palabra clave proporcionada")
   public ResponseEntity<List<GameSearchDTO>> searchTop5Games(@PathVariable String keyword) {
     List<GameSearchDTO> games = gameService.searchTop5Games(keyword);
     return new ResponseEntity<>(games, HttpStatus.OK);
@@ -145,6 +177,10 @@ public class GameController {
    * @return El juego actualizado.
    */
   @PutMapping("/{id}")
+  @Operation(
+      summary = "Actualiza un juego",
+      description =
+          "Actualiza un juego basado en la petición proporcionada y devuelve el juego actualizado")
   public GameAndSagaDTO updateGame(@PathVariable Long id, @RequestBody GameRequest gameRequest) {
     Game game = gameRequest.getGame();
     if (game == null) {
@@ -154,8 +190,8 @@ public class GameController {
   }
 
   @DeleteMapping("/{id}")
+  @Operation(summary = "Elimina un juego", description = "Elimina un juego basado en su ID")
   public void deleteGame(@PathVariable Long id) {
     gameService.delete(id);
   }
-
 }

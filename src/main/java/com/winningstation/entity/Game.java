@@ -3,6 +3,7 @@ package com.winningstation.entity;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -127,7 +128,7 @@ public class Game implements Serializable {
   /** Críticas hechas por los usuarios. */
   @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
   @JsonIgnore
-  private List<Review> reviews;
+  private List<Review> reviews = new ArrayList<>();
 
   /** Listas de juegos. */
   @ManyToMany(mappedBy = "games")
@@ -157,6 +158,11 @@ public class Game implements Serializable {
   @JoinColumn(name = "crossplay_id")
   private Crossplay crossplay;
 
+
+
+  public int getReviewCount() {
+    return reviews.size();
+  }
 
 
   @Serial private static final long serialVersionUID = 1L;

@@ -1,27 +1,34 @@
-cambiar url de controladores por una mas euser friendly\
+Afinar metodos que se trae o deja de traer
+
+EN LA PARTE DE COMENTARIOS DE NOTICIA COMO VA A SER??  preguntar si se ven las noticias en la ficha juego apra traerme o no traerme las noticas
+TRAER COMENTARIO DE NOTICIAS.SIZE EN EL JUEGO?
+
+SEGURIDAD!!!
+SWAGGER
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 MIRAR CACHE
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 Decir a sergio que el usuario puede tener un RANGO visible cuando escribe las reviews y que dependiendo de los mensajes escritos se le va subiendo el rango
 es mas como un titulo que se le da al usuario por su actividad en la pagina.
 Tambien se pueden poner logros por ejemplo si escribe 10 reviews se le da un logro

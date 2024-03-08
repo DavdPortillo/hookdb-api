@@ -2,8 +2,11 @@ package com.winningstation.controller;
 
 import com.winningstation.entity.Distributor;
 import com.winningstation.services.interfaces.IDistributorService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +18,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/distributor")
+@Tag(name = "Distributor Controller", description = "Operaciones para distribuidores")
 public class DistributorController {
 
   /** Servicio para los distribuidores. */
@@ -36,6 +40,11 @@ public class DistributorController {
    * @return El distribuidor guardado.
    */
   @PostMapping
+  @ResponseStatus(HttpStatus.CREATED)
+  @Operation(
+      summary = "Guarda un nuevo distribuidor",
+      description =
+          "Guarda un nuevo distribuidor basado en la petición proporcionada y devuelve el distribuidor guardado")
   public Distributor saveDistributor(@RequestBody Distributor distributor) {
     distributorService.save(distributor);
     return distributor;
@@ -48,21 +57,35 @@ public class DistributorController {
    * @return Distribuidor encontrado.
    */
   @GetMapping("/search/{name}")
+  @Operation(
+      summary = "Busca un distribuidor por su nombre",
+      description =
+          "Busca un distribuidor basado en el nombre proporcionado y devuelve el distribuidor encontrado")
   public List<Distributor> findDistributorByName(@PathVariable String name) {
     return distributorService.findByName(name);
   }
 
   @DeleteMapping("/{id}")
+  @Operation(
+      summary = "Elimina un distribuidor",
+      description = "Elimina un distribuidor basado en el identificador proporcionado")
   public void deleteDistributor(@PathVariable Long id) {
     distributorService.delete(id);
   }
 
   @PutMapping("/{id}/name")
+  @Operation(
+      summary = "Edita el nombre de un distribuidor",
+      description =
+          "Edita el nombre de un distribuidor basado en el identificador y el nombre proporcionados y devuelve el nombre editado")
   public String editDistributorName(@PathVariable Long id, @RequestBody String name) {
     return distributorService.editName(id, name);
   }
 
   @GetMapping
+  @Operation(
+      summary = "Obtiene todos los distribuidores",
+      description = "Devuelve una lista de todos los distribuidores")
   public List<Distributor> findAllDistributors() {
     return distributorService.findAll();
   }
