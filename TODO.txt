@@ -1,6 +1,4 @@
-cambiar url de controladores por una mas euser friendly
-REPASAR TODA LA BD EN PHPMYADMIN PAR NO ENCONTRARME IDS QUE NO EXISTEN
-mirar los logs para que no salgan dos veces controller.GameController : Finding all games services.GameService : Finding all games
+cambiar url de controladores por una mas euser friendly\
 MIRAR CACHE
 
 

@@ -49,7 +49,7 @@ public class NewsController {
    * @param news Noticia a crear.
    * @return La noticia creada.
    */
-  @PostMapping("/{authorId}")
+  @PostMapping("author/{authorId}")
   public News save(
       @RequestBody News news,
       @PathVariable Long authorId,

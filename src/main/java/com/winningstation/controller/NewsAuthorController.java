@@ -18,8 +18,6 @@ import java.util.List;
 @RequestMapping("/news-author")
 public class NewsAuthorController {
 
-  /** Logger para la clase */
-  private static final Logger LOGGER = LoggerFactory.getLogger(NewsAuthorController.class);
 
   /** Servicio para los autores de noticias. */
   private final INewsAuthorService newsAuthorService;
@@ -40,7 +38,6 @@ public class NewsAuthorController {
    */
   @PostMapping
   public NewsAuthor save(@RequestBody NewsAuthor newsAuthor) {
-    LOGGER.info("Guardando autor de noticias");
     return newsAuthorService.save(newsAuthor);
   }
 

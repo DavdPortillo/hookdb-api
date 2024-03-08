@@ -121,7 +121,7 @@ public class GameController {
    *
    * @return Lista de los juegos más populares
    */
-  @GetMapping("/search/{keyword}")
+  @GetMapping("/name/{keyword}")
   public ResponseEntity<List<GameSearchDTO>> searchGames(@PathVariable String keyword) {
     List<GameSearchDTO> games = gameService.searchGames(keyword);
     return new ResponseEntity<>(games, HttpStatus.OK);

@@ -56,7 +56,7 @@ public class DeveloperController {
    * @param name Nombre del desarrollador a buscar.
    * @return El desarrollador encontrado.
    */
-  @GetMapping("/search/{name}")
+  @GetMapping("/name/{name}")
   public List<Developer> findDeveloperByName(@PathVariable String name) {
     return developerService.findByNameContaining(name);
   }
