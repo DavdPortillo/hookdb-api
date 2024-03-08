@@ -23,7 +23,7 @@ public class CorsConfig implements WebMvcConfigurer {
         // Permite solicitudes CORS a todas las rutas (/**) desde el origen http://localhost:5173
         // y permite los métodos GET, POST, PUT y DELETE.
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:5173/","http://158.179.219.214","http://158.179.219.214:32070")
+                .allowedOrigins("http://localhost:5173/","http://localhost:3000/","http://158.179.219.214","http://158.179.219.214:32070")
                 .allowedMethods("GET", "POST", "PUT", "DELETE");
     }
 }

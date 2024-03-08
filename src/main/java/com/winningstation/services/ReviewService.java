@@ -108,4 +108,17 @@ public class ReviewService implements IReviewService {
     votes.put("dislikes", review.getDislike());
     return votes;
   }
+
+  @Override
+    public Iterable<Review> findAllByUserId(Long userId) {
+        LOG.info("Buscando críticas del usuario con id: {}", userId);
+        return reviewRepository.findAllByUserId(userId);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        LOG.info("Eliminando crítica con id: {}", id);
+        reviewRepository.deleteById(id);
+    }
+
 }

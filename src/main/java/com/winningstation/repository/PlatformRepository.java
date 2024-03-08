@@ -14,6 +14,7 @@ import java.util.List;
 @Repository
 public interface PlatformRepository extends JpaRepository<Platform, Long> {
 
-    List<Platform> findAllById(Iterable<Long> ids);
-}
+  List<Platform> findAllById(Iterable<Long> ids);
 
+  List<Platform> findByNameContaining(String name);
+}

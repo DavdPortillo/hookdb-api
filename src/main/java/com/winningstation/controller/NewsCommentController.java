@@ -6,6 +6,8 @@ import com.winningstation.services.interfaces.INewsCommentService;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * Controlador para news comments.
  *
@@ -31,5 +33,23 @@ public class NewsCommentController {
   public NewsComment createComment(
       @PathVariable Long newsId, @PathVariable Long userId, @RequestBody NewsComment newsComment) {
     return newsCommentService.save(newsComment, newsId, userId);
+  }
+
+  /** Obtener todos los registros */
+  @GetMapping
+  public List<NewsComment> findAll() {
+    return newsCommentService.findAll();
+  }
+
+  /** Borra un comentario */
+  @DeleteMapping("/{id}")
+  public void delete(@PathVariable Long id) {
+    newsCommentService.delete(id);
+  }
+
+  /** Actualizar un comentario */
+  @PutMapping("/{id}")
+  public String update(@PathVariable Long id, @RequestBody String newsComment) {
+    return newsCommentService.update(id, newsComment);
   }
 }

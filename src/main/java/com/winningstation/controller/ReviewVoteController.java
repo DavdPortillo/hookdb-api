@@ -31,4 +31,9 @@ public class ReviewVoteController {
       @PathVariable Long userId, @PathVariable Long reviewId, @PathVariable Integer vote) {
     return reviewVoteService.voteReview(userId, reviewId, vote);
   }
+
+  @DeleteMapping("/user/{userId}/review/{reviewId}")
+  public void deleteVote(@PathVariable Long userId, @PathVariable Long reviewId) {
+    reviewVoteService.deleteVote(userId, reviewId);
+  }
 }

@@ -2,10 +2,9 @@ package com.winningstation.controller;
 
 import com.winningstation.entity.Platform;
 import com.winningstation.services.interfaces.IPlatformService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Controlador de la entidad Platform.
@@ -38,5 +37,29 @@ public class PlatformController {
   public Platform savePlatform(@RequestBody Platform platform) {
     platformService.save(platform);
     return platform;
+  }
+
+  /** Obtener todos los registros */
+  @GetMapping
+  public List<Platform> findAll() {
+    return platformService.findAll();
+  }
+
+  /** Obtener por su nombre */
+  @GetMapping("/{name}")
+  public List<Platform> findByName(@PathVariable String name) {
+    return platformService.findByName(name);
+  }
+
+  /** Actualizar un producto */
+  @PutMapping("/{id}")
+  public String update(@PathVariable Long id, @RequestBody String request) {
+    return platformService.update(id, request);
+  }
+
+  /** Eliminar un producto */
+  @DeleteMapping("/{id}")
+  public void deleteById(@PathVariable Long id) {
+    platformService.deleteById(id);
   }
 }

@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ReviewRepository extends JpaRepository<Review, Long> {
   Iterable<Review> findAllByGameId(Long gameId);
+    Iterable<Review> findAllByUserId(Long userId);
 }

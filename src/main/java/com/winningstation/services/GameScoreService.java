@@ -7,6 +7,8 @@ import com.winningstation.repository.GameRepository;
 import com.winningstation.repository.GameScoreRepository;
 import com.winningstation.repository.UserRepository;
 import com.winningstation.services.interfaces.IGameScoreService;
+import com.winningstation.socket.AvgScore100SocketHandler;
+import com.winningstation.socket.AvgScoreSocketHandler;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +35,10 @@ public class GameScoreService implements IGameScoreService {
   /** Repositorio de juego. */
   private final GameRepository gameRepository;
 
+  private final AvgScoreSocketHandler avgScoreSocketHandler;
+
+  private final AvgScore100SocketHandler avgScore100SocketHandler;
+
   /**
    * Constructor de la clase.
    *
@@ -41,10 +47,14 @@ public class GameScoreService implements IGameScoreService {
   public GameScoreService(
       GameScoreRepository gameScoreRepository,
       UserRepository userRepository,
-      GameRepository gameRepository) {
+      GameRepository gameRepository,
+      AvgScoreSocketHandler avgScoreSocketHandler,
+      AvgScore100SocketHandler avgScore100SocketHandler) {
     this.gameScoreRepository = gameScoreRepository;
     this.userRepository = userRepository;
     this.gameRepository = gameRepository;
+    this.avgScoreSocketHandler = avgScoreSocketHandler;
+    this.avgScore100SocketHandler = avgScore100SocketHandler;
   }
 
   public GameScore createOrUpdateGameScore(Long userId, Long gameId, int score) {
@@ -68,6 +78,8 @@ public class GameScoreService implements IGameScoreService {
     }
     gameScore.setScore(score);
 
+    avgScoreSocketHandler.sendScoreToGameSessions(gameId);
+    avgScore100SocketHandler.sendLast100ScoresUpdate(gameId);
     return gameScoreRepository.save(gameScore);
   }
 }

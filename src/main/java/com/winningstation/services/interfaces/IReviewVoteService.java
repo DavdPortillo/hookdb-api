@@ -18,4 +18,12 @@ public interface IReviewVoteService {
    * @return Voto de la crítica.
    */
   ReviewVote voteReview(Long reviewId, Long userId, Integer vote);
+
+  /**
+   * Borra el voto de una crítica.
+   *
+   * @param reviewId Id de la crítica.
+   * @param userId Id del usuario.
+   */
+  void deleteVote(Long reviewId, Long userId);
 }

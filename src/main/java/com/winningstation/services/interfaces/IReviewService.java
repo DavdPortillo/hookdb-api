@@ -30,8 +30,23 @@ public interface IReviewService {
   /**
    * Encuentra los votos de una crítica.
    *
-   * @param reviewId
+   * @param reviewId Id de la crítica.
    * @return Mapa con los votos de la crítica.
    */
   Map<String, Integer> getReviewVotes(Long reviewId);
+
+  /**
+   * Obtiene por su autor.
+   *
+   * @param userId Id del usuario.
+   * @return Lista de críticas del usuario.
+   */
+  Iterable<Review> findAllByUserId(Long userId);
+
+  /**
+   * Método que permite eliminar por su id.
+   *
+   * @param id Id a eliminar.
+   */
+  void deleteById(Long id);
 }

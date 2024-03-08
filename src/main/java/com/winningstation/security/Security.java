@@ -61,7 +61,11 @@ public class Security {
 		}));
 		http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
-		http.authorizeHttpRequests(auth -> auth.anyRequest()
+		http.authorizeHttpRequests(auth ->
+
+				auth.anyRequest()
+
+
 
 				.permitAll());
 

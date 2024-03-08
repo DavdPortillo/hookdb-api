@@ -94,8 +94,29 @@ public class NewsController {
   }
 
   @GetMapping("/main")
-    public List<NewsDTO> getLatestNewsWithSelectedFields() {
-        return newsService.getLatestNewsWithSelectedFields();
-    }
+  public List<NewsDTO> getLatestNewsWithSelectedFields() {
+    return newsService.getLatestNewsWithSelectedFields();
+  }
 
+  /**
+   * Borra una noticia.
+   *
+   * @param id ID de la noticia a borrar.
+   */
+  @DeleteMapping("/{id}")
+  public void delete(@PathVariable Long id) {
+    newsService.delete(id);
+  }
+
+  /**
+   * Edita una noticia.
+   *
+   * @param news Noticia a editar.
+   * @param id ID de la noticia a editar.
+   * @return La noticia editada.
+   */
+  @PutMapping("/{id}")
+  public News update(@PathVariable Long id, @RequestBody News news) {
+    return newsService.editNews(id, news);
+  }
 }

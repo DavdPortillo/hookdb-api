@@ -57,4 +57,25 @@ public class ReviewController {
   public Map<String, Integer> getReviewVotes(@PathVariable Long reviewId) {
     return reviewService.getReviewVotes(reviewId);
   }
+
+    /**
+     * Obtiene todas las críticas de un usuario.
+     *
+     * @param userId Id del usuario.
+     * @return Lista de críticas del usuario.
+     */
+    @GetMapping("/user/{userId}")
+    public Iterable<Review> getReviewsByUserId(@PathVariable Long userId) {
+        return reviewService.findAllByUserId(userId);
+    }
+
+    /**
+     * Elimina una crítica por su id.
+     *
+     * @param id Id de la crítica a eliminar.
+     */
+    @DeleteMapping("/{id}")
+    public void deleteReviewById(@PathVariable Long id) {
+        reviewService.deleteById(id);
+    }
 }

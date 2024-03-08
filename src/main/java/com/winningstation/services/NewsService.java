@@ -84,4 +84,27 @@ public class NewsService implements INewsService {
     Pageable topFifteen = PageRequest.of(0, 15, Sort.by(Sort.Direction.DESC, "date"));
     return newsRepository.findLatestNewsWithSelectedFields(topFifteen);
   }
+
+  @Override
+  public News editNews(Long id, News newsRequest) {
+    LOG.info("Editing news: {}", id);
+    News news =
+        newsRepository
+            .findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("News not found"));
+    if (newsRequest.getHeadline() != null) {
+      news.setHeadline(newsRequest.getHeadline());
+    }
+    if (newsRequest.getImage() != null) {
+      news.setImage(newsRequest.getImage());
+    }
+    if (newsRequest.getAlt() != null) {
+      news.setAlt(newsRequest.getAlt());
+    }
+    if (newsRequest.getContent() != null) {
+      news.setContent(newsRequest.getContent());
+    }
+
+    return newsRepository.save(news);
+  }
 }

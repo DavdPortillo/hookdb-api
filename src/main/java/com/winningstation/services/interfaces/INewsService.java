@@ -2,7 +2,6 @@ package com.winningstation.services.interfaces;
 
 import com.winningstation.dto.NewsDTO;
 import com.winningstation.entity.News;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
@@ -68,4 +67,13 @@ public interface INewsService {
    * @return Lista de las últimas noticias con los campos seleccionados.
    */
   List<NewsDTO> getLatestNewsWithSelectedFields();
+
+  /**
+   * Edita una noticia.
+   *
+   * @param id ID de la noticia a editar.
+   * @param news Noticia a editar.
+   * @return La noticia editada.
+   */
+  News editNews(Long id, News requestNews);
 }

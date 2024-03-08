@@ -1,8 +1,6 @@
 package com.winningstation.services;
 
-import com.winningstation.entity.News;
-import com.winningstation.entity.NewsComment;
-import com.winningstation.entity.User;
+import com.winningstation.entity.*;
 import com.winningstation.repository.NewsCommentRepository;
 import com.winningstation.repository.NewsRepository;
 import com.winningstation.repository.UserRepository;
@@ -11,6 +9,8 @@ import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Clase que implementa la interfaz INewsCommentService.
@@ -80,5 +80,24 @@ public class NewsCommentService implements INewsCommentService {
   public void delete(Long id) {
     LOG.info("Deleting game by id: {}", id);
     newsCommentRepository.deleteById(id);
+  }
+
+  @Override
+  public List<NewsComment> findAll() {
+    LOG.info("Finding all comments");
+    return newsCommentRepository.findAll();
+  }
+
+  @Override
+  public String update(Long id, String request) {
+    LOG.info("Updating news comment by id {}", id);
+    NewsComment newsComment = findById(id);
+    if (newsComment != null) {
+      newsComment.setContent(request);
+      newsCommentRepository.save(newsComment);
+      return request;
+    } else {
+      throw new RuntimeException("Platform not found");
+    }
   }
 }
