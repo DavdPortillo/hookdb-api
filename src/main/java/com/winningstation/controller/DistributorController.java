@@ -16,6 +16,7 @@ import java.util.List;
  *
  * @author David Portillo Hoyos
  */
+
 @RestController
 @RequestMapping("/distributor")
 @Tag(name = "Distributor Controller", description = "Operaciones para distribuidores")

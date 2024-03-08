@@ -2,6 +2,8 @@ package com.winningstation.controller;
 
 import com.winningstation.entity.GameScore;
 import com.winningstation.services.interfaces.IGameScoreService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author David Portillo Hoyos
  */
+@Tag(name = "Game Score Controller", description = "Operaciones para la puntuación de los juegos")
 @RestController
 @RequestMapping("/game-score")
 public class GameScoreController {
@@ -37,6 +40,10 @@ public class GameScoreController {
    * @return Puntuación guardada.
    */
   @PostMapping("/user/{userId}/game/{gameId}/score/{score}")
+  @Operation(
+      summary = "Guarda una nueva puntuación de un juego",
+      description =
+          "Guarda una nueva puntuación de un juego basada en los identificadores de usuario y juego proporcionados y la puntuación, y devuelve la puntuación guardada")
   public GameScore saveGameScore(
       @PathVariable Long userId, @PathVariable Long gameId, @PathVariable int score) {
     return gameScoreService.createOrUpdateGameScore(userId, gameId, score);

@@ -2,11 +2,19 @@ package com.winningstation.controller;
 
 import com.winningstation.entity.Review;
 import com.winningstation.services.interfaces.IReviewService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-/** Controlador para las críticas de los juegos. */
+/**
+ * Controlador para las críticas de los juegos.
+ *
+ * @author David Portillo Hoyos
+ */
+@Tag(name = "Review Controller", description = "Operaciones para las críticas de los juegos")
 @RestController
 @RequestMapping("/review")
 public class ReviewController {
@@ -31,6 +39,11 @@ public class ReviewController {
    * @return Review guardado.
    */
   @PostMapping("/{gameId}/{userId}")
+  @ResponseStatus(HttpStatus.CREATED)
+  @Operation(
+      summary = "Guarda una nueva crítica",
+      description =
+          "Guarda una nueva crítica basada en la petición proporcionada y devuelve la crítica guardada")
   public Review createReview(
       @RequestBody Review review, @PathVariable Long gameId, @PathVariable Long userId) {
     return reviewService.save(review, gameId, userId);
@@ -43,6 +56,10 @@ public class ReviewController {
    * @return Lista de críticas del juego.
    */
   @GetMapping("/game/{gameId}")
+  @Operation(
+      summary = "Obtiene todas las críticas de un juego",
+      description =
+          "Devuelve una lista de todas las críticas de un juego basado en el identificador de juego proporcionado")
   public Iterable<Review> getReviewsByGameId(@PathVariable Long gameId) {
     return reviewService.findAllByGameId(gameId);
   }
@@ -54,28 +71,39 @@ public class ReviewController {
    * @return Mapa con los votos de la crítica.
    */
   @GetMapping("/{reviewId}/votes")
+  @Operation(
+      summary = "Obtiene los votos de una crítica",
+      description =
+          "Devuelve un mapa con los votos de una crítica basado en el identificador de crítica proporcionado")
   public Map<String, Integer> getReviewVotes(@PathVariable Long reviewId) {
     return reviewService.getReviewVotes(reviewId);
   }
 
-    /**
-     * Obtiene todas las críticas de un usuario.
-     *
-     * @param userId Id del usuario.
-     * @return Lista de críticas del usuario.
-     */
-    @GetMapping("/user/{userId}")
-    public Iterable<Review> getReviewsByUserId(@PathVariable Long userId) {
-        return reviewService.findAllByUserId(userId);
-    }
+  /**
+   * Obtiene todas las críticas de un usuario.
+   *
+   * @param userId Id del usuario.
+   * @return Lista de críticas del usuario.
+   */
+  @GetMapping("/user/{userId}")
+  @Operation(
+      summary = "Obtiene todas las críticas de un usuario",
+      description =
+          "Devuelve una lista de todas las críticas de un usuario basado en el identificador de usuario proporcionado")
+  public Iterable<Review> getReviewsByUserId(@PathVariable Long userId) {
+    return reviewService.findAllByUserId(userId);
+  }
 
-    /**
-     * Elimina una crítica por su id.
-     *
-     * @param id Id de la crítica a eliminar.
-     */
-    @DeleteMapping("/{id}")
-    public void deleteReviewById(@PathVariable Long id) {
-        reviewService.deleteById(id);
-    }
+  /**
+   * Elimina una crítica por su id.
+   *
+   * @param id Id de la crítica a eliminar.
+   */
+  @DeleteMapping("/{id}")
+  @Operation(
+      summary = "Elimina una crítica",
+      description = "Elimina una crítica basada en el identificador proporcionado")
+  public void deleteReviewById(@PathVariable Long id) {
+    reviewService.deleteById(id);
+  }
 }

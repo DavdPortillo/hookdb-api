@@ -4,6 +4,8 @@ import com.winningstation.dto.GameListDTO;
 import com.winningstation.dto.ListDTO;
 import com.winningstation.entity.GamesList;
 import com.winningstation.services.interfaces.IGamesListService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,7 @@ import java.util.List;
  *
  * @author David Portillo Hoyos
  */
+@Tag(name = "Games List Controller", description = "Operaciones para la lista de juegos")
 @RestController
 @RequestMapping("/gameslist")
 public class GamesListController {
@@ -38,6 +41,10 @@ public class GamesListController {
    * @return Lista de juegos guardada.
    */
   @PostMapping("/user/{idUser}")
+  @Operation(
+      summary = "Guarda una nueva lista de juegos",
+      description =
+          "Guarda una nueva lista de juegos basada en la petición proporcionada y devuelve la lista de juegos guardada")
   public GamesList saveGamesList(@RequestBody GamesList gamesList, @PathVariable Long idUser) {
     return gamesListService.createGamesList(gamesList, idUser);
   }
@@ -51,6 +58,10 @@ public class GamesListController {
    * @return Lista de juegos guardada.
    */
   @PostMapping("/list/{idList}/user/{idUser}/game/{idGame}")
+  @Operation(
+      summary = "Añade un juego a la lista de juegos",
+      description =
+          "Añade un juego a la lista de juegos basado en los identificadores de lista, usuario y juego proporcionados y devuelve la lista de juegos actualizada")
   public GamesList addGameToList(
       @PathVariable Long idList, @PathVariable Long idUser, @PathVariable Long idGame) {
     return gamesListService.addGameToList(idList, idUser, idGame);
@@ -63,6 +74,10 @@ public class GamesListController {
    * @return Lista de juegos guardada.
    */
   @GetMapping("/{gamesListId}/games")
+  @Operation(
+      summary = "Encuentra los juegos de una lista",
+      description =
+          "Devuelve los juegos de una lista basada en el identificador de lista proporcionado")
   public ResponseEntity<List<GameListDTO>> getGamesListGames(@PathVariable Long gamesListId) {
     List<GameListDTO> gameResponses = gamesListService.getGamesByList(gamesListId);
     return new ResponseEntity<>(gameResponses, HttpStatus.OK);
@@ -75,6 +90,10 @@ public class GamesListController {
    * @param idGame Id del juego a eliminar.
    */
   @DeleteMapping("/{idList}/game/{idGame}")
+  @Operation(
+      summary = "Elimina un juego de la lista de juegos",
+      description =
+          "Elimina un juego de la lista de juegos basado en los identificadores de lista y juego proporcionados")
   public void deleteGameFromList(@PathVariable Long idList, @PathVariable Long idGame) {
     gamesListService.deleteGameFromList(idList, idGame);
   }
@@ -86,6 +105,10 @@ public class GamesListController {
    * @return Lista de juegos guardada.
    */
   @GetMapping("/user/{userId}/lists")
+  @Operation(
+      summary = "Encuentra las listas de juegos de un usuario",
+      description =
+          "Devuelve las listas de juegos de un usuario basado en el identificador de usuario proporcionado")
   public List<ListDTO> findListByUserId(@PathVariable Long userId) {
     return gamesListService.findListByUserId(userId);
   }
@@ -96,6 +119,9 @@ public class GamesListController {
    * @param idList Id de la lista de juegos.
    */
   @DeleteMapping("/{idList}")
+  @Operation(
+      summary = "Elimina una lista de juegos",
+      description = "Elimina una lista de juegos basada en el identificador de lista proporcionado")
   public void deleteList(@PathVariable Long idList) {
     gamesListService.deleteList(idList);
   }
@@ -107,6 +133,10 @@ public class GamesListController {
    * @param newName Nuevo nombre de la lista de juegos.
    */
   @PutMapping("/{id}")
+  @Operation(
+      summary = "Actualiza una lista de juegos",
+      description =
+          "Actualiza una lista de juegos basada en el identificador y el nuevo nombre proporcionados y devuelve el nombre actualizado")
   public ResponseEntity<String> updateGamesListName(
       @PathVariable Long id, @RequestBody String newName) {
     String updatedName = gamesListService.updateGamesListName(id, newName);
@@ -121,6 +151,10 @@ public class GamesListController {
    * @return Lista de juegos guardada.
    */
   @GetMapping("/user/{userId}/lists/{namePattern}")
+  @Operation(
+      summary = "Encuentra las listas de juegos de un usuario por un patrón de nombre",
+      description =
+          "Devuelve las listas de juegos de un usuario que coinciden con un patrón de nombre basado en el identificador de usuario y el patrón de nombre proporcionados")
   public List<ListDTO> findListByUserIdAndNamePattern(
       @PathVariable Long userId, @PathVariable String namePattern) {
     return gamesListService.findListByUserIdAndNamePattern(userId, namePattern);
