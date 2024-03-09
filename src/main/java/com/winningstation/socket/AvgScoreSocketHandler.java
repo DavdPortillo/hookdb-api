@@ -4,8 +4,10 @@ import com.winningstation.dto.ScoreAverageResultDTO;
 import com.winningstation.services.interfaces.IGameService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.socket.CloseStatus;
+import org.springframework.web.socket.PingMessage;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
@@ -27,27 +29,19 @@ public class AvgScoreSocketHandler extends TextWebSocketHandler {
 
   @Override
   public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-    try {
-      Long gameId = Long.parseLong(Objects.requireNonNull(session.getUri()).getPath().split("/")[2]);
-      gameSessions.computeIfAbsent(gameId, k -> new HashSet<>()).add(session);
-      LOGGER.info("Conexión WebSocket establecida para el juego con ID {}", gameId);
-    } catch (Exception e) {
-      throw new Exception("Error al establecer la conexión WebSocket", e);
-    }
+    Long gameId = Long.parseLong(Objects.requireNonNull(session.getUri()).getPath().split("/")[2]);
+    gameSessions.computeIfAbsent(gameId, k -> new HashSet<>()).add(session);
+    LOGGER.info("Conexión WebSocket establecida para el juego con ID {}", gameId);
   }
 
   @Override
   public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-    try {
-      Long gameId = Long.parseLong(Objects.requireNonNull(session.getUri()).getPath().split("/")[2]);
-      Set<WebSocketSession> sessions = gameSessions.get(gameId);
-      if (sessions != null) {
-        sessions.remove(session);
-      }
-      LOGGER.info("Conexión WebSocket cerrada para el juego con ID {}", gameId);
-    } catch (Exception e) {
-      throw new Exception("Error al establecer la conexión WebSocket", e);
+    Long gameId = Long.parseLong(Objects.requireNonNull(session.getUri()).getPath().split("/")[2]);
+    Set<WebSocketSession> sessions = gameSessions.get(gameId);
+    if (sessions != null) {
+      sessions.remove(session);
     }
+    LOGGER.info("Conexión WebSocket cerrada para el juego con ID {}", gameId);
   }
 
   public void sendScoreToGameSessions(Long gameId) {
@@ -63,5 +57,20 @@ public class AvgScoreSocketHandler extends TextWebSocketHandler {
         LOGGER.error("Error al enviar la puntuación media a las sesiones", e);
       }
     }
+  }
+
+  @Scheduled(fixedRate = 10000)
+  public void pingSessions() {
+    gameSessions.values().forEach(sessions -> {
+      sessions.forEach(session -> {
+        if (session.isOpen()) {
+          try {
+            session.sendMessage(new PingMessage());
+          } catch (IOException e) {
+            LOGGER.error("Error al enviar el mensaje Ping", e);
+          }
+        }
+      });
+    });
   }
 }
