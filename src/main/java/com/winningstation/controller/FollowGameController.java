@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,6 +33,7 @@ public class FollowGameController {
     this.followGameService = followGameService;
   }
 
+  @PreAuthorize("#userId == authentication.principal.id")
   @PostMapping("/user/{userId}/game/{gameId}/followOrIgnore/{action}")
   @Operation(
       summary = "Sigue o ignora un juego",
@@ -42,7 +44,7 @@ public class FollowGameController {
     FollowGame followGame = followGameService.followOrIgnoreGame(userId, gameId, action);
     return new ResponseEntity<>(followGame, HttpStatus.OK);
   }
-
+  @PreAuthorize("#userId == authentication.principal.id")
   @GetMapping("userId/{userId}/followedOrIgnoreGames")
   @Operation(
       summary = "Obtiene los juegos seguidos o ignorados por un usuario",
@@ -52,7 +54,7 @@ public class FollowGameController {
     List<FollowGame> followedGames = followGameService.getFollowedOrIgnoredGames(userId);
     return new ResponseEntity<>(followedGames, HttpStatus.OK);
   }
-
+  @PreAuthorize("#userId == authentication.principal.id")
   @GetMapping("userId/{userId}/ignoredGames")
   @Operation(
       summary = "Obtiene los juegos ignorados por un usuario",
@@ -62,7 +64,7 @@ public class FollowGameController {
     List<FollowGame> ignoredGames = followGameService.getIgnoredGames(userId);
     return new ResponseEntity<>(ignoredGames, HttpStatus.OK);
   }
-
+  @PreAuthorize("#userId == authentication.principal.id")
   @GetMapping("userId/{userId}/followedGames")
   @Operation(
       summary = "Obtiene los juegos seguidos por un usuario",
@@ -72,7 +74,7 @@ public class FollowGameController {
     List<FollowGame> followedGames = followGameService.getFollowedGames(userId);
     return new ResponseEntity<>(followedGames, HttpStatus.OK);
   }
-
+  @PreAuthorize("#userId == authentication.principal.id")
   @GetMapping("userId/{userId}/game/{gameId}")
   @Operation(
       summary = "Obtiene el estado de seguimiento de un juego por un usuario",

@@ -104,16 +104,16 @@ public class Security {
                     "/edition-product/**",
                     "/feature/**")
                 .hasRole("ADMIN_ROLE")
-                .requestMatchers(
-                    HttpMethod.POST, "/follow-game/user/{userId}/game/{gameId}/followOrIgnore/{action}")
-                .hasRole("ADMIN_ROLE")
-                .requestMatchers(
-                    HttpMethod.GET,
-                    "/follow-game/userId/{userId}/followedOrIgnoreGames",
-                    "/follow-game/userId/{userId}/ignoredGames",
-                    "/follow-game/userId/{userId}/followedGames",
-                    "/follow-game/userId/{userId}/game/{gameId}")
-                    .hasRole("ADMIN_ROLE")
+//                .requestMatchers(
+//                    HttpMethod.POST, "/follow-game/user/{userId}/game/{gameId}/followOrIgnore/{action}")
+//                .hasRole("USER_ROLE")
+//                .requestMatchers(
+//                    HttpMethod.GET,
+//                    "/follow-game/userId/{userId}/followedOrIgnoreGames",
+//                    "/follow-game/userId/{userId}/ignoredGames",
+//                    "/follow-game/userId/{userId}/followedGames",
+//                    "/follow-game/userId/{userId}/game/{gameId}")
+//                    .hasRole("USER_ROLE")
                 .anyRequest()
                 .permitAll());
 

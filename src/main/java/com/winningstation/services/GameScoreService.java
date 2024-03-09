@@ -83,16 +83,16 @@ public class GameScoreService implements IGameScoreService {
     return gameScoreRepository.save(gameScore);
   }
 
-    public GameScore findGameScoreByUserIdAndGameId(Long userId, Long gameId) {
-        LOGGER.info("Finding game score for user {} and game {}", userId, gameId);
-        User user =
+  public GameScore findGameScoreByUserIdAndGameId(Long userId, Long gameId) {
+    LOGGER.info("Finding game score for user {} and game {}", userId, gameId);
+    User user =
             userRepository
-                .findById(userId)
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
-        Game game =
+                    .findById(userId)
+                    .orElseThrow(() -> new IllegalArgumentException("User not found"));
+    Game game =
             gameRepository
-                .findById(gameId)
-                .orElseThrow(() -> new IllegalArgumentException("Game not found"));
-        return gameScoreRepository.findByUserAndGame(user, game);
-    }
+                    .findById(gameId)
+                    .orElseThrow(() -> new IllegalArgumentException("Game not found"));
+      return gameScoreRepository.findByUserAndGame(user, game);
+  }
 }

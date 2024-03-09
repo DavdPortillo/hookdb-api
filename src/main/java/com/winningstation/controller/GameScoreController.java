@@ -4,6 +4,8 @@ import com.winningstation.entity.GameScore;
 import com.winningstation.services.interfaces.IGameScoreService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -58,8 +60,13 @@ public class GameScoreController {
       summary = "Obtiene la puntuación que le dio un usuario a un juego",
       description =
           "Obtiene la puntuación que le dio un usuario a un juego basada en los identificadores de usuario y juego proporcionados")
-  public GameScore findGameScoreByUserIdAndGameId(
+  public ResponseEntity<GameScore> findGameScoreByUserIdAndGameId(
       @PathVariable Long userId, @PathVariable Long gameId) {
-    return gameScoreService.findGameScoreByUserIdAndGameId(userId, gameId);
+    GameScore gameScore = gameScoreService.findGameScoreByUserIdAndGameId(userId, gameId);
+    if (gameScore == null) {
+      // Devuelve un ResponseEntity con código de estado 404
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    return new ResponseEntity<>(gameScore, HttpStatus.OK);
   }
 }
