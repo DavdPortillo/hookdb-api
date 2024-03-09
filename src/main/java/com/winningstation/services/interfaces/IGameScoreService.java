@@ -27,4 +27,6 @@ public interface IGameScoreService {
    * @return La puntuación del juego obtenida.
    */
     GameScore findGameScoreByUserIdAndGameId(Long userId, Long gameId);
+
+  void deleteGameScore(Long userId, Long gameId);
 }

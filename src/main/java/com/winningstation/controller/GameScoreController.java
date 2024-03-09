@@ -72,4 +72,22 @@ public class GameScoreController {
     }
     return new ResponseEntity<>(gameScore, HttpStatus.OK);
   }
+
+  /**
+   * Elimina la puntuación que le dio un usuario a un juego.
+   *
+   * @param userId Id del usuario que puntuó el juego.
+   * @param gameId Id del juego que fue puntuado.
+   */
+  @PreAuthorize("#userId == authentication.principal.id")
+  @DeleteMapping("/user/{userId}/game/{gameId}")
+  @Operation(
+      summary = "Elimina la puntuación que le dio un usuario a un juego",
+      description =
+          "Elimina la puntuación que le dio un usuario a un juego basada en los identificadores de usuario y juego proporcionados")
+  public ResponseEntity<Void> deleteGameScore(
+      @PathVariable Long userId, @PathVariable Long gameId) {
+    gameScoreService.deleteGameScore(userId, gameId);
+    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+  }
 }

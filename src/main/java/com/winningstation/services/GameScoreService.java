@@ -83,16 +83,38 @@ public class GameScoreService implements IGameScoreService {
     return gameScoreRepository.save(gameScore);
   }
 
+  public void deleteGameScore(Long userId, Long gameId) {
+
+    LOGGER.info("Deleting game score for user {} and game {}", userId, gameId);
+
+    User user =
+        userRepository
+            .findById(userId)
+            .orElseThrow(() -> new IllegalArgumentException("User not found"));
+    Game game =
+        gameRepository
+            .findById(gameId)
+            .orElseThrow(() -> new IllegalArgumentException("Game not found"));
+
+    GameScore gameScore = gameScoreRepository.findByUserAndGame(user, game);
+    if (gameScore != null) {
+      gameScoreRepository.deleteByGameIdAndUserId(gameId, userId);
+      LOGGER.info("Game score for user {} and game {} has been deleted", userId, gameId);
+    } else {
+      throw new IllegalArgumentException("Game score not found");
+    }
+  }
+
   public GameScore findGameScoreByUserIdAndGameId(Long userId, Long gameId) {
     LOGGER.info("Finding game score for user {} and game {}", userId, gameId);
     User user =
-            userRepository
-                    .findById(userId)
-                    .orElseThrow(() -> new IllegalArgumentException("User not found"));
+        userRepository
+            .findById(userId)
+            .orElseThrow(() -> new IllegalArgumentException("User not found"));
     Game game =
-            gameRepository
-                    .findById(gameId)
-                    .orElseThrow(() -> new IllegalArgumentException("Game not found"));
-      return gameScoreRepository.findByUserAndGame(user, game);
+        gameRepository
+            .findById(gameId)
+            .orElseThrow(() -> new IllegalArgumentException("Game not found"));
+    return gameScoreRepository.findByUserAndGame(user, game);
   }
 }

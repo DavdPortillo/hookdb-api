@@ -2,11 +2,14 @@ anadir subir imagenes al servidor
 cambiar para que meter el id sea opcional al crear la saga y si se mete que lo busque y si no existe que lo diga que no existe y que meta un id vlaido para la saga.
 Afinar métodos que se trae o deja de traer
 que de error al meter un id que no existe en game
-SEGURIDAD!!!
-
 restringir numberplayer solo para coop online y coop lan
 
-
+[9:58 AM, 3/9/2024] Sergio Daw: nombre de usuario
+[9:58 AM, 3/9/2024] Sergio Daw: correo
+[9:58 AM, 3/9/2024] Sergio Daw: pais
+[9:59 AM, 3/9/2024] Sergio Daw: año de nacimiento
+[9:59 AM, 3/9/2024] Sergio Daw: idioma
+[9:59 AM, 3/9/2024] Sergio Daw: genero
 
 
 

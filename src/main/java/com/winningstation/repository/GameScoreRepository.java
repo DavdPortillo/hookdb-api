@@ -21,4 +21,8 @@ public interface GameScoreRepository extends JpaRepository<GameScore, Long> {
   @Modifying
   @Query("DELETE FROM GameScore gs WHERE gs.game.id = :gameId")
   void deleteByGameId(@Param("gameId") Long gameId);
+
+  @Modifying
+  @Query("DELETE FROM GameScore gs WHERE gs.game.id = :gameId AND gs.user.id = :userId")
+  void deleteByGameIdAndUserId(@Param("gameId") Long gameId, @Param("userId") Long userId);
 }
