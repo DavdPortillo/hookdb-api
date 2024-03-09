@@ -25,9 +25,14 @@ public class WebSocketConfig implements WebSocketConfigurer {
 
   @Override
   public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-    registry.addHandler(avgScoreSocketHandler, "/avg-score/{gameId}").setAllowedOrigins("*");
-    registry.addHandler(avgScore100SocketHandler, "/avg-score-100/{gameId}").setAllowedOrigins("*");
-    registry.addHandler(reviewVotesSocketHandler, "/review-votes/{reviewId}").setAllowedOrigins("*");
-
+    registry
+        .addHandler(avgScoreSocketHandler, "/avg-score/{gameId}")
+        .setAllowedOrigins("http://158.179.219.214:32070", "http://localhost:5173");
+    registry
+        .addHandler(avgScore100SocketHandler, "/avg-score-100/{gameId}")
+        .setAllowedOrigins("http://158.179.219.214:32070", "http://localhost:5173");
+    registry
+        .addHandler(reviewVotesSocketHandler, "/review-votes/{reviewId}")
+        .setAllowedOrigins("http://158.179.219.214:32070", "http://localhost:5173");
   }
 }

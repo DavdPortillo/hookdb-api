@@ -123,7 +123,7 @@ public class Game implements Serializable {
   /** Noticias del juego. */
   @OneToMany(mappedBy = "game",cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
   @JsonManagedReference("game-news")
-  private List<News> news;
+  private List<News> news = new ArrayList<>();
 
   /** Críticas hechas por los usuarios. */
   @OneToMany(mappedBy = "game", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -162,6 +162,12 @@ public class Game implements Serializable {
 
   public int getReviewCount() {
     return reviews.size();
+  }
+
+  public int getNewsCommentCount() {
+    return news.stream()
+            .mapToInt(n -> n.getNewsComment().size())
+            .sum();
   }
 
 

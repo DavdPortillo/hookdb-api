@@ -1,10 +1,9 @@
-Afinar metodos que se trae o deja de traer
+Afinar métodos que se trae o deja de traer
 
-EN LA PARTE DE COMENTARIOS DE NOTICIA COMO VA A SER??  preguntar si se ven las noticias en la ficha juego apra traerme o no traerme las noticas
 TRAER COMENTARIO DE NOTICIAS.SIZE EN EL JUEGO?
 
 SEGURIDAD!!!
-SWAGGER
+
 
 
 
