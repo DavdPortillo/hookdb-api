@@ -45,10 +45,10 @@ public interface ILogoProductService {
    * Método que permite actualizar un logo de producto.
    *
    * @param id Id del logo de producto a actualizar.
-   * @param logo Logo de producto a actualizar.
+   * @param logoProduct Logo de producto actualizado.
    * @return El logo de producto actualizado.
    */
-  String update(Long id, String logo);
+  LogoProduct update(Long id, LogoProduct logoProduct);
 
   /**
    * Método que permite obtener un logo de producto por su nombre.

@@ -63,7 +63,7 @@ public class LogoProductController {
       summary = "Actualiza un logo de producto",
       description =
           "Actualiza un logo de producto basado en el identificador y la petición proporcionados y devuelve el logo actualizado")
-  public String update(@PathVariable Long id, @RequestBody String logo) {
+  public LogoProduct update(@PathVariable Long id, @RequestBody LogoProduct logo) {
     return logoProductService.update(id, logo);
   }
 

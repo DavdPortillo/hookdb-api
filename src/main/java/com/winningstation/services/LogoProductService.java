@@ -65,13 +65,16 @@ public class LogoProductService implements ILogoProductService {
   }
 
   @Override
-  public String update(Long id, String logo) {
-
-    LogoProduct logoProduct = logoProductRepository.findById(id).orElse(null);
-    if (logoProduct != null) {
-      logoProduct.setLogo(logo);
-      logoProductRepository.save(logoProduct);
-      return logo;
+  public LogoProduct update(Long id, LogoProduct newLogoProduct) {
+    LogoProduct existingLogoProduct = logoProductRepository.findById(id).orElse(null);
+    if (existingLogoProduct != null) {
+      if (newLogoProduct.getLogo() != null) {
+        existingLogoProduct.setLogo(newLogoProduct.getLogo());
+      }
+      if (newLogoProduct.getAlt() != null) {
+        existingLogoProduct.setAlt(newLogoProduct.getAlt());
+      }
+      return logoProductRepository.save(existingLogoProduct);
     } else {
       LOGGER.error("No se encontró el logo de producto con id: {}", id);
       throw new RuntimeException("No se encontró el logo de producto con id: " + id);

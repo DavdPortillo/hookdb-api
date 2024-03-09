@@ -18,4 +18,13 @@ public interface IGameScoreService {
    * @return Puntuación guardada.
    */
   GameScore createOrUpdateGameScore(Long userId, Long gameId, int score);
+
+  /**
+   * Método que permite obtener la puntuación que le dio un usuario a un juego.
+   *
+   * @param userId Id del usuario que puntuó el juego.
+   * @param gameId Id del juego que fue puntuado.
+   * @return La puntuación del juego obtenida.
+   */
+    GameScore findGameScoreByUserIdAndGameId(Long userId, Long gameId);
 }

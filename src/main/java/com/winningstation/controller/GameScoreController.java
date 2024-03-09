@@ -4,10 +4,7 @@ import com.winningstation.entity.GameScore;
 import com.winningstation.services.interfaces.IGameScoreService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Controlador que permite realizar operaciones sobre la puntuación de los juegos.
@@ -47,5 +44,22 @@ public class GameScoreController {
   public GameScore saveGameScore(
       @PathVariable Long userId, @PathVariable Long gameId, @PathVariable int score) {
     return gameScoreService.createOrUpdateGameScore(userId, gameId, score);
+  }
+
+  /**
+   * Obtiene la puntuación que le dio un usuario a un juego.
+   *
+   * @param userId Id del usuario que puntuó el juego.
+   * @param gameId Id del juego que fue puntuado.
+   * @return La puntuación del juego obtenida.
+   */
+  @GetMapping("/user/{userId}/game/{gameId}")
+  @Operation(
+      summary = "Obtiene la puntuación que le dio un usuario a un juego",
+      description =
+          "Obtiene la puntuación que le dio un usuario a un juego basada en los identificadores de usuario y juego proporcionados")
+  public GameScore findGameScoreByUserIdAndGameId(
+      @PathVariable Long userId, @PathVariable Long gameId) {
+    return gameScoreService.findGameScoreByUserIdAndGameId(userId, gameId);
   }
 }

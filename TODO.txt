@@ -1,3 +1,4 @@
+anadir subir imagenes al servidor
 cambiar para que meter el id sea opcional al crear la saga y si se mete que lo busque y si no existe que lo diga que no existe y que meta un id vlaido para la saga.
 Afinar métodos que se trae o deja de traer
 que de error al meter un id que no existe en game

@@ -105,15 +105,15 @@ public class Security {
                     "/feature/**")
                 .hasRole("ADMIN_ROLE")
                 .requestMatchers(
-                    HttpMethod.POST, "/user/{userId}/game/{gameId}/followOrIgnore/{action}")
-                .authenticated()
+                    HttpMethod.POST, "/follow-game/user/{userId}/game/{gameId}/followOrIgnore/{action}")
+                .hasRole("ADMIN_ROLE")
                 .requestMatchers(
                     HttpMethod.GET,
-                    "/userId/{userId}/followedOrIgnoreGames",
-                    "/userId/{userId}/ignoredGames",
-                    "/userId/{userId}/followedGames",
-                    "/userId/{userId}/game/{gameId}")
-                .authenticated()
+                    "/follow-game/userId/{userId}/followedOrIgnoreGames",
+                    "/follow-game/userId/{userId}/ignoredGames",
+                    "/follow-game/userId/{userId}/followedGames",
+                    "/follow-game/userId/{userId}/game/{gameId}")
+                    .hasRole("ADMIN_ROLE")
                 .anyRequest()
                 .permitAll());
 
