@@ -28,6 +28,7 @@ public class LogoProduct implements Serializable {
 
   /** Imagen del logo. */
   @NotNull private String logo;
+  @NotNull private String alt;
 
   @Serial private static final long serialVersionUID = 1L;
 }

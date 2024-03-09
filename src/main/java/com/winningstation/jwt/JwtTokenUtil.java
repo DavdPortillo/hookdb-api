@@ -34,7 +34,7 @@ public class JwtTokenUtil {
 	private static final Logger LOGGER = LoggerFactory.getLogger(JwtTokenUtil.class);
 
 	/**
-	 * Valida el token JWT.
+	 * Válida el token JWT.
 	 *
 	 * @param token El token JWT.
 	 * @return Verdadero si el token es válido, falso en caso contrario.

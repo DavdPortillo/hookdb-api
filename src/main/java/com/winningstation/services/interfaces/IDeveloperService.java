@@ -50,4 +50,11 @@ public interface IDeveloperService {
    * @return El desarrollador de juego editado.
    */
   Developer edit(Long id, Developer developerRequest);
+
+    /**
+     * Busca todos los desarrolladores de juego.
+     *
+     * @return Lista de desarrolladores de juego.
+     */
+    List<Developer> findAll();
 }

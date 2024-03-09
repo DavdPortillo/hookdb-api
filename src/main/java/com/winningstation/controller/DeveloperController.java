@@ -90,4 +90,18 @@ public class DeveloperController {
   public Developer editDeveloper(@PathVariable Long id, @RequestBody Developer developerRequest) {
     return developerService.edit(id, developerRequest);
   }
+
+  /**
+   * Busca todos los desarrolladores.
+   *
+   * @return Lista de desarrolladores.
+   */
+  @GetMapping
+  @Operation(
+      summary = "Busca todos los desarrolladores",
+      description =
+          "Busca todos los desarrolladores y devuelve la lista de desarrolladores encontrados")
+  public List<Developer> findAllDevelopers() {
+    return developerService.findAll();
+  }
 }

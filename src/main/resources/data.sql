@@ -458,10 +458,10 @@ VALUES ('Nombre de la clave del producto'),
        ('Nombre de la clave del producto 2'),
        ('Nombre de la clave del producto 3');
 
-INSERT INTO `logo_product` (`logo`)
-VALUES ('logo'),
-       ('logo 2'),
-       ('logo 3');
+INSERT INTO `logo_product` (`logo`, `alt`)
+VALUES ('logo', 'alt'),
+       ('logo 2', 'alt 2'),
+       ('logo 3', 'alt 3');
 
 INSERT INTO `product` (`price`, `edition_product_id`, `game_id`, `id`, `keys_product_id`, `logo_product_id`,
                        `platform_product_id`, `region_product_id`, `vendor_product_id`, `link`)

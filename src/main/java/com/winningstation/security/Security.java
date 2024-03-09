@@ -2,6 +2,7 @@ package com.winningstation.security;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -29,6 +30,7 @@ public class Security {
 
   /** Logger */
   private static final Logger LOGGER = LoggerFactory.getLogger(Security.class);
+
 
   /**
    * Configura el codificador de contraseñas.
@@ -66,8 +68,52 @@ public class Security {
 
     http.authorizeHttpRequests(
         auth ->
-            auth.requestMatchers(HttpMethod.GET, "/user")
+            auth.requestMatchers(
+                    HttpMethod.POST,
+                    "/developer/**",
+                    "/user/**",
+                    "/distributor/**",
+                    "/dlc/**",
+                    "/edition-product/**",
+                    "/feature/**")
                 .hasRole("ADMIN_ROLE")
+                .requestMatchers(
+                    HttpMethod.DELETE,
+                    "/developer/**",
+                    "/user/**",
+                    "/distributor/**",
+                    "/dlc/**",
+                    "/edition-product/**",
+                    "/feature/**")
+                .hasRole("ADMIN_ROLE")
+                .requestMatchers(
+                    HttpMethod.GET,
+                    "/developer/**",
+                    "/user/**",
+                    "/distributor/**",
+                    "/dlc/**",
+                    "/edition-product/**",
+                    "/feature/**")
+                .hasRole("ADMIN_ROLE")
+                .requestMatchers(
+                    HttpMethod.PUT,
+                    "/developer/**",
+                    "/user/**",
+                    "/distributor/**",
+                    "/dlc/**",
+                    "/edition-product/**",
+                    "/feature/**")
+                .hasRole("ADMIN_ROLE")
+                .requestMatchers(
+                    HttpMethod.POST, "/user/{userId}/game/{gameId}/followOrIgnore/{action}")
+                .authenticated()
+                .requestMatchers(
+                    HttpMethod.GET,
+                    "/userId/{userId}/followedOrIgnoreGames",
+                    "/userId/{userId}/ignoredGames",
+                    "/userId/{userId}/followedGames",
+                    "/userId/{userId}/game/{gameId}")
+                .authenticated()
                 .anyRequest()
                 .permitAll());
 

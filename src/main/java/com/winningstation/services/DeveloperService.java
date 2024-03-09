@@ -94,4 +94,15 @@ public class DeveloperService implements IDeveloperService {
     }
     return developer;
   }
+
+    /**
+     * Busca todos los developers.
+     *
+     * @return Lista de developers.
+     */
+    @Override
+    public List<Developer> findAll() {
+        LOG.info("Finding all developers");
+        return developerRepository.findAll();
+    }
 }
