@@ -33,15 +33,16 @@ public interface IGamesListService {
   GamesList addGameToList(Long idList, Long idUser, Long idGame);
 
   /**
-   * Encuentra los juegos de una lista.
+   * Encuentra los juegos de una lista de un usuario.
    *
    * @param idList Id de la lista.
+   * @param idUser Id del usuario.
    * @return Lista de juegos guardada.
    */
-  List<GameListDTO> getGamesByList(Long idList);
+  List<GameListDTO> getGamesByList(Long idUser, Long idList);
 
   /** Elimina un juego de la lista de juegos. */
-  void deleteGameFromList(Long idList, Long idGame);
+  void deleteGameFromList(Long userId, Long gamesListId, Long gameId);
 
   /**
    * Encuentra las listas de juegos de un usuario.
@@ -55,24 +56,26 @@ public interface IGamesListService {
    * Elimina una lista de juegos.
    *
    * @param idList Id de la lista de juegos.
+   * @param userId Id del usuario.
    */
-  void deleteList(Long idList);
+  void deleteList(Long userId, Long idList);
 
   /**
    * Edita el nombre de una lista de juegos.
    *
-   * @param id Id de la lista de juegos.
+   * @param idList Id de la lista de juegos.
+   * @param userId Id del usuario.
    * @param newName Nuevo nombre de la lista de juegos.
    * @return Nombre de la lista de juegos actualizado.
    */
-  String updateGamesListName(Long id, String newName);
+  String updateGamesListName(Long userId, Long idList, String newName);
 
-    /**
-     * Encuentra las listas de juegos de un usuario por un patrón de nombre.
-     *
-     * @param userId Id del usuario.
-     * @param namePattern Patrón de nombre.
-     * @return Lista de juegos guardada.
-     */
-    List<ListDTO> findListByUserIdAndNamePattern(Long userId, String namePattern);
+  /**
+   * Encuentra las listas de juegos de un usuario por un patrón de nombre.
+   *
+   * @param userId Id del usuario.
+   * @param namePattern Patrón de nombre.
+   * @return Lista de juegos guardada.
+   */
+  List<ListDTO> findListByUserIdAndNamePattern(Long userId, String namePattern);
 }

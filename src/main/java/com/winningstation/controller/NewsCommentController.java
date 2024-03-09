@@ -7,6 +7,7 @@ import com.winningstation.services.interfaces.INewsCommentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,7 +34,8 @@ public class NewsCommentController {
     this.newsCommentService = newsCommentService;
   }
 
-  @PostMapping("/{newsId}/{userId}")
+  @PreAuthorize("#userId == authentication.principal.id")
+  @PostMapping("/newsId/{newsId}/userId/{userId}")
   @ResponseStatus(HttpStatus.CREATED)
   @Operation(
       summary = "Crea un comentario de noticias",

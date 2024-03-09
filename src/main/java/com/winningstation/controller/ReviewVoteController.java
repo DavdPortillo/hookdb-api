@@ -6,6 +6,7 @@ import com.winningstation.services.interfaces.IReviewVoteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -30,6 +31,7 @@ public class ReviewVoteController {
     this.reviewVoteService = reviewVoteService;
   }
 
+  @PreAuthorize("#userId == authentication.principal.id")
   @PostMapping("/user/{userId}/review/{reviewId}/vote/{vote}")
   @ResponseStatus(HttpStatus.CREATED)
   @Operation(
@@ -40,7 +42,7 @@ public class ReviewVoteController {
       @PathVariable Long userId, @PathVariable Long reviewId, @PathVariable Integer vote) {
     return reviewVoteService.voteReview(userId, reviewId, vote);
   }
-
+  @PreAuthorize("#userId == authentication.principal.id")
   @DeleteMapping("/user/{userId}/review/{reviewId}")
   @Operation(
       summary = "Borra un voto de crítica",

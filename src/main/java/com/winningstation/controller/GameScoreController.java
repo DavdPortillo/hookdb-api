@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -38,6 +39,7 @@ public class GameScoreController {
    * @param score Puntuación que el usuario le dio al juego.
    * @return Puntuación guardada.
    */
+  @PreAuthorize("#userId == authentication.principal.id")
   @PostMapping("/user/{userId}/game/{gameId}/score/{score}")
   @Operation(
       summary = "Guarda una nueva puntuación de un juego",
@@ -55,6 +57,7 @@ public class GameScoreController {
    * @param gameId Id del juego que fue puntuado.
    * @return La puntuación del juego obtenida.
    */
+  @PreAuthorize("#userId == authentication.principal.id")
   @GetMapping("/user/{userId}/game/{gameId}")
   @Operation(
       summary = "Obtiene la puntuación que le dio un usuario a un juego",

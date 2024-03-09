@@ -10,6 +10,7 @@ import com.winningstation.services.interfaces.INewsService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -86,7 +87,7 @@ public class NewsController {
   }
 
   /** Obtener todas las noticias. */
-  @GetMapping
+  @GetMapping("/all")
   @Operation(
       summary = "Obtiene todas las noticias",
       description = "Devuelve una lista de todas las noticias")
@@ -94,6 +95,7 @@ public class NewsController {
     return newsService.findAll();
   }
 
+  @PreAuthorize("#id == authentication.principal.id")
   @GetMapping("/user/{id}")
   @Operation(
       summary = "Encuentra noticias de juegos seguidos",
@@ -103,6 +105,7 @@ public class NewsController {
     return newsService.findNewsFromFollowedGames(id);
   }
 
+  @PreAuthorize("#id == authentication.principal.id")
   @GetMapping("/user/{id}/exceptUnfollowedGames")
   @Operation(
       summary = "Obtiene noticias excepto juegos no seguidos",

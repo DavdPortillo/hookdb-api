@@ -31,7 +31,6 @@ public class Security {
   /** Logger */
   private static final Logger LOGGER = LoggerFactory.getLogger(Security.class);
 
-
   /**
    * Configura el codificador de contraseñas.
    *
@@ -75,8 +74,19 @@ public class Security {
                     "/distributor/**",
                     "/dlc/**",
                     "/edition-product/**",
-                    "/feature/**")
-                .hasRole("ADMIN_ROLE")
+                    "/feature/**",
+                    "/game/**",
+                    "/genre/**",
+                    "/keys-product/**",
+                    "/language/**",
+                    "/logo-product/**",
+                    "/news-author/**",
+                    "/news/**",
+                    "/platform/**",
+                    "platform-product/**",
+                    "/region-product/**",
+                    "/vendor-product/**")
+                .hasRole("ADMIN")
                 .requestMatchers(
                     HttpMethod.DELETE,
                     "/developer/**",
@@ -84,8 +94,22 @@ public class Security {
                     "/distributor/**",
                     "/dlc/**",
                     "/edition-product/**",
-                    "/feature/**")
-                .hasRole("ADMIN_ROLE")
+                    "/feature/**",
+                    "/game/**",
+                    "/genre/**",
+                    "/keys-product/**",
+                    "/language/**",
+                    "/logo-product/**",
+                    "/news-author/**",
+                    "/news-comment/**",
+                    "/news/**",
+                    "/platform/**",
+                    "platform-product/**",
+                    "/region-product/**",
+                    "/vendor-product/**",
+                    "/review/**",
+                    "/user/**")
+                .hasRole("ADMIN")
                 .requestMatchers(
                     HttpMethod.GET,
                     "/developer/**",
@@ -93,8 +117,20 @@ public class Security {
                     "/distributor/**",
                     "/dlc/**",
                     "/edition-product/**",
-                    "/feature/**")
-                .hasRole("ADMIN_ROLE")
+                    "/feature/**",
+                    "/genre/**",
+                    "/keys-product/**",
+                    "/language/**",
+                    "/logo-product/**",
+                    "/news-author/**",
+                    "/game/all",
+                    "/news/all",
+                    "/platform/**",
+                    "platform-product/**",
+                    "/region-product/**",
+                    "/vendor-product/**",
+                    "/user/**")
+                .hasRole("ADMIN")
                 .requestMatchers(
                     HttpMethod.PUT,
                     "/developer/**",
@@ -102,18 +138,21 @@ public class Security {
                     "/distributor/**",
                     "/dlc/**",
                     "/edition-product/**",
-                    "/feature/**")
-                .hasRole("ADMIN_ROLE")
-//                .requestMatchers(
-//                    HttpMethod.POST, "/follow-game/user/{userId}/game/{gameId}/followOrIgnore/{action}")
-//                .hasRole("USER_ROLE")
-//                .requestMatchers(
-//                    HttpMethod.GET,
-//                    "/follow-game/userId/{userId}/followedOrIgnoreGames",
-//                    "/follow-game/userId/{userId}/ignoredGames",
-//                    "/follow-game/userId/{userId}/followedGames",
-//                    "/follow-game/userId/{userId}/game/{gameId}")
-//                    .hasRole("USER_ROLE")
+                    "/feature/**",
+                    "/game/**",
+                    "/genre/**",
+                    "/keys-product/**",
+                    "/language/**",
+                    "/logo-product/**",
+                    "/news-author/**",
+                    "/news-comment/**",
+                    "/news/**",
+                    "/platform/**",
+                    "platform-product/**",
+                    "/region-product/**",
+                    "/vendor-product/**",
+                    "/user/**")
+                .hasRole("ADMIN")
                 .anyRequest()
                 .permitAll());
 
@@ -121,34 +160,3 @@ public class Security {
     return http.build();
   }
 }
-
-// http.authorizeHttpRequests(auth -> auth.requestMatchers(HttpMethod.GET, "/booking-history")
-//				.hasRole(SecurityConstants.ADMIN_ROLE)
-//				.requestMatchers(HttpMethod.GET, SecurityConstants.BOOKING_HISTORY_ID_URL).authenticated()
-//				.requestMatchers(HttpMethod.DELETE, SecurityConstants.BOOKING_HISTORY_ID_URL)
-//				.hasRole(SecurityConstants.ADMIN_ROLE)
-//				.requestMatchers(HttpMethod.POST,
-// "/booking-history/{clientId}/{teleportationId}/{timeTravelId}")
-//				.hasRole(SecurityConstants.ADMIN_ROLE)
-//
-//				.requestMatchers(HttpMethod.PUT, SecurityConstants.BOOKING_HISTORY_ID_URL)
-//				.hasRole(SecurityConstants.ADMIN_ROLE).requestMatchers(HttpMethod.PUT,
-// SecurityConstants.CLIENT_ID_URL)
-//				.authenticated().requestMatchers(HttpMethod.DELETE, SecurityConstants.CLIENT_ID_URL)
-//				.hasRole(SecurityConstants.ADMIN_ROLE).requestMatchers(HttpMethod.GET, "/client")
-//				.hasRole(SecurityConstants.ADMIN_ROLE).requestMatchers(HttpMethod.GET, "/client/search")
-//				.hasRole(SecurityConstants.ADMIN_ROLE).requestMatchers(HttpMethod.GET,
-// SecurityConstants.CLIENT_ID_URL)
-//				.hasRole(SecurityConstants.ADMIN_ROLE).requestMatchers(HttpMethod.POST, "/news")
-//				.hasRole(SecurityConstants.ADMIN_ROLE).requestMatchers(HttpMethod.DELETE,
-// "/news/{id}").hasRole("ADMIN")
-//				.requestMatchers(HttpMethod.PUT, "/news/{id}").hasRole(SecurityConstants.ADMIN_ROLE)
-//				.requestMatchers(HttpMethod.POST, "/teleportation").hasRole(SecurityConstants.ADMIN_ROLE)
-//				.requestMatchers(HttpMethod.DELETE,
-// "/teleportation/{id}").hasRole(SecurityConstants.ADMIN_ROLE)
-//				.requestMatchers(HttpMethod.PUT, "/teleportation/{id}").hasRole(SecurityConstants.ADMIN_ROLE)
-//				.requestMatchers(HttpMethod.POST, "/timetravel").hasRole(SecurityConstants.ADMIN_ROLE)
-//				.requestMatchers(HttpMethod.DELETE, "/timetravel/{id}").hasRole(SecurityConstants.ADMIN_ROLE)
-//				.requestMatchers(HttpMethod.PUT,
-// "/timetravel/{id}").hasRole(SecurityConstants.ADMIN_ROLE).anyRequest()
-//				.permitAll());

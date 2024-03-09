@@ -64,7 +64,7 @@ public class GameController {
    *
    * @return Lista de juegos.
    */
-  @GetMapping
+  @GetMapping("/all")
   @Operation(
       summary = "Obtiene todos los juegos",
       description = "Devuelve una lista de todos los juegos")

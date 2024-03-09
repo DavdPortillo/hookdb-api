@@ -5,6 +5,7 @@ import com.winningstation.services.interfaces.IReviewService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -38,7 +39,8 @@ public class ReviewController {
    * @param gameId Id del juego al que pertenece el review.
    * @return Review guardado.
    */
-  @PostMapping("/{gameId}/{userId}")
+  @PreAuthorize("#userId == authentication.principal.id")
+  @PostMapping("/gameId/{gameId}/userId/{userId}")
   @ResponseStatus(HttpStatus.CREATED)
   @Operation(
       summary = "Guarda una nueva crítica",
@@ -85,6 +87,7 @@ public class ReviewController {
    * @param userId Id del usuario.
    * @return Lista de críticas del usuario.
    */
+  @PreAuthorize("#userId == authentication.principal.id")
   @GetMapping("/user/{userId}")
   @Operation(
       summary = "Obtiene todas las críticas de un usuario",

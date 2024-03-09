@@ -100,9 +100,9 @@ public class GamesListService implements IGamesListService {
   }
 
   @Override
-  public List<GameListDTO> getGamesByList(Long gamesListId) {
-    LOGGER.info("Finding games for list {}", gamesListId);
-    Optional<GamesList> gamesList = gamesListRepository.findById(gamesListId);
+  public List<GameListDTO> getGamesByList(Long userId, Long gamesListId) {
+    LOGGER.info("Finding games for list {} for user {}", gamesListId, userId);
+    Optional<GamesList> gamesList = gamesListRepository.findByUserIdAndId(userId, gamesListId);
 
     if (gamesList.isPresent()) {
       return gamesList.get().getGames().stream()
@@ -125,17 +125,19 @@ public class GamesListService implements IGamesListService {
               })
           .collect(Collectors.toList());
     } else {
-      throw new IllegalArgumentException("Games list not found");
+      throw new IllegalArgumentException("Games list not found for the user");
     }
   }
 
   @Override
-  public void deleteGameFromList(Long gamesListId, Long gameId) {
+  public void deleteGameFromList(Long userId, Long gamesListId, Long gameId) {
     GamesList gamesList =
         gamesListRepository
-            .findById(gamesListId)
+            .findByUserIdAndId(userId, gamesListId)
             .orElseThrow(
-                () -> new IllegalArgumentException("Games list not found with id: " + gamesListId));
+                () ->
+                    new IllegalArgumentException(
+                        "Games list not found with id: " + gamesListId + " for user: " + userId));
     Game game =
         gameRepository
             .findById(gameId)
@@ -156,22 +158,24 @@ public class GamesListService implements IGamesListService {
   }
 
   @Override
-  public void deleteList(Long idList) {
-    LOGGER.info("Deleting game list {}", idList);
+  public void deleteList(Long userId, Long idList) {
+    LOGGER.info("Deleting game list {} for user {}", idList, userId);
     GamesList gamesList =
         gamesListRepository
-            .findById(idList)
-            .orElseThrow(() -> new IllegalArgumentException("Game list not found"));
+            .findByUserIdAndId(userId, idList)
+            .orElseThrow(
+                () -> new IllegalArgumentException("Game list not found for user: " + userId));
     gamesListRepository.delete(gamesList);
   }
 
   @Override
-  public String updateGamesListName(Long id, String newName) {
+  public String updateGamesListName(Long userId, Long idList, String newName) {
     // Buscar la lista de juegos
     GamesList gamesList =
         gamesListRepository
-            .findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("Game list not found"));
+            .findByUserIdAndId(userId, idList)
+            .orElseThrow(
+                () -> new IllegalArgumentException("Game list not found for user: " + userId));
 
     // Actualizar el nombre
     gamesList.setName(newName);

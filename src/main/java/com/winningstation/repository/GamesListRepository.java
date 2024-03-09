@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Repositorio de la lista de juegos.
@@ -61,4 +62,6 @@ public interface GamesListRepository extends JpaRepository<GamesList, Long> {
           + "GROUP BY g.id")
   List<ListDTO> findListByUserIdAndNamePattern(
       @Param("userId") Long userId, @Param("namePattern") String namePattern);
+
+  Optional<GamesList> findByUserIdAndId(Long userId, Long id);
 }
