@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -60,30 +61,19 @@ public class NewsController {
       description =
           "Crea una noticia basada en la petición proporcionada y devuelve la noticia creada")
   public News save(
-      @RequestBody News news,
-      @PathVariable Long authorId,
-      @RequestParam(required = false) Long gameId) {
-    // Obtén el autor a partir del ID
-    NewsAuthor newsAuthor = newsAuthorService.findById(authorId);
+          @RequestPart("headline") String headline,
+          @RequestPart("alt") String alt,
+          @RequestPart("content") String content,
+          @RequestPart("file") MultipartFile file,
+          @PathVariable Long authorId,
+          @RequestParam(required = false) Long gameId) {
 
-    // Asegúrate de que el autor existe
-    if (newsAuthor == null) {
-      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El autor no existe");
-    }
+    News news = new News();
+    news.setHeadline(headline);
+    news.setAlt(alt);
+    news.setContent(content);
 
-    // Asigna el autor a la noticia
-    news.setNewsAuthor(newsAuthor);
-
-    // Si se proporcionó un ID de juego, obtén el juego y asígnalo a la noticia
-    if (gameId != null) {
-      Game game = gameService.findByIdGame(gameId);
-      if (game == null) {
-        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El juego no existe");
-      }
-      news.setGame(game);
-    }
-
-    return newsService.save(news);
+    return newsService.save(news, file, authorId, gameId);
   }
 
   /** Obtener todas las noticias. */

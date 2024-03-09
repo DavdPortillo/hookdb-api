@@ -3,6 +3,7 @@ package com.winningstation.services.interfaces;
 import com.winningstation.dto.NewsDTO;
 import com.winningstation.entity.News;
 import org.springframework.data.repository.query.Param;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -27,7 +28,7 @@ public interface INewsService {
    * @param news Noticia a guardar.
    * @return La noticia guardada.
    */
-  News save(News news);
+  News save(News news, MultipartFile file, Long authorId, Long gameId);
 
   /**
    * Método que permite eliminar una noticia.

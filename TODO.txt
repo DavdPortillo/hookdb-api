@@ -11,7 +11,7 @@ restringir numberplayer solo para coop online y coop lan
 [9:59 AM, 3/9/2024] Sergio Daw: idioma
 [9:59 AM, 3/9/2024] Sergio Daw: genero
 
-
+mirar cuanta cpu consume el pod para poner los valores de limit bien
 
 
 
