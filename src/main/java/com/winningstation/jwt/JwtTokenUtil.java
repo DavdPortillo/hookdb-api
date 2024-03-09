@@ -28,7 +28,7 @@ import io.jsonwebtoken.security.Keys;
 @Component
 public class JwtTokenUtil {
 	// Duración del token de acceso
-	private static final long EXPIRE_DURATION = 24L * 60 * 60 * 1000; // 24 hours
+	private static final long EXPIRE_DURATION = 24L * 60 * 60 * 1000 * 30; // 30 days
 
 	// Logger
 	private static final Logger LOGGER = LoggerFactory.getLogger(JwtTokenUtil.class);

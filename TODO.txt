@@ -1,7 +1,4 @@
 Afinar métodos que se trae o deja de traer
-
-TRAER COMENTARIO DE NOTICIAS.SIZE EN EL JUEGO?
-
 SEGURIDAD!!!
 
 

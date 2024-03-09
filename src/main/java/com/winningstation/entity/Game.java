@@ -123,6 +123,7 @@ public class Game implements Serializable {
   /** Noticias del juego. */
   @OneToMany(mappedBy = "game",cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
   @JsonManagedReference("game-news")
+  @JsonIgnore
   private List<News> news = new ArrayList<>();
 
   /** Críticas hechas por los usuarios. */
