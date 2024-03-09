@@ -14,6 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 /**
  * Servicio que permite realizar operaciones sobre la puntuación de los juegos.
  *
@@ -75,6 +77,7 @@ public class GameScoreService implements IGameScoreService {
       gameScore = new GameScore();
       gameScore.setUser(user);
       gameScore.setGame(game);
+      gameScore.setDate(LocalDateTime.now());  // Añade esta línea para establecer la fecha
     }
     gameScore.setScore(score);
 

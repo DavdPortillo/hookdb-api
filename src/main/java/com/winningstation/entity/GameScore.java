@@ -30,7 +30,7 @@ public class GameScore implements Serializable {
   private Long id;
 
   /** Fecha en la que se hizo la puntuación. */
-  @CreationTimestamp @NotNull private LocalDateTime date;
+ @NotNull private LocalDateTime date;
 
   /** Puntuación que da el usuario al juego. */
   @NotNull
