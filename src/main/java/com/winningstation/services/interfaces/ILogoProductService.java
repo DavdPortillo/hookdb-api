@@ -1,6 +1,7 @@
 package com.winningstation.services.interfaces;
 
 import com.winningstation.entity.LogoProduct;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public interface ILogoProductService {
    * @param logo Logo de producto a guardar.
    * @return El logo de producto guardado.
    */
-  LogoProduct save(LogoProduct logo);
+  LogoProduct save(LogoProduct logo, MultipartFile file);
 
   /**
    * Método que permite obtener un logo de producto por su id.
@@ -45,10 +46,11 @@ public interface ILogoProductService {
    * Método que permite actualizar un logo de producto.
    *
    * @param id Id del logo de producto a actualizar.
-   * @param logoProduct Logo de producto actualizado.
+   * @param newLogoProduct Nuevo logo de producto.
+   * @param file Archivo de la imagen del logo de producto.
    * @return El logo de producto actualizado.
    */
-  LogoProduct update(Long id, LogoProduct logoProduct);
+  LogoProduct update(Long id, LogoProduct newLogoProduct, MultipartFile file);
 
   /**
    * Método que permite obtener un logo de producto por su nombre.

@@ -73,8 +73,9 @@ public interface INewsService {
    * Edita una noticia.
    *
    * @param id ID de la noticia a editar.
-   * @param news Noticia a editar.
+   * @param newsRequest Noticia a editar.
+   * @param file Archivo de imagen.
    * @return La noticia editada.
    */
-  News editNews(Long id, News requestNews);
+  News editNews(Long id, News newsRequest, MultipartFile file, Long gameId);
 }

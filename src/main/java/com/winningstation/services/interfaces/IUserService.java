@@ -1,9 +1,11 @@
 package com.winningstation.services.interfaces;
 
+import com.winningstation.dto.UpdateUserRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.winningstation.entity.User;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Interface que define los métodos que debe implementar la clase User.
@@ -26,7 +28,7 @@ public interface IUserService {
    * @param user Usuario a guardar.
    * @return El usuario guardado.
    */
-  User save(User user);
+  User save(User user, MultipartFile file);
 
   /**
    * Método que permite eliminar un usuario.
@@ -75,5 +77,5 @@ public interface IUserService {
    * @param newPassword Contraseña nueva.
    * @return El usuario actualizado.
    */
-  User updateUser(Long id, User updatedUser, String oldPassword, String newPassword);
+  User updateUser(Long id, UpdateUserRequest updateUserRequest, MultipartFile file);
 }

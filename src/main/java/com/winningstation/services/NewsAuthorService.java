@@ -8,6 +8,7 @@ import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -26,13 +27,17 @@ public class NewsAuthorService implements INewsAuthorService {
   /** Repositorio de NewsAuthor. */
   private final NewsAuthorRepository newsAuthorRepository;
 
+  private final FileStorageService fileStorageService;
+
   /**
    * Constructor de la clase.
    *
    * @param newsAuthorRepository Repositorio de NewsAuthor.
    */
-  public NewsAuthorService(NewsAuthorRepository newsAuthorRepository) {
+  public NewsAuthorService(
+      NewsAuthorRepository newsAuthorRepository, FileStorageService fileStorageService) {
     this.newsAuthorRepository = newsAuthorRepository;
+    this.fileStorageService = fileStorageService;
   }
 
   @Override
@@ -46,8 +51,10 @@ public class NewsAuthorService implements INewsAuthorService {
   }
 
   @Override
-  public NewsAuthor save(NewsAuthor newsAuthor) {
+  public NewsAuthor save(NewsAuthor newsAuthor, MultipartFile file) {
     LOG.info("Saving news author: {}", newsAuthor);
+    String fileDownloadUri = fileStorageService.storeFileAndGenerateUri(file);
+    newsAuthor.setImage(fileDownloadUri);
     return newsAuthorRepository.save(newsAuthor);
   }
 
@@ -68,7 +75,7 @@ public class NewsAuthorService implements INewsAuthorService {
   }
 
   @Override
-  public NewsAuthor update(Long id, NewsAuthor request) {
+  public NewsAuthor update(Long id, NewsAuthor request, MultipartFile file) {
     LOG.info("Updating news author by id: {}", id);
     NewsAuthor newsAuthor = findById(id);
     if (newsAuthor == null) {
@@ -80,8 +87,9 @@ public class NewsAuthorService implements INewsAuthorService {
     if (request.getSurname() != null) {
       newsAuthor.setSurname(request.getSurname());
     }
-    if (request.getImage() != null) {
-      newsAuthor.setImage(request.getImage());
+    if (file != null) {
+      String fileDownloadUri = fileStorageService.storeFileAndGenerateUri(file);
+      newsAuthor.setImage(fileDownloadUri);
     }
     if (request.getAlt() != null) {
       newsAuthor.setAlt(request.getAlt());

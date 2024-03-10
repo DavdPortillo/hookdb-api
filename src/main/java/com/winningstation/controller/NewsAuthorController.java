@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -45,8 +46,9 @@ public class NewsAuthorController {
       summary = "Guarda un nuevo autor de noticias",
       description =
           "Guarda un nuevo autor de noticias basado en la petición proporcionada y devuelve el autor de noticias guardado")
-  public NewsAuthor save(@RequestBody NewsAuthor newsAuthor) {
-    return newsAuthorService.save(newsAuthor);
+  public NewsAuthor save(
+      @ModelAttribute NewsAuthor newsAuthor, @RequestPart("file") MultipartFile file) {
+    return newsAuthorService.save(newsAuthor, file);
   }
 
   /** Obtener todos los registros */
@@ -74,8 +76,11 @@ public class NewsAuthorController {
       summary = "Actualiza un autor de noticias",
       description =
           "Actualiza un autor de noticias basado en el identificador y la petición proporcionados y devuelve el autor de noticias actualizado")
-  public NewsAuthor update(@PathVariable Long id, @RequestBody NewsAuthor request) {
-    return newsAuthorService.update(id, request);
+  public NewsAuthor update(
+      @PathVariable Long id,
+      @ModelAttribute NewsAuthor request,
+      @RequestPart(value = "file", required = false) MultipartFile file) {
+    return newsAuthorService.update(id, request, file);
   }
 
   /** Eliminar un producto */

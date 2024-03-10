@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -41,8 +42,9 @@ public class PlatformProductController {
       summary = "Guarda un nuevo producto de plataforma",
       description =
           "Guarda un nuevo producto de plataforma basado en la petición proporcionada y devuelve el producto de plataforma guardado")
-  public PlatformProduct save(@RequestBody PlatformProduct platformProduct) {
-    return platformProductService.save(platformProduct);
+  public PlatformProduct save(
+      @ModelAttribute PlatformProduct platformProduct, @RequestPart("file") MultipartFile file) {
+    return platformProductService.save(platformProduct, file);
   }
 
   /** Obtener todos los registros */
@@ -70,8 +72,11 @@ public class PlatformProductController {
       summary = "Actualiza un producto de plataforma",
       description =
           "Actualiza un producto de plataforma basado en el identificador y la petición proporcionados y devuelve el producto de plataforma actualizado")
-  public PlatformProduct update(@PathVariable Long id, @RequestBody PlatformProduct request) {
-    return platformProductService.update(id, request);
+  public PlatformProduct update(
+      @PathVariable Long id,
+      @ModelAttribute PlatformProduct request,
+      @RequestPart(value = "file", required = false) MultipartFile file) {
+    return platformProductService.update(id, request, file);
   }
 
   /** Eliminar un producto */

@@ -1,5 +1,6 @@
 package com.winningstation.controller;
 
+import com.winningstation.dto.UpdateUserRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import com.winningstation.entity.User;
 import com.winningstation.repository.RoleRepository;
 import com.winningstation.services.interfaces.IUserService;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * Controlador para clientes
@@ -47,9 +49,9 @@ public class UserController {
       summary = "Crea un nuevo usuario",
       description =
           "Crea un nuevo usuario basado en la petición proporcionada y devuelve el usuario creado")
-  public User create(@RequestBody User user) {
+  public User create(@ModelAttribute User user, @RequestParam("file") MultipartFile file) {
 
-    return userService.save(user);
+    return userService.save(user, file);
   }
 
   /**
@@ -131,9 +133,8 @@ public class UserController {
    * Actualiza un cliente por su ID.
    *
    * @param id El ID del cliente.
-   * @param updatedUser El cliente actualizado.
-   * @param oldPassword La contraseña antigua.
-   * @param newPassword La contraseña nueva.
+   * @param updateUserRequest La petición para actualizar el usuario.
+   * @param file El archivo de imagen del usuario.
    * @return El cliente actualizado.
    */
   @PutMapping("/{id}")
@@ -143,10 +144,10 @@ public class UserController {
           "Actualiza un usuario basado en el identificador y la petición proporcionados y devuelve el usuario actualizado")
   public ResponseEntity<User> updateUser(
       @PathVariable Long id,
-      @RequestBody User updatedUser,
-      @RequestParam(required = false) String oldPassword,
-      @RequestParam(required = false) String newPassword) {
-    User user = userService.updateUser(id, updatedUser, oldPassword, newPassword);
+      @ModelAttribute UpdateUserRequest updateUserRequest,
+      @RequestPart(value = "file", required = false) MultipartFile file) {
+
+    User user = userService.updateUser(id, updateUserRequest, file);
     return ResponseEntity.ok(user);
   }
 }

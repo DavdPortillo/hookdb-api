@@ -2,6 +2,7 @@ package com.winningstation.services.interfaces;
 
 
 import com.winningstation.entity.PlatformProduct;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public interface IPlatformProductService {
    *
    * @param platform Plataforma a guardar.
    */
-  PlatformProduct save(PlatformProduct platform);
+  PlatformProduct save(PlatformProduct platform, MultipartFile file);
 
   /**
    * Método que permite obtener por su id.
@@ -48,7 +49,7 @@ public interface IPlatformProductService {
    * @param request Plataforma a actualizar.
    * @return la plataforma actualizada.
    */
-  PlatformProduct update(Long id, PlatformProduct request);
+  PlatformProduct update(Long id, PlatformProduct request, MultipartFile file);
 
   /**
    * Método que permite obtener registros por su nombre.

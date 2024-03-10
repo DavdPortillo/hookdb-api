@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import com.winningstation.services.interfaces.IGameService;
 
 import jakarta.transaction.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -108,6 +109,8 @@ public class GameService implements IGameService {
   /** Repositorio de KeysProduct. */
   private final KeysProductRepository keysProductRepository;
 
+  private final FileStorageService fileStorageService;
+
   /**
    * Constructor de la clase.
    *
@@ -136,7 +139,8 @@ public class GameService implements IGameService {
       KeysProductRepository keysProductRepository,
       GameScoreRepository gameScoreRepository,
       GamesListRepository gamesListRepository,
-      NewsRepository newsRepository) {
+      NewsRepository newsRepository,
+      FileStorageService fileStorageService) {
     this.gameRepository = gameRepository;
     this.platformRepository = platformRepository;
     this.crossplayRepository = crossplayRepository;
@@ -160,6 +164,7 @@ public class GameService implements IGameService {
     this.gameScoreRepository = gameScoreRepository;
     this.gamesListRepository = gamesListRepository;
     this.newsRepository = newsRepository;
+    this.fileStorageService = fileStorageService;
   }
 
   @Override
@@ -186,7 +191,7 @@ public class GameService implements IGameService {
   }
 
   @Override
-  public GameAndSagaDTO save(GameRequest gameRequest) {
+  public GameAndSagaDTO save(GameRequest gameRequest, MultipartFile file) {
     LOG.info("Saving game: {}", gameRequest);
 
     Game game = gameRequest.getGame();
@@ -214,8 +219,16 @@ public class GameService implements IGameService {
     game.setSaga(getOrCreateSaga(gameRequest.getSaga()));
     game.setGameFeatures(createGameFeatures(gameRequest.getGameFeatures()));
 
+    String fileDownloadUri = fileStorageService.storeFileAndGenerateUri(file);
+    game.setCover(fileDownloadUri);
+
+
     Game savedGame = gameRepository.save(game);
+
     savedGame.setProducts(createProducts(gameRequest.getProducts(), savedGame));
+
+
+
 
     return convertToGameAndSagaDTO(savedGame);
   }

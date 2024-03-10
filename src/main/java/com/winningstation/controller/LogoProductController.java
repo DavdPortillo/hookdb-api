@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -37,8 +38,9 @@ public class LogoProductController {
       summary = "Guarda un nuevo logo de producto",
       description =
           "Guarda un nuevo logo de producto basado en la petición proporcionada y devuelve el logo de producto guardado")
-  public LogoProduct save(@RequestBody LogoProduct logoProduct) {
-    return logoProductService.save(logoProduct);
+  public LogoProduct save(
+      @ModelAttribute LogoProduct logoProduct, @RequestPart("file") MultipartFile file) {
+    return logoProductService.save(logoProduct, file);
   }
 
   @GetMapping
@@ -63,8 +65,11 @@ public class LogoProductController {
       summary = "Actualiza un logo de producto",
       description =
           "Actualiza un logo de producto basado en el identificador y la petición proporcionados y devuelve el logo actualizado")
-  public LogoProduct update(@PathVariable Long id, @RequestBody LogoProduct logo) {
-    return logoProductService.update(id, logo);
+  public LogoProduct update(
+      @PathVariable Long id,
+      @ModelAttribute LogoProduct logo,
+      @RequestPart(value = "file", required = false) MultipartFile file) {
+    return logoProductService.update(id, logo, file);
   }
 
   @DeleteMapping("/{id}")

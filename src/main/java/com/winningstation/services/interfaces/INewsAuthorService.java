@@ -2,6 +2,7 @@ package com.winningstation.services.interfaces;
 
 import com.winningstation.entity.NewsAuthor;
 import com.winningstation.entity.PlatformProduct;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ public interface INewsAuthorService {
    * @param newsAuthor Autor a guardar.
    * @return El autor guardado.
    */
-  NewsAuthor save(NewsAuthor newsAuthor);
+  NewsAuthor save(NewsAuthor newsAuthor, MultipartFile file);
 
   /**
    * Método que permite eliminar un autor.
@@ -49,7 +50,7 @@ public interface INewsAuthorService {
    * @param request Plataforma a actualizar.
    * @return la plataforma actualizada.
    */
-  NewsAuthor update(Long id, NewsAuthor request);
+  NewsAuthor update(Long id, NewsAuthor request, MultipartFile file);
 
   /**
    * Método que permite obtener registros por su nombre.

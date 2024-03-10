@@ -7,6 +7,7 @@ import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -25,17 +26,24 @@ public class LogoProductService implements ILogoProductService {
   /** Repositorio de la entidad LogoProduct. */
   private final LogoProductRepository logoProductRepository;
 
+  private final FileStorageService fileStorageService;
+
   /**
    * Constructor de la clase.
    *
    * @param logoProductRepository Repositorio de la entidad LogoProduct.
    */
-  public LogoProductService(LogoProductRepository logoProductRepository) {
+  public LogoProductService(
+      LogoProductRepository logoProductRepository, FileStorageService fileStorageService) {
     this.logoProductRepository = logoProductRepository;
+    this.fileStorageService = fileStorageService;
   }
 
   @Override
-  public LogoProduct save(LogoProduct logo) {
+  public LogoProduct save(LogoProduct logo, MultipartFile file) {
+    LOGGER.info("Guardando logo de producto: {}", logo);
+    String fileDownloadUri = fileStorageService.storeFileAndGenerateUri(file);
+    logo.setLogo(fileDownloadUri);
     return logoProductRepository.save(logo);
   }
 
@@ -65,11 +73,13 @@ public class LogoProductService implements ILogoProductService {
   }
 
   @Override
-  public LogoProduct update(Long id, LogoProduct newLogoProduct) {
+  public LogoProduct update(Long id, LogoProduct newLogoProduct, MultipartFile file) {
     LogoProduct existingLogoProduct = logoProductRepository.findById(id).orElse(null);
     if (existingLogoProduct != null) {
-      if (newLogoProduct.getLogo() != null) {
-        existingLogoProduct.setLogo(newLogoProduct.getLogo());
+      LOGGER.info("Actualizando logo de producto con id: {}", id);
+      if (file != null) {
+        String fileDownloadUri = fileStorageService.storeFileAndGenerateUri(file);
+        existingLogoProduct.setLogo(fileDownloadUri);
       }
       if (newLogoProduct.getAlt() != null) {
         existingLogoProduct.setAlt(newLogoProduct.getAlt());

@@ -10,6 +10,7 @@ import com.winningstation.request.GameFeatureRequest;
 import com.winningstation.request.GameRequest;
 import com.winningstation.request.ProductRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ public interface IGameService {
    * @param gameRequest Parámetros para guardar el juego.
    * @return El juego guardado.
    */
-  GameAndSagaDTO save(GameRequest gameRequest);
+  GameAndSagaDTO save(GameRequest gameRequest, MultipartFile file);
 
   /**
    * Método que permite eliminar un juego.

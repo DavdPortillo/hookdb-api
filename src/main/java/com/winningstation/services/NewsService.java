@@ -81,13 +81,7 @@ public class NewsService implements INewsService {
     // Asigna el autor a la noticia
     news.setNewsAuthor(newsAuthor);
 
-    String fileName = fileStorageService.storeFile(file);
-    String fileDownloadUri =
-            ServletUriComponentsBuilder.fromCurrentContextPath()
-                    .path("/app/images/")
-                    .path(fileName)
-                    .toUriString();
-
+    String fileDownloadUri = fileStorageService.storeFileAndGenerateUri(file);
     // Asigna la URL de la imagen a la noticia
     news.setImage(fileDownloadUri);
 
@@ -101,7 +95,6 @@ public class NewsService implements INewsService {
     }
     return newsRepository.save(news);
   }
-
 
   @Override
   public void delete(Long id) {
@@ -134,7 +127,7 @@ public class NewsService implements INewsService {
   }
 
   @Override
-  public News editNews(Long id, News newsRequest) {
+  public News editNews(Long id, News newsRequest, MultipartFile file, Long gameId) {
     LOG.info("Editing news: {}", id);
     News news =
         newsRepository
@@ -143,14 +136,22 @@ public class NewsService implements INewsService {
     if (newsRequest.getHeadline() != null) {
       news.setHeadline(newsRequest.getHeadline());
     }
-    if (newsRequest.getImage() != null) {
-      news.setImage(newsRequest.getImage());
+    if (file != null) {
+      String fileDownloadUri = fileStorageService.storeFileAndGenerateUri(file);
+      news.setImage(fileDownloadUri);
     }
     if (newsRequest.getAlt() != null) {
       news.setAlt(newsRequest.getAlt());
     }
     if (newsRequest.getContent() != null) {
       news.setContent(newsRequest.getContent());
+    }
+    if (gameId != null) {
+      Game game = gameService.findByIdGame(gameId);
+      if (game == null) {
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El juego no existe");
+      }
+      news.setGame(game);
     }
 
     return newsRepository.save(news);

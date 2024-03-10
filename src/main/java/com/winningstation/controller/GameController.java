@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.winningstation.entity.Game;
 import com.winningstation.services.interfaces.IGameService;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
@@ -51,12 +52,13 @@ public class GameController {
       summary = "Crea un nuevo juego",
       description =
           "Crea un nuevo juego basado en la petición proporcionada y devuelve el juego creado")
-  public GameAndSagaDTO createGame(@RequestBody GameRequest gameRequest) {
+  public GameAndSagaDTO createGame(
+      @ModelAttribute GameRequest gameRequest, @RequestPart("file") MultipartFile file) {
     Game game = gameRequest.getGame();
     if (game == null) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El objeto Game no puede ser null");
     }
-    return gameService.save(gameRequest);
+    return gameService.save(gameRequest, file);
   }
 
   /**

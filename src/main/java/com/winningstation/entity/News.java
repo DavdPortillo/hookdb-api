@@ -39,7 +39,7 @@ public class News implements Serializable {
   private String headline;
 
   /** Imagen de la noticia. */
-  private String image;
+  @NotNull private String image;
 
   /** alt de la imagen de la noticia. */
   @NotNull private String alt;

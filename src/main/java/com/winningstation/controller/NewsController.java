@@ -61,17 +61,10 @@ public class NewsController {
       description =
           "Crea una noticia basada en la petición proporcionada y devuelve la noticia creada")
   public News save(
-          @RequestPart("headline") String headline,
-          @RequestPart("alt") String alt,
-          @RequestPart("content") String content,
-          @RequestPart("file") MultipartFile file,
-          @PathVariable Long authorId,
-          @RequestParam(required = false) Long gameId) {
-
-    News news = new News();
-    news.setHeadline(headline);
-    news.setAlt(alt);
-    news.setContent(content);
+      @ModelAttribute News news,
+      @RequestPart("file") MultipartFile file,
+      @PathVariable Long authorId,
+      @RequestParam(required = false) Long gameId) {
 
     return newsService.save(news, file, authorId, gameId);
   }
@@ -130,15 +123,21 @@ public class NewsController {
    * Edita una noticia.
    *
    * @param news Noticia a editar.
-   * @param id ID de la noticia a editar.
+   * @param file Archivo de la noticia.
    * @return La noticia editada.
    */
-  @PutMapping("/{id}")
+  @PutMapping("{newsId}")
+  @ResponseStatus(HttpStatus.OK)
   @Operation(
       summary = "Edita una noticia",
       description =
           "Edita una noticia basada en el identificador y la petición proporcionados y devuelve la noticia editada")
-  public News update(@PathVariable Long id, @RequestBody News news) {
-    return newsService.editNews(id, news);
+  public News edit(
+      @ModelAttribute News news,
+      @RequestPart(value = "file", required = false) MultipartFile file,
+      @PathVariable Long newsId,
+      @RequestParam(required = false) Long gameId) {
+
+    return newsService.editNews(newsId, news, file, gameId);
   }
 }

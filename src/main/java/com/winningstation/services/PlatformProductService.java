@@ -9,6 +9,7 @@ import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -27,18 +28,24 @@ public class PlatformProductService implements IPlatformProductService {
   /** Repositorio de edición de productos */
   private final PlatformProductRepository platformProductRepository;
 
+  private final FileStorageService fileStorageService;
+
   /**
    * Constructor de la clase.
    *
    * @param platformProductRepository Repositorio de edición de productos.
    */
-  public PlatformProductService(PlatformProductRepository platformProductRepository) {
+  public PlatformProductService(
+      PlatformProductRepository platformProductRepository, FileStorageService fileStorageService) {
     this.platformProductRepository = platformProductRepository;
+    this.fileStorageService = fileStorageService;
   }
 
   @Override
-  public PlatformProduct save(PlatformProduct platformProduct) {
+  public PlatformProduct save(PlatformProduct platformProduct, MultipartFile file) {
     LOGGER.info("Guardando plataforma");
+    String fileDownloadUri = fileStorageService.storeFileAndGenerateUri(file);
+    platformProduct.setImage(fileDownloadUri);
     return platformProductRepository.save(platformProduct);
   }
 
@@ -65,7 +72,7 @@ public class PlatformProductService implements IPlatformProductService {
   }
 
   @Override
-  public PlatformProduct update(Long id, PlatformProduct request) {
+  public PlatformProduct update(Long id, PlatformProduct request, MultipartFile file) {
     LOGGER.info("Actualizando plataforma por id {}", id);
     PlatformProduct platformProduct = findById(id);
     if (platformProduct == null) {
@@ -74,8 +81,9 @@ public class PlatformProductService implements IPlatformProductService {
     if (request.getName() != null) {
       platformProduct.setName(request.getName());
     }
-    if (request.getImage() != null) {
-      platformProduct.setImage(request.getImage());
+    if (file != null) {
+      String fileDownloadUri = fileStorageService.storeFileAndGenerateUri(file);
+      platformProduct.setImage(fileDownloadUri);
     }
     if (request.getAlt() != null) {
       platformProduct.setAlt(request.getAlt());
