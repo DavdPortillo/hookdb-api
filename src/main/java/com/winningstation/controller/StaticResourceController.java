@@ -13,10 +13,10 @@ import java.nio.file.Paths;
 @RestController
 public class StaticResourceController {
 
-  @GetMapping("/images/{filename:.+}")
+  @GetMapping("/app/images/{filename:.+}")
   public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
 
-    Resource file = new PathResource(Paths.get("/images/", filename));
+    Resource file = new PathResource(Paths.get("/app/images", filename));
     String contentType = getContentType(filename);
 
     return ResponseEntity.ok().contentType(MediaType.parseMediaType(contentType)).body(file);

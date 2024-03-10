@@ -84,7 +84,7 @@ public class NewsService implements INewsService {
     String fileName = fileStorageService.storeFile(file);
     String fileDownloadUri =
             ServletUriComponentsBuilder.fromCurrentContextPath()
-                    .path("/images/")  // Aquí cambiamos la ruta a /static/images/
+                    .path("/app/images/")
                     .path(fileName)
                     .toUriString();
 

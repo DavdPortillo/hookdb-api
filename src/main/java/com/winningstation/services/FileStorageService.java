@@ -19,7 +19,7 @@ public class FileStorageService {
 
       // Convierte el MultipartFile en un archivo regular
       byte[] bytes = file.getBytes();
-      String uploadDir = "/images";
+      String uploadDir = "/app/images";
       Path path = Paths.get(uploadDir + "/" + fileName);
       Files.write(path, bytes);
 
