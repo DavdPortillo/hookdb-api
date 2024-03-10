@@ -24,14 +24,10 @@ public class StaticResourceController {
 
   private String getContentType(String filename) {
     String extension = filename.substring(filename.lastIndexOf(".") + 1);
-    switch (extension.toLowerCase()) {
-      case "png":
-        return "image/png";
-      case "jpg":
-      case "jpeg":
-        return "image/jpeg";
-      default:
-        return "application/octet-stream";
-    }
+      return switch (extension.toLowerCase()) {
+          case "png" -> "image/png";
+          case "jpg", "jpeg" -> "image/jpeg";
+          default -> "application/octet-stream";
+      };
   }
 }
