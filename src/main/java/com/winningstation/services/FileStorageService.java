@@ -70,9 +70,6 @@ public class FileStorageService {
 
   public void deleteFile(String uri) {
     try {
-      // Aquí debes implementar el código para eliminar el archivo del servidor.
-      // El parámetro 'uri' es la URI de la imagen que quieres eliminar.
-      // Por ejemplo:
       String fileName = uri.substring(uri.lastIndexOf("/") + 1);
       Path fileToDeletePath = Paths.get("/app/images", fileName);
       Files.deleteIfExists(fileToDeletePath);

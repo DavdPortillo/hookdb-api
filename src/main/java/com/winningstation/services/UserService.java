@@ -91,7 +91,7 @@ public class UserService implements IUserService {
       }
 
       if (file != null) {
-        String fileDownloadUri = fileStorageService.storeFileAndGenerateUri(file);
+        String fileDownloadUri = fileStorageService.replaceFileAndGenerateUri(file, user.getImage());
         user.setImage(fileDownloadUri);
       }
 

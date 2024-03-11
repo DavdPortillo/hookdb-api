@@ -137,7 +137,7 @@ public class NewsService implements INewsService {
       news.setHeadline(newsRequest.getHeadline());
     }
     if (file != null) {
-      String fileDownloadUri = fileStorageService.storeFileAndGenerateUri(file);
+      String fileDownloadUri = fileStorageService.replaceFileAndGenerateUri(file, news.getImage());
       news.setImage(fileDownloadUri);
     }
     if (newsRequest.getAlt() != null) {

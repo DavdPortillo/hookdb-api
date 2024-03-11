@@ -82,7 +82,7 @@ public class PlatformProductService implements IPlatformProductService {
       platformProduct.setName(request.getName());
     }
     if (file != null) {
-      String fileDownloadUri = fileStorageService.storeFileAndGenerateUri(file);
+      String fileDownloadUri = fileStorageService.replaceFileAndGenerateUri(file, platformProduct.getImage());
       platformProduct.setImage(fileDownloadUri);
     }
     if (request.getAlt() != null) {

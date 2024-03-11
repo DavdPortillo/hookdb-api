@@ -78,7 +78,7 @@ public class LogoProductService implements ILogoProductService {
     if (existingLogoProduct != null) {
       LOGGER.info("Actualizando logo de producto con id: {}", id);
       if (file != null) {
-        String fileDownloadUri = fileStorageService.storeFileAndGenerateUri(file);
+        String fileDownloadUri = fileStorageService.replaceFileAndGenerateUri(file, existingLogoProduct.getLogo());
         existingLogoProduct.setLogo(fileDownloadUri);
       }
       if (newLogoProduct.getAlt() != null) {

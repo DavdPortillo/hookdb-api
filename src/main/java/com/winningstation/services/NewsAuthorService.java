@@ -88,7 +88,7 @@ public class NewsAuthorService implements INewsAuthorService {
       newsAuthor.setSurname(request.getSurname());
     }
     if (file != null) {
-      String fileDownloadUri = fileStorageService.storeFileAndGenerateUri(file);
+      String fileDownloadUri = fileStorageService.replaceFileAndGenerateUri(file, newsAuthor.getImage());
       newsAuthor.setImage(fileDownloadUri);
     }
     if (request.getAlt() != null) {
