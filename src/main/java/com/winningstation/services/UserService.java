@@ -1,6 +1,7 @@
 package com.winningstation.services;
 
 import com.winningstation.dto.UpdateUserRequest;
+import com.winningstation.dto.UserInfoDTO;
 import com.winningstation.repository.RoleRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -82,7 +83,9 @@ public class UserService implements IUserService {
     String oldPassword = updateUserRequest.getOldPassword();
     String newPassword = updateUserRequest.getNewPassword();
 
-    User user = userRepository.findById(id)
+    User user =
+        userRepository
+            .findById(id)
             .orElseThrow(() -> new RuntimeException("User with id " + id + " not found"));
 
     if (updatedUser != null) {
@@ -91,7 +94,8 @@ public class UserService implements IUserService {
       }
 
       if (file != null) {
-        String fileDownloadUri = fileStorageService.replaceFileAndGenerateUri(file, user.getImage());
+        String fileDownloadUri =
+            fileStorageService.replaceFileAndGenerateUri(file, user.getImage());
         user.setImage(fileDownloadUri);
       }
 
@@ -136,6 +140,11 @@ public class UserService implements IUserService {
     return userRepository.save(user);
   }
 
+  @Override
+  public UserInfoDTO findUserInfoById(Long userId) {
+    LOG.info("Finding user info by id: {}", userId);
+    return userRepository.findUserInfoById(userId);
+  }
 
   @Override
   public void delete(Long id) {

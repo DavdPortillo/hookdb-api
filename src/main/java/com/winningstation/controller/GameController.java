@@ -87,7 +87,10 @@ public class GameController {
       description = "Devuelve un juego basado en su ID")
   public ResponseEntity<GameAndSagaDTO> getGame(@PathVariable Long id) {
     GameAndSagaDTO game = gameService.findById(id);
-    return ResponseEntity.ok(game);
+    if (game == null) {
+      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+    return new ResponseEntity<>(game, HttpStatus.OK);
   }
 
   /**

@@ -22,10 +22,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -278,14 +275,19 @@ public class GameService implements IGameService {
       return null;
     }
 
-    return sagaRepository
-        .findById(saga.getId())
-        .orElseGet(
-            () -> {
-              Saga newSaga = new Saga();
-              newSaga.setName(saga.getName());
-              return sagaRepository.save(newSaga);
-            });
+    if (saga.getId() != null) {
+      Optional<Saga> existingSaga = sagaRepository.findById(saga.getId());
+      if (existingSaga.isPresent()) {
+        return existingSaga.get();
+      } else {
+        throw new IllegalArgumentException(
+            "No existe una saga con el ID proporcionado. Por favor, proporciona un ID válido.");
+      }
+    } else {
+      Saga newSaga = new Saga();
+      newSaga.setName(saga.getName());
+      return sagaRepository.save(newSaga);
+    }
   }
 
   @Override
@@ -316,42 +318,50 @@ public class GameService implements IGameService {
     return availabilities;
   }
 
+
   @Override
   public List<GameFeature> createGameFeatures(List<GameFeatureRequest> gameFeatureRequests) {
     if (gameFeatureRequests == null || gameFeatureRequests.isEmpty()) {
       throw new IllegalArgumentException(
-          "La lista de características del juego no puede ser nula ni vacía");
+              "La lista de características del juego no puede ser nula ni vacía");
     }
     List<GameFeature> gameFeatures = new ArrayList<>();
     for (GameFeatureRequest gameFeatureRequest : gameFeatureRequests) {
       Feature feature =
-          featureRepository
-              .findById(gameFeatureRequest.getFeatureId())
-              .orElseThrow(
-                  () ->
-                      new IllegalArgumentException(
-                          "Feature no encontrada con id: " + gameFeatureRequest.getFeatureId()));
+              featureRepository
+                      .findById(gameFeatureRequest.getFeatureId())
+                      .orElseThrow(
+                              () ->
+                                      new IllegalArgumentException(
+                                              "Feature no encontrada con id: " + gameFeatureRequest.getFeatureId()));
       NumberPlayer numberPlayer = null;
       if (gameFeatureRequest.getNumberPlayerId() != null) {
-        numberPlayer =
-            numberPlayerRepository
-                .findById(gameFeatureRequest.getNumberPlayerId())
-                .orElseThrow(
-                    () ->
-                        new IllegalArgumentException(
-                            "NumberPlayer no encontrado con id: "
-                                + gameFeatureRequest.getNumberPlayerId()));
+        if (feature.getName().toLowerCase().equals("coop.online") || feature.getName().toLowerCase().equals("coop.lan")) {
+          numberPlayer =
+                  numberPlayerRepository
+                          .findById(gameFeatureRequest.getNumberPlayerId())
+                          .orElseThrow(
+                                  () ->
+                                          new IllegalArgumentException(
+                                                  "NumberPlayer no encontrado con id: "
+                                                          + gameFeatureRequest.getNumberPlayerId()));
+        } else {
+          throw new IllegalArgumentException(
+                  "No se puede asignar NumberPlayer a la característica: " + feature.getName());
+        }
       }
       GameFeature gameFeature = new GameFeature();
       gameFeature.setFeature(feature);
       gameFeature.setNumberPlayers(numberPlayer);
       gameFeature =
-          gameFeatureRepository.save(
-              gameFeature); // Guarda la entidad GameFeature en la base de datos
+              gameFeatureRepository.save(
+                      gameFeature); // Guarda la entidad GameFeature en la base de datos
       gameFeatures.add(gameFeature);
     }
     return gameFeatures;
   }
+
+
 
   @Override
   public List<Product> createProducts(List<ProductRequest> productRequests, Game game) {
@@ -572,7 +582,7 @@ public class GameService implements IGameService {
     if (Objects.nonNull(gameRequest.getGame().getTitle())) {
       game.setTitle(gameRequest.getGame().getTitle());
     }
-    if (!file.isEmpty()) {
+    if (file != null && !file.isEmpty()){
       String fileDownloadUri = fileStorageService.replaceFileAndGenerateUri(file, game.getCover());
       game.setCover(fileDownloadUri);
     }

@@ -117,6 +117,16 @@ public class UserController {
     return ResponseEntity.ok(userService.findById(id));
   }
 
+  @PreAuthorize("#id == authentication.principal.id")
+  @GetMapping("/mainInfo/{id}")
+  @Operation(
+      summary = "Obtiene la información principal de un usuario por su ID",
+      description =
+          "Devuelve la información de un usuario basado en el identificador proporcionado")
+  public ResponseEntity<?> getUserInfoById(@PathVariable Long id) {
+    return ResponseEntity.ok(userService.findUserInfoById(id));
+  }
+
   /**
    * Borra un cliente por su ID.
    *

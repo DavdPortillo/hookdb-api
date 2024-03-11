@@ -67,4 +67,14 @@ public class News implements Serializable {
   @JsonBackReference("game-news")
   @ToString.Exclude
   private Game game;
+
+  public String getNameGame() {
+    return game == null ? null : game.getTitle();
+  }
+
+  public Long getIdGame() {
+    return game == null ? null : game.getId();
+  }
+
+
 }

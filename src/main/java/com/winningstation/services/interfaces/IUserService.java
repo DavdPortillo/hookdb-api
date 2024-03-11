@@ -1,6 +1,7 @@
 package com.winningstation.services.interfaces;
 
 import com.winningstation.dto.UpdateUserRequest;
+import com.winningstation.dto.UserInfoDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -21,6 +22,8 @@ public interface IUserService {
    * @return El usuario con el ID especificado.
    */
   User findById(Long id);
+
+  UserInfoDTO findUserInfoById(Long userId);
 
   /**
    * Método que permite guardar un usuario.
