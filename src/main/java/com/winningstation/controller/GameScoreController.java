@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
+
 /**
  * Controlador que permite realizar operaciones sobre la puntuación de los juegos.
  *
@@ -63,12 +65,12 @@ public class GameScoreController {
       summary = "Obtiene la puntuación que le dio un usuario a un juego",
       description =
           "Obtiene la puntuación que le dio un usuario a un juego basada en los identificadores de usuario y juego proporcionados")
-  public ResponseEntity<GameScore> findGameScoreByUserIdAndGameId(
-      @PathVariable Long userId, @PathVariable Long gameId) {
+  public ResponseEntity<?> findGameScoreByUserIdAndGameId(
+          @PathVariable Long userId, @PathVariable Long gameId) {
     GameScore gameScore = gameScoreService.findGameScoreByUserIdAndGameId(userId, gameId);
     if (gameScore == null) {
-      // Devuelve un ResponseEntity con código de estado 404
-      return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+      // Devuelve un ResponseEntity con un objeto que contiene un mensaje
+      return new ResponseEntity<>(Collections.singletonMap("message", "No score found"), HttpStatus.OK);
     }
     return new ResponseEntity<>(gameScore, HttpStatus.OK);
   }

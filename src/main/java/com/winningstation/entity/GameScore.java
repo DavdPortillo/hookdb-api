@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
@@ -33,9 +34,9 @@ public class GameScore implements Serializable {
  @NotNull private LocalDateTime date;
 
   /** Puntuación que da el usuario al juego. */
-  @NotNull
   @Min(0)
   @Max(10)
+  @JsonInclude(JsonInclude.Include.NON_NULL)
   private Integer score;
 
   /** Usuario que puntuó el juego. */
