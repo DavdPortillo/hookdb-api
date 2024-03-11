@@ -70,7 +70,7 @@ public class GameScoreController {
     GameScore gameScore = gameScoreService.findGameScoreByUserIdAndGameId(userId, gameId);
     if (gameScore == null) {
       // Devuelve un ResponseEntity con un objeto que contiene un mensaje
-      return new ResponseEntity<>(Collections.singletonMap("message", "No score found"), HttpStatus.OK);
+      return new ResponseEntity<>("undefined", HttpStatus.OK);
     }
     return new ResponseEntity<>(gameScore, HttpStatus.OK);
   }
