@@ -2,6 +2,7 @@ package com.winningstation.controller;
 
 import com.winningstation.dto.GameListDTO;
 import com.winningstation.dto.ListDTO;
+import com.winningstation.dto.ListDTOGame;
 import com.winningstation.entity.GamesList;
 import com.winningstation.services.interfaces.IGamesListService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -119,6 +120,24 @@ public class GamesListController {
           "Devuelve las listas de juegos de un usuario basado en el identificador de usuario proporcionado")
   public List<ListDTO> findListByUserId(@PathVariable Long userId) {
     return gamesListService.findListByUserId(userId);
+  }
+
+  /**
+   * Encuentra las listas y si un juego está en ellas.
+   *
+   * @param userId Id del usuario.
+   * @param gameId Id del juego.
+   * @return Lista de juegos guardada.
+   */
+  @PreAuthorize("#userId == authentication.principal.id")
+  @GetMapping("/user/{userId}/game/{gameId}/lists")
+  @Operation(
+      summary = "Encuentra las listas de juegos de un usuario y si un juego está en ellas",
+      description =
+          "Devuelve las listas de juegos de un usuario basado en el identificador de usuario proporcionado")
+  public List<ListDTOGame> findListByUserIdAndGameId(
+      @PathVariable Long userId, @PathVariable Long gameId) {
+    return gamesListService.findListByUserIdAndGameId(userId, gameId);
   }
 
   /**

@@ -1,6 +1,7 @@
 package com.winningstation.repository;
 
 import com.winningstation.dto.ListDTO;
+import com.winningstation.dto.ListDTOGame;
 import com.winningstation.entity.GamesList;
 import com.winningstation.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -46,6 +47,15 @@ public interface GamesListRepository extends JpaRepository<GamesList, Long> {
           + "WHERE g.user.id = :userId "
           + "GROUP BY g.id")
   List<ListDTO> findListByUserId(@Param("userId") Long userId);
+
+  @Query(
+      "SELECT new com.winningstation.dto.ListDTOGame(g.id, g.name, g.date, "
+          + "CASE WHEN :gameId IN (SELECT game.id FROM g.games game) THEN true ELSE false END) "
+          + "FROM GamesList g "
+          + "WHERE g.user.id = :userId "
+          + "GROUP BY g.id")
+  List<ListDTOGame> findListByUserIdAndGameId(
+      @Param("userId") Long userId, @Param("gameId") Long gameId);
 
   /**
    * Encuentra las listas de juegos de un usuario por un patrón de nombre.

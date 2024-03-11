@@ -2,6 +2,7 @@ package com.winningstation.services;
 
 import com.winningstation.dto.GameListDTO;
 import com.winningstation.dto.ListDTO;
+import com.winningstation.dto.ListDTOGame;
 import com.winningstation.entity.*;
 import com.winningstation.repository.GameRepository;
 import com.winningstation.repository.GamesListRepository;
@@ -155,6 +156,12 @@ public class GamesListService implements IGamesListService {
   public List<ListDTO> findListByUserId(Long userId) {
     LOGGER.info("Finding game list for user {}", userId);
     return gamesListRepository.findListByUserId(userId);
+  }
+
+  @Override
+  public List<ListDTOGame> findListByUserIdAndGameId(Long userId, Long gameId) {
+    LOGGER.info("Finding game list for user {} with game {}", userId, gameId);
+    return gamesListRepository.findListByUserIdAndGameId(userId, gameId);
   }
 
   @Override

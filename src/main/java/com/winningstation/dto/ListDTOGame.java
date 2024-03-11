@@ -8,11 +8,10 @@ import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
-public class ListDTO implements Serializable {
+public class ListDTOGame implements Serializable {
 
-    private Long id;
-    private String name;
-    private LocalDateTime date;
-    private Long gamesCount;
-
+  private Long id;
+  private String name;
+  private LocalDateTime date;
+  private Boolean isThisGameInList;
 }

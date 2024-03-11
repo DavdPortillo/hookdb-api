@@ -2,6 +2,7 @@ package com.winningstation.services.interfaces;
 
 import com.winningstation.dto.GameListDTO;
 import com.winningstation.dto.ListDTO;
+import com.winningstation.dto.ListDTOGame;
 import com.winningstation.entity.GamesList;
 
 import java.util.List;
@@ -40,6 +41,8 @@ public interface IGamesListService {
    * @return Lista de juegos guardada.
    */
   List<GameListDTO> getGamesByList(Long idUser, Long idList);
+
+  List<ListDTOGame> findListByUserIdAndGameId(Long userId, Long gameId);
 
   /** Elimina un juego de la lista de juegos. */
   void deleteGameFromList(Long userId, Long gamesListId, Long gameId);
