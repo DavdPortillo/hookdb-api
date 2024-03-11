@@ -1,4 +1,4 @@
-name: Migrate from Jenkins
+name: App CI/CD
 on: [ push ]
 jobs:
   build:

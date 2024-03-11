@@ -222,13 +222,9 @@ public class GameService implements IGameService {
     String fileDownloadUri = fileStorageService.storeFileAndGenerateUri(file);
     game.setCover(fileDownloadUri);
 
-
     Game savedGame = gameRepository.save(game);
 
     savedGame.setProducts(createProducts(gameRequest.getProducts(), savedGame));
-
-
-
 
     return convertToGameAndSagaDTO(savedGame);
   }
@@ -478,14 +474,14 @@ public class GameService implements IGameService {
   }
 
   @Override
-  public GameAndSagaDTO updateGame(Long id, GameRequest gameRequest) {
+  public GameAndSagaDTO updateGame(Long id, GameRequest gameRequest, MultipartFile file) {
     LOG.info("Updating game with id: {}", id);
     Game game =
         gameRepository
             .findById(id)
             .orElseThrow(() -> new RuntimeException("Game not found with id: " + id));
 
-    updateGameFromRequest(game, gameRequest);
+    updateGameFromRequest(game, gameRequest, file);
 
     if (gameRequest.getMinimumSystemRequirement() != null) {
       game.setMinimumSystemRequirement(
@@ -572,12 +568,13 @@ public class GameService implements IGameService {
   }
 
   @Override
-  public void updateGameFromRequest(Game game, GameRequest gameRequest) {
+  public void updateGameFromRequest(Game game, GameRequest gameRequest, MultipartFile file) {
     if (Objects.nonNull(gameRequest.getGame().getTitle())) {
       game.setTitle(gameRequest.getGame().getTitle());
     }
-    if (Objects.nonNull(gameRequest.getGame().getCover())) {
-      game.setCover(gameRequest.getGame().getCover());
+    if (!file.isEmpty()) {
+      String fileDownloadUri = fileStorageService.replaceFileAndGenerateUri(file, game.getCover());
+      game.setCover(fileDownloadUri);
     }
     if (Objects.nonNull(gameRequest.getGame().getAlt())) {
       game.setAlt(gameRequest.getGame().getAlt());

@@ -119,7 +119,7 @@ public interface IGameService {
    * @param gameRequest Parámetros para actualizar el juego.
    * @return El juego actualizado.
    */
-  GameAndSagaDTO updateGame(Long id, GameRequest gameRequest);
+  GameAndSagaDTO updateGame(Long id, GameRequest gameRequest, MultipartFile file);
 
   /**
    * Obtiene o crea una saga.
@@ -153,7 +153,7 @@ public interface IGameService {
    * @param game Juego a actualizar.
    * @param gameRequest Petición para actualizar el juego.
    */
-  void updateGameFromRequest(Game game, GameRequest gameRequest);
+  void updateGameFromRequest(Game game, GameRequest gameRequest, MultipartFile file);
 
   /**
    * Permite actualizar los requerimientos de un sistema.

@@ -113,7 +113,6 @@ public class Security {
                 .requestMatchers(
                     HttpMethod.GET,
                     "/developer/**",
-                    "/user/**",
                     "/distributor/**",
                     "/dlc/**",
                     "/edition-product/**",
@@ -129,7 +128,9 @@ public class Security {
                     "platform-product/**",
                     "/region-product/**",
                     "/vendor-product/**",
-                    "/user/**")
+                    "/user",
+                    "/user/username/{username}",
+                    "/user/email/{email}")
                 .hasRole("ADMIN")
                 .requestMatchers(
                     HttpMethod.PUT,

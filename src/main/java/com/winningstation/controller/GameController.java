@@ -3,6 +3,7 @@ package com.winningstation.controller;
 import com.winningstation.dto.GameAndSagaDTO;
 import com.winningstation.dto.GameSearchDTO;
 import com.winningstation.dto.ScoreAverageResultDTO;
+import com.winningstation.entity.PlatformProduct;
 import com.winningstation.projection.GamePopularityProjection;
 import com.winningstation.request.GameRequest;
 import io.swagger.v3.oas.annotations.Operation;
@@ -183,12 +184,15 @@ public class GameController {
       summary = "Actualiza un juego",
       description =
           "Actualiza un juego basado en la petición proporcionada y devuelve el juego actualizado")
-  public GameAndSagaDTO updateGame(@PathVariable Long id, @RequestBody GameRequest gameRequest) {
+  public GameAndSagaDTO updateGame(
+      @PathVariable Long id,
+      @ModelAttribute GameRequest gameRequest,
+      @RequestPart(value = "file", required = false) MultipartFile file) {
     Game game = gameRequest.getGame();
     if (game == null) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El objeto Game no puede ser null");
     }
-    return gameService.updateGame(id, gameRequest);
+    return gameService.updateGame(id, gameRequest, file);
   }
 
   @DeleteMapping("/{id}")

@@ -58,4 +58,26 @@ public class FileStorageService {
         .path(fileName)
         .toUriString();
   }
+
+  public String replaceFileAndGenerateUri(MultipartFile file, String oldUri) {
+    // Elimina la imagen anterior si existe
+    if (oldUri != null && !oldUri.isEmpty()) {
+      deleteFile(oldUri);
+    }
+    // Almacena la nueva imagen
+    return storeFileAndGenerateUri(file);
+  }
+
+  public void deleteFile(String uri) {
+    try {
+      // Aquí debes implementar el código para eliminar el archivo del servidor.
+      // El parámetro 'uri' es la URI de la imagen que quieres eliminar.
+      // Por ejemplo:
+      String fileName = uri.substring(uri.lastIndexOf("/") + 1);
+      Path fileToDeletePath = Paths.get("/app/images", fileName);
+      Files.deleteIfExists(fileToDeletePath);
+    } catch (IOException e) {
+      throw new RuntimeException("Error al eliminar el archivo", e);
+    }
+  }
 }
