@@ -47,19 +47,21 @@ public class GameController {
    * @param gameRequest La petición para guardar un juego.
    * @return El juego creado.
    */
-  @PostMapping
+  @PostMapping("/language/{translationId}")
   @ResponseStatus(HttpStatus.CREATED)
   @Operation(
       summary = "Crea un nuevo juego",
       description =
           "Crea un nuevo juego basado en la petición proporcionada y devuelve el juego creado")
   public GameAndSagaDTO createGame(
-      @ModelAttribute GameRequest gameRequest, @RequestPart("file") MultipartFile file) {
+      @ModelAttribute GameRequest gameRequest,
+      @RequestPart("file") MultipartFile file,
+      @PathVariable Long translationId) {
     Game game = gameRequest.getGame();
     if (game == null) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El objeto Game no puede ser null");
     }
-    return gameService.save(gameRequest, file);
+    return gameService.save(gameRequest, file, translationId);
   }
 
   /**
@@ -81,12 +83,13 @@ public class GameController {
    * @param id Id del juego.
    * @return El juego encontrado.
    */
-  @GetMapping("/{id}")
+  @GetMapping("/{id}/language/{translationId}")
   @Operation(
       summary = "Obtiene un juego por su ID",
       description = "Devuelve un juego basado en su ID")
-  public ResponseEntity<GameAndSagaDTO> getGame(@PathVariable Long id) {
-    GameAndSagaDTO game = gameService.findById(id);
+  public ResponseEntity<GameAndSagaDTO> getGame(
+      @PathVariable Long id, @PathVariable Long translationId) {
+    GameAndSagaDTO game = gameService.findById(id, translationId);
     if (game == null) {
       return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
@@ -126,12 +129,12 @@ public class GameController {
    *
    * @return Lista de los 5 juegos más populares
    */
-  @GetMapping("/top-5-popular")
+  @GetMapping("/top-5-popular/language/{translationId}")
   @Operation(
       summary = "Obtiene los 5 juegos más populares",
       description = "Devuelve una lista de los 5 juegos más populares")
-  public List<GamePopularityProjection> getTop5Popular() {
-    return gameService.findTop5ByDateAfterAndOrderByPopularityDesc();
+  public List<GamePopularityProjection> getTop5Popular(@PathVariable Long translationId) {
+    return gameService.findTop5ByDateAfterAndOrderByPopularityDesc(translationId);
   }
 
   /**
@@ -139,12 +142,12 @@ public class GameController {
    *
    * @return Lista de los juegos más populares
    */
-  @GetMapping("/popular")
+  @GetMapping("/popular/language/{translationId}")
   @Operation(
       summary = "Obtiene los juegos más populares",
       description = "Devuelve una lista de los juegos más populares")
-  public List<GamePopularityProjection> getPopular() {
-    return gameService.findByDateAfterAndOrderByPopularityDesc();
+  public List<GamePopularityProjection> getPopular(@PathVariable Long translationId) {
+    return gameService.findByDateAfterAndOrderByPopularityDesc(translationId);
   }
 
   /**
@@ -152,12 +155,13 @@ public class GameController {
    *
    * @return Lista de los juegos más populares
    */
-  @GetMapping("/name/{keyword}")
+  @GetMapping("/name/{keyword}/language/{translationId}")
   @Operation(
       summary = "Busca juegos por palabra clave",
       description = "Devuelve una lista de juegos que coinciden con la palabra clave proporcionada")
-  public ResponseEntity<List<GameSearchDTO>> searchGames(@PathVariable String keyword) {
-    List<GameSearchDTO> games = gameService.searchGames(keyword);
+  public ResponseEntity<List<GameSearchDTO>> searchGames(
+      @PathVariable String keyword, @PathVariable Long translationId) {
+    List<GameSearchDTO> games = gameService.searchGames(keyword, translationId);
     return new ResponseEntity<>(games, HttpStatus.OK);
   }
 
@@ -166,13 +170,14 @@ public class GameController {
    *
    * @return Lista de los juegos más populares
    */
-  @GetMapping("/search-five-suggestions/{keyword}")
+  @GetMapping("/search-five-suggestions/{keyword}/language/{translationId}")
   @Operation(
       summary = "Busca los 5 juegos más populares por palabra clave",
       description =
           "Devuelve una lista de los 5 juegos más populares que coinciden con la palabra clave proporcionada")
-  public ResponseEntity<List<GameSearchDTO>> searchTop5Games(@PathVariable String keyword) {
-    List<GameSearchDTO> games = gameService.searchTop5Games(keyword);
+  public ResponseEntity<List<GameSearchDTO>> searchTop5Games(
+      @PathVariable String keyword, @PathVariable Long translationId) {
+    List<GameSearchDTO> games = gameService.searchTop5Games(keyword, translationId);
     return new ResponseEntity<>(games, HttpStatus.OK);
   }
 
@@ -182,7 +187,7 @@ public class GameController {
    * @param gameRequest La petición para actualizar un juego.
    * @return El juego actualizado.
    */
-  @PutMapping("/{id}")
+  @PutMapping("/{id}/language/{translationId}")
   @Operation(
       summary = "Actualiza un juego",
       description =
@@ -190,12 +195,13 @@ public class GameController {
   public GameAndSagaDTO updateGame(
       @PathVariable Long id,
       @ModelAttribute GameRequest gameRequest,
-      @RequestPart(value = "file", required = false) MultipartFile file) {
+      @RequestPart(value = "file", required = false) MultipartFile file,
+      @PathVariable Long translationId) {
     Game game = gameRequest.getGame();
     if (game == null) {
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El objeto Game no puede ser null");
     }
-    return gameService.updateGame(id, gameRequest, file);
+    return gameService.updateGame(id, gameRequest, file, translationId);
   }
 
   @DeleteMapping("/{id}")

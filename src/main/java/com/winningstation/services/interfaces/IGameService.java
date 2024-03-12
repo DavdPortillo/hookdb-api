@@ -27,7 +27,7 @@ public interface IGameService {
    * @param gameRequest Parámetros para guardar el juego.
    * @return El juego guardado.
    */
-  GameAndSagaDTO save(GameRequest gameRequest, MultipartFile file);
+  GameAndSagaDTO save(GameRequest gameRequest, MultipartFile file, Long translationId);
 
   /**
    * Método que permite eliminar un juego.
@@ -49,7 +49,7 @@ public interface IGameService {
    * @param id Id del juego a buscar.
    * @return El juego encontrado.
    */
-  GameAndSagaDTO findById(Long id);
+  GameAndSagaDTO findById(Long id, Long translationId);
 
   /**
    * Método que permite obtener un juego por su id.
@@ -89,28 +89,28 @@ public interface IGameService {
    *
    * @return Lista de juegos más populares.
    */
-  List<GamePopularityProjection> findByDateAfterAndOrderByPopularityDesc();
+  List<GamePopularityProjection> findByDateAfterAndOrderByPopularityDesc(Long translationId);
 
   /**
    * Método que permite obtener los 5 juegos más populares a partir de una fecha dada.
    *
    * @return Lista de juegos más populares.
    */
-  List<GamePopularityProjection> findTop5ByDateAfterAndOrderByPopularityDesc();
+  List<GamePopularityProjection> findTop5ByDateAfterAndOrderByPopularityDesc(Long translationId);
 
   /**
    * Método que permite buscar juegos por título donde tiene más peso la popularidad.
    *
    * @return Lista de juegos más populares.
    */
-  List<GameSearchDTO> searchGames(String keyword);
+  List<GameSearchDTO> searchGames(String keyword, Long translationId);
 
   /**
    * Método que permite buscar sugerencias 5 por título donde tiene más peso la popularidad.
    *
    * @return Lista de juegos más populares.
    */
-  List<GameSearchDTO> searchTop5Games(String keyword);
+  List<GameSearchDTO> searchTop5Games(String keyword, Long translationId);
 
   /**
    * Método que permite actualizar un juego.
@@ -119,7 +119,8 @@ public interface IGameService {
    * @param gameRequest Parámetros para actualizar el juego.
    * @return El juego actualizado.
    */
-  GameAndSagaDTO updateGame(Long id, GameRequest gameRequest, MultipartFile file);
+  GameAndSagaDTO updateGame(
+      Long id, GameRequest gameRequest, MultipartFile file, Long translationId);
 
   /**
    * Obtiene o crea una saga.

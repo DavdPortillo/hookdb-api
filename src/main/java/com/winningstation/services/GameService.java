@@ -14,12 +14,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import com.winningstation.services.interfaces.IGameService;
 
 import jakarta.transaction.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -108,6 +110,8 @@ public class GameService implements IGameService {
 
   private final FileStorageService fileStorageService;
 
+  private final TranslationRepository translationRepository;
+
   /**
    * Constructor de la clase.
    *
@@ -137,6 +141,7 @@ public class GameService implements IGameService {
       GameScoreRepository gameScoreRepository,
       GamesListRepository gamesListRepository,
       NewsRepository newsRepository,
+      TranslationRepository translationRepository,
       FileStorageService fileStorageService) {
     this.gameRepository = gameRepository;
     this.platformRepository = platformRepository;
@@ -162,19 +167,19 @@ public class GameService implements IGameService {
     this.gamesListRepository = gamesListRepository;
     this.newsRepository = newsRepository;
     this.fileStorageService = fileStorageService;
+    this.translationRepository = translationRepository;
   }
 
   @Override
-  public GameAndSagaDTO findById(Long id) {
-    LOG.info("Finding game by id: {}", id);
-    Game game = gameRepository.findById(id).orElse(null);
+  public GameAndSagaDTO findById(Long id, Long translationId) {
+    LOG.info("Finding game by id: {} with translation id: {}", id, translationId);
+    Game game = gameRepository.findByIdAndTranslationId(id, translationId);
     if (game == null) {
       LOG.info("Game not found");
       return null;
     }
 
     // Si el juego aún no se ha lanzado, incrementa el contador de popularidad
-
     game.setPopularity(game.getPopularity() + 1);
     gameRepository.save(game);
 
@@ -188,7 +193,7 @@ public class GameService implements IGameService {
   }
 
   @Override
-  public GameAndSagaDTO save(GameRequest gameRequest, MultipartFile file) {
+  public GameAndSagaDTO save(GameRequest gameRequest, MultipartFile file, Long translationId) {
     LOG.info("Saving game: {}", gameRequest);
 
     Game game = gameRequest.getGame();
@@ -218,6 +223,13 @@ public class GameService implements IGameService {
 
     String fileDownloadUri = fileStorageService.storeFileAndGenerateUri(file);
     game.setCover(fileDownloadUri);
+
+    // Si se proporcionó un ID de traducción, obtén la traducción y asígnala al juego
+    Translation translation = translationRepository.findById(translationId).orElse(null);
+    if (translation == null) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La traducción no existe");
+    }
+    game.setTranslation(translation);
 
     Game savedGame = gameRepository.save(game);
 
@@ -318,50 +330,48 @@ public class GameService implements IGameService {
     return availabilities;
   }
 
-
   @Override
   public List<GameFeature> createGameFeatures(List<GameFeatureRequest> gameFeatureRequests) {
     if (gameFeatureRequests == null || gameFeatureRequests.isEmpty()) {
       throw new IllegalArgumentException(
-              "La lista de características del juego no puede ser nula ni vacía");
+          "La lista de características del juego no puede ser nula ni vacía");
     }
     List<GameFeature> gameFeatures = new ArrayList<>();
     for (GameFeatureRequest gameFeatureRequest : gameFeatureRequests) {
       Feature feature =
-              featureRepository
-                      .findById(gameFeatureRequest.getFeatureId())
-                      .orElseThrow(
-                              () ->
-                                      new IllegalArgumentException(
-                                              "Feature no encontrada con id: " + gameFeatureRequest.getFeatureId()));
+          featureRepository
+              .findById(gameFeatureRequest.getFeatureId())
+              .orElseThrow(
+                  () ->
+                      new IllegalArgumentException(
+                          "Feature no encontrada con id: " + gameFeatureRequest.getFeatureId()));
       NumberPlayer numberPlayer = null;
       if (gameFeatureRequest.getNumberPlayerId() != null) {
-        if (feature.getName().toLowerCase().equals("coop.online") || feature.getName().toLowerCase().equals("coop.lan")) {
+        if (feature.getName().toLowerCase().equals("coop.online")
+            || feature.getName().toLowerCase().equals("coop.lan")) {
           numberPlayer =
-                  numberPlayerRepository
-                          .findById(gameFeatureRequest.getNumberPlayerId())
-                          .orElseThrow(
-                                  () ->
-                                          new IllegalArgumentException(
-                                                  "NumberPlayer no encontrado con id: "
-                                                          + gameFeatureRequest.getNumberPlayerId()));
+              numberPlayerRepository
+                  .findById(gameFeatureRequest.getNumberPlayerId())
+                  .orElseThrow(
+                      () ->
+                          new IllegalArgumentException(
+                              "NumberPlayer no encontrado con id: "
+                                  + gameFeatureRequest.getNumberPlayerId()));
         } else {
           throw new IllegalArgumentException(
-                  "No se puede asignar NumberPlayer a la característica: " + feature.getName());
+              "No se puede asignar NumberPlayer a la característica: " + feature.getName());
         }
       }
       GameFeature gameFeature = new GameFeature();
       gameFeature.setFeature(feature);
       gameFeature.setNumberPlayers(numberPlayer);
       gameFeature =
-              gameFeatureRepository.save(
-                      gameFeature); // Guarda la entidad GameFeature en la base de datos
+          gameFeatureRepository.save(
+              gameFeature); // Guarda la entidad GameFeature en la base de datos
       gameFeatures.add(gameFeature);
     }
     return gameFeatures;
   }
-
-
 
   @Override
   public List<Product> createProducts(List<ProductRequest> productRequests, Game game) {
@@ -404,21 +414,23 @@ public class GameService implements IGameService {
   }
 
   @Override
-  public List<GamePopularityProjection> findTop5ByDateAfterAndOrderByPopularityDesc() {
+  public List<GamePopularityProjection> findTop5ByDateAfterAndOrderByPopularityDesc(
+      Long translationId) {
     LOG.info("Finding top 5 popular unreleased games");
     return gameRepository.findTop5ByDateAfterAndOrderByPopularityDesc(
-        LocalDate.now(), PageRequest.of(0, 5));
+        LocalDate.now(), translationId, PageRequest.of(0, 5));
   }
 
   @Override
-  public List<GamePopularityProjection> findByDateAfterAndOrderByPopularityDesc() {
+  public List<GamePopularityProjection> findByDateAfterAndOrderByPopularityDesc(
+      Long translationId) {
     LOG.info("Finding all popular unreleased games");
-    return gameRepository.findByDateAfterAndOrderByPopularityDesc(LocalDate.now());
+    return gameRepository.findByDateAfterAndOrderByPopularityDesc(LocalDate.now(), translationId);
   }
 
   @Override
-  public List<GameSearchDTO> searchGames(String keyword) {
-    List<Game> games = gameRepository.search(keyword, Pageable.unpaged());
+  public List<GameSearchDTO> searchGames(String keyword, Long translationId) {
+    List<Game> games = gameRepository.search(keyword, translationId, Pageable.unpaged());
     return games.stream()
         .map(
             game -> {
@@ -440,8 +452,8 @@ public class GameService implements IGameService {
   }
 
   @Override
-  public List<GameSearchDTO> searchTop5Games(String keyword) {
-    List<Game> games = gameRepository.search(keyword, PageRequest.of(0, 5));
+  public List<GameSearchDTO> searchTop5Games(String keyword, Long translationId) {
+    List<Game> games = gameRepository.search(keyword, translationId, PageRequest.of(0, 5));
     return games.stream()
         .map(
             game -> {
@@ -484,7 +496,8 @@ public class GameService implements IGameService {
   }
 
   @Override
-  public GameAndSagaDTO updateGame(Long id, GameRequest gameRequest, MultipartFile file) {
+  public GameAndSagaDTO updateGame(
+      Long id, GameRequest gameRequest, MultipartFile file, Long translationId) {
     LOG.info("Updating game with id: {}", id);
     Game game =
         gameRepository
@@ -573,6 +586,14 @@ public class GameService implements IGameService {
       game.getProducts().addAll(newProducts);
     }
 
+    if (translationId != null) {
+      Translation translation = translationRepository.findById(translationId).orElse(null);
+      if (translation == null) {
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La traducción no existe");
+      }
+      game.setTranslation(translation);
+    }
+
     Game savedGame = gameRepository.save(game);
     return convertToGameAndSagaDTO(savedGame);
   }
@@ -582,7 +603,7 @@ public class GameService implements IGameService {
     if (Objects.nonNull(gameRequest.getGame().getTitle())) {
       game.setTitle(gameRequest.getGame().getTitle());
     }
-    if (file != null && !file.isEmpty()){
+    if (file != null && !file.isEmpty()) {
       String fileDownloadUri = fileStorageService.replaceFileAndGenerateUri(file, game.getCover());
       game.setCover(fileDownloadUri);
     }

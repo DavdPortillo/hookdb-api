@@ -85,7 +85,8 @@ public class Security {
                     "/platform/**",
                     "platform-product/**",
                     "/region-product/**",
-                    "/vendor-product/**")
+                    "/vendor-product/**",
+                    "/translation/**")
                 .hasRole("ADMIN")
                 .requestMatchers(
                     HttpMethod.DELETE,
@@ -108,7 +109,8 @@ public class Security {
                     "/region-product/**",
                     "/vendor-product/**",
                     "/review/**",
-                    "/user/**")
+                    "/user/**",
+                    "/translation/**")
                 .hasRole("ADMIN")
                 .requestMatchers(
                     HttpMethod.GET,
@@ -130,7 +132,8 @@ public class Security {
                     "/vendor-product/**",
                     "/user",
                     "/user/username/{username}",
-                    "/user/email/{email}")
+                    "/user/email/{email}",
+                    "/translation/**")
                 .hasRole("ADMIN")
                 .requestMatchers(
                     HttpMethod.PUT,
@@ -152,7 +155,8 @@ public class Security {
                     "platform-product/**",
                     "/region-product/**",
                     "/vendor-product/**",
-                    "/user/**")
+                    "/user/**",
+                    "/translation/**")
                 .hasRole("ADMIN")
                 .anyRequest()
                 .permitAll());

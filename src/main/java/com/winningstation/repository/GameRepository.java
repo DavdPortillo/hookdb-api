@@ -32,9 +32,9 @@ public interface GameRepository extends JpaRepository<Game, Long> {
    */
   @Query(
       value =
-          "SELECT g.id AS id, g.title AS title, g.cover AS cover, g.alt AS alt,g.popularity AS popularity ,g.date AS date FROM Game g WHERE g.date > :date ORDER BY g.popularity DESC")
+          "SELECT g.id AS id, g.title AS title, g.cover AS cover, g.alt AS alt,g.popularity AS popularity ,g.date AS date FROM Game g WHERE g.date > :date AND g.translation.id = :translationId ORDER BY g.popularity DESC")
   List<GamePopularityProjection> findTop5ByDateAfterAndOrderByPopularityDesc(
-      LocalDate date, Pageable pageable);
+      LocalDate date, @Param("translationId") Long translationId, Pageable pageable);
 
   /**
    * Método que permite obtener los juegos más populares a partir de una fecha dada.
@@ -44,8 +44,9 @@ public interface GameRepository extends JpaRepository<Game, Long> {
    */
   @Query(
       value =
-          "SELECT g.id AS id, g.title AS title, g.cover AS cover, g.alt AS alt,g.popularity AS popularity,g.date AS date  FROM Game g WHERE g.date > :date ORDER BY g.popularity DESC")
-  List<GamePopularityProjection> findByDateAfterAndOrderByPopularityDesc(LocalDate date);
+          "SELECT g.id AS id, g.title AS title, g.cover AS cover, g.alt AS alt,g.popularity AS popularity,g.date AS date  FROM Game g WHERE g.date > :date AND g.translation.id = :translationId ORDER BY g.popularity DESC")
+  List<GamePopularityProjection> findByDateAfterAndOrderByPopularityDesc(
+      LocalDate date, @Param("translationId") Long translationId);
 
   /**
    * Método que permite buscar juegos por título donde tiene más peso la popularidad.
@@ -53,8 +54,11 @@ public interface GameRepository extends JpaRepository<Game, Long> {
    * @return Lista de juegos más populares.
    */
   @Query(
-      "SELECT g FROM Game g WHERE LOWER(g.title) LIKE LOWER(CONCAT('%', :keyword, '%')) ORDER BY g.popularity DESC")
-  List<Game> search(@Param("keyword") String keyword, Pageable pageable);
+      "SELECT g FROM Game g WHERE LOWER(g.title) LIKE LOWER(CONCAT('%', :keyword, '%')) AND g.translation.id = :translationId ORDER BY g.popularity DESC")
+  List<Game> search(
+      @Param("keyword") String keyword,
+      @Param("translationId") Long translationId,
+      Pageable pageable);
 
   /**
    * Cálculo de la puntuación media y el número de puntuaciones de un juego.
@@ -67,9 +71,12 @@ public interface GameRepository extends JpaRepository<Game, Long> {
   ScoreAverageResultDTO findAverageScoreAndCount(@Param("gameId") Long gameId);
 
   @Query(
-          "SELECT new com.winningstation.dto.ScoreAverageResultDTO(AVG(gs.score), COUNT(gs)) " +
-                  "FROM GameScore gs " +
-                  "WHERE gs.game.id = :gameId " +
-                  "ORDER BY gs.date DESC")
-  List<ScoreAverageResultDTO> findAverageScoreAndCountForGame(@Param("gameId") Long gameId, Pageable pageable);
+      "SELECT new com.winningstation.dto.ScoreAverageResultDTO(AVG(gs.score), COUNT(gs)) "
+          + "FROM GameScore gs "
+          + "WHERE gs.game.id = :gameId "
+          + "ORDER BY gs.date DESC")
+  List<ScoreAverageResultDTO> findAverageScoreAndCountForGame(
+      @Param("gameId") Long gameId, Pageable pageable);
+
+  Game findByIdAndTranslationId(Long id, Long translationId);
 }
