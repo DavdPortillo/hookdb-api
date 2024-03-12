@@ -1,18 +1,4 @@
-mirar cuanta cpu consume el pod para poner los valores de limit bien
 idioma español e inglés
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

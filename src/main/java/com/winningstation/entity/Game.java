@@ -159,6 +159,10 @@ public class Game implements Serializable {
   @JoinColumn(name = "crossplay_id")
   private Crossplay crossplay;
 
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "translation_id")
+  private Translation translation;
+
 
 
   public int getReviewCount() {

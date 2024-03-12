@@ -1,5 +1,6 @@
 package com.winningstation.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.core.io.PathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
@@ -13,6 +14,7 @@ import java.nio.file.Paths;
 @RestController
 public class StaticResourceController {
 
+  @Operation(summary = "Sirve una imagen", description = "Sirve una imagen estática del servidor.")
   @GetMapping("/app/images/{filename:.+}")
   public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
 

@@ -68,6 +68,10 @@ public class News implements Serializable {
   @ToString.Exclude
   private Game game;
 
+  @ManyToOne(fetch = FetchType.LAZY)
+  @JoinColumn(name = "translation_id")
+  private Translation translation;
+
   public String getNameGame() {
     return game == null ? null : game.getTitle();
   }
