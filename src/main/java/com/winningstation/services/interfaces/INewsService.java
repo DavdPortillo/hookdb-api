@@ -28,7 +28,7 @@ public interface INewsService {
    * @param news Noticia a guardar.
    * @return La noticia guardada.
    */
-  News save(News news, MultipartFile file, Long authorId, Long gameId);
+  News save(News news, MultipartFile file, Long authorId, Long gameId, Long translationId);
 
   /**
    * Método que permite eliminar una noticia.
@@ -42,7 +42,7 @@ public interface INewsService {
    *
    * @return Lista de todas las noticias.
    */
-  Iterable<News> findAll();
+  Iterable<News> findAll(Long translationId);
 
   /**
    * Método que permite obtener las noticias de los juegos seguidos por un usuario.
@@ -50,7 +50,7 @@ public interface INewsService {
    * @param userId ID del usuario.
    * @return Lista de noticias de los juegos seguidos por el usuario.
    */
-  List<News> findNewsFromFollowedGames(@Param("userId") Long userId);
+  List<News> findNewsFromFollowedGames(Long userId, Long translationId);
 
   /**
    * Método que permite obtener las noticias de los juegos seguidos por un usuario, excepto los
@@ -60,14 +60,14 @@ public interface INewsService {
    * @return Lista de noticias de los juegos seguidos por el usuario, excepto los juegos que ha
    *     ignorado.
    */
-  List<News> getNewsExceptUnfollowedGames(Long userId);
+  List<News> getNewsExceptUnfollowedGames(Long userId, Long translationId);
 
   /**
    * Método que permite obtener las últimas noticias con los campos seleccionados.
    *
    * @return Lista de las últimas noticias con los campos seleccionados.
    */
-  List<NewsDTO> getLatestNewsWithSelectedFields();
+  List<NewsDTO> getLatestNewsWithSelectedFields(Long translationId);
 
   /**
    * Edita una noticia.
@@ -77,5 +77,6 @@ public interface INewsService {
    * @param file Archivo de imagen.
    * @return La noticia editada.
    */
-  News editNews(Long id, News newsRequest, MultipartFile file, Long gameId);
+  News editNews(
+          Long id, News newsRequest, MultipartFile file, Long gameId, Long translationId);
 }

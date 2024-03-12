@@ -1,5 +1,6 @@
 idioma español e inglés
-
+este endpoint, lo de like y dislike no hace falta que se haga post
+review/gameid1/userid1
 
 
 

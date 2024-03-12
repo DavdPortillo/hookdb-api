@@ -54,7 +54,7 @@ public class NewsController {
    * @param news Noticia a crear.
    * @return La noticia creada.
    */
-  @PostMapping("author/{authorId}")
+  @PostMapping("author/{authorId}/language/{translationId}")
   @ResponseStatus(HttpStatus.CREATED)
   @Operation(
       summary = "Crea una noticia",
@@ -64,46 +64,49 @@ public class NewsController {
       @ModelAttribute News news,
       @RequestPart("file") MultipartFile file,
       @PathVariable Long authorId,
-      @RequestParam(required = false) Long gameId) {
+      @RequestParam(required = false) Long gameId,
+      @PathVariable Long translationId) {
 
-    return newsService.save(news, file, authorId, gameId);
+    return newsService.save(news, file, authorId, gameId, translationId);
   }
 
   /** Obtener todas las noticias. */
-  @GetMapping("/all")
+  @GetMapping("/all/language/{translationId}")
   @Operation(
       summary = "Obtiene todas las noticias",
       description = "Devuelve una lista de todas las noticias")
-  public Iterable<News> findAll() {
-    return newsService.findAll();
+  public Iterable<News> findAll(@PathVariable Long translationId) {
+    return newsService.findAll(translationId);
   }
 
   @PreAuthorize("#id == authentication.principal.id")
-  @GetMapping("/user/{id}")
+  @GetMapping("/user/{id}/language/{translationId}/followedGames")
   @Operation(
       summary = "Encuentra noticias de juegos seguidos",
       description =
           "Devuelve una lista de noticias de juegos seguidos basado en el identificador de usuario proporcionado")
-  public List<News> findNewsFromFollowedGames(@PathVariable Long id) {
-    return newsService.findNewsFromFollowedGames(id);
+  public List<News> findNewsFromFollowedGames(
+      @PathVariable Long id, @PathVariable Long translationId) {
+    return newsService.findNewsFromFollowedGames(id, translationId);
   }
 
   @PreAuthorize("#id == authentication.principal.id")
-  @GetMapping("/user/{id}/exceptUnfollowedGames")
+  @GetMapping("/user/{id}/language/{translationId}/exceptUnfollowedGames")
   @Operation(
       summary = "Obtiene noticias excepto juegos no seguidos",
       description =
           "Devuelve una lista de noticias excepto juegos no seguidos basado en el identificador de usuario proporcionado")
-  public List<News> getNewsExceptUnfollowedGames(@PathVariable Long id) {
-    return newsService.getNewsExceptUnfollowedGames(id);
+  public List<News> getNewsExceptUnfollowedGames(
+      @PathVariable Long id, @PathVariable Long translationId) {
+    return newsService.getNewsExceptUnfollowedGames(id, translationId);
   }
 
-  @GetMapping("/main")
+  @GetMapping("/main/language/{translationId}")
   @Operation(
       summary = "Obtiene las últimas noticias con campos seleccionados",
       description = "Devuelve una lista de las últimas noticias con campos seleccionados")
-  public List<NewsDTO> getLatestNewsWithSelectedFields() {
-    return newsService.getLatestNewsWithSelectedFields();
+  public List<NewsDTO> getLatestNewsWithSelectedFields(@PathVariable Long translationId) {
+    return newsService.getLatestNewsWithSelectedFields(translationId);
   }
 
   /**
@@ -136,8 +139,9 @@ public class NewsController {
       @ModelAttribute News news,
       @RequestPart(value = "file", required = false) MultipartFile file,
       @PathVariable Long newsId,
-      @RequestParam(required = false) Long gameId) {
+      @RequestParam(required = false) Long gameId,
+      @RequestParam(required = false) Long translationId) {
 
-    return newsService.editNews(newsId, news, file, gameId);
+    return newsService.editNews(newsId, news, file, gameId, translationId);
   }
 }

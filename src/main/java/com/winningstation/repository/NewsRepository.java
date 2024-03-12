@@ -27,12 +27,14 @@ public interface NewsRepository extends JpaRepository<News, Long> {
    * @return Lista de noticias de los juegos seguidos por el usuario.
    */
   @Query(
-      "SELECT n FROM News n WHERE n.game IN (SELECT f.game FROM FollowGame f WHERE f.user.id = :userId AND f.isFollowing = 1)")
-  List<News> findNewsFromFollowedGames(@Param("userId") Long userId);
+      "SELECT n FROM News n WHERE n.game IN (SELECT f.game FROM FollowGame f WHERE f.user.id = :userId AND f.isFollowing = 1) AND n.translation.id = :translationId")
+  List<News> findNewsFromFollowedGamesAndTranslationId(
+      @Param("userId") Long userId, @Param("translationId") Long translationId);
 
   @Query(
-      "SELECT n FROM News n WHERE n.game NOT IN (SELECT f.game FROM FollowGame f WHERE f.user.id = :userId AND f.isFollowing = -1)")
-  List<News> findNewsExceptUnfollowedGames(@Param("userId") Long userId);
+      "SELECT n FROM News n WHERE n.game NOT IN (SELECT f.game FROM FollowGame f WHERE f.user.id = :userId AND f.isFollowing = -1) AND n.translation.id = :translationId")
+  List<News> findNewsExceptUnfollowedGamesAndTranslationId(
+      @Param("userId") Long userId, @Param("translationId") Long translationId);
 
   @Modifying
   @Query(value = "UPDATE news SET game_id = NULL WHERE game_id = :gameId", nativeQuery = true)
@@ -40,7 +42,11 @@ public interface NewsRepository extends JpaRepository<News, Long> {
 
   @Query(
       "SELECT new com.winningstation.dto.NewsDTO(n.id,n.image,n.alt, n.headline, n.newsAuthor.name,n.newsAuthor.surname, size(n.newsComment), n.date) "
-              + "FROM News n "
-              + "ORDER BY n.date DESC")
-  List<NewsDTO> findLatestNewsWithSelectedFields(Pageable pageable);
+          + "FROM News n "
+          + "WHERE n.translation.id = :translationId "
+          + "ORDER BY n.date DESC")
+  List<NewsDTO> findLatestNewsWithSelectedFieldsAndTranslationId(
+      Pageable pageable, @Param("translationId") Long translationId);
+
+  List<News> findByTranslationId(Long translationId);
 }

@@ -4,6 +4,7 @@ import com.winningstation.dto.NewsDTO;
 import com.winningstation.entity.Game;
 import com.winningstation.entity.News;
 import com.winningstation.entity.NewsAuthor;
+import com.winningstation.entity.Translation;
 import com.winningstation.repository.NewsRepository;
 import com.winningstation.services.interfaces.INewsService;
 import jakarta.transaction.Transactional;
@@ -43,6 +44,9 @@ public class NewsService implements INewsService {
 
   private final FileStorageService fileStorageService;
 
+  /** Servicio para las traducciones. */
+  private final TranslateService translateService;
+
   /**
    * Constructor de la clase.
    *
@@ -52,11 +56,13 @@ public class NewsService implements INewsService {
       NewsRepository newsRepository,
       NewsAuthorService newsAuthorService,
       GameService gameService,
-      FileStorageService fileStorageService) {
+      FileStorageService fileStorageService,
+      TranslateService translateService) {
     this.newsRepository = newsRepository;
     this.newsAuthorService = newsAuthorService;
     this.gameService = gameService;
     this.fileStorageService = fileStorageService;
+    this.translateService = translateService;
   }
 
   @Override
@@ -69,7 +75,7 @@ public class NewsService implements INewsService {
     return news;
   }
 
-  public News save(News news, MultipartFile file, Long authorId, Long gameId) {
+  public News save(News news, MultipartFile file, Long authorId, Long gameId, Long translationId) {
     LOG.info("Saving news: {}", news);
     NewsAuthor newsAuthor = newsAuthorService.findById(authorId);
 
@@ -93,6 +99,13 @@ public class NewsService implements INewsService {
       }
       news.setGame(game);
     }
+
+    // Si se proporcionó un ID de traducción, obtén la traducción y asígnala a la noticia
+    Translation translation = translateService.findById(translationId);
+    if (translation == null) {
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La traducción no existe");
+    }
+    news.setTranslation(translation);
     return newsRepository.save(news);
   }
 
@@ -103,31 +116,39 @@ public class NewsService implements INewsService {
   }
 
   @Override
-  public Iterable<News> findAll() {
-    LOG.info("Finding all news");
-    return newsRepository.findAll();
+  public Iterable<News> findAll(Long translationId) {
+    LOG.info("Finding all news with translation id: {}", translationId);
+    return newsRepository.findByTranslationId(translationId);
   }
 
   @Override
-  public List<News> findNewsFromFollowedGames(Long userId) {
-    LOG.info("Finding news from followed games by user: {}", userId);
-    return newsRepository.findNewsFromFollowedGames(userId);
+  public List<News> findNewsFromFollowedGames(Long userId, Long translationId) {
+    LOG.info(
+        "Finding news from followed games by user: {} with translation id: {}",
+        userId,
+        translationId);
+    return newsRepository.findNewsFromFollowedGamesAndTranslationId(userId, translationId);
   }
 
   @Override
-  public List<News> getNewsExceptUnfollowedGames(Long userId) {
-    LOG.info("Finding news from followed games by user: {}", userId);
-    return newsRepository.findNewsExceptUnfollowedGames(userId);
+  public List<News> getNewsExceptUnfollowedGames(Long userId, Long translationId) {
+    LOG.info(
+        "Finding news from followed games by user: {} with translation id: {}",
+        userId,
+        translationId);
+    return newsRepository.findNewsExceptUnfollowedGamesAndTranslationId(userId, translationId);
   }
 
   @Override
-  public List<NewsDTO> getLatestNewsWithSelectedFields() {
+  public List<NewsDTO> getLatestNewsWithSelectedFields(Long translationId) {
     Pageable topFifteen = PageRequest.of(0, 15, Sort.by(Sort.Direction.DESC, "date"));
-    return newsRepository.findLatestNewsWithSelectedFields(topFifteen);
+    return newsRepository.findLatestNewsWithSelectedFieldsAndTranslationId(
+        topFifteen, translationId);
   }
 
   @Override
-  public News editNews(Long id, News newsRequest, MultipartFile file, Long gameId) {
+  public News editNews(
+      Long id, News newsRequest, MultipartFile file, Long gameId, Long translationId) {
     LOG.info("Editing news: {}", id);
     News news =
         newsRepository
@@ -152,6 +173,14 @@ public class NewsService implements INewsService {
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El juego no existe");
       }
       news.setGame(game);
+    }
+
+    if (translationId != null) {
+      Translation translation = translateService.findById(translationId);
+      if (translation == null) {
+        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La traducción no existe");
+      }
+      news.setTranslation(translation);
     }
 
     return newsRepository.save(news);

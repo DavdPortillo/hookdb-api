@@ -68,7 +68,7 @@ public class News implements Serializable {
   @ToString.Exclude
   private Game game;
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne
   @JoinColumn(name = "translation_id")
   private Translation translation;
 
