@@ -32,6 +32,10 @@ public class DLC implements Serializable {
   /** Nombre del dlc. */
   @NotNull private String name;
 
+  @NotNull private String image;
+
+  @NotNull private String alt;
+
   /** Juego al que pertenece el dlc. */
   @NotNull
   @JsonBackReference("game-dlc")

@@ -1,9 +1,5 @@
-este endpoint, lo de like y dislike no hace falta que se haga post
-review/gameid1/userid1
+MIRAR CACHE(quizás en un futuro)
 
-
-
-MIRAR CACHE
 Decir a sergio que el usuario puede tener un RANGO visible cuando escribe las reviews y que dependiendo de los mensajes escritos se le va subiendo el rango
 es mas como un titulo que se le da al usuario por su actividad en la pagina.
 Tambien se pueden poner logros por ejemplo si escribe 10 reviews se le da un logro

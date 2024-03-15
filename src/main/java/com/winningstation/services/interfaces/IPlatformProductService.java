@@ -1,6 +1,5 @@
 package com.winningstation.services.interfaces;
 
-
 import com.winningstation.entity.PlatformProduct;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -17,6 +16,8 @@ public interface IPlatformProductService {
    * Método que permite guardar una plataforma.
    *
    * @param platform Plataforma a guardar.
+   * @param file Imagen de la plataforma.
+   * @return Plataforma guardada.
    */
   PlatformProduct save(PlatformProduct platform, MultipartFile file);
 

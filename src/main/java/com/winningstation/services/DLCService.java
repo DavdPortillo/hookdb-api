@@ -9,6 +9,7 @@ import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -30,22 +31,30 @@ public class DLCService implements IDLCService {
   /** Repositorio de game. */
   private final GameRepository gameRepository;
 
+  private final FileStorageService fileStorageService;
+
   /**
    * Constructor de la clase.
    *
    * @param dlcRepository Repositorio de dlc.
    */
-  public DLCService(DLCRepository dlcRepository, GameRepository gameRepository) {
+  public DLCService(
+      DLCRepository dlcRepository,
+      GameRepository gameRepository,
+      FileStorageService fileStorageService) {
     this.dlcRepository = dlcRepository;
     this.gameRepository = gameRepository;
+    this.fileStorageService = fileStorageService;
   }
 
   @Override
-  public DLC save(DLC dlc, Long gameId) {
+  public DLC save(DLC dlc, Long gameId, MultipartFile file) {
     LOG.info("Saving DLC: {}", dlc);
     Game game =
         gameRepository.findById(gameId).orElseThrow(() -> new RuntimeException("Game not found"));
     dlc.setGame(game);
+    String fileDownloadUri = fileStorageService.storeFileAndGenerateUri(file);
+    dlc.setImage(fileDownloadUri);
     return dlcRepository.save(dlc);
   }
 
@@ -68,7 +77,7 @@ public class DLCService implements IDLCService {
   }
 
   @Override
-  public DLC update(Long id, DLC dlcRequest) {
+  public DLC update(Long id, DLC dlcRequest, MultipartFile file) {
 
     LOG.info("Updating DLC with id: {}", id);
 
@@ -90,6 +99,15 @@ public class DLCService implements IDLCService {
 
     if (dlcRequest.getGame() != null) {
       dlc.setGame(dlcRequest.getGame());
+    }
+
+    if (file != null) {
+      String fileDownloadUri = fileStorageService.replaceFileAndGenerateUri(file, dlc.getImage());
+      dlc.setImage(fileDownloadUri);
+    }
+
+    if (dlcRequest.getAlt() != null) {
+      dlc.setAlt(dlcRequest.getAlt());
     }
 
     // Guarda el DLC actualizado en la base de datos

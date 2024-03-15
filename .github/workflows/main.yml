@@ -44,9 +44,7 @@ jobs:
           key: ${{ secrets.ORACLE_SERVER }}
           script: |
             cd k8s
-            cp app-deployment-template.yaml app-deployment.yaml
-            sed -i 's|davdportillo/winning-station:latest|davdportillo/winning-station:${{ steps.sha.outputs.sha }}|' app-deployment.yaml
-            kubectl apply -f app-deployment.yaml
+            helm upgrade --install winning-station ./winning-station --set app.image=davdportillo/winning-station:${{ steps.sha.outputs.sha }}
       - name: Cleanup Docker Images on Server
         uses: appleboy/ssh-action@master
         with:

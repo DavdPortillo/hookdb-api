@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -45,8 +46,8 @@ public class DLCController {
       summary = "Guarda un nuevo contenido descargable",
       description =
           "Guarda un nuevo contenido descargable basado en la petición proporcionada y devuelve el contenido descargable guardado")
-  public DLC save(@RequestBody DLC dlc) {
-    return dlcService.save(dlc, dlc.getGame().getId());
+  public DLC save(@ModelAttribute DLC dlc, @RequestPart("file") MultipartFile file) {
+    return dlcService.save(dlc, dlc.getGame().getId(), file);
   }
 
   /**
@@ -74,8 +75,11 @@ public class DLCController {
       summary = "Edita un contenido descargable",
       description =
           "Edita un contenido descargable basado en el identificador y la petición proporcionados y devuelve el contenido descargable actualizado")
-  public DLC update(@PathVariable Long id, @RequestBody DLC dlcRequest) {
-    return dlcService.update(id, dlcRequest);
+  public DLC update(
+      @PathVariable Long id,
+      @ModelAttribute DLC dlcRequest,
+      @RequestPart("file") MultipartFile file) {
+    return dlcService.update(id, dlcRequest, file);
   }
 
   /**

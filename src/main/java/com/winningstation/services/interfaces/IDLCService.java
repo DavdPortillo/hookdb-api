@@ -1,6 +1,7 @@
 package com.winningstation.services.interfaces;
 
 import com.winningstation.entity.DLC;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -16,9 +17,10 @@ public interface IDLCService {
    *
    * @param dlc Dlc a guardar.
    * @param gameId Id del juego al que pertenece el dlc.
+   * @param file Archivo del dlc.
    * @return Dlc guardado.
    */
-  DLC save(DLC dlc, Long gameId);
+  DLC save(DLC dlc, Long gameId, MultipartFile file);
 
   /**
    * Método que elimina un dlc de la base de datos.
@@ -40,9 +42,10 @@ public interface IDLCService {
    *
    * @param id Id del dlc a actualizar.
    * @param dlcRequest Dlc con los datos actualizados.
+   * @param file Archivo del dlc.
    * @return Dlc actualizado.
    */
-  DLC update(Long id, DLC dlcRequest);
+  DLC update(Long id, DLC dlcRequest, MultipartFile file);
 
   /**
    * Método que obtiene todos los dlcs de un juego.
