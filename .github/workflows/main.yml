@@ -43,7 +43,6 @@ jobs:
           username: opc
           key: ${{ secrets.ORACLE_SERVER }}
           script: |
-            cd k8s
             helm upgrade --install winning-station ./winning-station --set app.image=davdportillo/winning-station:${{ steps.sha.outputs.sha }}
       - name: Cleanup Docker Images on Server
         uses: appleboy/ssh-action@master
