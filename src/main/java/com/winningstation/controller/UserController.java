@@ -118,7 +118,7 @@ public class UserController {
     return ResponseEntity.ok(userService.findById(id));
   }
 
-  @PreAuthorize("#id == authentication.principal.id")
+  @PreAuthorize("#id == authentication.principal.id || hasRole('ROLE_ADMIN')")
   @GetMapping("/mainInfo/{id}")
   @Operation(
       summary = "Obtiene la información principal de un usuario por su ID",
