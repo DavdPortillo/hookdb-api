@@ -10,6 +10,7 @@ import com.winningstation.request.GameRequest;
 import com.winningstation.request.ProductRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -822,4 +823,9 @@ public class GameService implements IGameService {
     }
     return productRepository.save(product);
   }
+
+  public Page<GameSearchAdminDTO> searchGames(String keyword, Long translationId, Pageable pageable) {
+    return gameRepository.searchGames(keyword, translationId, pageable);
+  }
+
 }

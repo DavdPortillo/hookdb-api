@@ -1,6 +1,7 @@
 package com.winningstation.services.interfaces;
 
 import com.winningstation.dto.GameAndSagaDTO;
+import com.winningstation.dto.GameSearchAdminDTO;
 import com.winningstation.dto.GameSearchDTO;
 import com.winningstation.dto.ScoreAverageResultDTO;
 import com.winningstation.entity.*;
@@ -9,6 +10,8 @@ import com.winningstation.request.AvailabilityRequest;
 import com.winningstation.request.GameFeatureRequest;
 import com.winningstation.request.GameRequest;
 import com.winningstation.request.ProductRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -213,4 +216,6 @@ public interface IGameService {
    * @return Lista de productos creados.
    */
   List<Product> createProducts(List<ProductRequest> productRequests, Game game);
+
+  Page<GameSearchAdminDTO> searchGames(String keyword, Long translationId, Pageable pageable);
 }

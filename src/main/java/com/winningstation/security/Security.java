@@ -131,6 +131,7 @@ public class Security {
                     "/region-product/**",
                     "/vendor-product/**",
                     "/user",
+                    "/user/admin/all",
                     "/user/username/{username}",
                     "/user/email/{email}",
                     "/translation/**")

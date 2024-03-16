@@ -1,6 +1,7 @@
 package com.winningstation.services.interfaces;
 
 import com.winningstation.dto.UpdateUserRequest;
+import com.winningstation.dto.UserAdminDTO;
 import com.winningstation.dto.UserInfoDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -75,10 +76,11 @@ public interface IUserService {
    * Método que permite actualizar un usuario.
    *
    * @param id ID del usuario a actualizar.
-   * @param updatedUser Usuario actualizado.
-   * @param oldPassword Contraseña antigua.
-   * @param newPassword Contraseña nueva.
+   * @param updateUserRequest Datos del usuario a actualizar.
+   * @param file Archivo de imagen del usuario.
    * @return El usuario actualizado.
    */
   User updateUser(Long id, UpdateUserRequest updateUserRequest, MultipartFile file);
+
+  Page<UserAdminDTO> findAllUsers(Pageable pageable);
 }

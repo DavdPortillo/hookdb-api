@@ -1,6 +1,7 @@
 package com.winningstation.services;
 
 import com.winningstation.dto.UpdateUserRequest;
+import com.winningstation.dto.UserAdminDTO;
 import com.winningstation.dto.UserInfoDTO;
 import com.winningstation.repository.RoleRepository;
 import org.slf4j.Logger;
@@ -174,5 +175,10 @@ public class UserService implements IUserService {
   public User findByEmail(String email) {
     LOG.info("Finding user by email: {}", email);
     return userRepository.findByEmail(email);
+  }
+
+  @Override
+  public Page<UserAdminDTO> findAllUsers(Pageable pageable) {
+    return userRepository.findAllUsers(pageable);
   }
 }

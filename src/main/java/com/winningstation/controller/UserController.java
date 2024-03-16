@@ -1,6 +1,7 @@
 package com.winningstation.controller;
 
 import com.winningstation.dto.UpdateUserRequest;
+import com.winningstation.dto.UserAdminDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
@@ -161,5 +162,14 @@ public class UserController {
 
     User user = userService.updateUser(id, updateUserRequest, file);
     return ResponseEntity.ok(user);
+  }
+
+  @Operation(
+      summary = "Se trae la información de todos los usuarios",
+      description = "Se trae la información de todos los usuarios con paginación y ordenamiento")
+  @GetMapping("/admin/all")
+  public ResponseEntity<Page<UserAdminDTO>> findAllUsers(Pageable pageable) {
+    Page<UserAdminDTO> users = userService.findAllUsers(pageable);
+    return new ResponseEntity<>(users, HttpStatus.OK);
   }
 }

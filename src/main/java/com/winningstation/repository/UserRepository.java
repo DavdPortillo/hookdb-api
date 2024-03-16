@@ -1,5 +1,6 @@
 package com.winningstation.repository;
 
+import com.winningstation.dto.UserAdminDTO;
 import com.winningstation.dto.UserInfoDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -10,8 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 /**
- * Repositorio de usuario. Extiende de JpaRepository para proporcionar métodos CRUD para la entidad
- * Language.
+ * Repositorio de usuario. Extiende de JpaRepository para proporcionar métodos CRUD
  *
  * @author David Portillo Hoyos
  */
@@ -47,4 +47,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
           + "FROM User u "
           + "WHERE u.id = :userId")
   UserInfoDTO findUserInfoById(@Param("userId") Long userId);
+
+  @Query("SELECT new com.winningstation.dto.UserAdminDTO(u.id, u.username, u.email) FROM User u")
+  Page<UserAdminDTO> findAllUsers(Pageable pageable);
 }

@@ -1,6 +1,7 @@
 package com.winningstation.controller;
 
 import com.winningstation.dto.GameAndSagaDTO;
+import com.winningstation.dto.GameSearchAdminDTO;
 import com.winningstation.dto.GameSearchDTO;
 import com.winningstation.dto.ScoreAverageResultDTO;
 import com.winningstation.entity.PlatformProduct;
@@ -8,6 +9,8 @@ import com.winningstation.projection.GamePopularityProjection;
 import com.winningstation.request.GameRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -208,5 +211,19 @@ public class GameController {
   @Operation(summary = "Elimina un juego", description = "Elimina un juego basado en su ID")
   public void deleteGame(@PathVariable Long id) {
     gameService.delete(id);
+  }
+
+
+
+  @Operation(
+      summary = "Obtiene todos los juegos",
+      description = "Devuelve una lista de todos los juegos")
+  @GetMapping("/search/{keyword}/{translationId}")
+  public ResponseEntity<Page<GameSearchAdminDTO>> searchGames(
+          @PathVariable("keyword") String keyword,
+          @PathVariable("translationId") Long translationId,
+          Pageable pageable) {
+    Page<GameSearchAdminDTO> games = gameService.searchGames(keyword, translationId, pageable);
+    return new ResponseEntity<>(games, HttpStatus.OK);
   }
 }
