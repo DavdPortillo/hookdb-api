@@ -31,7 +31,9 @@ public class FileStorageService {
       }
 
       // Genera un nombre de archivo único para cada archivo que se sube
-      String fileName = UUID.randomUUID().toString();
+      String originalFilename = file.getOriginalFilename();
+      String extension = originalFilename.substring(originalFilename.lastIndexOf("."));
+      String fileName = UUID.randomUUID().toString() + extension;
 
       // Convierte el MultipartFile en un archivo regular
       byte[] bytes = file.getBytes();

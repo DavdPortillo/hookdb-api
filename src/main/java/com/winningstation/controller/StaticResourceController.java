@@ -30,6 +30,7 @@ public class StaticResourceController {
       case "png" -> "image/png";
       case "jpg", "jpeg" -> "image/jpeg";
       case "webp" -> "image/webp";
+      case "gif" -> "image/gif";
       default -> "application/octet-stream";
     };
   }
