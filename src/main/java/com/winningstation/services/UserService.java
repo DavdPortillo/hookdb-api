@@ -72,9 +72,10 @@ public class UserService implements IUserService {
     LOG.info("Saving user: {}", user);
     user.setPassword(passwordEncoder.encode(user.getPassword()));
     roleRepository.findById(2L).ifPresent(user::setRole);
-    String fileDownloadUri = fileStorageService.storeFileAndGenerateUri(file);
-    user.setImage(fileDownloadUri);
-
+    if (file != null) {
+      String fileDownloadUri = fileStorageService.storeFileAndGenerateUri(file);
+      user.setImage(fileDownloadUri);
+    }
     return userRepository.save(user);
   }
 

@@ -51,8 +51,9 @@ public class UserController {
       summary = "Crea un nuevo usuario",
       description =
           "Crea un nuevo usuario basado en la petición proporcionada y devuelve el usuario creado")
-  public User create(@ModelAttribute User user, @RequestParam("file") MultipartFile file) {
-
+  public User create(
+      @ModelAttribute User user,
+      @RequestParam(value = "file", required = false) MultipartFile file) {
     return userService.save(user, file);
   }
 
