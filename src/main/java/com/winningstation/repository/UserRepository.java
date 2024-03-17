@@ -42,10 +42,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
   User findByEmail(final String email);
 
   @Query(
-      "SELECT new  com.winningstation.dto.UserInfoDTO(u.username, u.email, u.country, "
-          + "u.year, u.image, u.language, u.alt,u.registerDate) "
-          + "FROM User u "
-          + "WHERE u.id = :userId")
+      "SELECT new  com.winningstation.dto.UserInfoDTO(u.id, u.username, u.email, u.country, "
+              + "u.year, u.image, u.language, u.alt,u.registerDate) "
+              + "FROM User u "
+              + "WHERE u.id = :userId")
   UserInfoDTO findUserInfoById(@Param("userId") Long userId);
 
   @Query("SELECT new com.winningstation.dto.UserAdminDTO(u.id, u.username, u.email) FROM User u")
