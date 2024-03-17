@@ -1,5 +1,6 @@
 package com.winningstation.dto;
 
+import com.winningstation.entity.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -18,4 +19,5 @@ public class UserInfoDTO {
   private String language;
   private String alt;
   private LocalDateTime registerDate;
+  private Role role;
 }
