@@ -50,4 +50,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
   @Query("SELECT new com.winningstation.dto.UserAdminDTO(u.id, u.username, u.email) FROM User u")
   Page<UserAdminDTO> findAllUsers(Pageable pageable);
+
+  User findByUsername(String username);
 }

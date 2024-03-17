@@ -35,6 +35,7 @@ public class User implements Serializable {
   /** Nombre del cliente. No puede ser nulo y debe tener entre 2 y 50 caracteres. */
   @NotNull
   @Size(min = 2, max = 50)
+  @Column(unique = true)
   private String username;
 
   /** Imagen del cliente. */

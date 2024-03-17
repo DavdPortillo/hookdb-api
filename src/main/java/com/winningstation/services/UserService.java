@@ -92,7 +92,12 @@ public class UserService implements IUserService {
 
     if (updatedUser != null) {
       if (updatedUser.getUsername() != null) {
-        user.setUsername(updatedUser.getUsername());
+        User existingUser = userRepository.findByUsername(updatedUser.getUsername());
+        if (existingUser == null || existingUser.getId().equals(user.getId())) {
+          user.setUsername(updatedUser.getUsername());
+        } else {
+          throw new IllegalArgumentException("Username already exists");
+        }
       }
 
       if (file != null) {
@@ -106,7 +111,12 @@ public class UserService implements IUserService {
       }
 
       if (updatedUser.getEmail() != null) {
-        user.setEmail(updatedUser.getEmail());
+        User existingUser = userRepository.findByEmail(updatedUser.getEmail());
+        if (existingUser == null || existingUser.getId().equals(user.getId())) {
+          user.setEmail(updatedUser.getEmail());
+        } else {
+          throw new IllegalArgumentException("Email already exists");
+        }
       }
 
       if (newPassword != null && oldPassword != null) {
