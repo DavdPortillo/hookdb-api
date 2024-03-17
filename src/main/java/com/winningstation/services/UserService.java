@@ -135,6 +135,10 @@ public class UserService implements IUserService {
       if (updatedUser.getLanguage() != null) {
         user.setLanguage(updatedUser.getLanguage());
       }
+
+        if (updatedUser.getRole() != null) {
+            user.setRole(updatedUser.getRole());
+        }
     } else {
       throw new RuntimeException("No se proporcionó un usuario actualizado");
     }
