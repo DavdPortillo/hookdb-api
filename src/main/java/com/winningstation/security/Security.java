@@ -70,7 +70,6 @@ public class Security {
             auth.requestMatchers(
                     HttpMethod.POST,
                     "/developer/**",
-                    "/user/**",
                     "/distributor/**",
                     "/dlc/**",
                     "/edition-product/**",
