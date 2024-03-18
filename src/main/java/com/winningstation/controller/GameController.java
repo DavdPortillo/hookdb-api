@@ -1,9 +1,6 @@
 package com.winningstation.controller;
 
-import com.winningstation.dto.GameAndSagaDTO;
-import com.winningstation.dto.GameSearchAdminDTO;
-import com.winningstation.dto.GameSearchDTO;
-import com.winningstation.dto.ScoreAverageResultDTO;
+import com.winningstation.dto.*;
 import com.winningstation.entity.PlatformProduct;
 import com.winningstation.projection.GamePopularityProjection;
 import com.winningstation.request.GameRequest;
@@ -76,8 +73,8 @@ public class GameController {
   @Operation(
       summary = "Obtiene todos los juegos",
       description = "Devuelve una lista de todos los juegos")
-  public Iterable<Game> findAll() {
-    return gameService.findAll();
+  public ResponseEntity<Page<GameAdminDTO>> getAllGames(Pageable pageable) {
+    return ResponseEntity.ok(gameService.findAllGames(pageable));
   }
 
   /**
@@ -213,16 +210,14 @@ public class GameController {
     gameService.delete(id);
   }
 
-
-
   @Operation(
       summary = "Obtiene todos los juegos",
       description = "Devuelve una lista de todos los juegos")
   @GetMapping("/search/{keyword}/{translationId}")
   public ResponseEntity<Page<GameSearchAdminDTO>> searchGames(
-          @PathVariable("keyword") String keyword,
-          @PathVariable("translationId") Long translationId,
-          Pageable pageable) {
+      @PathVariable("keyword") String keyword,
+      @PathVariable("translationId") Long translationId,
+      Pageable pageable) {
     Page<GameSearchAdminDTO> games = gameService.searchGames(keyword, translationId, pageable);
     return new ResponseEntity<>(games, HttpStatus.OK);
   }

@@ -1,8 +1,6 @@
 package com.winningstation.repository;
 
-import com.winningstation.dto.GameSearchAdminDTO;
-import com.winningstation.dto.GameSearchDTO;
-import com.winningstation.dto.ScoreAverageResultDTO;
+import com.winningstation.dto.*;
 import com.winningstation.projection.GamePopularityProjection;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -88,4 +86,11 @@ public interface GameRepository extends JpaRepository<Game, Long> {
       @Param("keyword") String keyword,
       @Param("translationId") Long translationId,
       Pageable pageable);
+
+
+  @Query("SELECT new com.winningstation.dto.GameAdminDTO(g.id, g.title, g.date) FROM Game g")
+  Page<GameAdminDTO> findAllGames(Pageable pageable);
+
 }
+
+

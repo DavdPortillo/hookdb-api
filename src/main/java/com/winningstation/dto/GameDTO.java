@@ -10,6 +10,7 @@ import java.time.LocalDate;
  *
  * @author David Portillo Hoyos
  */
+
 @Data
 public class GameDTO implements Serializable {
   private Long id;

@@ -138,7 +138,6 @@ public class Security {
                 .requestMatchers(
                     HttpMethod.PUT,
                     "/developer/**",
-                    "/user/**",
                     "/distributor/**",
                     "/dlc/**",
                     "/edition-product/**",

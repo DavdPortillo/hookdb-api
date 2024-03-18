@@ -1,9 +1,6 @@
 package com.winningstation.services.interfaces;
 
-import com.winningstation.dto.GameAndSagaDTO;
-import com.winningstation.dto.GameSearchAdminDTO;
-import com.winningstation.dto.GameSearchDTO;
-import com.winningstation.dto.ScoreAverageResultDTO;
+import com.winningstation.dto.*;
 import com.winningstation.entity.*;
 import com.winningstation.projection.GamePopularityProjection;
 import com.winningstation.request.AvailabilityRequest;
@@ -44,7 +41,7 @@ public interface IGameService {
    *
    * @return Lista de todos los juegos.
    */
-  Iterable<Game> findAll();
+  Page<GameAdminDTO> findAllGames(Pageable pageable);
 
   /**
    * Método que permite obtener un juego por su id.

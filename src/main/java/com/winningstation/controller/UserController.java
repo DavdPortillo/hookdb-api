@@ -111,7 +111,7 @@ public class UserController {
    * @return El cliente con el ID especificado.
    */
   @GetMapping("{id}")
-  @PreAuthorize("#id == authentication.principal.id")
+  @PreAuthorize("#id == authentication.principal.id || hasRole('ROLE_ADMIN')")
   @Operation(
       summary = "Obtiene un usuario por su ID",
       description = "Devuelve un usuario basado en el identificador proporcionado")
@@ -152,6 +152,7 @@ public class UserController {
    * @return El cliente actualizado.
    */
   @PutMapping("/{id}")
+  @PreAuthorize("#id == authentication.principal.id || hasRole('ROLE_ADMIN')")
   @Operation(
       summary = "Actualiza un usuario",
       description =

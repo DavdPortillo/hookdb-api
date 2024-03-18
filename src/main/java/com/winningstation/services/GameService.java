@@ -491,9 +491,8 @@ public class GameService implements IGameService {
   }
 
   @Override
-  public Iterable<Game> findAll() {
-    LOG.info("Finding all games");
-    return gameRepository.findAll();
+  public Page<GameAdminDTO> findAllGames(Pageable pageable) {
+    return gameRepository.findAllGames(pageable);
   }
 
   @Override
