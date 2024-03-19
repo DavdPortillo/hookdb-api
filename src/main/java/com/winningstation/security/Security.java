@@ -152,7 +152,6 @@ public class Security {
                     "platform-product/**",
                     "/region-product/**",
                     "/vendor-product/**",
-                    "/user/**",
                     "/translation/**")
                 .hasRole("ADMIN")
                 .anyRequest()
