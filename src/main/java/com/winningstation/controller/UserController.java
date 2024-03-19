@@ -135,6 +135,7 @@ public class UserController {
    * @param id El ID del cliente.
    */
   @DeleteMapping("/{id}")
+  @PreAuthorize("#id == authentication.principal.id || hasRole('ROLE_ADMIN')")
   @Operation(
       summary = "Borra un usuario",
       description = "Borra un usuario basado en el identificador proporcionado")

@@ -90,7 +90,6 @@ public class Security {
                 .requestMatchers(
                     HttpMethod.DELETE,
                     "/developer/**",
-                    "/user/**",
                     "/distributor/**",
                     "/dlc/**",
                     "/edition-product/**",
@@ -108,7 +107,6 @@ public class Security {
                     "/region-product/**",
                     "/vendor-product/**",
                     "/review/**",
-                    "/user/**",
                     "/translation/**")
                 .hasRole("ADMIN")
                 .requestMatchers(
