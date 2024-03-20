@@ -1,5 +1,6 @@
 package com.winningstation.controller;
 
+import com.winningstation.dto.NewsAdminDTO;
 import com.winningstation.dto.NewsDTO;
 import com.winningstation.entity.Game;
 import com.winningstation.entity.News;
@@ -10,6 +11,7 @@ import com.winningstation.services.interfaces.INewsService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -144,4 +146,23 @@ public class NewsController {
 
     return newsService.editNews(newsId, news, file, gameId, translationId);
   }
+
+  @GetMapping("/search-admin/{title}")
+  @PreAuthorize("hasRole('ROLE_ADMIN')")
+  @Operation(
+      summary = "Encuentra noticias por título",
+      description = "Devuelve una lista de noticias basada en el título proporcionado")
+  public ResponseEntity<List<NewsAdminDTO>> findNewsByTitle(@PathVariable String title) {
+    List<NewsAdminDTO> news = newsService.findNewsByTitle(title);
+    return ResponseEntity.ok(news);
+  }
+
+  @GetMapping({"/{id}"})
+  @Operation(
+      summary = "Obtiene una noticia por su ID",
+      description = "Devuelve una noticia basada en el identificador proporcionado")
+  public ResponseEntity<News> getNewsById(@PathVariable Long id) {
+    return ResponseEntity.ok(newsService.findById(id));
+  }
 }
+

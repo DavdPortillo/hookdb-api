@@ -1,5 +1,6 @@
 package com.winningstation.services;
 
+import com.winningstation.dto.NewsAdminDTO;
 import com.winningstation.dto.NewsDTO;
 import com.winningstation.entity.Game;
 import com.winningstation.entity.News;
@@ -184,5 +185,14 @@ public class NewsService implements INewsService {
     }
 
     return newsRepository.save(news);
+  }
+
+  public List<NewsAdminDTO> findNewsByTitle(String title) {
+    return newsRepository.findNewsByTitleIgnoreCase(title);
+  }
+
+  @Override
+  public News getById(Long id) {
+    return newsRepository.findById(id).orElse(null);
   }
 }

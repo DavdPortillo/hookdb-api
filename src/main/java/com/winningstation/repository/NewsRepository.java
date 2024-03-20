@@ -1,5 +1,6 @@
 package com.winningstation.repository;
 
+import com.winningstation.dto.NewsAdminDTO;
 import com.winningstation.dto.NewsDTO;
 import com.winningstation.entity.News;
 import org.springframework.data.domain.Pageable;
@@ -49,4 +50,8 @@ public interface NewsRepository extends JpaRepository<News, Long> {
       Pageable pageable, @Param("translationId") Long translationId);
 
   List<News> findByTranslationId(Long translationId);
+
+  @Query("SELECT new com.winningstation.dto.NewsAdminDTO(n.id, n.headline) FROM News n WHERE lower(n.headline) LIKE lower(concat('%', :title, '%'))")
+  List<NewsAdminDTO> findNewsByTitleIgnoreCase(@Param("title") String title);
+
 }

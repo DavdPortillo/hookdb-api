@@ -1,5 +1,6 @@
 package com.winningstation.services.interfaces;
 
+import com.winningstation.dto.NewsAdminDTO;
 import com.winningstation.dto.NewsDTO;
 import com.winningstation.entity.News;
 import org.springframework.data.repository.query.Param;
@@ -77,6 +78,9 @@ public interface INewsService {
    * @param file Archivo de imagen.
    * @return La noticia editada.
    */
-  News editNews(
-          Long id, News newsRequest, MultipartFile file, Long gameId, Long translationId);
+  News editNews(Long id, News newsRequest, MultipartFile file, Long gameId, Long translationId);
+
+  List<NewsAdminDTO> findNewsByTitle(String title);
+
+  News getById(Long id);
 }
