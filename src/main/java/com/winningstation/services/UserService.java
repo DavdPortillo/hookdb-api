@@ -3,11 +3,15 @@ package com.winningstation.services;
 import com.winningstation.dto.UpdateUserRequest;
 import com.winningstation.dto.UserAdminDTO;
 import com.winningstation.dto.UserInfoDTO;
+import com.winningstation.entity.Role;
 import com.winningstation.repository.RoleRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -156,9 +160,21 @@ public class UserService implements IUserService {
         user.setLanguage(null);
       }
 
-      if (updatedUser.getRole() != null) {
-        user.setRole(updatedUser.getRole());
+      if (updatedUser.getRole() != null && updatedUser.getRole().getId() != null) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean hasAdminRole = authentication.getAuthorities().stream()
+                .anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"));
+        if (hasAdminRole) {
+          Role newRole = roleRepository.findById(updatedUser.getRole().getId())
+                  .orElseThrow(() -> new RuntimeException("Role with id " + updatedUser.getRole().getId() + " not found"));
+          user.setRole(newRole);
+        } else {
+          throw new AccessDeniedException("No tienes permiso para cambiar el rol de un usuario");
+        }
       }
+
+
+
     } else {
       throw new RuntimeException("No se proporcionó un usuario actualizado");
     }
