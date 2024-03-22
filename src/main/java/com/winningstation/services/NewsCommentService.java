@@ -100,4 +100,10 @@ public class NewsCommentService implements INewsCommentService {
       throw new RuntimeException("Platform not found");
     }
   }
+
+  @Override
+  public List<NewsComment> findNewsCommentByNewsId(Long newsId) {
+    LOG.info("Finding comments by news id: {}", newsId);
+    return newsCommentRepository.findNewsCommentByNewsId(newsId);
+  }
 }

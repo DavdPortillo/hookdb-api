@@ -50,5 +50,11 @@ public interface INewsCommentService {
    */
   String update(Long id, String request);
 
-
+  /**
+   * Método que permite obtener los comentarios de una noticia.
+   *
+   * @param newsId ID de la noticia.
+   * @return Lista con los comentarios de la noticia.
+   */
+  List<NewsComment> findNewsCommentByNewsId(Long newsId);
 }

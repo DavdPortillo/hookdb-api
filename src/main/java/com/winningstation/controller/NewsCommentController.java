@@ -73,4 +73,14 @@ public class NewsCommentController {
   public String update(@PathVariable Long id, @RequestBody String newsComment) {
     return newsCommentService.update(id, newsComment);
   }
+
+  /** Obtener comentarios por id de noticia */
+  @GetMapping("/newsId/{newsId}")
+  @Operation(
+      summary = "Obtiene los comentarios de una noticia",
+      description =
+          "Devuelve una lista de los comentarios de una noticia basado en el identificador de la noticia proporcionado")
+  public List<NewsComment> findNewsCommentByNewsId(@PathVariable Long newsId) {
+    return newsCommentService.findNewsCommentByNewsId(newsId);
+  }
 }

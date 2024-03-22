@@ -172,9 +172,6 @@ public class UserService implements IUserService {
           throw new AccessDeniedException("No tienes permiso para cambiar el rol de un usuario");
         }
       }
-
-
-
     } else {
       throw new RuntimeException("No se proporcionó un usuario actualizado");
     }
