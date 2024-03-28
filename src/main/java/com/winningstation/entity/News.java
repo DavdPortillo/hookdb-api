@@ -38,6 +38,11 @@ public class News implements Serializable {
   @Column(columnDefinition = "TEXT")
   private String headline;
 
+  /** Subtítulo de la noticia. */
+  @NotNull
+  @Column(columnDefinition = "TEXT")
+  private String subtitle;
+
   /** Imagen de la noticia. */
   @NotNull private String image;
 
@@ -79,6 +84,4 @@ public class News implements Serializable {
   public Long getIdGame() {
     return game == null ? null : game.getId();
   }
-
-
 }
