@@ -42,7 +42,7 @@ public interface NewsRepository extends JpaRepository<News, Long> {
   void setGameIdToNullByGameId(@Param("gameId") Long gameId);
 
   @Query(
-      "SELECT new com.winningstation.dto.NewsDTO(n.id,n.image,n.alt, n.headline, n.newsAuthor.name,n.newsAuthor.surname, size(n.newsComment), n.date) "
+      "SELECT new com.winningstation.dto.NewsDTO(n.id,n.image,n.alt, n.headline,n.subtitle, n.newsAuthor.name,n.newsAuthor.surname, size(n.newsComment), n.date) "
           + "FROM News n "
           + "WHERE n.translation.id = :translationId "
           + "ORDER BY n.date DESC")

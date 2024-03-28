@@ -13,6 +13,7 @@ public class NewsDTO implements Serializable {
   private String image;
   private String alt;
   private String headline;
+    private String subtitle;
   private String authorName;
   private String authorSurname;
   private Integer commentCount;

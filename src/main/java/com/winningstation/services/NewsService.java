@@ -158,6 +158,11 @@ public class NewsService implements INewsService {
     if (newsRequest.getHeadline() != null) {
       news.setHeadline(newsRequest.getHeadline());
     }
+
+    if (newsRequest.getSubtitle() != null) {
+      news.setSubtitle(newsRequest.getSubtitle());
+    }
+
     if (file != null) {
       String fileDownloadUri = fileStorageService.replaceFileAndGenerateUri(file, news.getImage());
       news.setImage(fileDownloadUri);
