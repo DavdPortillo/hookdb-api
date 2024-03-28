@@ -1,7 +1,8 @@
 package com.winningstation.services.interfaces;
 
+import com.winningstation.dto.ReviewTopThreeDTO;
 import com.winningstation.entity.Review;
-
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -49,4 +50,6 @@ public interface IReviewService {
    * @param id Id a eliminar.
    */
   void deleteById(Long id);
+
+  List<ReviewTopThreeDTO> findTop3Reviews();
 }

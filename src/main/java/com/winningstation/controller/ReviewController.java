@@ -1,14 +1,16 @@
 package com.winningstation.controller;
 
+import com.winningstation.dto.ReviewTopThreeDTO;
 import com.winningstation.entity.Review;
 import com.winningstation.services.interfaces.IReviewService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import java.util.List;
+import java.util.Map;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
 
 /**
  * Controlador para las críticas de los juegos.
@@ -108,5 +110,13 @@ public class ReviewController {
       description = "Elimina una crítica basada en el identificador proporcionado")
   public void deleteReviewById(@PathVariable Long id) {
     reviewService.deleteById(id);
+  }
+
+  @GetMapping("/top")
+  @Operation(
+      summary = "Obtiene las tres críticas más populares",
+      description = "Devuelve una lista con las tres críticas más populares")
+  public ResponseEntity<List<ReviewTopThreeDTO>> getTop3Reviews() {
+    return ResponseEntity.ok(reviewService.findTop3Reviews());
   }
 }

@@ -1,5 +1,6 @@
 package com.winningstation.services;
 
+import com.winningstation.dto.ReviewTopThreeDTO;
 import com.winningstation.entity.Game;
 import com.winningstation.entity.Review;
 import com.winningstation.entity.User;
@@ -10,9 +11,11 @@ import com.winningstation.services.interfaces.IReviewService;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -120,5 +123,10 @@ public class ReviewService implements IReviewService {
         LOG.info("Eliminando crítica con id: {}", id);
         reviewRepository.deleteById(id);
     }
+
+  @Override
+  public List<ReviewTopThreeDTO> findTop3Reviews() {
+    return reviewRepository.findTopReviews(PageRequest.of(0, 3)).getContent();
+  }
 
 }
