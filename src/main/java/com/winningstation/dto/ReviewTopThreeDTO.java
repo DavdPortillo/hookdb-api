@@ -1,6 +1,8 @@
 package com.winningstation.dto;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -12,4 +14,5 @@ public class ReviewTopThreeDTO implements Serializable {
     private String reviewTitle;
     private String reviewContent;
     private Integer reviewLikes;
+    private LocalDateTime reviewDate;
 }

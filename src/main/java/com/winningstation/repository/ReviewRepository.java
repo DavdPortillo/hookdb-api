@@ -14,6 +14,6 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
   Iterable<Review> findAllByGameId(Long gameId);
     Iterable<Review> findAllByUserId(Long userId);
 
-  @Query("SELECT new com.winningstation.dto.ReviewTopThreeDTO(u.username, r.title, r.content, r.like) FROM Review r JOIN r.user u ORDER BY r.like DESC")
+  @Query("SELECT new com.winningstation.dto.ReviewTopThreeDTO(u.username, r.title, r.content, r.like,r.date) FROM Review r JOIN r.user u ORDER BY r.like DESC")
   Page<ReviewTopThreeDTO> findTopReviews(Pageable pageable);
 }
