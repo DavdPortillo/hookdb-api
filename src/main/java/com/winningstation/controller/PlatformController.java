@@ -85,4 +85,14 @@ public class PlatformController {
   public void deleteById(@PathVariable Long id) {
     platformService.deleteById(id);
   }
+
+
+    @GetMapping("/{id}")
+    @Operation(
+        summary = "Obtiene una plataforma por su id",
+        description =
+            "Devuelve una plataforma basada en el identificador proporcionado")
+    public Platform findById(@PathVariable Long id) {
+        return platformService.findById(id);
+    }
 }
