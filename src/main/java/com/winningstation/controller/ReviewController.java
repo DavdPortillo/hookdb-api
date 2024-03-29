@@ -115,8 +115,8 @@ public class ReviewController {
   @GetMapping("/top")
   @Operation(
       summary = "Obtiene las tres críticas más populares",
-      description = "Devuelve una lista con las tres críticas más populares")
+      description = "Devuelve una lista con las doce críticas más populares")
   public ResponseEntity<List<ReviewTopThreeDTO>> getTop3Reviews() {
-    return ResponseEntity.ok(reviewService.findTop3Reviews());
+    return ResponseEntity.ok(reviewService.findTop12Reviews());
   }
 }
