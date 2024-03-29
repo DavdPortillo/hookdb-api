@@ -32,9 +32,9 @@ public class User implements Serializable {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  /** Nombre del cliente. No puede ser nulo y debe tener entre 2 y 50 caracteres. */
+  /** Nombre del cliente. No puede ser nulo y debe tener entre 2 y 15 caracteres. */
   @NotNull
-  @Size(min = 2, max = 50)
+  @Size(min = 2, max = 15)
   @Column(unique = true)
   private String username;
 
