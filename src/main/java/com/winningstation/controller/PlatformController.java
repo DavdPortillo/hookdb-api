@@ -58,7 +58,7 @@ public class PlatformController {
   }
 
   /** Obtener por su nombre */
-  @GetMapping("/{name}")
+  @GetMapping("name/{name}")
   @Operation(
       summary = "Busca plataformas por su nombre",
       description =
