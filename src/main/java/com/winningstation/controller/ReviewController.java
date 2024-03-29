@@ -117,6 +117,6 @@ public class ReviewController {
       summary = "Obtiene las tres críticas más populares",
       description = "Devuelve una lista con las doce críticas más populares")
   public ResponseEntity<List<ReviewTopThreeDTO>> getTop3Reviews() {
-    return ResponseEntity.ok(reviewService.findTop7Reviews());
+    return ResponseEntity.ok(reviewService.findTop3Reviews());
   }
 }

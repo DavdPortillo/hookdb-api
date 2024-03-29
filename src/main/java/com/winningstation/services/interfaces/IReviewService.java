@@ -51,5 +51,5 @@ public interface IReviewService {
    */
   void deleteById(Long id);
 
-  List<ReviewTopThreeDTO> findTop7Reviews();
+  List<ReviewTopThreeDTO> findTop3Reviews();
 }
