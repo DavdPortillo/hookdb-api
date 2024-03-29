@@ -125,8 +125,8 @@ public class ReviewService implements IReviewService {
     }
 
   @Override
-  public List<ReviewTopThreeDTO> findTop12Reviews() {
-    return reviewRepository.findTopReviews(PageRequest.of(0, 12)).getContent();
+  public List<ReviewTopThreeDTO> findTop7Reviews() {
+    return reviewRepository.findTopReviews(PageRequest.of(0, 7)).getContent();
   }
 
 }
