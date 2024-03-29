@@ -10,6 +10,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class ReviewTopThreeDTO implements Serializable {
 
+    private Long id;
     private String authorName;
     private String gameTitle;
     private String reviewTitle;
