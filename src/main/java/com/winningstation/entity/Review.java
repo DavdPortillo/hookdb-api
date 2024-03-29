@@ -37,7 +37,7 @@ public class Review implements Serializable {
 
   /** Título del comentario. No puede ser nulo. */
   @NotNull
-  @Size(min = 2, max = 200)
+  @Size(min = 2, max = 100)
   private String title;
 
   /** Contenido del comentario. No puede ser nulo. */
