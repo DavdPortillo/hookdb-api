@@ -11,6 +11,7 @@ import lombok.Data;
 public class ReviewTopThreeDTO implements Serializable {
 
     private String authorName;
+    private String gameTitle;
     private String reviewTitle;
     private String reviewContent;
     private Integer reviewLikes;
