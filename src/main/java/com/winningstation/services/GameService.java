@@ -430,6 +430,11 @@ public class GameService implements IGameService {
   }
 
   @Override
+  public List<GamePopularityProjection> getFiveGamesByDate(Long translationId) {
+    return gameRepository.findTop5ByOrderByDateDesc(translationId, PageRequest.of(0, 5));
+  }
+
+  @Override
   public List<GameSearchDTO> searchGames(String keyword, Long translationId) {
     List<Game> games = gameRepository.search(keyword, translationId, Pageable.unpaged());
     return games.stream()
@@ -823,8 +828,8 @@ public class GameService implements IGameService {
     return productRepository.save(product);
   }
 
-  public Page<GameSearchAdminDTO> searchGames(String keyword, Long translationId, Pageable pageable) {
+  public Page<GameSearchAdminDTO> searchGames(
+      String keyword, Long translationId, Pageable pageable) {
     return gameRepository.searchGames(keyword, translationId, pageable);
   }
-
 }

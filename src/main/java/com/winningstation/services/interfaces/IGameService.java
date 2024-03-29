@@ -21,6 +21,10 @@ import java.util.List;
  */
 public interface IGameService {
 
+
+
+  List<GamePopularityProjection> getFiveGamesByDate(Long translationId);
+
   /**
    * Método que permite guardar un juego.
    *

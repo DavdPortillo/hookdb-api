@@ -48,6 +48,12 @@ public interface GameRepository extends JpaRepository<Game, Long> {
   List<GamePopularityProjection> findByDateAfterAndOrderByPopularityDesc(
       LocalDate date, @Param("translationId") Long translationId);
 
+  @Query(
+      value =
+          "SELECT g.id AS id, g.title AS title, g.cover AS cover, g.alt AS alt, g.date AS date FROM Game g WHERE g.translation.id = :translationId ORDER BY g.date DESC")
+  List<GamePopularityProjection> findTop5ByOrderByDateDesc(
+      @Param("translationId") Long translationId, Pageable pageable);
+
   /**
    * Método que permite buscar juegos por título donde tiene más peso la popularidad.
    *
@@ -87,10 +93,6 @@ public interface GameRepository extends JpaRepository<Game, Long> {
       @Param("translationId") Long translationId,
       Pageable pageable);
 
-
   @Query("SELECT new com.winningstation.dto.GameAdminDTO(g.id, g.title, g.date) FROM Game g")
   Page<GameAdminDTO> findAllGames(Pageable pageable);
-
 }
-
-

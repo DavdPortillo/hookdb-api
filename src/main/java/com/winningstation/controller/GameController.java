@@ -204,6 +204,14 @@ public class GameController {
     return gameService.updateGame(id, gameRequest, file, translationId);
   }
 
+  @GetMapping("/topByDate/{translationId}")
+    @Operation(
+        summary = "Obtiene los 5 juegos más populares por fecha",
+        description = "Devuelve una lista de los 5 juegos más populares por fecha")
+  public List<GamePopularityProjection> getTop5Games(@PathVariable Long translationId) {
+    return gameService.getFiveGamesByDate(translationId);
+  }
+
   @DeleteMapping("/{id}")
   @Operation(summary = "Elimina un juego", description = "Elimina un juego basado en su ID")
   public void deleteGame(@PathVariable Long id) {
