@@ -86,10 +86,10 @@ public class GenreController {
     genreService.deleteById(id);
   }
 
-  @GetMapping
+  @GetMapping({"/{id}"})
   @Operation(
-      summary = "Obtiene género por id",
-      description = "Devuelve un género basado en el identificador proporcionado")
+          summary = "Obtiene género por id",
+          description = "Devuelve un género basado en el identificador proporcionado")
   public Genre findById(@PathVariable Long id) {
     return genreService.findById(id);
   }
