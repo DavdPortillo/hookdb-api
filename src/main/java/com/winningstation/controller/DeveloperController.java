@@ -104,4 +104,19 @@ public class DeveloperController {
   public List<Developer> findAllDevelopers() {
     return developerService.findAll();
   }
+
+    /**
+     * Busca un desarrollador por su identificador.
+     *
+     * @param id Identificador del desarrollador a buscar.
+     * @return El desarrollador encontrado.
+     */
+    @GetMapping("/{id}")
+    @Operation(
+            summary = "Busca un desarrollador por su identificador",
+            description = "Busca un desarrollador basado en el identificador proporcionado y devuelve el desarrollador encontrado")
+    public Developer findDeveloperById(@PathVariable Long id) {
+        return developerService.findById(id);
+
+    }
 }
