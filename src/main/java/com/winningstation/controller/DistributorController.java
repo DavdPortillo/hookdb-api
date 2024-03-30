@@ -16,7 +16,6 @@ import java.util.List;
  *
  * @author David Portillo Hoyos
  */
-
 @RestController
 @RequestMapping("/distributor")
 @Tag(name = "Distributor Controller", description = "Operaciones para distribuidores")
@@ -57,7 +56,7 @@ public class DistributorController {
    * @param name Nombre del distribuidor a buscar.
    * @return Distribuidor encontrado.
    */
-  @GetMapping("/search/{name}")
+  @GetMapping("/name/{name}")
   @Operation(
       summary = "Busca un distribuidor por su nombre",
       description =
@@ -74,7 +73,7 @@ public class DistributorController {
     distributorService.delete(id);
   }
 
-  @PutMapping("/{id}/name")
+  @PutMapping("/{id}")
   @Operation(
       summary = "Edita el nombre de un distribuidor",
       description =
@@ -89,5 +88,13 @@ public class DistributorController {
       description = "Devuelve una lista de todos los distribuidores")
   public List<Distributor> findAllDistributors() {
     return distributorService.findAll();
+  }
+
+  @GetMapping("/{id}")
+  @Operation(
+      summary = "Obtiene un distribuidor por su identificador",
+      description = "Devuelve un distribuidor basado en el identificador proporcionado")
+  public Distributor findDistributorById(@PathVariable Long id) {
+    return distributorService.findById(id);
   }
 }
