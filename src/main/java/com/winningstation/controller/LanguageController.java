@@ -59,7 +59,7 @@ public class LanguageController {
   }
 
   /** Obtener por su nombre */
-  @GetMapping("/{name}")
+  @GetMapping("name/{name}")
   @Operation(
       summary = "Busca idiomas por su nombre",
       description =
@@ -85,5 +85,13 @@ public class LanguageController {
       description = "Elimina un idioma basado en el identificador proporcionado")
   public void deleteById(@PathVariable Long id) {
     languageService.deleteById(id);
+  }
+
+  @GetMapping({"/{id}"})
+  @Operation(
+      summary = "Obtiene idioma por id",
+      description = "Obtiene un idioma basado en el identificador proporcionado")
+  public Language findById(@PathVariable Long id) {
+    return languageService.findById(id);
   }
 }
