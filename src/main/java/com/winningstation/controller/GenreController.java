@@ -58,7 +58,7 @@ public class GenreController {
   }
 
   /** Obtener por su nombre */
-  @GetMapping("/{name}")
+  @GetMapping("name/{name}")
   @Operation(
       summary = "Busca géneros por su nombre",
       description =
@@ -84,5 +84,13 @@ public class GenreController {
       description = "Elimina un género basado en el identificador proporcionado")
   public void deleteById(@PathVariable Long id) {
     genreService.deleteById(id);
+  }
+
+  @GetMapping
+  @Operation(
+      summary = "Obtiene género por id",
+      description = "Devuelve un género basado en el identificador proporcionado")
+  public Genre findById(@PathVariable Long id) {
+    return genreService.findById(id);
   }
 }
