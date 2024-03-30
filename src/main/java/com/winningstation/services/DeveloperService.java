@@ -81,18 +81,19 @@ public class DeveloperService implements IDeveloperService {
    * Edita un developer.
    *
    * @param id Identificador del developer a editar.
-   * @param developerRequest Developer a editar.
+   * @param name Developer a editar.
    * @return Developer editado.
    */
   @Override
-  public Developer edit(Long id, Developer developerRequest) {
+  public String edit(Long id, String name) {
     LOG.info("Editing developer with id: {}", id);
-    Developer developer = findById(id);
+    Developer developer = developerRepository.findById(id).orElse(null);
     if (developer != null) {
-      developer.setName(developerRequest.getName());
+      developer.setName(name);
       developerRepository.save(developer);
+      return developer.getName();
     }
-    return developer;
+    return null;
   }
 
     /**

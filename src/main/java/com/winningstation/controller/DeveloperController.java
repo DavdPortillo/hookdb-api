@@ -87,7 +87,7 @@ public class DeveloperController {
       summary = "Edita un desarrollador",
       description =
           "Edita un desarrollador basado en el identificador y la petición proporcionados y devuelve el desarrollador editado")
-  public Developer editDeveloper(@PathVariable Long id, @RequestBody Developer developerRequest) {
+  public String editDeveloper(@PathVariable Long id, @RequestBody String developerRequest) {
     return developerService.edit(id, developerRequest);
   }
 

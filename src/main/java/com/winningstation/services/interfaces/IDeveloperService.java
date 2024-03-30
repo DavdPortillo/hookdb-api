@@ -49,7 +49,7 @@ public interface IDeveloperService {
    * @param developerRequest Desarrollador de juego a editar.
    * @return El desarrollador de juego editado.
    */
-  Developer edit(Long id, Developer developerRequest);
+  String edit(Long id, String developerRequest);
 
     /**
      * Busca todos los desarrolladores de juego.
