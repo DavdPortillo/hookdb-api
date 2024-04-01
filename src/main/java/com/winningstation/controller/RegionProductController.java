@@ -1,9 +1,7 @@
 package com.winningstation.controller;
 
 import com.winningstation.entity.RegionProduct;
-import com.winningstation.entity.VendorProduct;
 import com.winningstation.services.interfaces.IRegionProductService;
-import com.winningstation.services.interfaces.IVendorProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;

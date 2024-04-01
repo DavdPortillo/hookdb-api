@@ -7,12 +7,12 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * Repositorio de los vendors.
+ * Repositorio de la entidad LogoProduct.
  *
  * @author David Portillo Hoyos
  */
 @Repository
 public interface VendorProductRepository extends JpaRepository<VendorProduct, Long> {
 
-    List<VendorProduct> findByNameContaining(String name);
+  List<VendorProduct> findByLogoContaining(String name);
 }

@@ -91,8 +91,8 @@ public class GameService implements IGameService {
   /** Repositorio de Product. */
   private final ProductRepository productRepository;
 
-  /** Repositorio de LogoProduct. */
-  private final LogoProductRepository logoProductRepository;
+  /** Repositorio de VendorProduct. */
+  private final VendorProductRepository vendorProductRepository;
 
   /** Repositorio de EditionProduct. */
   private final EditionProductRepository editionProductRepository;
@@ -100,8 +100,6 @@ public class GameService implements IGameService {
   /** Repositorio de PlatformProduct. */
   private final PlatformProductRepository platformProductRepository;
 
-  /** Repositorio de VendorProduct. */
-  private final VendorProductRepository vendorProductRepository;
 
   /** Repositorio de RegionProduct. */
   private final RegionProductRepository regionProductRepository;
@@ -133,10 +131,9 @@ public class GameService implements IGameService {
       SagaRepository sagaRepository,
       SystemRequirementRepository systemRequirementRepository,
       ProductRepository productRepository,
-      LogoProductRepository logoProductRepository,
+      VendorProductRepository logoProductRepository,
       EditionProductRepository editionProductRepository,
       PlatformProductRepository platformProductRepository,
-      VendorProductRepository vendorProductRepository,
       RegionProductRepository regionProductRepository,
       KeysProductRepository keysProductRepository,
       GameScoreRepository gameScoreRepository,
@@ -158,10 +155,9 @@ public class GameService implements IGameService {
     this.sagaRepository = sagaRepository;
     this.systemRequirementRepository = systemRequirementRepository;
     this.productRepository = productRepository;
-    this.logoProductRepository = logoProductRepository;
+    this.vendorProductRepository = logoProductRepository;
     this.editionProductRepository = editionProductRepository;
     this.platformProductRepository = platformProductRepository;
-    this.vendorProductRepository = vendorProductRepository;
     this.regionProductRepository = regionProductRepository;
     this.keysProductRepository = keysProductRepository;
     this.gameScoreRepository = gameScoreRepository;
@@ -385,8 +381,8 @@ public class GameService implements IGameService {
       product.setGame(game); // Asociar el producto con el juego
       product.setPrice(productRequest.getPrice());
       product.setLink(productRequest.getLink());
-      product.setLogoProduct(
-          logoProductRepository.findById(productRequest.getLogoProductId()).orElse(null));
+      product.setVendorProduct(
+          vendorProductRepository.findById(productRequest.getLogoProductId()).orElse(null));
       product.setEditionProduct(
           editionProductRepository.findById(productRequest.getEditionProductId()).orElse(null));
       product.setPlatformProduct(
@@ -766,8 +762,8 @@ public class GameService implements IGameService {
       product.setLink(productRequest.getLink());
     }
     if (productRequest.getLogoProductId() != null) {
-      product.setLogoProduct(
-          logoProductRepository
+      product.setVendorProduct(
+          vendorProductRepository
               .findById(productRequest.getLogoProductId())
               .orElseThrow(
                   () ->

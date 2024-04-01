@@ -12,7 +12,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 /**
- * Clase que representa a un producto de un vendedor.
+ * Logo del producto
  *
  * @author David Portillo Hoyos
  */
@@ -21,8 +21,6 @@ import lombok.Data;
 @Table(name = "vendor_product")
 public class VendorProduct implements Serializable {
 
-  @Serial private static final long serialVersionUID = 1L;
-
   /** Id único de la key. Generado automáticamente. */
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,4 +28,9 @@ public class VendorProduct implements Serializable {
 
   /** Nombre del producto. */
   @NotNull private String name;
+  /** Imagen del logo. */
+  @NotNull private String logo;
+  @NotNull private String alt;
+
+  @Serial private static final long serialVersionUID = 1L;
 }

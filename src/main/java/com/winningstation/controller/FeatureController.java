@@ -50,7 +50,7 @@ public class FeatureController {
    * @param name Nombre de las características a obtener.
    * @return Características obtenidas.
    */
-  @GetMapping("/{name}")
+  @GetMapping("name/{name}")
   @Operation(
       summary = "Busca características de juegos por su nombre",
       description =
@@ -102,4 +102,20 @@ public class FeatureController {
   public Feature save(@RequestBody Feature feature) {
     return featureService.save(feature);
   }
+
+
+    /**
+     * Método que obtiene las características de un juego por su id.
+     *
+     * @param id Id de las características a obtener.
+     * @return Características obtenidas.
+     */
+    @GetMapping("/{id}")
+    @Operation(
+            summary = "Busca características de juegos por su id",
+            description =
+                    "Busca características de juegos basado en el id proporcionado y devuelve una lista de características de juegos encontrados")
+    public Feature findById(@PathVariable Long id) {
+        return featureService.findById(id);
+    }
 }

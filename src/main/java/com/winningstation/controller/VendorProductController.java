@@ -1,83 +1,90 @@
 package com.winningstation.controller;
 
 import com.winningstation.entity.VendorProduct;
-import com.winningstation.services.interfaces.IVendorProductService;
+import com.winningstation.services.VendorProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 /**
- * Controller for vendor product
+ * Controlador de logo de producto.
  *
  * @author David Portillo Hoyos
  */
-@Tag(
-    name = "Vendor Product Controller",
-    description = "Operaciones para los productos de los vendedores")
+@Tag(name = "Logo Product Controller", description = "Operaciones para los logos de los productos")
 @RestController
 @RequestMapping("/vendor-product")
 public class VendorProductController {
 
-  /** Service for edition product */
-  private final IVendorProductService vendorProductService;
+  /** Servicio de logo de producto. */
+  private final VendorProductService vendorProductService;
 
   /**
-   * Constructor
+   * Constructor de la clase.
    *
-   * @param vendorProductService Service for vendor product
+   * @param vendorProductService Servicio de logo de producto.
    */
-  public VendorProductController(IVendorProductService vendorProductService) {
+  public VendorProductController(VendorProductService vendorProductService) {
     this.vendorProductService = vendorProductService;
   }
 
-  /** Guardar un producto */
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
   @Operation(
-      summary = "Guarda un nuevo producto de vendedor",
+      summary = "Guarda un nuevo logo de producto",
       description =
-          "Guarda un nuevo producto de vendedor basado en la petición proporcionada y devuelve el producto de vendedor guardado")
-  public VendorProduct save(@RequestBody VendorProduct vendorProduct) {
-    return vendorProductService.save(vendorProduct);
+          "Guarda un nuevo logo de producto basado en la petición proporcionada y devuelve el logo de producto guardado")
+  public VendorProduct save(
+          @ModelAttribute VendorProduct vendorProduct, @RequestPart("file") MultipartFile file) {
+    return vendorProductService.save(vendorProduct, file);
   }
 
-  /** Obtener todos los registros */
   @GetMapping
   @Operation(
-      summary = "Obtiene todos los productos de vendedores",
-      description = "Devuelve una lista de todos los productos de vendedores")
+      summary = "Obtiene todos los logos de productos",
+      description = "Devuelve una lista de todos los logos de productos")
   public List<VendorProduct> findAll() {
     return vendorProductService.findAll();
   }
 
-  /** Obtener por su nombre */
-  @GetMapping("/{name}")
+  @GetMapping("name/{name}")
   @Operation(
-      summary = "Busca productos de vendedores por su nombre",
+      summary = "Busca logos de productos por su nombre",
       description =
-          "Busca productos de vendedores basado en el nombre proporcionado y devuelve una lista de productos de vendedores encontrados")
+          "Busca logos de productos basado en el nombre proporcionado y devuelve una lista de logos de productos encontrados")
   public List<VendorProduct> findByName(@PathVariable String name) {
     return vendorProductService.findByName(name);
   }
 
-  /** Actualizar un producto */
+    @GetMapping("/{id}")
+    @Operation(
+        summary = "Obtiene un logo de producto por su id",
+        description = "Obtiene un logo de producto basado en el identificador proporcionado")
+    public VendorProduct findById(@PathVariable Long id) {
+        return vendorProductService.findById(id);
+
+    }
+
   @PutMapping("/{id}")
   @Operation(
-      summary = "Actualiza un producto de vendedor",
+      summary = "Actualiza un logo de producto",
       description =
-          "Actualiza un producto de vendedor basado en el identificador y la petición proporcionados y devuelve el producto de vendedor actualizado")
-  public String update(@PathVariable Long id, @RequestBody String request) {
-    return vendorProductService.update(id, request);
+          "Actualiza un logo de producto basado en el identificador y la petición proporcionados y devuelve el logo actualizado")
+  public VendorProduct update(
+      @PathVariable Long id,
+      @ModelAttribute VendorProduct logo,
+      @RequestPart(value = "file", required = false) MultipartFile file) {
+    return vendorProductService.update(id, logo, file);
   }
 
-  /** Eliminar un producto */
   @DeleteMapping("/{id}")
   @Operation(
-      summary = "Elimina un producto de vendedor",
-      description = "Elimina un producto de vendedor basado en el identificador proporcionado")
+      summary = "Elimina un logo de producto",
+      description = "Elimina un logo de producto basado en el identificador proporcionado")
   public void deleteById(@PathVariable Long id) {
     vendorProductService.deleteById(id);
   }

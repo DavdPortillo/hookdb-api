@@ -1,60 +1,62 @@
 package com.winningstation.services.interfaces;
 
-import com.winningstation.entity.PlatformProduct;
 import com.winningstation.entity.VendorProduct;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 /**
- * Interfaz que define los métodos que se pueden realizar sobre la entidad VendorProduct.
+ * Interfaz que define los métodos que se pueden realizar sobre los logos de los productos.
  *
  * @author David Portillo Hoyos
  */
 public interface IVendorProductService {
 
   /**
-   * Método que permite guardar un registro
+   * Método que permite guardar un logo de producto.
    *
-   * @param vendorProduct Registro a guardar.
+   * @param logo Logo de producto a guardar.
+   * @return El logo de producto guardado.
    */
-  VendorProduct save(VendorProduct vendorProduct);
+  VendorProduct save(VendorProduct logo, MultipartFile file);
 
   /**
-   * Método que permite obtener por su id.
+   * Método que permite obtener un logo de producto por su id.
    *
-   * @param id a obtener.
-   * @return Registro obtenido.
+   * @param id Id del logo de producto a obtener.
+   * @return El logo de producto obtenido.
    */
   VendorProduct findById(Long id);
 
   /**
-   * Método que permite obtener todos los registros.
+   * Método que permite obtener todos los logos de productos.
    *
-   * @return Lista con todas los registros.
+   * @return Lista con todos los logos de productos.
    */
   List<VendorProduct> findAll();
 
   /**
-   * Método que permite eliminar por su id.
+   * Método que permite eliminar un logo de producto por su id.
    *
-   * @param id Id a eliminar.
+   * @param id Id del logo de producto a eliminar.
    */
   void deleteById(Long id);
 
   /**
-   * Método que permite actualizar
+   * Método que permite actualizar un logo de producto.
    *
-   * @param id Id a actualizar.
-   * @param request Registro a actualizar.
-   * @return el registro actualizado.
+   * @param id Id del logo de producto a actualizar.
+   * @param newVendorProduct Nuevo logo de producto.
+   * @param file Archivo de la imagen del logo de producto.
+   * @return El logo de producto actualizado.
    */
-  String update(Long id, String request);
+  VendorProduct update(Long id, VendorProduct newVendorProduct, MultipartFile file);
 
   /**
-   * Método que permite obtener registros por su nombre.
+   * Método que permite obtener un logo de producto por su nombre.
    *
-   * @param name Nombre a obtener.
-   * @return Los registros obtenidos.
+   * @param name Nombre del logo de producto a obtener.
+   * @return El logo de producto obtenido.
    */
   List<VendorProduct> findByName(String name);
 }

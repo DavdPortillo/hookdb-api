@@ -1,9 +1,7 @@
 package com.winningstation.services;
 
 import com.winningstation.entity.RegionProduct;
-import com.winningstation.entity.VendorProduct;
 import com.winningstation.repository.RegionProductRepository;
-import com.winningstation.repository.VendorProductRepository;
 import com.winningstation.services.interfaces.IRegionProductService;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;

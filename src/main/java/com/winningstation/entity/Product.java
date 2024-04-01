@@ -30,11 +30,6 @@ public class Product implements Serializable {
   /** Link de la key. */
   @NotNull private String link;
 
-  /** Logo del producto. */
-  @NotNull
-  @ManyToOne
-  @JoinColumn(name = "logo_product_id")
-  private LogoProduct logoProduct;
 
   /** Edición del producto. */
   @NotNull

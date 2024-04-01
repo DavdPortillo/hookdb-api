@@ -57,7 +57,7 @@ public class PlatformProductController {
   }
 
   /** Obtener por su nombre */
-  @GetMapping("/{name}")
+  @GetMapping("name/{name}")
   @Operation(
       summary = "Busca productos de plataformas por su nombre",
       description =
@@ -65,6 +65,16 @@ public class PlatformProductController {
   public List<PlatformProduct> findByName(@PathVariable String name) {
     return platformProductService.findByName(name);
   }
+
+
+    /** Obtener por su id */
+    @GetMapping("/{id}")
+    @Operation(
+        summary = "Obtiene un producto de plataforma por su id",
+        description = "Obtiene un producto de plataforma basado en el identificador proporcionado")
+    public PlatformProduct findById(@PathVariable Long id) {
+        return platformProductService.findById(id);
+    }
 
   /** Actualizar un producto */
   @PutMapping("/{id}")
