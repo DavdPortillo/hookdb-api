@@ -14,5 +14,5 @@ import java.util.List;
 @Repository
 public interface VendorProductRepository extends JpaRepository<VendorProduct, Long> {
 
-  List<VendorProduct> findByLogoContaining(String name);
+  List<VendorProduct> findByNameContaining(String name);
 }

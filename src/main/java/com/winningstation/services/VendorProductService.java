@@ -98,6 +98,6 @@ public class VendorProductService implements IVendorProductService {
 
   @Override
   public List<VendorProduct> findByName(String name) {
-    return vendorProductRepository.findByLogoContaining(name);
+    return vendorProductRepository.findByNameContaining(name);
   }
 }
