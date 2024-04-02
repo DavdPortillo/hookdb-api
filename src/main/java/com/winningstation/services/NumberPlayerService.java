@@ -8,6 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Servicio de número de jugadores.
  *
@@ -43,5 +45,37 @@ public class NumberPlayerService implements INumberPlayerService {
     LOG.info("Saving numberPlayer: {}", numberPlayer);
     numberPlayerRepository.save(numberPlayer);
     return numberPlayer;
+  }
+
+  @Override
+  public void delete(NumberPlayer numberPlayer) {
+    LOG.info("Deleting numberPlayer: {}", numberPlayer);
+    numberPlayerRepository.delete(numberPlayer);
+  }
+
+  @Override
+  public NumberPlayer getById(Long id) {
+    return numberPlayerRepository.findById(id).orElse(null);
+  }
+
+  @Override
+  public Integer update(Long id, Integer numberPlayerRequest) {
+    NumberPlayer numberPlayer = numberPlayerRepository.findById(id).orElse(null);
+    if (numberPlayer == null) {
+      return numberPlayerRequest;
+    }
+    numberPlayer.setNumberPlayers(numberPlayerRequest);
+    numberPlayerRepository.save(numberPlayer);
+    return numberPlayerRequest;
+  }
+
+  @Override
+  public NumberPlayer getByNumberPlayers(Integer numberPlayers) {
+    return numberPlayerRepository.findByNumberPlayers(numberPlayers);
+  }
+
+  @Override
+  public List<NumberPlayer> findAll() {
+    return numberPlayerRepository.findAll();
   }
 }

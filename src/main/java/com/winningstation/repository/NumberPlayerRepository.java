@@ -10,4 +10,13 @@ import org.springframework.stereotype.Repository;
  * @author David Portillo Hoyos
  */
 @Repository
-public interface NumberPlayerRepository extends JpaRepository<NumberPlayer, Long> {}
+public interface NumberPlayerRepository extends JpaRepository<NumberPlayer, Long> {
+
+    /**
+     * Método que obtiene el número de jugadores de un juego.
+     *
+     * @param numberPlayers Número de jugadores a obtener.
+     * @return Número de jugadores obtenido.
+     */
+    NumberPlayer findByNumberPlayers(Integer numberPlayers);
+}

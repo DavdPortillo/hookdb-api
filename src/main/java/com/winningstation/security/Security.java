@@ -85,6 +85,7 @@ public class Security {
                     "platform-product/**",
                     "/region-product/**",
                     "/vendor-product/**",
+                    "/number-player/**",
                     "/translation/**")
                 .hasRole("ADMIN")
                 .requestMatchers(
@@ -107,6 +108,7 @@ public class Security {
                     "/region-product/**",
                     "/vendor-product/**",
                     "/review/**",
+                    "/number-player/**",
                     "/translation/**")
                 .hasRole("ADMIN")
                 .requestMatchers(
@@ -131,6 +133,7 @@ public class Security {
                     "/user/admin/all",
                     "/user/username/{username}",
                     "/user/email/{email}",
+                    "/number-player/**",
                     "/translation/**")
                 .hasRole("ADMIN")
                 .requestMatchers(
@@ -152,6 +155,7 @@ public class Security {
                     "platform-product/**",
                     "/region-product/**",
                     "/vendor-product/**",
+                    "/number-player/**",
                     "/translation/**")
                 .hasRole("ADMIN")
                 .anyRequest()
