@@ -54,13 +54,23 @@ public class RegionProductController {
   }
 
   /** Obtener por su nombre */
-  @GetMapping("/{name}")
+  @GetMapping("name/{name}")
   @Operation(
       summary = "Busca productos de regiones por su nombre",
       description =
           "Busca productos de regiones basado en el nombre proporcionado y devuelve una lista de productos de regiones encontrados")
   public List<RegionProduct> findByName(@PathVariable String name) {
     return regionProductService.findByName(name);
+  }
+
+  /** Obtener por su id */
+  @GetMapping("/{id}")
+  @Operation(
+      summary = "Busca un producto de región por su identificador",
+      description =
+          "Busca un producto de región basado en el identificador proporcionado y devuelve el producto de región encontrado")
+  public RegionProduct findById(@PathVariable Long id) {
+    return regionProductService.findById(id);
   }
 
   /** Actualizar un producto */

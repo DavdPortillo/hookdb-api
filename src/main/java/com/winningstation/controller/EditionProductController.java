@@ -52,13 +52,23 @@ public class EditionProductController {
   }
 
   /** Obtener por su nombre */
-  @GetMapping("/{name}")
+  @GetMapping("name/{name}")
   @Operation(
       summary = "Busca ediciones de productos por su nombre",
       description =
           "Busca ediciones de productos basado en el nombre proporcionado y devuelve una lista de ediciones de productos encontrados")
   public List<EditionProduct> findByName(@PathVariable String name) {
     return editionProductService.findByName(name);
+  }
+
+  /** Obtener por su identificador */
+  @GetMapping("/{id}")
+  @Operation(
+      summary = "Busca ediciones de productos por su identificador",
+      description =
+          "Busca ediciones de productos basado en el identificador proporcionado y devuelve una lista de ediciones de productos encontrados")
+  public EditionProduct findById(@PathVariable Long id) {
+    return editionProductService.findById(id);
   }
 
   /** Actualizar una edición de producto */

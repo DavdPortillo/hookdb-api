@@ -53,7 +53,7 @@ public class KeysProductController {
   }
 
   /** Obtener por su nombre */
-  @GetMapping("/{name}")
+  @GetMapping("name/{name}")
   @Operation(
       summary = "Busca productos de claves por su nombre",
       description =
@@ -61,6 +61,17 @@ public class KeysProductController {
   public List<KeysProduct> findByName(@PathVariable String name) {
     return keysProductService.findByName(name);
   }
+
+    /** Obtener por su id */
+    @GetMapping("/{id}")
+    @Operation(
+        summary = "Busca productos de claves por su id",
+        description =
+            "Busca productos de claves basado en el id proporcionado y devuelve una lista de productos de claves encontrados")
+    public KeysProduct findById(@PathVariable Long id) {
+        return keysProductService.findById(id);
+    }
+
 
   /** Actualizar un producto */
   @PutMapping("/{id}")
