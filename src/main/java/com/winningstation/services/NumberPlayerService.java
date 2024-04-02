@@ -70,9 +70,10 @@ public class NumberPlayerService implements INumberPlayerService {
   }
 
   @Override
-  public NumberPlayer getByNumberPlayers(Integer numberPlayers) {
+  public List<NumberPlayer> getByNumberPlayers(Integer numberPlayers) {
     return numberPlayerRepository.findByNumberPlayers(numberPlayers);
   }
+
 
   @Override
   public List<NumberPlayer> findAll() {

@@ -16,7 +16,8 @@ import java.util.List;
     name = "Number Player Controller",
     description = "Operaciones para el número de jugadores de un juego")
 @Controller
-@RestController("/number-player")
+@RestController
+@RequestMapping("/number-player")
 public class NumberPlayerController {
 
   /** Servicio de número de jugadores. */
@@ -56,7 +57,7 @@ public class NumberPlayerController {
   @Operation(
       summary = "Obtiene un número de jugadores por su número",
       description = "Obtiene un número de jugadores basado en el número proporcionado")
-  public NumberPlayer findByNumberPlayers(@PathVariable Integer numberPlayers) {
+  public List <NumberPlayer> findByNumberPlayers(@PathVariable Integer numberPlayers) {
     return numberPlayerService.getByNumberPlayers(numberPlayers);
   }
 

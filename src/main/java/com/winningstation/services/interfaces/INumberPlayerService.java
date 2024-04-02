@@ -55,5 +55,5 @@ public interface INumberPlayerService {
    * @param numberPlayers Número de jugadores a obtener.
    * @return Número de jugadores obtenido.
    */
-  NumberPlayer getByNumberPlayers(Integer numberPlayers);
+  List <NumberPlayer> getByNumberPlayers(Integer numberPlayers);
 }
