@@ -33,7 +33,7 @@ public interface NewsRepository extends JpaRepository<News, Long> {
       @Param("userId") Long userId, @Param("translationId") Long translationId);
 
   @Query(
-      "SELECT n FROM News n WHERE n.game NOT IN (SELECT f.game FROM FollowGame f WHERE f.user.id = :userId AND f.isFollowing = -1) AND n.translation.id = :translationId")
+      "SELECT n FROM News n WHERE n.game IS NULL OR (n.game NOT IN (SELECT f.game FROM FollowGame f WHERE f.user.id = :userId AND f.isFollowing = -1)) AND n.translation.id = :translationId")
   List<News> findNewsExceptUnfollowedGamesAndTranslationId(
       @Param("userId") Long userId, @Param("translationId") Long translationId);
 
@@ -51,7 +51,7 @@ public interface NewsRepository extends JpaRepository<News, Long> {
 
   List<News> findByTranslationId(Long translationId);
 
-  @Query("SELECT new com.winningstation.dto.NewsAdminDTO(n.id, n.headline) FROM News n WHERE lower(n.headline) LIKE lower(concat('%', :title, '%'))")
+  @Query(
+      "SELECT new com.winningstation.dto.NewsAdminDTO(n.id, n.headline) FROM News n WHERE lower(n.headline) LIKE lower(concat('%', :title, '%'))")
   List<NewsAdminDTO> findNewsByTitleIgnoreCase(@Param("title") String title);
-
 }
