@@ -62,4 +62,11 @@ public interface IDLCService {
    * @return Lista de dlcs encontrados.
    */
   List<DLC> findByNameContaining(String name);
+
+    /**
+     * Método que obtiene todos los dlcs de la base de datos.
+     *
+     * @return Lista de dlcs.
+     */
+    List<DLC> getAll();
 }

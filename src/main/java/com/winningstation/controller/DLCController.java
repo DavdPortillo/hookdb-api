@@ -93,9 +93,29 @@ public class DLCController {
       summary = "Obtiene todos los contenidos descargables de un juego",
       description =
           "Devuelve todos los contenidos descargables de un juego basado en el identificador proporcionado")
-  public List<DLC> getById(@PathVariable Long dlcId) {
+  public List<DLC> getByGameId(@PathVariable Long dlcId) {
     return dlcService.getByGameId(dlcId);
   }
+
+  /** Obtiene id un contenido descargable. */
+  @Operation(
+      summary = "Obtiene un contenido descargable por su identificador",
+      description = "Devuelve un contenido descargable basado en el identificador proporcionado")
+  @GetMapping("{dlcId}")
+  public DLC getById(@PathVariable Long dlcId) {
+    return dlcService.getById(dlcId);
+  }
+
+  /**
+   * Obtiene todos los contenidos descargables.
+   */
+    @Operation(
+        summary = "Obtiene todos los contenidos descargables",
+        description = "Devuelve todos los contenidos descargables")
+    @GetMapping
+    public List<DLC> getAll() {
+        return dlcService.getAll();
+    }
 
   /**
    * Encuentra contenidos descargables por su nombre.

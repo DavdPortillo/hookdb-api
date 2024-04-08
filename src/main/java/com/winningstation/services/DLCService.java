@@ -129,4 +129,9 @@ public class DLCService implements IDLCService {
   public List<DLC> findByNameContaining(String name) {
     return dlcRepository.findByNameContaining(name);
   }
+
+    @Override
+    public List<DLC> getAll() {
+        return dlcRepository.findAll();
+    }
 }

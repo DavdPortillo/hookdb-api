@@ -33,8 +33,9 @@ public class User implements Serializable {
   private Long id;
 
   /** Nombre del cliente. No puede ser nulo y debe tener entre 2 y 15 caracteres. */
-  @NotNull
-  @Size(min = 2, max = 15)
+  @NotNull(message = "El nombre de usuario no puede estar vacío")
+  @Size(min = 3, max = 15, message = "El nombre de usuario debe tener al menos 3 caracteres y solo puede contener hasta 15 caracteres")
+  @Pattern(regexp = "^[a-zA-Z][a-zA-Z0-9_]*$", message = "El nombre de usuario debe comenzar con una letra y solo puede contener letras, números o guiones bajos")
   @Column(unique = true)
   private String username;
 
@@ -48,14 +49,17 @@ public class User implements Serializable {
   @CreationTimestamp private LocalDateTime registerDate;
 
   /** Email del cliente. No puede ser null */
-  @NotNull
+  @NotNull(message = "El email no puede estar vacío")
   @Column(unique = true)
-  @Email
+  @Email(message = "El email debe ser válido")
   private String email;
 
   /** Contraseña del cliente. No puede ser nulo y debe tener al menos 6 caracteres. */
-  @NotNull
-  @Size(min = 6, max = 100)
+  /** Contraseña del cliente. No puede ser nulo y debe tener al menos 6 caracteres. */
+  @NotNull(message = "La contraseña no puede estar vacía")
+  @Size(min = 6, message = "La contraseña no puede tener menos de 6 caracteres")
+  @Size(max = 100, message = "La contraseña no puede tener más de 100 caracteres")
+  @Pattern(regexp = "^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,}$", message = "La contraseña debe contener al menos un carácter especial y al menos un número")
   private String password;
 
   /** Nacionalidad del cliente. */

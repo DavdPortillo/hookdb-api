@@ -8,6 +8,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -24,8 +25,14 @@ public class GamesList implements Serializable {
   private Long id;
 
   /** Nombre de la lista de juegos. No puede ser nulo y debe tener entre 2 y 50 caracteres. */
-  @NotNull
-  @Size(min = 2, max = 50)
+  /** Nombre de la lista de juegos. No puede ser nulo y debe tener entre 2 y 50 caracteres. */
+  @NotNull(message = "El nombre de la lista no puede estar vacío")
+  @Size(
+      min = 2,
+      max = 50,
+      message =
+          "El nombre de la lista debe tener al menos 2 caracteres y solo puede contener hasta 50 caracteres")
+  @Pattern(regexp = "^(?!\\d+$).+$", message = "El nombre de la lista no puede ser un número")
   private String name;
 
   /** Fecha de creación del comentario. */

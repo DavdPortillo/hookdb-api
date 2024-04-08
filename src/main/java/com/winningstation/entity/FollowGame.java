@@ -74,9 +74,14 @@ class FollowGameSerializer extends StdSerializer<FollowGame> {
     jgen.writeNumberField("id", followGame.getId());
     jgen.writeNumberField("isFollowing", followGame.getIsFollowing());
 
+
+
     Game game = followGame.getGame();
     jgen.writeNumberField("gameId", game.getId());
     jgen.writeStringField("gameName", game.getTitle());
+    jgen.writeStringField("gameImage", game.getCover());
+    jgen.writeStringField("gameAlt", game.getAlt());
+    jgen.writeStringField("gameYear", game.getDate().toString());
 
     jgen.writeEndObject();
   }
