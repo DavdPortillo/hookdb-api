@@ -55,11 +55,10 @@ public class User implements Serializable {
   private String email;
 
   /** Contraseña del cliente. No puede ser nulo y debe tener al menos 6 caracteres. */
-  /** Contraseña del cliente. No puede ser nulo y debe tener al menos 6 caracteres. */
   @NotNull(message = "La contraseña no puede estar vacía")
   @Size(min = 6, message = "La contraseña no puede tener menos de 6 caracteres")
   @Size(max = 100, message = "La contraseña no puede tener más de 100 caracteres")
-  @Pattern(regexp = "^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,}$", message = "La contraseña debe contener al menos un carácter especial y al menos un número")
+  @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[^a-zA-Z0-9]).*$", message = "La contraseña debe contener al menos un número, una letra y un carácter especial")
   private String password;
 
   /** Nacionalidad del cliente. */
