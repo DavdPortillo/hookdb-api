@@ -221,7 +221,7 @@ public class GameController {
   @Operation(
       summary = "Obtiene todos los juegos",
       description = "Devuelve una lista de todos los juegos")
-  @GetMapping("/search/{keyword}/{translationId}")
+  @GetMapping("/search/{keyword}")
   public ResponseEntity<Page<GameSearchAdminDTO>> searchGames(
       @PathVariable("keyword") String keyword,
       Pageable pageable) {
