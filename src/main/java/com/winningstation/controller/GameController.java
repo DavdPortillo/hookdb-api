@@ -224,9 +224,8 @@ public class GameController {
   @GetMapping("/search/{keyword}/{translationId}")
   public ResponseEntity<Page<GameSearchAdminDTO>> searchGames(
       @PathVariable("keyword") String keyword,
-      @PathVariable("translationId") Long translationId,
       Pageable pageable) {
-    Page<GameSearchAdminDTO> games = gameService.searchGames(keyword, translationId, pageable);
+    Page<GameSearchAdminDTO> games = gameService.searchGames(keyword, pageable);
     return new ResponseEntity<>(games, HttpStatus.OK);
   }
 }

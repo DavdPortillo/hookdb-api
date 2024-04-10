@@ -218,5 +218,5 @@ public interface IGameService {
    */
   List<Product> createProducts(List<ProductRequest> productRequests, Game game);
 
-  Page<GameSearchAdminDTO> searchGames(String keyword, Long translationId, Pageable pageable);
+  Page<GameSearchAdminDTO> searchGames(String keyword, Pageable pageable);
 }

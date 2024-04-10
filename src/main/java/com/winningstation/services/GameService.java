@@ -825,7 +825,7 @@ public class GameService implements IGameService {
   }
 
   public Page<GameSearchAdminDTO> searchGames(
-      String keyword, Long translationId, Pageable pageable) {
-    return gameRepository.searchGames(keyword, translationId, pageable);
+      String keyword,  Pageable pageable) {
+    return gameRepository.searchGames(keyword, pageable);
   }
 }
