@@ -35,6 +35,14 @@ public class GamesList implements Serializable {
   @Pattern(regexp = "^(?!\\d+$).+$", message = "El nombre de la lista no puede ser un número")
   private String name;
 
+  /** Descripción de la lista de juegos. Debe tener entre 2 y 100 caracteres. */
+  @Size(
+      min = 2,
+      max = 100,
+      message =
+          "La descripción de la lista debe tener al menos 2 caracteres y solo puede contener hasta 100 caracteres")
+  private String description;
+
   /** Fecha de creación del comentario. */
   @CreationTimestamp private LocalDateTime date;
 

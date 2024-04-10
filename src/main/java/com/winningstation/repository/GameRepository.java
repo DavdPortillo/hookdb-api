@@ -87,11 +87,11 @@ public interface GameRepository extends JpaRepository<Game, Long> {
   Game findByIdAndTranslationId(Long id, Long translationId);
 
   @Query(
-      "SELECT new com.winningstation.dto.GameSearchAdminDTO(g.id, g.title, g.date, t.language) FROM Game g JOIN g.translation t WHERE LOWER(g.title) LIKE LOWER(CONCAT('%', :keyword, '%')) AND t.id = :translationId ORDER BY g.popularity DESC")
+          "SELECT new com.winningstation.dto.GameSearchAdminDTO(g.id, g.title, g.date, t.language) FROM Game g JOIN g.translation t WHERE LOWER(g.title) LIKE LOWER(CONCAT('%', :keyword, '%')) ORDER BY g.popularity DESC")
   Page<GameSearchAdminDTO> searchGames(
-      @Param("keyword") String keyword,
-      @Param("translationId") Long translationId,
-      Pageable pageable);
+          @Param("keyword") String keyword,
+          Pageable pageable);
+
 
   @Query("SELECT new com.winningstation.dto.GameAdminDTO(g.id, g.title, g.date) FROM Game g")
   Page<GameAdminDTO> findAllGames(Pageable pageable);
