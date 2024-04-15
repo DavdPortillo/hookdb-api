@@ -109,6 +109,7 @@ public interface IGameService {
    */
   List<GameSearchDTO> searchGames(String keyword, Long translationId);
 
+  List<GamePopularityProjection> findAllByOrderByDateDesc(Long translationId);
   /**
    * Método que permite buscar sugerencias 5 por título donde tiene más peso la popularidad.
    *

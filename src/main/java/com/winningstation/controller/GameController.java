@@ -205,11 +205,19 @@ public class GameController {
   }
 
   @GetMapping("/topByDate/language/{translationId}")
-    @Operation(
-        summary = "Obtiene los 5 juegos más populares por fecha",
-        description = "Devuelve una lista de los 5 juegos más populares por fecha")
+  @Operation(
+      summary = "Obtiene los 5 juegos más populares por fecha",
+      description = "Devuelve una lista de los 5 juegos más populares por fecha")
   public List<GamePopularityProjection> getTop5Games(@PathVariable Long translationId) {
     return gameService.getFiveGamesByDate(translationId);
+  }
+
+  @GetMapping("/topByDateAll/language/{translationId}")
+  @Operation(
+          summary = "Obtiene los 5 juegos más populares por fecha",
+          description = "Devuelve una lista de los 5 juegos más populares por fecha")
+  public List<GamePopularityProjection> getTopAllGames(@PathVariable Long translationId) {
+    return gameService.findAllByOrderByDateDesc(translationId);
   }
 
   @DeleteMapping("/{id}")
@@ -223,8 +231,7 @@ public class GameController {
       description = "Devuelve una lista de todos los juegos")
   @GetMapping("/search/{keyword}")
   public ResponseEntity<Page<GameSearchAdminDTO>> searchGames(
-      @PathVariable("keyword") String keyword,
-      Pageable pageable) {
+      @PathVariable("keyword") String keyword, Pageable pageable) {
     Page<GameSearchAdminDTO> games = gameService.searchGames(keyword, pageable);
     return new ResponseEntity<>(games, HttpStatus.OK);
   }

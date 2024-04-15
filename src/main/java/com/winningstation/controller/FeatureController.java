@@ -1,11 +1,13 @@
 package com.winningstation.controller;
 
 import com.winningstation.entity.Feature;
+import com.winningstation.entity.PlatformProduct;
 import com.winningstation.services.interfaces.IFeatureService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -62,7 +64,6 @@ public class FeatureController {
   /**
    * Edita por el nombre
    *
-   * @param name Nombre
    * @param id Id
    */
   @PutMapping("/{id}")
@@ -70,8 +71,11 @@ public class FeatureController {
       summary = "Actualiza una característica de juego",
       description =
           "Actualiza una característica de juego basada en el identificador y el nombre proporcionados y devuelve el nombre actualizado")
-  public String editByName(@PathVariable Long id, @RequestBody String name) {
-    return featureService.editByName(id, name);
+  public Feature update(
+      @PathVariable Long id,
+      @ModelAttribute Feature request,
+      @RequestPart(value = "file", required = false) MultipartFile file) {
+    return featureService.update(id, request, file);
   }
 
   /**
@@ -99,23 +103,22 @@ public class FeatureController {
       summary = "Guarda una nueva característica de juego",
       description =
           "Guarda una nueva característica de juego basada en la petición proporcionada y devuelve la característica de juego guardada")
-  public Feature save(@RequestBody Feature feature) {
-    return featureService.save(feature);
+  public Feature save(@ModelAttribute Feature feature, @RequestPart("file") MultipartFile file) {
+    return featureService.save(feature, file);
   }
 
-
-    /**
-     * Método que obtiene las características de un juego por su id.
-     *
-     * @param id Id de las características a obtener.
-     * @return Características obtenidas.
-     */
-    @GetMapping("/{id}")
-    @Operation(
-            summary = "Busca características de juegos por su id",
-            description =
-                    "Busca características de juegos basado en el id proporcionado y devuelve una lista de características de juegos encontrados")
-    public Feature findById(@PathVariable Long id) {
-        return featureService.findById(id);
-    }
+  /**
+   * Método que obtiene las características de un juego por su id.
+   *
+   * @param id Id de las características a obtener.
+   * @return Características obtenidas.
+   */
+  @GetMapping("/{id}")
+  @Operation(
+      summary = "Busca características de juegos por su id",
+      description =
+          "Busca características de juegos basado en el id proporcionado y devuelve una lista de características de juegos encontrados")
+  public Feature findById(@PathVariable Long id) {
+    return featureService.findById(id);
+  }
 }

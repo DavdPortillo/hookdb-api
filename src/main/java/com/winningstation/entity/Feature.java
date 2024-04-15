@@ -28,6 +28,12 @@ public class Feature implements Serializable {
   /** Nombre de las características. */
   @NotNull private String name;
 
+  /** Imagen de las características. */
+  @NotNull private String image;
+
+  /** alt de la imagen de las características. */
+  @NotNull private String alt;
+
   @JsonIgnore
   @OneToMany(mappedBy = "feature")
   private List<GameFeature> gameFeatures;

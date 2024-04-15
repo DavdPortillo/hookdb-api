@@ -1,12 +1,14 @@
 package com.winningstation.services;
 
 import com.winningstation.entity.Feature;
+import com.winningstation.entity.PlatformProduct;
 import com.winningstation.repository.FeatureRepository;
 import com.winningstation.services.interfaces.IFeatureService;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -25,13 +27,17 @@ public class FeatureService implements IFeatureService {
   /** Repositorio de feature. */
   private final FeatureRepository featureRepository;
 
+  private final FileStorageService fileStorageService;
+
   /**
    * Constructor de la clase.
    *
    * @param featureRepository Repositorio de feature.
    */
-  public FeatureService(FeatureRepository featureRepository) {
+  public FeatureService(FeatureRepository featureRepository,
+                        FileStorageService fileStorageService) {
     this.featureRepository = featureRepository;
+    this.fileStorageService = fileStorageService;
   }
 
   /**
@@ -41,10 +47,11 @@ public class FeatureService implements IFeatureService {
    * @return Feature guardado.
    */
   @Override
-  public Feature save(Feature feature) {
-    LOG.info("Saving feature: {}", feature);
-    featureRepository.save(feature);
-    return feature;
+  public Feature save(Feature feature, MultipartFile file) {
+    LOG.info("Guardando plataforma");
+    String fileDownloadUri = fileStorageService.storeFileAndGenerateUri(file);
+    feature.setImage(fileDownloadUri);
+    return featureRepository.save(feature);
   }
 
   @Override
@@ -77,16 +84,22 @@ public class FeatureService implements IFeatureService {
   }
 
   @Override
-  public String editByName(Long id, String name) {
-    LOG.info("Editing feature by id: {}", id);
-    Feature feature = featureRepository.findById(id).orElse(null);
-    if (feature != null && name != null && !name.isEmpty()) {
-      feature.setName(name);
-      featureRepository.save(feature);
-      return name;
-    } else {
-      LOG.error("Feature with id {} not found", id);
-      throw new RuntimeException("Feature with id " + id + " not found");
+  public Feature update(Long id, Feature request, MultipartFile file) {
+    LOG.info("Actualizando plataforma por id {}", id);
+    Feature feature = findById(id);
+    if (feature == null) {
+      throw new RuntimeException("Platform product not found");
     }
+    if (request.getName() != null) {
+      feature.setName(request.getName());
+    }
+    if (file != null) {
+      String fileDownloadUri = fileStorageService.replaceFileAndGenerateUri(file, feature.getImage());
+      feature.setImage(fileDownloadUri);
+    }
+    if (request.getAlt() != null) {
+      feature.setAlt(request.getAlt());
+    }
+    return featureRepository.save(feature);
   }
 }

@@ -1,6 +1,8 @@
 package com.winningstation.services.interfaces;
 
 import com.winningstation.entity.Feature;
+import com.winningstation.entity.PlatformProduct;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -16,7 +18,7 @@ public interface IFeatureService {
    * @param feature Características a guardar.
    * @return Características guardadas.
    */
-  Feature save(Feature feature);
+  Feature save(Feature feature, MultipartFile file);
 
   /**
    * Método que obtiene las características de un juego por su id.
@@ -48,11 +50,5 @@ public interface IFeatureService {
    */
   List<Feature> findByName(String name);
 
-  /**
-   * Edita por el nombre
-   *
-   * @param name Nombre
-   * @param id Id
-   */
-  String editByName(Long id, String name);
+  Feature update(Long id, Feature request, MultipartFile file);
 }

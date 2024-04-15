@@ -431,6 +431,11 @@ public class GameService implements IGameService {
   }
 
   @Override
+  public List<GamePopularityProjection> findAllByOrderByDateDesc(Long translationId) {
+    return gameRepository.findAllByOrderByDateDesc(translationId);
+  }
+
+  @Override
   public List<GameSearchDTO> searchGames(String keyword, Long translationId) {
     List<Game> games = gameRepository.search(keyword, translationId, Pageable.unpaged());
     return games.stream()
