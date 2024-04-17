@@ -108,8 +108,6 @@ public class UserService implements IUserService {
         String fileDownloadUri =
             fileStorageService.replaceFileAndGenerateUri(file, user.getImage());
         user.setImage(fileDownloadUri);
-      } else{
-        user.setImage(null);
       }
 
       if (updatedUser.getAlt() != null) {
@@ -138,26 +136,18 @@ public class UserService implements IUserService {
 
       if (updatedUser.getCountry() != null && !updatedUser.getCountry().isEmpty()) {
         user.setCountry(updatedUser.getCountry());
-      } else {
-        user.setCountry(null);
       }
 
       if (updatedUser.getGender() != null && !updatedUser.getGender().isEmpty()) {
         user.setGender(updatedUser.getGender());
-      } else {
-        user.setGender(null);
       }
 
       if (updatedUser.getYear() != null) {
         user.setYear(updatedUser.getYear());
-      } else {
-        user.setYear(null);
       }
 
       if (updatedUser.getLanguage() != null && !updatedUser.getLanguage().isEmpty()) {
         user.setLanguage(updatedUser.getLanguage());
-      } else {
-        user.setLanguage(null);
       }
 
       if (updatedUser.getRole() != null && updatedUser.getRole().getId() != null) {
