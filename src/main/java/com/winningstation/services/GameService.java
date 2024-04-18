@@ -131,7 +131,7 @@ public class GameService implements IGameService {
       SagaRepository sagaRepository,
       SystemRequirementRepository systemRequirementRepository,
       ProductRepository productRepository,
-      VendorProductRepository logoProductRepository,
+      VendorProductRepository vendorProductRepository,
       EditionProductRepository editionProductRepository,
       PlatformProductRepository platformProductRepository,
       RegionProductRepository regionProductRepository,
@@ -155,7 +155,7 @@ public class GameService implements IGameService {
     this.sagaRepository = sagaRepository;
     this.systemRequirementRepository = systemRequirementRepository;
     this.productRepository = productRepository;
-    this.vendorProductRepository = logoProductRepository;
+    this.vendorProductRepository = vendorProductRepository;
     this.editionProductRepository = editionProductRepository;
     this.platformProductRepository = platformProductRepository;
     this.regionProductRepository = regionProductRepository;
@@ -381,8 +381,7 @@ public class GameService implements IGameService {
       product.setGame(game); // Asociar el producto con el juego
       product.setPrice(productRequest.getPrice());
       product.setLink(productRequest.getLink());
-      product.setVendorProduct(
-          vendorProductRepository.findById(productRequest.getLogoProductId()).orElse(null));
+
       product.setEditionProduct(
           editionProductRepository.findById(productRequest.getEditionProductId()).orElse(null));
       product.setPlatformProduct(
@@ -766,16 +765,7 @@ public class GameService implements IGameService {
     if (productRequest.getLink() != null) {
       product.setLink(productRequest.getLink());
     }
-    if (productRequest.getLogoProductId() != null) {
-      product.setVendorProduct(
-          vendorProductRepository
-              .findById(productRequest.getLogoProductId())
-              .orElseThrow(
-                  () ->
-                      new IllegalArgumentException(
-                          "LogoProduct no encontrado con id: "
-                              + productRequest.getLogoProductId())));
-    }
+
     if (productRequest.getEditionProductId() != null) {
       product.setEditionProduct(
           editionProductRepository

@@ -1,3 +1,5 @@
+INSERT INTO `translation` (`id`, `language`) VALUES (NULL, 'asdsadasd'), (NULL, 'asdasdasd');
+
 INSERT INTO `role` (`id`, `name`)
 VALUES (1, 'ROLE_ADMIN'),
        (2, 'ROLE_USER');
@@ -258,27 +260,27 @@ VALUES (1, 1),
        (4, 4);
 
 
-INSERT INTO dlc (game_id, name, date, sinopsis)
-VALUES (1, 'Extra DLC Pack', '2019/02/15',
-        'Un paquete de contenido descargable que incluye los siguientes elementos: - Modo de juego "The 4th Survivor" - Modo de juego "The Tofu Survivor" - Traje de Claire: "Elza Walker" - Traje de Claire: "Military" - Traje de Claire: "Noir" - Traje de Leon: "Arklay Sheriff" - Traje de Leon: "Noir" - Modelo de pistola "Samurai Edge - Albert Model"'),
-       (1, 'Claire Costume: Elza Walker', '2019/02/15',
-        'Un traje de Claire inspirado en Elza Walker, el personaje original de Resident Evil 2 que fue eliminado y reemplazado por Claire Redfield.'),
-       (1, 'Claire Costume: Military', '2019/02/15', 'Un traje de Claire inspirado en un uniforme militar.'),
-       (1, 'Claire Costume: Noir', '2019/02/15', 'Un traje de Claire inspirado en el cine'),
-       (1, 'Leon Costume: Arklay Sheriff', '2019/02/15', 'Un traje de Leon inspirado en el sheriff de Arklay County.'),
-       (1, 'Leon Costume: Noir', '2019/02/15', 'Un traje de Leon inspirado en el cine.'),
-       (1, 'Samurai Edge - Albert Model', '2019/02/15',
-        'Un modelo de pistola Samurai Edge que se puede usar en el juego.'),
-       (1, 'The Ghost Survivors', '2019/02/15',
-        'Un modo de juego adicional que se puede jugar después de completar la historia principal.'),
-       (1, 'Original Ver. Soundtrack Swap', '2019/02/15',
-        'Un intercambio de banda sonora que permite a los jugadores cambiar la banda sonora del juego a la banda sonora original de 1998.'),
-       (3, 'The Nomes Attic', '2021/02/11',
-        'Un paquete de contenido descargable que incluye los siguientes elementos: - Modo de juego "The Nomes Attic"'),
-       (2, 'Night Springs Expansion', '2021/02/11',
-        'Un paquete de contenido descargable que incluye los siguientes elementos: - Modo de juego "Night Springs Expansion"'),
-       (2, 'Lake House Expansion', '2021/02/11',
-        'Un paquete de contenido descargable que incluye los siguientes elementos: - Modo de juego "Lake House Expansion"');
+-- INSERT INTO dlc (game_id, name, date, sinopsis)
+-- VALUES (1, 'Extra DLC Pack', '2019/02/15',
+--         'Un paquete de contenido descargable que incluye los siguientes elementos: - Modo de juego "The 4th Survivor" - Modo de juego "The Tofu Survivor" - Traje de Claire: "Elza Walker" - Traje de Claire: "Military" - Traje de Claire: "Noir" - Traje de Leon: "Arklay Sheriff" - Traje de Leon: "Noir" - Modelo de pistola "Samurai Edge - Albert Model"'),
+--        (1, 'Claire Costume: Elza Walker', '2019/02/15',
+--         'Un traje de Claire inspirado en Elza Walker, el personaje original de Resident Evil 2 que fue eliminado y reemplazado por Claire Redfield.'),
+--        (1, 'Claire Costume: Military', '2019/02/15', 'Un traje de Claire inspirado en un uniforme militar.'),
+--        (1, 'Claire Costume: Noir', '2019/02/15', 'Un traje de Claire inspirado en el cine'),
+--        (1, 'Leon Costume: Arklay Sheriff', '2019/02/15', 'Un traje de Leon inspirado en el sheriff de Arklay County.'),
+--        (1, 'Leon Costume: Noir', '2019/02/15', 'Un traje de Leon inspirado en el cine.'),
+--        (1, 'Samurai Edge - Albert Model', '2019/02/15',
+--         'Un modelo de pistola Samurai Edge que se puede usar en el juego.'),
+--        (1, 'The Ghost Survivors', '2019/02/15',
+--         'Un modo de juego adicional que se puede jugar después de completar la historia principal.'),
+--        (1, 'Original Ver. Soundtrack Swap', '2019/02/15',
+--         'Un intercambio de banda sonora que permite a los jugadores cambiar la banda sonora del juego a la banda sonora original de 1998.'),
+--        (3, 'The Nomes Attic', '2021/02/11',
+--         'Un paquete de contenido descargable que incluye los siguientes elementos: - Modo de juego "The Nomes Attic"'),
+--        (2, 'Night Springs Expansion', '2021/02/11',
+--         'Un paquete de contenido descargable que incluye los siguientes elementos: - Modo de juego "Night Springs Expansion"'),
+--        (2, 'Lake House Expansion', '2021/02/11',
+--         'Un paquete de contenido descargable que incluye los siguientes elementos: - Modo de juego "Lake House Expansion"');
 
 
 
@@ -356,19 +358,22 @@ VALUES (NULL, 'David', 'Portillo', 'https://miro.medium.com/v2/resize:fit:1024/0
        (NULL, 'Paco', 'Porras', 'imagen', 'alt'),
        (NULL, 'Jesús', 'García', 'imagen', 'alt');
 
-INSERT INTO `news` (`game_id`, `id`, `news_author_id`, `content`, `date`, `headline`, `image`, `alt`)
+INSERT INTO `news` (`game_id`, `id`, `news_author_id`, `content`,`subtitle`, `date`, `headline`, `image`, `alt`)
 VALUES (2, 1, 1,
         'Se dice a menudo que los jugadores buscan innumerables maneras de superarse a sí mismos, y esta es una de las más complicadas. No nos referimos a completar Elden Ring con la mente o cosas similares, sino a derrotar a los jefes del juego de FromSoftware, a pesar de que estos son invisibles. Sí, has leído bien, derrotar a jefes que pueden enviarte al más allá con un solo soplido, sin siquiera poder verlos. Esta es la proeza de la streamer BioticNova. Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino. Luego está BioticNova, quien se desafió a sí misma a completar Elden Ring con los ojos abiertos, las manos en el mando, pero con todos los jefes del juego siendo invisibles.',
+        'asdsadasd',
         '2024-01-23T18:16:17.633882315',
         'Hay una jugadora que se ha pasado Elden Ring con todos los enemigos invisibles. Ya solo nos queda terminar el soulslike con el PC apagado',
         'https://miro.medium.com/v2/resize:fit:933/1*w4DxUy0PMoqeq25UXfyL0g@2x.jpeg', 'alt'),
        (1, 2, 1,
         'Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino. Luego está BioticNova, quien se desafió a sí misma a completar Elden Ring con los ojos abiertos, las manos en el mando, pero con todos los jefes del juego siendo invisibles. Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino. Luego está BioticNova, quien se desafió a sí misma a completar Elden Ring con los ojos abiertos, las manos en el mando, pero con todos los jefes del juego siendo invisibles.',
+       'asdsadasdasd',
         '2024-01-23T18:16:17.633882315',
         'Muchos aún no han terminado Elden Ring. Otros lo han logrado, pero no sin sufrir considerablemente en el camino.',
         'https://miro.medium.com/v2/resize:fit:933/1*w4DxUy0PMoqeq25UXfyL0g@2x.jpeg', 'alt'),
        (1, 3, 1,
         'Capcom ha lanzado un nuevo parche que corrige errores y añade un nuevo idioma cuatro años después de su estreno[4].',
+        'asdsadasdasd',
         '2023-12-30T18:16:17.633882315',
         'Resident Evil 2 se actualiza con correcciones y un nuevo idioma 4 años después de su estreno', -- headline
         'https://miro.medium.com/v2/resize:fit:933/1*w4DxUy0PMoqeq25UXfyL0g@2x.jpeg', 'alt');
@@ -379,13 +384,13 @@ VALUES (NULL, '1', '1', 'comentario1', '2024-01-10T15:16:17.633882315'),
        (NULL, '1', '2', 'comentario2', '2024-01-20T18:16:17.633882315'),
        (NULL, '1', '1', 'comentario3', '2024-02-10T20:16:17.633882315');
 
-INSERT INTO `feature` (`name`)
-VALUES ('Un Jugador'),
-       ('Multijugador'),
-       ('Jugadores vs Entorno'),
-       ('Jugador vs Jugador'),
-       ('Coop.Online'),
-       ('Coop.LAN');
+INSERT INTO `feature` (`name`, `image`, `alt`)
+VALUES ('Un Jugador','dassa','asdsadas'),
+       ('Multijugador','dassa','asdsadas'),
+       ('Jugadores vs Entorno','dassa','asdsadas'),
+       ('Jugador vs Jugador','dassa','asdsadas'),
+       ('Coop.Online','dassa','asdsadas'),
+       ('Coop.LAN','dassa','asdsadas');
 
 INSERT INTO `number_player` (`number_players`)
 VALUES (1),
@@ -457,10 +462,10 @@ VALUES ('PlayStation 4', 'URL de la imagen de la plataforma', 'alt de la imagen 
        ('Nintendo Switch', 'URL de la imagen de la plataforma', 'alt de la imagen de la plataforma');
 
 -- Inserta un vendedor
-INSERT INTO vendor_product (name)
-VALUES ('Nombre del vendedor'),
-       ('Nombre del vendedor 2'),
-       ('Nombre del vendedor 3');
+INSERT INTO vendor_product (name, logo, alt)
+VALUES ('Nombre del vendedor', 'Nombre del vendedor 2', 'Nombre del vendedor 3'),
+       ('Nombre del vendedor 2', 'Nombre del vendedor 3', 'Nombre del vendedor'),
+       ('Nombre del vendedor 3', 'Nombre del vendedor', 'Nombre del vendedor 2');
 
 -- Inserta una región
 INSERT INTO region_product (name)
@@ -474,14 +479,10 @@ VALUES ('Nombre de la clave del producto'),
        ('Nombre de la clave del producto 2'),
        ('Nombre de la clave del producto 3');
 
-INSERT INTO `logo_product` (`logo`, `alt`)
-VALUES ('logo', 'alt'),
-       ('logo 2', 'alt 2'),
-       ('logo 3', 'alt 3');
 
-INSERT INTO `product` (`price`, `edition_product_id`, `game_id`, `id`, `keys_product_id`, `logo_product_id`,
+INSERT INTO `product` (`price`, `edition_product_id`, `game_id`, `id`, `keys_product_id`,
                        `platform_product_id`, `region_product_id`, `vendor_product_id`, `link`)
-VALUES ('39.99', '1', '1', NULL, '1', '1', '1', '1', '1',
+VALUES ('39.99', '1', '1', NULL, '1', '1', '1', '1',
         'https://miro.medium.com/v2/resize:fit:933/1*w4DxUy0PMoqeq25UXfyL0g@2x.jpeg');
 
 

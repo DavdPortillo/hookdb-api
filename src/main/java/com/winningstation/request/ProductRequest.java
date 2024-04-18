@@ -12,7 +12,6 @@ public class ProductRequest {
     private Long id;
   private Double price;
   private String link;
-  private Long logoProductId;
   private Long editionProductId;
   private Long platformProductId;
   private Long vendorProductId;
