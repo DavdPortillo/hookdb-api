@@ -1,6 +1,9 @@
 package com.winningstation.services.interfaces;
 
 import com.winningstation.entity.ReviewVote;
+import com.winningstation.projection.ReviewVoteProjection;
+
+import java.util.List;
 
 /**
  * Interfaz que representa el voto de una crítica.
@@ -26,4 +29,6 @@ public interface IReviewVoteService {
    * @param userId Id del usuario.
    */
   void deleteVote(Long reviewId, Long userId);
+
+  List<ReviewVoteProjection> findUserVoteForGame(Long gameId, Long userId);
 }

@@ -3,15 +3,17 @@ package com.winningstation.services;
 import com.winningstation.entity.Review;
 import com.winningstation.entity.ReviewVote;
 import com.winningstation.entity.User;
+import com.winningstation.projection.ReviewVoteProjection;
 import com.winningstation.repository.ReviewRepository;
 import com.winningstation.repository.ReviewVoteRepository;
 import com.winningstation.repository.UserRepository;
 import com.winningstation.services.interfaces.IReviewVoteService;
-import com.winningstation.socket.ReviewVotesSocketHandler;
 import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Servicio que representa el voto de una crítica.
@@ -34,7 +36,6 @@ public class ReviewVoteService implements IReviewVoteService {
   /** Repositorio de user. */
   private final UserRepository userRepository;
 
-  private final ReviewVotesSocketHandler reviewVotesSocketHandler;
 
   /**
    * Constructor de la clase.
@@ -46,12 +47,10 @@ public class ReviewVoteService implements IReviewVoteService {
   public ReviewVoteService(
       ReviewVoteRepository reviewVoteRepository,
       ReviewRepository reviewRepository,
-      UserRepository userRepository,
-      ReviewVotesSocketHandler reviewVotesSocketHandler) {
+      UserRepository userRepository) {
     this.reviewVoteRepository = reviewVoteRepository;
     this.reviewRepository = reviewRepository;
     this.userRepository = userRepository;
-    this.reviewVotesSocketHandler = reviewVotesSocketHandler;
   }
 
   @Override
@@ -101,37 +100,43 @@ public class ReviewVoteService implements IReviewVoteService {
       reviewVote.setVote(vote);
 
       reviewVoteRepository.save(reviewVote);
-
-
     }
 
     // Actualizar el conteo de likes y dislikes en la revisión
     review.setLike(reviewVoteRepository.countByReviewAndVote(review, 1));
     review.setDislike(reviewVoteRepository.countByReviewAndVote(review, -1));
 
-
     reviewRepository.save(review);
-    reviewVotesSocketHandler.sendReviewVotesUpdate(reviewId);
 
     return reviewVoteRepository.findByUserAndReview(user, review);
   }
 
-@Override
-    public void deleteVote(Long userId, Long reviewId) {
-        LOG.info("El usuario con ID {} está eliminando su voto de la review con ID {}", userId, reviewId);
-        // Encuentra al usuario por su ID
-        User user = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
-        // Encuentra la revisión por su ID
-        Review review = reviewRepository.findById(reviewId).orElseThrow(() -> new IllegalArgumentException("Review no encontrada"));
-        // Encuentra el voto del usuario en la revisión
-        ReviewVote reviewVote = reviewVoteRepository.findByUserAndReview(user, review);
-        if (reviewVote != null) {
-            reviewVoteRepository.delete(reviewVote);
-            // Actualizar el conteo de likes y dislikes en la revisión
-            review.setLike(reviewVoteRepository.countByReviewAndVote(review, 1));
-            review.setDislike(reviewVoteRepository.countByReviewAndVote(review, -1));
-            reviewRepository.save(review);
-            reviewVotesSocketHandler.sendReviewVotesUpdate(reviewId);
-        }
+  @Override
+  public void deleteVote(Long userId, Long reviewId) {
+    LOG.info(
+        "El usuario con ID {} está eliminando su voto de la review con ID {}", userId, reviewId);
+    // Encuentra al usuario por su ID
+    User user =
+        userRepository
+            .findById(userId)
+            .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado"));
+    // Encuentra la revisión por su ID
+    Review review =
+        reviewRepository
+            .findById(reviewId)
+            .orElseThrow(() -> new IllegalArgumentException("Review no encontrada"));
+    // Encuentra el voto del usuario en la revisión
+    ReviewVote reviewVote = reviewVoteRepository.findByUserAndReview(user, review);
+    if (reviewVote != null) {
+      reviewVoteRepository.delete(reviewVote);
+      // Actualizar el conteo de likes y dislikes en la revisión
+      review.setLike(reviewVoteRepository.countByReviewAndVote(review, 1));
+      review.setDislike(reviewVoteRepository.countByReviewAndVote(review, -1));
+      reviewRepository.save(review);
     }
+  }
+
+  public List<ReviewVoteProjection> findUserVoteForGame(Long gameId, Long userId) {
+    return reviewVoteRepository.findUserVoteForGame(gameId, userId);
+  }
 }

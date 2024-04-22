@@ -36,7 +36,7 @@ public class ReviewVote implements Serializable {
 
   /** Comentario al que se emitió el voto. No puede ser nulo. */
   @NotNull
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "review_id")
   @JsonBackReference
   private Review review;
