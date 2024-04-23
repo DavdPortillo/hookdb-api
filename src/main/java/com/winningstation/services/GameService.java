@@ -100,7 +100,6 @@ public class GameService implements IGameService {
   /** Repositorio de PlatformProduct. */
   private final PlatformProductRepository platformProductRepository;
 
-
   /** Repositorio de RegionProduct. */
   private final RegionProductRepository regionProductRepository;
 
@@ -216,7 +215,7 @@ public class GameService implements IGameService {
                         "Crossplay no encontrado con id: " + gameRequest.getCrossplayId())));
     game.setAvailabilities(createAvailabilities(gameRequest.getAvailabilities(), game));
     game.setSaga(getOrCreateSaga(gameRequest.getSaga()));
-    game.setGameFeatures(createGameFeatures(gameRequest.getGameFeatures()));
+    game.setGameFeatures(createGameFeatures(gameRequest.getGameFeatures(), game));
 
     String fileDownloadUri = fileStorageService.storeFileAndGenerateUri(file);
     game.setCover(fileDownloadUri);
@@ -328,7 +327,8 @@ public class GameService implements IGameService {
   }
 
   @Override
-  public List<GameFeature> createGameFeatures(List<GameFeatureRequest> gameFeatureRequests) {
+  public List<GameFeature> createGameFeatures(
+     List<GameFeatureRequest> gameFeatureRequests, Game game) {
     if (gameFeatureRequests == null || gameFeatureRequests.isEmpty()) {
       throw new IllegalArgumentException(
           "La lista de características del juego no puede ser nula ni vacía");
@@ -362,6 +362,7 @@ public class GameService implements IGameService {
       GameFeature gameFeature = new GameFeature();
       gameFeature.setFeature(feature);
       gameFeature.setNumberPlayers(numberPlayer);
+      gameFeature.setGame(game); // Asegúrate de establecer el juego aquí
       gameFeature =
           gameFeatureRepository.save(
               gameFeature); // Guarda la entidad GameFeature en la base de datos
@@ -671,10 +672,8 @@ public class GameService implements IGameService {
         throw new IllegalArgumentException(
             "La Availability con id: " + availabilityRequest.getId() + " no pertenece al juego");
       }
-      // Elimina la disponibilidad antigua de la lista del juego
-      game.getAvailabilities().remove(availability);
     } else {
-      availability = new Availability();
+      throw new IllegalArgumentException("El id de la disponibilidad no puede ser nulo");
     }
     // Se establecen los idiomas de la interfaz, los subtítulos y el audio
     availability.setInterfaceLanguage(availabilityRequest.getInterfaceLanguage());
@@ -690,8 +689,7 @@ public class GameService implements IGameService {
                         "Idioma no encontrado con id: " + availabilityRequest.getLanguageId())));
     // Se establece el juego
     availability.setGame(game);
-    // Se guarda la disponibilidad en el repositorio y se añade a la lista de nuevas
-    // disponibilidades
+    // Se guarda la disponibilidad en el repositorio
     return availabilityRepository.save(availability);
   }
 
@@ -700,15 +698,15 @@ public class GameService implements IGameService {
     GameFeature gameFeature;
     if (gameFeatureRequest.getId() != null) {
       gameFeature =
-          gameFeatureRepository
-              .findById(gameFeatureRequest.getId())
-              .orElseThrow(
-                  () ->
-                      new IllegalArgumentException(
-                          "GameFeature no encontrada con id: " + gameFeatureRequest.getId()));
+              gameFeatureRepository
+                      .findById(gameFeatureRequest.getId())
+                      .orElseThrow(
+                              () ->
+                                      new IllegalArgumentException(
+                                              "GameFeature no encontrada con id: " + gameFeatureRequest.getId()));
       if (!game.getGameFeatures().contains(gameFeature)) {
         throw new IllegalArgumentException(
-            "La GameFeature con id: " + gameFeatureRequest.getId() + " no pertenece al juego");
+                "La GameFeature con id: " + gameFeatureRequest.getId() + " no pertenece al juego");
       }
       // Elimina la característica antigua de la lista del juego
       game.getGameFeatures().remove(gameFeature);
@@ -717,28 +715,30 @@ public class GameService implements IGameService {
     }
     // Establece los campos de gameFeature...
     Feature feature =
-        featureRepository
-            .findById(gameFeatureRequest.getFeatureId())
-            .orElseThrow(
-                () ->
-                    new IllegalArgumentException(
-                        "Feature no encontrada con id: " + gameFeatureRequest.getFeatureId()));
+            featureRepository
+                    .findById(gameFeatureRequest.getFeatureId())
+                    .orElseThrow(
+                            () ->
+                                    new IllegalArgumentException(
+                                            "Feature no encontrada con id: " + gameFeatureRequest.getFeatureId()));
     gameFeature.setFeature(feature); // Aquí se actualiza el featureId
     if (gameFeatureRequest.getNumberPlayerId() != null) {
       NumberPlayer numberPlayer =
-          numberPlayerRepository
-              .findById(gameFeatureRequest.getNumberPlayerId())
-              .orElseThrow(
-                  () ->
-                      new IllegalArgumentException(
-                          "NumberPlayer no encontrado con id: "
-                              + gameFeatureRequest.getNumberPlayerId()));
+              numberPlayerRepository
+                      .findById(gameFeatureRequest.getNumberPlayerId())
+                      .orElseThrow(
+                              () ->
+                                      new IllegalArgumentException(
+                                              "NumberPlayer no encontrado con id: "
+                                                      + gameFeatureRequest.getNumberPlayerId()));
       gameFeature.setNumberPlayers(numberPlayer);
     } else {
       gameFeature.setNumberPlayers(null);
     }
+    gameFeature.setGame(game); // Asegúrate de establecer el juego aquí
     return gameFeatureRepository.save(gameFeature);
   }
+
 
   @Override
   public Product updateProduct(Game game, ProductRequest productRequest) {
@@ -819,8 +819,7 @@ public class GameService implements IGameService {
     return productRepository.save(product);
   }
 
-  public Page<GameSearchAdminDTO> searchGames(
-      String keyword,  Pageable pageable) {
+  public Page<GameSearchAdminDTO> searchGames(String keyword, Pageable pageable) {
     return gameRepository.searchGames(keyword, pageable);
   }
 }

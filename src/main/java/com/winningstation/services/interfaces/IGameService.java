@@ -151,7 +151,7 @@ public interface IGameService {
    * @param gameFeatureRequests Lista de peticiones de productos.
    * @return Lista de productos creados.
    */
-  List<GameFeature> createGameFeatures(List<GameFeatureRequest> gameFeatureRequests);
+  List<GameFeature> createGameFeatures(List<GameFeatureRequest> gameFeatureRequests,Game game);
 
   /**
    * Método que permite actualizar un juego a partir de una petición.
