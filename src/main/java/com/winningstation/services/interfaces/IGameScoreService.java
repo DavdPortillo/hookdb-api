@@ -1,6 +1,9 @@
 package com.winningstation.services.interfaces;
 
+import com.winningstation.dto.GameScoreGamesDTO;
 import com.winningstation.entity.GameScore;
+
+import java.util.List;
 
 /**
  * Interfaz que define los métodos que se pueden realizar sobre la puntuación de un juego.
@@ -29,4 +32,7 @@ public interface IGameScoreService {
     GameScore findGameScoreByUserIdAndGameId(Long userId, Long gameId);
 
   void deleteGameScore(Long userId, Long gameId);
+
+  List<GameScoreGamesDTO> findGameAndScoresByUserId(Long userId);
+
 }

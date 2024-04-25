@@ -1,5 +1,6 @@
 package com.winningstation.controller;
 
+import com.winningstation.dto.GameScoreGamesDTO;
 import com.winningstation.entity.GameScore;
 import com.winningstation.services.interfaces.IGameScoreService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -10,6 +11,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Controlador que permite realizar operaciones sobre la puntuación de los juegos.
@@ -66,7 +68,7 @@ public class GameScoreController {
       description =
           "Obtiene la puntuación que le dio un usuario a un juego basada en los identificadores de usuario y juego proporcionados")
   public ResponseEntity<?> findGameScoreByUserIdAndGameId(
-          @PathVariable Long userId, @PathVariable Long gameId) {
+      @PathVariable Long userId, @PathVariable Long gameId) {
     GameScore gameScore = gameScoreService.findGameScoreByUserIdAndGameId(userId, gameId);
     if (gameScore == null) {
       // Devuelve un ResponseEntity con un objeto que contiene un mensaje
@@ -91,5 +93,15 @@ public class GameScoreController {
       @PathVariable Long userId, @PathVariable Long gameId) {
     gameScoreService.deleteGameScore(userId, gameId);
     return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+  }
+
+  @Operation(
+      summary = "Obtiene la puntuación de los juegos de un usuario",
+      description =
+          "Obtiene la puntuación de los juegos de un usuario basada en el identificador de usuario proporcionado")
+  @PreAuthorize("#userId == authentication.principal.id")
+  @GetMapping("/user/{userId}/games-scores")
+  public List<GameScoreGamesDTO> findGameAndScoresByUserId(@PathVariable Long userId) {
+    return gameScoreService.findGameAndScoresByUserId(userId);
   }
 }

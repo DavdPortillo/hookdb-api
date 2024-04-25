@@ -1,5 +1,6 @@
 package com.winningstation.services;
 
+import com.winningstation.dto.GameScoreGamesDTO;
 import com.winningstation.entity.Game;
 import com.winningstation.entity.GameScore;
 import com.winningstation.entity.User;
@@ -13,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Servicio que permite realizar operaciones sobre la puntuación de los juegos.
@@ -108,5 +110,10 @@ public class GameScoreService implements IGameScoreService {
             .findById(gameId)
             .orElseThrow(() -> new IllegalArgumentException("Game not found"));
     return gameScoreRepository.findByUserAndGame(user, game);
+  }
+
+  @Override
+  public List<GameScoreGamesDTO> findGameAndScoresByUserId(Long userId) {
+    return gameScoreRepository.findGameAndScoresByUserId(userId);
   }
 }
