@@ -569,14 +569,17 @@ public class GameService implements IGameService {
       game.getAvailabilities().addAll(newAvailabilities);
     }
 
-    if (gameRequest.getGameFeatures() != null) {
+    if (gameRequest.getGameFeatures() == null || gameRequest.getGameFeatures().isEmpty()) {
+      game.getGameFeatures().clear();
+    } else {
       List<GameFeature> newGameFeatures = new ArrayList<>();
       for (GameFeatureRequest gameFeatureRequest : gameRequest.getGameFeatures()) {
         newGameFeatures.add(updateGameFeature(game, gameFeatureRequest));
       }
-      // Añade las nuevas características a la lista del juego
+      game.getGameFeatures().clear();
       game.getGameFeatures().addAll(newGameFeatures);
     }
+
 
     if (gameRequest.getSaga() != null) {
 
