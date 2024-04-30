@@ -34,8 +34,8 @@ public class GameFeature implements Serializable {
   /** Característica. */
   @ManyToOne
   @JoinColumn(name = "feature_id")
-  @JsonBackReference("feature")
-  @ToString.Exclude
+//  @JsonBackReference("feature")
+//  @ToString.Exclude
   private Feature feature;
 
   /** Número de jugadores de las características. */
