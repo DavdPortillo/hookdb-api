@@ -524,29 +524,40 @@ public class GameService implements IGameService {
               gameRequest.getRecommendedSystemRequirement()));
     }
 
-    if (gameRequest.getPlatformIds() != null) {
+    if (gameRequest.getPlatformIds() == null || gameRequest.getPlatformIds().isEmpty()) {
+      game.getPlatforms().clear();
+    } else {
       List<Platform> platforms =
-          validateAndGetEntities(gameRequest.getPlatformIds(), platformRepository, "plataformas");
-      game.setPlatforms(platforms);
+              validateAndGetEntities(gameRequest.getPlatformIds(), platformRepository, "plataformas");
+      game.getPlatforms().clear();
+      game.getPlatforms().addAll(platforms);
     }
 
-    if (gameRequest.getGenreIds() != null) {
+    if (gameRequest.getGenreIds() == null || gameRequest.getGenreIds().isEmpty()) {
+      game.getGenres().clear();
+    } else {
       List<Genre> genres =
-          validateAndGetEntities(gameRequest.getGenreIds(), genreRepository, "géneros");
-      game.setGenres(genres);
-    }
-    if (gameRequest.getDeveloperIds() != null) {
-      List<Developer> developers =
-          validateAndGetEntities(
-              gameRequest.getDeveloperIds(), developerRepository, "desarrolladores");
-      game.setDevelopers(developers);
+              validateAndGetEntities(gameRequest.getGenreIds(), genreRepository, "géneros");
+      game.getGenres().clear();
+      game.getGenres().addAll(genres);
     }
 
-    if (gameRequest.getDistributorIds() != null) {
+    if (gameRequest.getDeveloperIds() == null || gameRequest.getDeveloperIds().isEmpty()) {
+      game.getDevelopers().clear();
+    } else {
+      List<Developer> developers =
+              validateAndGetEntities(gameRequest.getDeveloperIds(), developerRepository, "desarrolladores");
+      game.getDevelopers().clear();
+      game.getDevelopers().addAll(developers);
+    }
+
+    if (gameRequest.getDistributorIds() == null || gameRequest.getDistributorIds().isEmpty()) {
+      game.getDistributors().clear();
+    } else {
       List<Distributor> distributors =
-          validateAndGetEntities(
-              gameRequest.getDistributorIds(), distributorRepository, "distribuidores");
-      game.setDistributors(distributors);
+              validateAndGetEntities(gameRequest.getDistributorIds(), distributorRepository, "distribuidores");
+      game.getDistributors().clear();
+      game.getDistributors().addAll(distributors);
     }
 
     if (gameRequest.getCrossplayId() != null) {
@@ -560,12 +571,14 @@ public class GameService implements IGameService {
       game.setCrossplay(existingCrossplay);
     }
 
-    if (gameRequest.getAvailabilities() != null) {
+    if (gameRequest.getAvailabilities() == null || gameRequest.getAvailabilities().isEmpty()) {
+      game.getAvailabilities().clear();
+    } else {
       List<Availability> newAvailabilities = new ArrayList<>();
       for (AvailabilityRequest availabilityRequest : gameRequest.getAvailabilities()) {
         newAvailabilities.add(updateAvailability(game, availabilityRequest));
       }
-      // Añade las nuevas disponibilidades a la lista del juego
+      game.getAvailabilities().clear();
       game.getAvailabilities().addAll(newAvailabilities);
     }
 
@@ -586,12 +599,14 @@ public class GameService implements IGameService {
       game.setSaga(getOrCreateSaga(gameRequest.getSaga()));
     }
 
-    if (gameRequest.getProducts() != null) {
+    if (gameRequest.getProducts() == null || gameRequest.getProducts().isEmpty()) {
+      game.getProducts().clear();
+    } else {
       List<Product> newProducts = new ArrayList<>();
       for (ProductRequest productRequest : gameRequest.getProducts()) {
         newProducts.add(updateProduct(game, productRequest));
       }
-      // Añade los nuevos productos a la lista del juego
+      game.getProducts().clear();
       game.getProducts().addAll(newProducts);
     }
 
