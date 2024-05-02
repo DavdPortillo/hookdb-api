@@ -691,7 +691,7 @@ public class GameService implements IGameService {
             "La Availability con id: " + availabilityRequest.getId() + " no pertenece al juego");
       }
     } else {
-      throw new IllegalArgumentException("El id de la disponibilidad no puede ser nulo");
+      availability = new Availability();
     }
     // Se establecen los idiomas de la interfaz, los subtítulos y el audio
     availability.setInterfaceLanguage(availabilityRequest.getInterfaceLanguage());
