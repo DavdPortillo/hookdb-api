@@ -45,6 +45,8 @@ public interface INewsService {
    */
   Iterable<News> findAll(Long translationId);
 
+  Iterable<News> getAllNews();
+
   /**
    * Método que permite obtener las noticias de los juegos seguidos por un usuario.
    *

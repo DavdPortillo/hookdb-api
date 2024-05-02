@@ -123,6 +123,12 @@ public class NewsService implements INewsService {
   }
 
   @Override
+  public Iterable<News> getAllNews() {
+    LOG.info("Finding all news");
+    return newsRepository.findAll();
+  }
+
+  @Override
   public List<News> findNewsFromFollowedGames(Long userId, Long translationId) {
     LOG.info(
         "Finding news from followed games by user: {} with translation id: {}",

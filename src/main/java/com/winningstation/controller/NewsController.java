@@ -164,5 +164,13 @@ public class NewsController {
   public ResponseEntity<News> getNewsById(@PathVariable Long id) {
     return ResponseEntity.ok(newsService.findById(id));
   }
-}
 
+  @GetMapping("/getAllNews")
+  @PreAuthorize("hasRole('ROLE_ADMIN')")
+  @Operation(
+      summary = "Obtiene todas las noticias",
+      description = "Devuelve una lista de todas las noticias")
+  public ResponseEntity<Iterable<News>> getAllNews() {
+    return ResponseEntity.ok(newsService.getAllNews());
+  }
+}

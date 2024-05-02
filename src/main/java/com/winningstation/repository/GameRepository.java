@@ -54,12 +54,11 @@ public interface GameRepository extends JpaRepository<Game, Long> {
   List<GamePopularityProjection> findTop5ByOrderByDateDesc(
       @Param("translationId") Long translationId, Pageable pageable);
 
-
   @Query(
-          value =
-                  "SELECT g.id AS id, g.title AS title, g.cover AS cover, g.alt AS alt, g.date AS date FROM Game g WHERE g.translation.id = :translationId ORDER BY g.date DESC")
+      value =
+          "SELECT g.id AS id, g.title AS title, g.cover AS cover, g.alt AS alt, g.date AS date FROM Game g WHERE g.translation.id = :translationId ORDER BY g.date DESC")
   List<GamePopularityProjection> findAllByOrderByDateDesc(
-          @Param("translationId") Long translationId);
+      @Param("translationId") Long translationId);
 
   /**
    * Método que permite buscar juegos por título donde tiene más peso la popularidad.
@@ -94,12 +93,10 @@ public interface GameRepository extends JpaRepository<Game, Long> {
   Game findByIdAndTranslationId(Long id, Long translationId);
 
   @Query(
-          "SELECT new com.winningstation.dto.GameSearchAdminDTO(g.id, g.title, g.date, t.language) FROM Game g JOIN g.translation t WHERE LOWER(g.title) LIKE LOWER(CONCAT('%', :keyword, '%')) ORDER BY g.popularity DESC")
-  Page<GameSearchAdminDTO> searchGames(
-          @Param("keyword") String keyword,
-          Pageable pageable);
+      "SELECT new com.winningstation.dto.GameSearchAdminDTO(g.id, g.title, g.date, t.language) FROM Game g JOIN g.translation t WHERE LOWER(g.title) LIKE LOWER(CONCAT('%', :keyword, '%')) ORDER BY g.popularity DESC")
+  Page<GameSearchAdminDTO> searchGames(@Param("keyword") String keyword, Pageable pageable);
 
-
-  @Query("SELECT new com.winningstation.dto.GameAdminDTO(g.id, g.title, g.date) FROM Game g")
+  @Query(
+      "SELECT new com.winningstation.dto.GameAdminDTO(g.id, g.title, g.date, g.translation) FROM Game g")
   Page<GameAdminDTO> findAllGames(Pageable pageable);
-}
+  }
