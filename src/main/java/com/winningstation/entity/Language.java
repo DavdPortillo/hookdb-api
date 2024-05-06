@@ -17,7 +17,6 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "language")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "name")
 public class Language implements Serializable {
 
   /** Id unido del lenguaje. Generado automáticamente. */
