@@ -78,7 +78,7 @@ public class DLCController {
   public DLC update(
       @PathVariable Long id,
       @ModelAttribute DLC dlcRequest,
-      @RequestPart("file") MultipartFile file) {
+      @RequestPart(value = "file", required = false) MultipartFile file){
     return dlcService.update(id, dlcRequest, file);
   }
 

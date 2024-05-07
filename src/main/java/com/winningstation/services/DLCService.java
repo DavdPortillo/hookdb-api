@@ -101,7 +101,7 @@ public class DLCService implements IDLCService {
       dlc.setGame(dlcRequest.getGame());
     }
 
-    if (file != null) {
+    if (file != null && !file.isEmpty()) {
       String fileDownloadUri = fileStorageService.replaceFileAndGenerateUri(file, dlc.getImage());
       dlc.setImage(fileDownloadUri);
     }
