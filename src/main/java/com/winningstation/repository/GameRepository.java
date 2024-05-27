@@ -43,10 +43,11 @@ public interface GameRepository extends JpaRepository<Game, Long> {
    * @return Lista de juegos más populares.
    */
   @Query(
-      value =
-          "SELECT g.id AS id, g.title AS title, g.cover AS cover, g.alt AS alt,g.popularity AS popularity,g.date AS date  FROM Game g WHERE g.date > :date AND g.translation.id = :translationId ORDER BY g.popularity DESC")
+          value =
+                  "SELECT g.id AS id, g.title AS title, g.cover AS cover, g.alt AS alt, g.popularity AS popularity, g.date AS date, MIN(p.price) AS price FROM Game g JOIN g.products p WHERE g.date > :date AND g.translation.id = :translationId GROUP BY g.id ORDER BY g.popularity DESC")
   List<GamePopularityProjection> findByDateAfterAndOrderByPopularityDesc(
-      LocalDate date, @Param("translationId") Long translationId);
+          LocalDate date, @Param("translationId") Long translationId);
+
 
   @Query(
       value =
@@ -55,10 +56,11 @@ public interface GameRepository extends JpaRepository<Game, Long> {
       @Param("translationId") Long translationId, Pageable pageable);
 
   @Query(
-      value =
-          "SELECT g.id AS id, g.title AS title, g.cover AS cover, g.alt AS alt, g.date AS date FROM Game g WHERE g.translation.id = :translationId ORDER BY g.date DESC")
+          value =
+                  "SELECT g.id AS id, g.title AS title, g.cover AS cover, g.alt AS alt, g.date AS date, MIN(p.price) AS price FROM Game g JOIN g.products p WHERE g.translation.id = :translationId GROUP BY g.id ORDER BY g.date DESC")
   List<GamePopularityProjection> findAllByOrderByDateDesc(
-      @Param("translationId") Long translationId);
+          @Param("translationId") Long translationId);
+
 
   /**
    * Método que permite buscar juegos por título donde tiene más peso la popularidad.

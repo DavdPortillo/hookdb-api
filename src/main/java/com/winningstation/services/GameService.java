@@ -453,6 +453,13 @@ public class GameService implements IGameService {
                       .collect(Collectors.joining(", "));
               dto.setDeveloper(developers);
               dto.setScore(calculateAverageScore(game.getId()).getAverageScore());
+
+              double minPrice = game.getProducts().stream()
+                      .mapToDouble(Product::getPrice)
+                      .min()
+                      .orElse(0.0);
+              dto.setPrice(minPrice);
+
               return dto;
             })
         .collect(Collectors.toList());

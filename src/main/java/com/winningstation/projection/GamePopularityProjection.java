@@ -13,4 +13,5 @@ public interface GamePopularityProjection {
   Long getPopularity();
 
   LocalDate getDate();
+  Double getPrice(); // Nuevo método para el precio
 }

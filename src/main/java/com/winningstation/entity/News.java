@@ -55,8 +55,8 @@ public class News implements Serializable {
   private String content;
 
   /** Comentarios de la noticia. */
-  @OneToMany(mappedBy = "news")
   @JsonIgnore
+  @OneToMany(mappedBy = "news")
   private List<NewsComment> newsComment;
 
   @NotNull
@@ -84,4 +84,9 @@ public class News implements Serializable {
   public Long getIdGame() {
     return game == null ? null : game.getId();
   }
+
+  public Integer getCommentCount() {
+    return newsComment == null ? 0 : newsComment.size();
+  }
+
 }

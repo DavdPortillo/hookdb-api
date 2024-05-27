@@ -14,4 +14,6 @@ public class GameSearchDTO {
   private LocalDate date;
   private String developer;
   private Double score;
+  private Double price; // Nuevo campo para el precio
+
 }
