@@ -1,5 +1,6 @@
 package com.winningstation.controller;
 
+import com.winningstation.dto.DLCDto;
 import com.winningstation.entity.DLC;
 import com.winningstation.services.interfaces.IDLCService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -93,7 +94,7 @@ public class DLCController {
       summary = "Obtiene todos los contenidos descargables de un juego",
       description =
           "Devuelve todos los contenidos descargables de un juego basado en el identificador proporcionado")
-  public List<DLC> getByGameId(@PathVariable Long dlcId) {
+  public List<DLCDto> getByGameId(@PathVariable Long dlcId) {
     return dlcService.getByGameId(dlcId);
   }
 

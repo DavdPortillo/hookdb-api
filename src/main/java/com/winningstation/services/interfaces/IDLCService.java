@@ -1,5 +1,6 @@
 package com.winningstation.services.interfaces;
 
+import com.winningstation.dto.DLCDto;
 import com.winningstation.entity.DLC;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -53,7 +54,7 @@ public interface IDLCService {
    * @param gameId Id del juego.
    * @return Lista de dlcs del juego.
    */
-  List<DLC> getByGameId(Long gameId);
+  List<DLCDto> getByGameId(Long gameId);
 
   /**
    * Encuentra dlcs por su nombre.

@@ -1,5 +1,6 @@
 package com.winningstation.services;
 
+import com.winningstation.dto.DLCDto;
 import com.winningstation.entity.DLC;
 import com.winningstation.entity.Game;
 import com.winningstation.repository.DLCRepository;
@@ -115,7 +116,7 @@ public class DLCService implements IDLCService {
   }
 
   @Override
-  public List<DLC> getByGameId(Long gameId) {
+  public List<DLCDto> getByGameId(Long gameId) {
     LOG.info("Getting DLCs by game id: {}", gameId);
     if (gameRepository.existsById(gameId)) {
       return dlcRepository.findByGameId(gameId);
