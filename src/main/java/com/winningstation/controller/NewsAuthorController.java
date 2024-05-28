@@ -61,7 +61,7 @@ public class NewsAuthorController {
   }
 
   /** Obtener por su nombre */
-  @GetMapping("/{name}")
+  @GetMapping("name/{name}")
   @Operation(
       summary = "Busca autores de noticias por su nombre",
       description =
@@ -90,5 +90,13 @@ public class NewsAuthorController {
       description = "Elimina un autor de noticias basado en el identificador proporcionado")
   public void deleteById(@PathVariable Long id) {
     newsAuthorService.delete(id);
+  }
+
+  @GetMapping("/{id}")
+  @Operation(
+      summary = "Obtiene un autor de noticias por su identificador",
+      description = "Obtiene un autor de noticias basado en el identificador proporcionado")
+  public NewsAuthor findById(@PathVariable Long id) {
+    return newsAuthorService.findById(id);
   }
 }

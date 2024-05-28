@@ -16,4 +16,5 @@ import java.util.List;
 public interface NewsAuthorRepository extends JpaRepository<NewsAuthor, Long> {
 
     List<NewsAuthor> findByNameContaining(String authorName);
+
 }
