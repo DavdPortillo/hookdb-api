@@ -20,6 +20,6 @@ public interface DLCRepository extends JpaRepository<DLC, Long> {
   List<DLC> findByNameContaining(String name);
 
   @Query(
-      "SELECT new com.winningstation.dto.DLCDto(d.id, d.name, d.date, d.sinopsis, d.image, d.alt, g.title) FROM DLC d JOIN d.game g WHERE g.id = :gameId")
+      "SELECT new com.winningstation.dto.DLCDto(d.id, d.name, d.date, d.sinopsis, d.image, d.alt,g.id, g.title) FROM DLC d JOIN d.game g WHERE g.id = :gameId")
   List<DLCDto> findByGameId(@Param("gameId") Long gameId);
 }

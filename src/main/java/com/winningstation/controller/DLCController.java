@@ -76,7 +76,7 @@ public class DLCController {
       summary = "Edita un contenido descargable",
       description =
           "Edita un contenido descargable basado en el identificador y la petición proporcionados y devuelve el contenido descargable actualizado")
-  public DLC update(
+  public DLCDto update(
       @PathVariable Long id,
       @ModelAttribute DLC dlcRequest,
       @RequestPart(value = "file", required = false) MultipartFile file){

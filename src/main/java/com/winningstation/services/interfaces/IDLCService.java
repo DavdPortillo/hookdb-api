@@ -46,7 +46,7 @@ public interface IDLCService {
    * @param file Archivo del dlc.
    * @return Dlc actualizado.
    */
-  DLC update(Long id, DLC dlcRequest, MultipartFile file);
+  DLCDto update(Long id, DLC dlcRequest, MultipartFile file);
 
   /**
    * Método que obtiene todos los dlcs de un juego.

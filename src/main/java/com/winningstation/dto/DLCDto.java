@@ -15,5 +15,6 @@ public class DLCDto {
   private String sinopsis;
   private String image;
   private String alt;
+  private Long gameId;
   private String gameTitle;
 }

@@ -78,7 +78,7 @@ public class DLCService implements IDLCService {
   }
 
   @Override
-  public DLC update(Long id, DLC dlcRequest, MultipartFile file) {
+  public DLCDto update(Long id, DLC dlcRequest, MultipartFile file) {
 
     LOG.info("Updating DLC with id: {}", id);
 
@@ -99,7 +99,9 @@ public class DLCService implements IDLCService {
     }
 
     if (dlcRequest.getGame() != null) {
-      dlc.setGame(dlcRequest.getGame());
+      Game game = gameRepository.findById(dlcRequest.getGame().getId())
+              .orElseThrow(() -> new RuntimeException("Game not found"));
+      dlc.setGame(game);
     }
 
     if (file != null && !file.isEmpty()) {
@@ -112,7 +114,22 @@ public class DLCService implements IDLCService {
     }
 
     // Guarda el DLC actualizado en la base de datos
-    return dlcRepository.save(dlc);
+    DLC updatedDLC = dlcRepository.save(dlc);
+
+    // Crea un nuevo DLCDto con los datos del DLC actualizado
+    DLCDto dlcDto = new DLCDto(
+            updatedDLC.getId(),
+            updatedDLC.getName(),
+            updatedDLC.getDate(),
+            updatedDLC.getSinopsis(),
+            updatedDLC.getImage(),
+            updatedDLC.getAlt(),
+            updatedDLC.getGame().getId(),
+            updatedDLC.getGame().getTitle()
+    );
+
+    // Devuelve el DLCDto
+    return dlcDto;
   }
 
   @Override
