@@ -43,7 +43,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
   @Query(
       "SELECT new  com.winningstation.dto.UserInfoDTO(u.id, u.username, u.email, u.country, "
-          + "u.year, u.image, u.language, u.alt,u.registerDate,u.role) "
+          + "u.year, u.image, u.language,u.gender, u.alt,u.registerDate,u.role) "
           + "FROM User u "
           + "WHERE u.id = :userId")
   UserInfoDTO findUserInfoById(@Param("userId") Long userId);

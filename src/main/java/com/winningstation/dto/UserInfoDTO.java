@@ -17,6 +17,7 @@ public class UserInfoDTO {
   private Integer year;
   private String image;
   private String language;
+  private String gender;
   private String alt;
   private LocalDateTime registerDate;
   private Role role;
