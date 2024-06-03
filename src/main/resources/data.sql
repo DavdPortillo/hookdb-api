@@ -51,11 +51,11 @@ VALUES ('DirectX 12', 'NVIDIA GTX 1650', 'Windows 10', 'Intel Core i5-9400F', '8
 INSERT INTO `user` (`year`, `id`, `role_id`, `language`, `country`, `username`, `password`, `email`, `gender`,
                     `image`, `alt`, `register_date`)
 VALUES (1950, 1, 1, 'Idioma del usuario', 'País del usuario', 'mari-conan',
-        '$2a$10$GQ8EjxA1xo18wJC4Ea8ZQOD1wlg2kf9U4hdobBSipD4Nn3uWZ1HzW', 'admin@admin.com', NULL, 'URL de la imagen',
+        '$2a$12$PxcA.AlY3NmVceR1AWLMQ.LnEGzrLAG6SyEZYlX2wTqmaXTU.LN6S', 'admin@admin.com', NULL, 'URL de la imagen',
         'alt',
         '2024/11/02'),
        (1950, 2, 2, 'Idioma del usuario', 'País del usuario', 'panza',
-        '$2a$10$GQ8EjxA1xo18wJC4Ea8ZQOD1wlg2kf9U4hdobBSipD4Nn3uWZ1HzW', 'user@user.com', NULL, 'URL de la imagen',
+        '$2a$12$PxcA.AlY3NmVceR1AWLMQ.LnEGzrLAG6SyEZYlX2wTqmaXTU.LN6S', 'user@user.com', NULL, 'URL de la imagen',
         'alt',
         '2024/11/02');
 

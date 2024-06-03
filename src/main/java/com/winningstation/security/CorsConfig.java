@@ -20,10 +20,16 @@ public class CorsConfig implements WebMvcConfigurer {
      */
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        // Permite solicitudes CORS a todas las rutas (/**) desde el origen http://localhost:5173
-        // y permite los métodos GET, POST, PUT y DELETE.
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:5173/","http://localhost:5174/","http://localhost:3000/","http://158.179.219.214","http://158.179.219.214:31892","https://hookdb.davidportillo.live")
-                .allowedMethods("GET", "POST", "PUT", "DELETE");
+                .allowedOrigins(
+                        "http://localhost:5173",
+                        "http://localhost:5174",
+                        "http://localhost:3000",
+                        "http://158.179.219.214",
+                        "http://158.179.219.214:31892",
+                        "https://hookdb.davidportillo.live"
+                )
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS");
+
     }
 }
