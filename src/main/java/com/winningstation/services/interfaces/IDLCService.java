@@ -36,7 +36,7 @@ public interface IDLCService {
    * @param dlcId Id del dlc a obtener.
    * @return Dlc obtenido.
    */
-  DLC getById(Long dlcId);
+  DLCDto getDLCDtoById(Long dlcId);
 
   /**
    * Método que actualiza un dlc en la base de datos.

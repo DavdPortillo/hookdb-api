@@ -73,9 +73,10 @@ public class DLCService implements IDLCService {
   }
 
   @Override
-  public DLC getById(Long dlcId) {
-    return dlcRepository.findById(dlcId).orElseThrow(() -> new RuntimeException("DLC not found"));
+  public DLCDto getDLCDtoById(Long dlcId) {
+    return dlcRepository.findDLCDtoById(dlcId);
   }
+
 
   @Override
   public DLCDto update(Long id, DLC dlcRequest, MultipartFile file) {
@@ -99,7 +100,9 @@ public class DLCService implements IDLCService {
     }
 
     if (dlcRequest.getGame() != null) {
-      Game game = gameRepository.findById(dlcRequest.getGame().getId())
+      Game game =
+          gameRepository
+              .findById(dlcRequest.getGame().getId())
               .orElseThrow(() -> new RuntimeException("Game not found"));
       dlc.setGame(game);
     }
@@ -117,7 +120,8 @@ public class DLCService implements IDLCService {
     DLC updatedDLC = dlcRepository.save(dlc);
 
     // Crea un nuevo DLCDto con los datos del DLC actualizado
-    DLCDto dlcDto = new DLCDto(
+    DLCDto dlcDto =
+        new DLCDto(
             updatedDLC.getId(),
             updatedDLC.getName(),
             updatedDLC.getDate(),
@@ -125,8 +129,7 @@ public class DLCService implements IDLCService {
             updatedDLC.getImage(),
             updatedDLC.getAlt(),
             updatedDLC.getGame().getId(),
-            updatedDLC.getGame().getTitle()
-    );
+            updatedDLC.getGame().getTitle());
 
     // Devuelve el DLCDto
     return dlcDto;
@@ -148,8 +151,8 @@ public class DLCService implements IDLCService {
     return dlcRepository.findByNameContaining(name);
   }
 
-    @Override
-    public List<DLC> getAll() {
-        return dlcRepository.findAll();
-    }
+  @Override
+  public List<DLC> getAll() {
+    return dlcRepository.findAll();
+  }
 }

@@ -22,4 +22,8 @@ public interface DLCRepository extends JpaRepository<DLC, Long> {
   @Query(
       "SELECT new com.winningstation.dto.DLCDto(d.id, d.name, d.date, d.sinopsis, d.image, d.alt,g.id, g.title) FROM DLC d JOIN d.game g WHERE g.id = :gameId")
   List<DLCDto> findByGameId(@Param("gameId") Long gameId);
+
+  @Query(
+      "SELECT new com.winningstation.dto.DLCDto(d.id, d.name, d.date, d.sinopsis, d.image, d.alt, g.id, g.title) FROM DLC d JOIN d.game g WHERE d.id = :dlcId")
+  DLCDto findDLCDtoById(@Param("dlcId") Long dlcId);
 }

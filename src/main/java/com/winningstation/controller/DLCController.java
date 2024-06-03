@@ -103,8 +103,8 @@ public class DLCController {
       summary = "Obtiene un contenido descargable por su identificador",
       description = "Devuelve un contenido descargable basado en el identificador proporcionado")
   @GetMapping("{dlcId}")
-  public DLC getById(@PathVariable Long dlcId) {
-    return dlcService.getById(dlcId);
+  public DLCDto getById(@PathVariable Long dlcId) {
+    return dlcService.getDLCDtoById(dlcId);
   }
 
   /**
