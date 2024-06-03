@@ -43,7 +43,7 @@ VALUES ('DirectX 12', 'NVIDIA GTX 1650', 'Windows 10', 'Intel Core i5-9400F', '8
        ('DirectX 12', 'NVIDIA RTX 3080', 'Windows 10', 'Intel Core i9-10900K', '32 GB', '2 TB SSD'),
        ('DirectX 12', 'NVIDIA RTX 3080', 'Windows 10', 'Intel Core i9-10900K', '32 GB', '2 TB SSD'),
        ('DirectX 12', 'NVIDIA RTX 3080', 'Windows 10', 'Intel Core i9-10900K', '32 GB', '2 TB SSD'),
-       ('DirectX 12', 'NVIDIA RTX 3080', 'Windows 10', 'Intel Core i9-10900K', '32 GB', '2 TB SSD'),
+       ('DirectX 12', 'NVIDIA RTX 30820', 'Windows 10', 'Intel Core i9-10900K', '32 GB', '2 TB SSD'),
        ('DirectX 12', 'NVIDIA RTX 3080', 'Windows 10', 'Intel Core i9-10900K', '32 GB', '2 TB SSD');
 
 
