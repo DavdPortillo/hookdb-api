@@ -162,14 +162,7 @@ public class Security {
                         "/translation/**")
                     .hasRole("ADMIN")
                     .anyRequest()
-                    .permitAll())
-        .httpBasic(withDefaults())
-        .headers(
-            headers ->
-                headers
-                    .addHeaderWriter(
-                        new StaticHeadersWriter("Cache-Control", "public, max-age=31536000"))
-                    .defaultsDisabled());
+                    .permitAll());
 
     LOGGER.info("Cadena de filtros de seguridad configurada exitosamente");
     return http.build();
