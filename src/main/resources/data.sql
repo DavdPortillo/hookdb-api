@@ -25,15 +25,15 @@ VALUES ('11', 'NVIDIA GeForce GTX 760 o AMD Radeon R7 260x con 2GB VRAM', 'WINDO
 INSERT INTO `user` (`year`, `id`, `role_id`, `language`, `country`, `username`, `password`, `email`, `gender`,
                     `image`, `alt`, `register_date`)
 VALUES (1950, 1, 1, 'Idioma del usuario', 'España', 'Admin',
-        '$2a$12$e9sF2oX8llofdbMLk.YbOOFenroZx0aL0P1e33M9YtdF2M2dGSWlG', 'admin@admin.com', NULL, 'URL de la imagen',
+        '$2a$12$e9sF2oX8llofdbMLk.YbOOFenroZx0aL0P1e33M9YtdF2M2dGSWlG', 'admin@admin.com', NULL, '2',
         'alt',
         '2024/11/02'),
        (1950, 2, 2, 'Idioma del usuario', 'España', 'David',
-        '$2a$12$e9sF2oX8llofdbMLk.YbOOFenroZx0aL0P1e33M9YtdF2M2dGSWlG', 'david@david.com', NULL, 'URL de la imagen',
+        '$2a$12$e9sF2oX8llofdbMLk.YbOOFenroZx0aL0P1e33M9YtdF2M2dGSWlG', 'david@david.com', NULL, '2',
         'alt',
         '2024/11/02'),
        (1950, 3, 2, 'Idioma del usuario', 'España', 'Sergio',
-        '$2a$12$e9sF2oX8llofdbMLk.YbOOFenroZx0aL0P1e33M9YtdF2M2dGSWlG', 'sergio@sergio.com', NULL, 'URL de la imagen',
+        '$2a$12$e9sF2oX8llofdbMLk.YbOOFenroZx0aL0P1e33M9YtdF2M2dGSWlG', 'sergio@sergio.com', NULL, '2',
         'alt',
         '2024/11/02'),
        (1950, 4, 2, 'Idioma del usuario', 'España', 'Alejandro',
@@ -44,6 +44,15 @@ VALUES (1950, 1, 1, 'Idioma del usuario', 'España', 'Admin',
         'URL de la imagen', 'alt', '2024/11/02'),
        (1950, 6, 2, 'Idioma del usuario', 'España', 'Dominic',
         '$2a$12$e9sF2oX8llofdbMLk.YbOOFenroZx0aL0P1e33M9YtdF2M2dGSWlG', 'dominic@dominic.com', NULL, 'URL de la imagen',
+        'alt', '2024/11/02'),
+       (1950, 7, 2, 'Idioma del usuario', 'España', 'Paco',
+        '$2a$12$e9sF2oX8llofdbMLk.YbOOFenroZx0aL0P1e33M9YtdF2M2dGSWlG', 'paco@paco.com', NULL,
+        'URL de la imagen', 'alt', '2024/11/02'),
+       (1950, 8, 2, 'Idioma del usuario', 'España', 'Roma',
+        '$2a$12$e9sF2oX8llofdbMLk.YbOOFenroZx0aL0P1e33M9YtdF2M2dGSWlG', 'roma@roma.com', NULL,
+        'URL de la imagen', 'alt', '2024/11/02'),
+       (1950, 9, 2, 'Idioma del usuario', 'España', 'Eugenio',
+        '$2a$12$e9sF2oX8llofdbMLk.YbOOFenroZx0aL0P1e33M9YtdF2M2dGSWlG', 'eugenio@eugenio.com', NULL, 'URL de la imagen',
         'alt', '2024/11/02');
 
 
@@ -193,7 +202,9 @@ VALUES (1, 1),
 INSERT INTO dlc (game_id, name, date, sinopsis, alt, image)
 VALUES (1, 'Extra DLC Pack', '2019/02/15',
         'Un paquete de contenido descargable que incluye los siguientes elementos: The 4th Survivor, The Tofu Survivor, Traje de Claire: Elza Walker, Traje de Claire: Military, Traje de Claire: Noir, Traje de Leon: Arklay Sheriff, Traje de Leon: Noir, Modelo de pistola: Samurai Edge',
-        'Imagen de DLC', 'https://cdn.cloudflare.steamstatic.com/steam/apps/883710/header.jpg?t=1701395502');
+        'Imagen de DLC', 'https://cdn.cloudflare.steamstatic.com/steam/apps/883710/header.jpg?t=1701395502'),
+         (2, 'Extra DLC Pack', '2019/02/15','A downloadable content pack that includes the following items: The 4th Survivor, The Tofu Survivor, Claire Costume: Elza Walker, Claire Costume: Military, Claire Costume: Noir, Leon Costume: Arklay Sheriff, Leon Costume: Noir, Weapon Model: Samurai Edge',
+        'DLC Image', 'https://cdn.cloudflare.steamstatic.com/steam/apps/883710/header.jpg?t=1701395502');
 
 
 INSERT INTO language (name)
@@ -270,13 +281,16 @@ Meanwhile, the gaming community continues to explore the dark corridors of the R
         'The Legacy of a Classic Reborn: Resident Evil 2 Remake Continues to Captivate Players Around the World',
         '2024-01-23T18:16:17.633882315',
         'Capcom Celebrates the Ongoing Success of Resident Evil 2 Remake',
-        'https://miro.medium.com/v2/resize:fit:933/1*w4DxUy0PMoqeq25UXfyL0g@2x.jpeg', 'alt', 2),
+        'https://miro.medium.com/v2/resize:fit:933/1*w4DxUy0PMoqeq25UXfyL0g@2x.jpeg', 'alt', 2);
 
 
 INSERT INTO `news_comment` (`id`, `news_id`, `user_id`, `content`, `date`)
 VALUES (NULL, '1', '2', '¡Increíble ver cómo Capcom ha logrado mantener vivo un clásico! ‘Resident Evil 2 Remake’ no solo me trajo recuerdos de mi infancia, sino que también me presentó desafíos completamente nuevos. ¡Espero con ansias el próximo remake!', '2024-01-10T15:16:17.633882315'),
        (NULL, '1', '3', 'Cada vez que juego ‘Resident Evil 2 Remake’, descubro algo nuevo. La atención al detalle y la atmósfera son impresionantes. Es un ejemplo perfecto de cómo se debe hacer un remake. ¡Bien hecho, Capcom!', '2024-01-20T18:16:17.633882315'),
-       (NULL, '1', '4', 'Como fan de la serie desde el principio, tenía mis dudas sobre este remake, pero Capcom superó todas mis expectativas. La historia, los gráficos y la jugabilidad son de primera calidad. ¡‘Resident Evil 2’ siempre tendrá un lugar especial en mi corazón!', '2024-02-10T20:16:17.633882315');
+       (NULL, '1', '4', 'Como fan de la serie desde el principio, tenía mis dudas sobre este remake, pero Capcom superó todas mis expectativas. La historia, los gráficos y la jugabilidad son de primera calidad. ¡‘Resident Evil 2’ siempre tendrá un lugar especial en mi corazón!', '2024-02-10T20:16:17.633882315'),
+         (NULL, '2', '5', 'It’s amazing to see how Capcom has managed to keep a classic alive! ‘Resident Evil 2 Remake’ not only brought back memories of my childhood but also introduced me to completely new challenges. I can’t wait for the next remake!', '2024-01-10T15:16:17.633882315'),
+         (NULL, '2', '6', 'Every time I play ‘Resident Evil 2 Remake,’ I discover something new. The attention to detail and atmosphere are stunning. It’s a perfect example of how a remake should be done. Well done, Capcom!', '2024-01-20T18:16:17.633882315'),
+            (NULL, '2', '7', 'As a fan of the series from the beginning, I had my doubts about this remake, but Capcom exceeded all my expectations. The story, graphics, and gameplay are top-notch. ‘Resident Evil 2’ will always have a special place in my heart!', '2024-02-10T20:16:17.633882315');
 
 INSERT INTO `feature` (`name`, `image`, `alt`)
 VALUES ('Un Jugador', 'dassa', 'asdsadas'),
@@ -312,7 +326,11 @@ VALUES ('2023-01-30T18:16:17.633882315', 0, 1, 10, 2, 'Un Clásico Reinventado',
        ('2023-11-30T18:16:17.633882315', 1, 1, 9, 4, 'Una Obra Maestra del Horror',
         'Este juego redefine lo que debería ser un remake. Con una narrativa envolvente y un diseño de sonido que te sumerge completamente, ‘Resident Evil 2 Remake’ es una experiencia que ningún fan del género debería perderse.'),
        ('2023-12-30T18:16:17.633882315', 3, 1, 7, 5, 'Más que Nostalgia',
-        'Al principio, compré ‘Resident Evil 2 Remake’ por la nostalgia, pero lo que encontré fue una obra de arte moderna. Los personajes son profundos, el mundo es inmersivo y cada rincón de Raccoon City está lleno de detalles. Sin embargo, la IA de los enemigos a veces deja que desear.');
+        'Al principio, compré ‘Resident Evil 2 Remake’ por la nostalgia, pero lo que encontré fue una obra de arte moderna. Los personajes son profundos, el mundo es inmersivo y cada rincón de Raccoon City está lleno de detalles. Sin embargo, la IA de los enemigos a veces deja que desear.'),
+         ('2023-01-30T18:16:17.633882315', 0, 2, 10, 6, 'A Classic Reimagined', 'Capcom has done a masterful job bringing ‘Resident Evil 2’ into the 21st century. The gameplay is smooth, the graphics are stunning, and the story feels as fresh as it did in 1998. It’s a remake that respects the original but isn’t afraid to innovate. A must-play for any series fan!'),
+         ('2023-10-30T18:16:17.633882315', 2, 2, 8, 7, 'High-Definition Horror', 'Resident Evil 2 Remake’ kept me on the edge of my seat from start to finish. The tension is constant, and the scares are well-executed. While some puzzles feel a bit dated, the overall experience is exceptional.'),
+         ('2023-11-30T18:16:17.633882315', 1, 2, 9, 8, 'A Horror Masterpiece', 'This game redefines what a remake should be. With an immersive narrative and sound design that fully immerses you, ‘Resident Evil 2 Remake’ is an experience no genre fan should miss.'),
+         ('2023-12-30T18:16:17.633882315', 3, 2, 7, 9, 'More Than Nostalgia', 'At first, I bought ‘Resident Evil 2 Remake’ for the nostalgia, but what I found was a modern masterpiece. The characters are deep, the world is immersive, and every corner of Raccoon City is filled with detail. However, enemy AI can sometimes leave something to be desired.');
 
 
 
@@ -320,7 +338,11 @@ INSERT INTO `game_score` (`score`, `date`, `game_id`, `id`, `user_id`)
 VALUES ('7', '2023-01-30T18:16:17.633882315', '1', NULL, '2'),
        ('8', '2023-01-30T18:16:17.633882315', '1', NULL, '3'),
        ('8', '2023-01-30T18:16:17.633882315', '1', NULL, '4'),
-       ('9', '2023-01-30T18:16:17.633882315', '1', NULL, '5');
+       ('9', '2023-01-30T18:16:17.633882315', '1', NULL, '5'),
+       ('7', '2023-01-30T18:16:17.633882315', '2', NULL, '6'),
+       ('8', '2023-01-30T18:16:17.633882315', '2', NULL, '7'),
+       ('8', '2023-01-30T18:16:17.633882315', '2', NULL, '8'),
+       ('9', '2023-01-30T18:16:17.633882315', '2', NULL, '9');
 
 -- Inserta una edición
 INSERT INTO edition_product (name)
@@ -378,7 +400,22 @@ VALUES ('10.99', '1', '1', NULL, '1', '1', '1', '1',
        ('19.99', '2', '1', NULL, '2', '2', '1', '1',
         '#'),
        ('15.99', '3', '1', NULL, '1', '3', '2', '2',
+        '#'),
+       ('10.99', '1', '2', NULL, '1', '1', '1', '1',
+        '#'),
+       ('12.99', '2', '2', NULL, '2', '2', '2', '2',
+        '#'),
+       ('7.99', '3', '2', NULL, '3', '3', '3', '3',
+        '#'),
+       ('20.99', '4', '2', NULL, '1', '4', '1', '4',
+        '#'),
+       ('9.99', '1', '2', NULL, '2', '1', '2', '5',
+        '#'),
+       ('19.99', '2', '2', NULL, '2', '2', '1', '1',
+        '#'),
+       ('15.99', '3', '2', NULL, '1', '3', '2', '2',
         '#');
+
 
 
 -- INSERT INTO `review_vote` (`vote`, `id`, `review_id`, `user_id`)
