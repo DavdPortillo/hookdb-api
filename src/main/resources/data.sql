@@ -245,7 +245,7 @@ INSERT INTO `news` (`game_id`, `id`, `news_author_id`, `content`, `subtitle`, `d
                     `translation_id`)
 VALUES (1, 1, 1,
         'Capcom ha anunciado recientemente que “Resident Evil 2 Remake” ha superado los 11,2 millones de copias vendidas, consolidando su posición como uno de los títulos más exitosos y queridos de la franquicia1. Este hito es un testimonio del trabajo duro y la dedicación del equipo de desarrollo, que logró reimaginar el clásico de 1998 para las audiencias modernas.
-\n
+
 El juego, que se lanzó originalmente en enero de 2019, ha recibido elogios tanto de críticos como de jugadores por su fiel recreación del ambiente de terror del original, al tiempo que introduce mejoras significativas en los gráficos y la jugabilidad. La capacidad de Capcom para equilibrar la nostalgia con la innovación ha sido clave para el éxito del juego.
 
 Además de las impresionantes cifras de ventas, “Resident Evil 2 Remake” ha recibido actualizaciones constantes desde su lanzamiento. La más reciente incluye la adición del español latinoamericano como opción de idioma, lo que demuestra el compromiso de Capcom con su base de jugadores global2.
@@ -253,10 +253,24 @@ Además de las impresionantes cifras de ventas, “Resident Evil 2 Remake” ha 
 El éxito de “Resident Evil 2 Remake” no solo ha revitalizado el interés en los títulos anteriores de la serie, sino que también ha establecido un precedente para futuros remakes. Con el lanzamiento del “Resident Evil 4 Remake” a la vuelta de la esquina, los fans tienen grandes expectativas de que Capcom continuará entregando experiencias de juego de alta calidad que honren el legado de la serie.
 
 Mientras tanto, la comunidad de jugadores sigue explorando los oscuros pasillos de la comisaría de Raccoon City y las profundidades del laboratorio de Umbrella, disfrutando de los sustos y desafíos que “Resident Evil 2 Remake” tiene para ofrecer. Con su combinación de horror clásico y modernidad, el juego sigue siendo un referente en el género de terror y supervivencia.',
-        'asdsadasd',
+        'El Legado de un Clásico Renace: Resident Evil 2 Remake Sigue Cautivando a Jugadores en Todo el Mundo',
         '2024-01-23T18:16:17.633882315',
         'Capcom Celebra el Éxito Continuo de Resident Evil 2 Remake',
-        'https://miro.medium.com/v2/resize:fit:933/1*w4DxUy0PMoqeq25UXfyL0g@2x.jpeg', 'alt', 1);
+        'https://miro.medium.com/v2/resize:fit:933/1*w4DxUy0PMoqeq25UXfyL0g@2x.jpeg', 'alt', 1),
+       (2, 2, 1,
+        'Capcom has recently announced that “Resident Evil 2 Remake” has surpassed 11.2 million copies sold, solidifying its position as one of the most successful and beloved titles in the franchise. This milestone is a testament to the hard work and dedication of the development team, who managed to reimagine the 1998 classic for modern audiences.
+
+The game, which was originally released in January 2019, has been praised by critics and players alike for its faithful recreation of the original’s atmosphere of terror, while introducing significant improvements in graphics and gameplay. Capcom’s ability to balance nostalgia with innovation has been key to the game’s success.
+
+In addition to impressive sales figures, “Resident Evil 2 Remake” has received constant updates since its release. The most recent includes the addition of Latin American Spanish as a language option, demonstrating Capcom’s commitment to its global player base.
+
+The success of “Resident Evil 2 Remake” has not only revitalized interest in the series’ previous titles but has also set a precedent for future remakes. With the release of “Resident Evil 4 Remake” just around the corner, fans have high expectations that Capcom will continue to deliver high-quality gaming experiences that honor the legacy of the series.
+
+Meanwhile, the gaming community continues to explore the dark corridors of the Raccoon City police station and the depths of the Umbrella laboratory, enjoying the scares and challenges that “Resident Evil 2 Remake” has to offer. With its combination of classic horror and modernity, the game remains a benchmark in the survival horror genre.',
+        'The Legacy of a Classic Reborn: Resident Evil 2 Remake Continues to Captivate Players Around the World',
+        '2024-01-23T18:16:17.633882315',
+        'Capcom Celebrates the Ongoing Success of Resident Evil 2 Remake',
+        'https://miro.medium.com/v2/resize:fit:933/1*w4DxUy0PMoqeq25UXfyL0g@2x.jpeg', 'alt', 2),
 
 
 INSERT INTO `news_comment` (`id`, `news_id`, `user_id`, `content`, `date`)
