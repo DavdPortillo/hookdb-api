@@ -56,7 +56,7 @@ public class News implements Serializable {
 
   /** Comentarios de la noticia. */
   @JsonIgnore
-  @OneToMany(mappedBy = "news")
+  @OneToMany(mappedBy = "news", cascade = CascadeType.REMOVE, orphanRemoval = true)
   private List<NewsComment> newsComment;
 
   @NotNull
