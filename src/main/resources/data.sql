@@ -18,7 +18,47 @@ VALUES ('11', 'NVIDIA GeForce GTX 760 o AMD Radeon R7 260x con 2GB VRAM', 'WINDO
        ('11', 'NVIDIA GeForce GTX 760 o AMD Radeon R7 260x con 2GB VRAM', 'WINDOWS 7, 8.1, 10 (64-BIT Required)',
         'Intel Core i5-4460 o AMD FX-6300 o superior', '8 GB', '26 GB'),
        ('11', 'NVIDIA GeForce GTX 1060 o AMD Radeon RX 480 con 3GB VRAM', 'WINDOWS 7, 8.1, 10 (64-BIT Required)',
-        'Intel Core i7-3770 o AMD FX-9590 o superior', '8 GB', '26 GB');
+        'Intel Core i7-3770 o AMD FX-9590 o superior', '8 GB', '26 GB'),
+       ('11', 'Nvidia GeForce GTX 570, 1 GB | AMD Radeon HD 7850, 2 GB', 'Windows 10, 64-bit',
+        'Intel Core i5-2300 | AMD FX-4350', '4 GB RAM', '10 GB'),
+       ('11', 'Nvidia GeForce GTX 760, 2 GB | AMD Radeon HD 7870, 2 GB', 'Windows 10, 64-bit',
+        'Intel Core i7-3770 | AMD FX-9590', '8 GB RAM', '10 GB'),
+       ('11', 'Nvidia GTX 660 o AMD Radeon HD 7850', 'Windows 10', 'Intel Core i3-3250 o AMD FX-4350', '8 GB RAM',
+        '30 GB'),
+       ('11', 'Nvidia GTX 1060 o AMD Radeon RX 5500 XT', 'Windows 10', 'Intel Core i5-9600k o AMD Ryzen 5 2600',
+        '16 GB RAM', '30 GB'),
+       ('12', 'GeForce GTX 780 / Radeon RX 480 (3GB VRAM)', 'Windows 10 64 bit (version 2004 o posterior)',
+        'Intel Core i5-3330 / AMD FX-8350', '8 GB', '100 GB'),
+       ('12', 'GeForce GTX 1080 / Radeon RX 5700 (8GB VRAM)', 'Windows 10 64 bit (version 2004 o posterior)',
+        'Intel Core i7-3770 / AMD Ryzen 3 3100', '12 GB', '100 GB'),
+       ('12', 'GeForce RTX 2060 / Radeon RX 6600', 'Windows 10/11 64-bit', 'Intel i5-7600K o equivalente AMD', '16 GB',
+        '90 GB SSD'),
+       ('12', 'GeForce RTX 3060 / Radeon RX 6600 XT', 'Windows 10/11 64-bit', 'Ryzen 7 3700X o Intel equivalente',
+        '16 GB', '90 GB SSD'),
+       ('11', 'NVIDIA GeForce GTX 760 o AMD Radeon R7 260x con 2GB VRAM', 'WINDOWS 7, 8.1, 10 (64-BIT Required)',
+        'Intel Core i5-4460 o AMD FX-6300 o superior', '8 GB', '26 GB'),
+       ('11', 'NVIDIA GeForce GTX 1060 o AMD Radeon RX 480 con 3GB VRAM', 'WINDOWS 7, 8.1, 10 (64-BIT Required)',
+        'Intel Core i7-3770 o AMD FX-9590 o superior', '8 GB', '26 GB'),
+       ('11', 'NVIDIA GeForce GTX 760 o AMD Radeon R7 260x con 2GB VRAM', 'WINDOWS 7, 8.1, 10 (64-BIT Required)',
+        'Intel Core i5-4460 o AMD FX-6300 o superior', '8 GB', '26 GB'),
+       ('11', 'NVIDIA GeForce GTX 1060 o AMD Radeon RX 480 con 3GB VRAM', 'WINDOWS 7, 8.1, 10 (64-BIT Required)',
+        'Intel Core i7-3770 o AMD FX-9590 o superior', '8 GB', '26 GB'),
+       ('11', 'Nvidia GeForce GTX 570, 1 GB | AMD Radeon HD 7850, 2 GB', 'Windows 10, 64-bit',
+        'Intel Core i5-2300 | AMD FX-4350', '4 GB RAM', '10 GB'),
+       ('11', 'Nvidia GeForce GTX 760, 2 GB | AMD Radeon HD 7870, 2 GB', 'Windows 10, 64-bit',
+        'Intel Core i7-3770 | AMD FX-9590', '8 GB RAM', '10 GB'),
+       ('11', 'Nvidia GTX 660 o AMD Radeon HD 7850', 'Windows 10', 'Intel Core i3-3250 o AMD FX-4350', '8 GB RAM',
+        '30 GB'),
+       ('11', 'Nvidia GTX 1060 o AMD Radeon RX 5500 XT', 'Windows 10', 'Intel Core i5-9600k o AMD Ryzen 5 2600',
+        '16 GB RAM', '30 GB'),
+       ('12', 'GeForce GTX 780 / Radeon RX 480 (3GB VRAM)', 'Windows 10 64 bit (version 2004 o posterior)',
+        'Intel Core i5-3330 / AMD FX-8350', '8 GB', '100 GB'),
+       ('12', 'GeForce GTX 1080 / Radeon RX 5700 (8GB VRAM)', 'Windows 10 64 bit (version 2004 o posterior)',
+        'Intel Core i7-3770 / AMD Ryzen 3 3100', '12 GB', '100 GB'),
+       ('12', 'GeForce RTX 2060 / Radeon RX 6600', 'Windows 10/11 64-bit', 'Intel i5-7600K o equivalente AMD', '16 GB',
+        '90 GB SSD'),
+       ('12', 'GeForce RTX 3060 / Radeon RX 6600 XT', 'Windows 10/11 64-bit', 'Ryzen 7 3700X o Intel equivalente',
+        '16 GB', '90 GB SSD');
 
 
 -- a123456. -> Contraseña encriptada con Bcrypt
@@ -83,7 +123,16 @@ VALUES ('PC'),
 
 INSERT INTO `saga` (`id`, `name`)
 VALUES ('1', 'Resident Evil'),
-       ('2', 'Resident Evil');
+       ('2', 'Resident Evil'),
+       ('3', 'Little Nightmares'),
+       ('4', 'Little Nightmares'),
+       ('5', 'Diablo'),
+       ('6', 'Diablo'),
+       ('7', 'Final Fantasy'),
+       ('8', 'Final Fantasy'),
+       ('9', 'Alan Wake'),
+       ('10', 'Alan Wake');
+
 
 
 INSERT INTO `game` (`complete_time`, `story_time`, `crossplay_id`, `id`, `minimum_system_requirement_id`,
@@ -100,7 +149,47 @@ El juego alterna entre ambos personajes, cada uno con su propia perspectiva y á
         'https://cdn.cloudflare.steamstatic.com/steam/apps/883710/header.jpg?t=1701395502',
         '2019/01/25',
         'Resident Evil 2 Remake” brings players back to the terrifying Raccoon City, reimagined from the 1998 horror classic. In this survival horror adventure, players choose between Leon S. Kennedy, a rookie cop, and Claire Redfield, a college student, as they navigate a city overrun by zombies. Their quest for survival reveals the dark side of a bioweapon disaster while they encounter other survivors and face the monstrous results of the outbreak. With revamped gameplay and stunning graphics, the game offers a modern twist on the original’s chilling narrative.',
-        'Resident Evil 2 Remake', 0, 'https://www.youtube.com/watch?v=xtxJtQa6VSw', 2);
+        'Resident Evil 2 Remake', 0, 'https://www.youtube.com/watch?v=xtxJtQa6VSw', 2),
+       (300, 240, 2, 3, '5', '6', '3', 'Imagen de Little Nightmares II',
+        'https://cdn.cloudflare.steamstatic.com/steam/apps/860510/header.jpg?t=1629372719',
+        '2021/02/11',
+        'Little Nightmares II es un juego de plataformas y rompecabezas con elementos de horror. Los jugadores controlan a Mono, un niño atrapado en un mundo distorsionado y oscuro. Junto a Six, la protagonista del primer juego, deben enfrentarse a enemigos aterradores y resolver acertijos para avanzar. La atmósfera inquietante y el estilo artístico único son las señas de identidad del juego.',
+        'Little Nightmares II', 0, 'https://www.youtube.com/watch?v=Td9nPbsDV-0', 1),
+       (300, 240, 2, 4, '7', '8', '3', 'Imagen de Little Nightmares II',
+        'https://cdn.cloudflare.steamstatic.com/steam/apps/860510/header.jpg?t=1629372719',
+        '2021/02/11',
+        'Little Nightmares II is a platformer and puzzle game with horror elements. Players control Mono as he navigates a dark and distorted world, teaming up with Six from the first game to face terrifying enemies and solve puzzles. The game’s eerie atmosphere and unique art style set it apart from other titles in the genre.',
+        'Little Nightmares II', 0, 'https://www.youtube.com/watch?v=Td9nPbsDV-0', 2),
+       (1500, 1200, 2, 5, '9', '10', '4', 'Imagen de Diablo II: Resurrected',
+        'https://cdn.cloudflare.steamstatic.com/steam/apps/1406030/header.jpg?t=1632431742',
+        '2021/09/23',
+        'Diablo II: Resurrected es una remasterización del clásico juego de rol de acción Diablo II y su expansión, Lord of Destruction. Los jugadores asumen el papel de un héroe que debe enfrentarse a las hordas demoníacas del Señor del Terror, Diablo, y sus hermanos. Con gráficos mejorados, sonido actualizado y jugabilidad clásica, esta versión trae de vuelta la intensa experiencia del original con mejoras modernas.',
+        'Diablo II: Resurrected', 0, 'https://www.youtube.com/watch?v=DRP62MGOrU4', 1),
+       (1500, 1200, 2, 6, '11', '12', '4', 'Imagen de Diablo II: Resurrected',
+        'https://cdn.cloudflare.steamstatic.com/steam/apps/1406030/header.jpg?t=1632431742',
+        '2021/09/23',
+        'Diablo II: Resurrected is a remastered version of the classic action RPG Diablo II and its expansion, Lord of Destruction. Players take on the role of a hero who must battle the demonic hordes of the Lord of Terror, Diablo, and his brothers. With enhanced graphics, updated sound, and classic gameplay, this version brings back the intense experience of the original with modern improvements.',
+        'Diablo II: Resurrected', 0, 'https://www.youtube.com/watch?v=DRP62MGOrU4', 2),
+       (2500, 2100, 2, 7, '13', '14', '5', 'Imagen de Final Fantasy VII',
+        'https://cdn.cloudflare.steamstatic.com/steam/apps/39140/header.jpg?t=1603128794',
+        '2020/10/04',
+        'Final Fantasy VII es un clásico juego de rol que sigue la historia de Cloud Strife, un ex-soldado que se une a un grupo de resistencia llamado AVALANCHE para luchar contra la megacorporación Shinra. La historia profundiza en temas de ecoterrorismo, identidad y redención mientras los personajes viajan por un mundo detallado y fascinante. Con su revolucionario sistema de combate y su narrativa épica, Final Fantasy VII ha dejado una marca duradera en la historia de los videojuegos.',
+        'Final Fantasy VII', 0, 'https://www.youtube.com/watch?v=I77s1p2r6rY', 1),
+       (2500, 2100, 2, 8, '15', '16', '5', 'Imagen de Final Fantasy VII',
+        'https://cdn.cloudflare.steamstatic.com/steam/apps/39140/header.jpg?t=1603128794',
+        '2020/10/04',
+        'Final Fantasy VII is a classic role-playing game that follows the story of Cloud Strife, a former soldier who joins a resistance group called AVALANCHE to fight against the megacorporation Shinra. The story delves into themes of eco-terrorism, identity, and redemption as the characters travel through a detailed and fascinating world. With its revolutionary combat system and epic narrative, Final Fantasy VII has left a lasting mark on video game history.',
+        'Final Fantasy VII', 0, 'https://www.youtube.com/watch?v=I77s1p2r6rY', 2),
+       (1200, 900, 2, 9, '17', '18', '6', 'Imagen de Alan Wake 2',
+        'https://cdn.alanwake2.com/header.jpg',
+        '2023/10/17',
+        'Alan Wake 2 es la secuela del aclamado juego de acción y horror psicológico Alan Wake. La historia sigue a Alan Wake, un escritor de novelas de terror, mientras lucha por escapar de una realidad distorsionada y descubrir la verdad detrás de los eventos sobrenaturales que lo rodean. Con gráficos impresionantes, una narrativa envolvente y una jugabilidad que combina acción y misterio, Alan Wake 2 ofrece una experiencia única y aterradora.',
+        'Alan Wake 2', 0, 'https://www.youtube.com/watch?v=8yDO9dDfrLg', 1),
+       (1200, 900, 2, 10, '19', '20', '6', 'Imagen de Alan Wake 2',
+        'https://cdn.alanwake2.com/header.jpg',
+        '2023/10/17',
+        'Alan Wake 2 is the sequel to the acclaimed action and psychological horror game Alan Wake. The story follows Alan Wake, a horror novelist, as he struggles to escape a distorted reality and uncover the truth behind the supernatural events surrounding him. With stunning graphics, an immersive narrative, and gameplay that blends action and mystery, Alan Wake 2 offers a unique and terrifying experience.',
+        'Alan Wake 2', 0, 'https://www.youtube.com/watch?v=8yDO9dDfrLg', 2);
 
 
 INSERT INTO `game_platform` (`game_id`, `platform_id`)
@@ -203,7 +292,8 @@ INSERT INTO dlc (game_id, name, date, sinopsis, alt, image)
 VALUES (1, 'Extra DLC Pack', '2019/02/15',
         'Un paquete de contenido descargable que incluye los siguientes elementos: The 4th Survivor, The Tofu Survivor, Traje de Claire: Elza Walker, Traje de Claire: Military, Traje de Claire: Noir, Traje de Leon: Arklay Sheriff, Traje de Leon: Noir, Modelo de pistola: Samurai Edge',
         'Imagen de DLC', 'https://cdn.cloudflare.steamstatic.com/steam/apps/883710/header.jpg?t=1701395502'),
-         (2, 'Extra DLC Pack', '2019/02/15','A downloadable content pack that includes the following items: The 4th Survivor, The Tofu Survivor, Claire Costume: Elza Walker, Claire Costume: Military, Claire Costume: Noir, Leon Costume: Arklay Sheriff, Leon Costume: Noir, Weapon Model: Samurai Edge',
+       (2, 'Extra DLC Pack', '2019/02/15',
+        'A downloadable content pack that includes the following items: The 4th Survivor, The Tofu Survivor, Claire Costume: Elza Walker, Claire Costume: Military, Claire Costume: Noir, Leon Costume: Arklay Sheriff, Leon Costume: Noir, Weapon Model: Samurai Edge',
         'DLC Image', 'https://cdn.cloudflare.steamstatic.com/steam/apps/883710/header.jpg?t=1701395502');
 
 
@@ -285,12 +375,24 @@ Meanwhile, the gaming community continues to explore the dark corridors of the R
 
 
 INSERT INTO `news_comment` (`id`, `news_id`, `user_id`, `content`, `date`)
-VALUES (NULL, '1', '2', '¡Increíble ver cómo Capcom ha logrado mantener vivo un clásico! ‘Resident Evil 2 Remake’ no solo me trajo recuerdos de mi infancia, sino que también me presentó desafíos completamente nuevos. ¡Espero con ansias el próximo remake!', '2024-01-10T15:16:17.633882315'),
-       (NULL, '1', '3', 'Cada vez que juego ‘Resident Evil 2 Remake’, descubro algo nuevo. La atención al detalle y la atmósfera son impresionantes. Es un ejemplo perfecto de cómo se debe hacer un remake. ¡Bien hecho, Capcom!', '2024-01-20T18:16:17.633882315'),
-       (NULL, '1', '4', 'Como fan de la serie desde el principio, tenía mis dudas sobre este remake, pero Capcom superó todas mis expectativas. La historia, los gráficos y la jugabilidad son de primera calidad. ¡‘Resident Evil 2’ siempre tendrá un lugar especial en mi corazón!', '2024-02-10T20:16:17.633882315'),
-         (NULL, '2', '5', 'It’s amazing to see how Capcom has managed to keep a classic alive! ‘Resident Evil 2 Remake’ not only brought back memories of my childhood but also introduced me to completely new challenges. I can’t wait for the next remake!', '2024-01-10T15:16:17.633882315'),
-         (NULL, '2', '6', 'Every time I play ‘Resident Evil 2 Remake,’ I discover something new. The attention to detail and atmosphere are stunning. It’s a perfect example of how a remake should be done. Well done, Capcom!', '2024-01-20T18:16:17.633882315'),
-            (NULL, '2', '7', 'As a fan of the series from the beginning, I had my doubts about this remake, but Capcom exceeded all my expectations. The story, graphics, and gameplay are top-notch. ‘Resident Evil 2’ will always have a special place in my heart!', '2024-02-10T20:16:17.633882315');
+VALUES (NULL, '1', '2',
+        '¡Increíble ver cómo Capcom ha logrado mantener vivo un clásico! ‘Resident Evil 2 Remake’ no solo me trajo recuerdos de mi infancia, sino que también me presentó desafíos completamente nuevos. ¡Espero con ansias el próximo remake!',
+        '2024-01-10T15:16:17.633882315'),
+       (NULL, '1', '3',
+        'Cada vez que juego ‘Resident Evil 2 Remake’, descubro algo nuevo. La atención al detalle y la atmósfera son impresionantes. Es un ejemplo perfecto de cómo se debe hacer un remake. ¡Bien hecho, Capcom!',
+        '2024-01-20T18:16:17.633882315'),
+       (NULL, '1', '4',
+        'Como fan de la serie desde el principio, tenía mis dudas sobre este remake, pero Capcom superó todas mis expectativas. La historia, los gráficos y la jugabilidad son de primera calidad. ¡‘Resident Evil 2’ siempre tendrá un lugar especial en mi corazón!',
+        '2024-02-10T20:16:17.633882315'),
+       (NULL, '2', '5',
+        'It’s amazing to see how Capcom has managed to keep a classic alive! ‘Resident Evil 2 Remake’ not only brought back memories of my childhood but also introduced me to completely new challenges. I can’t wait for the next remake!',
+        '2024-01-10T15:16:17.633882315'),
+       (NULL, '2', '6',
+        'Every time I play ‘Resident Evil 2 Remake,’ I discover something new. The attention to detail and atmosphere are stunning. It’s a perfect example of how a remake should be done. Well done, Capcom!',
+        '2024-01-20T18:16:17.633882315'),
+       (NULL, '2', '7',
+        'As a fan of the series from the beginning, I had my doubts about this remake, but Capcom exceeded all my expectations. The story, graphics, and gameplay are top-notch. ‘Resident Evil 2’ will always have a special place in my heart!',
+        '2024-02-10T20:16:17.633882315');
 
 INSERT INTO `feature` (`name`, `image`, `alt`)
 VALUES ('Un Jugador', 'dassa', 'asdsadas'),
@@ -327,10 +429,14 @@ VALUES ('2023-01-30T18:16:17.633882315', 0, 1, 10, 2, 'Un Clásico Reinventado',
         'Este juego redefine lo que debería ser un remake. Con una narrativa envolvente y un diseño de sonido que te sumerge completamente, ‘Resident Evil 2 Remake’ es una experiencia que ningún fan del género debería perderse.'),
        ('2023-12-30T18:16:17.633882315', 3, 1, 7, 5, 'Más que Nostalgia',
         'Al principio, compré ‘Resident Evil 2 Remake’ por la nostalgia, pero lo que encontré fue una obra de arte moderna. Los personajes son profundos, el mundo es inmersivo y cada rincón de Raccoon City está lleno de detalles. Sin embargo, la IA de los enemigos a veces deja que desear.'),
-         ('2023-01-30T18:16:17.633882315', 0, 2, 10, 6, 'A Classic Reimagined', 'Capcom has done a masterful job bringing ‘Resident Evil 2’ into the 21st century. The gameplay is smooth, the graphics are stunning, and the story feels as fresh as it did in 1998. It’s a remake that respects the original but isn’t afraid to innovate. A must-play for any series fan!'),
-         ('2023-10-30T18:16:17.633882315', 2, 2, 8, 7, 'High-Definition Horror', 'Resident Evil 2 Remake’ kept me on the edge of my seat from start to finish. The tension is constant, and the scares are well-executed. While some puzzles feel a bit dated, the overall experience is exceptional.'),
-         ('2023-11-30T18:16:17.633882315', 1, 2, 9, 8, 'A Horror Masterpiece', 'This game redefines what a remake should be. With an immersive narrative and sound design that fully immerses you, ‘Resident Evil 2 Remake’ is an experience no genre fan should miss.'),
-         ('2023-12-30T18:16:17.633882315', 3, 2, 7, 9, 'More Than Nostalgia', 'At first, I bought ‘Resident Evil 2 Remake’ for the nostalgia, but what I found was a modern masterpiece. The characters are deep, the world is immersive, and every corner of Raccoon City is filled with detail. However, enemy AI can sometimes leave something to be desired.');
+       ('2023-01-30T18:16:17.633882315', 0, 2, 10, 6, 'A Classic Reimagined',
+        'Capcom has done a masterful job bringing ‘Resident Evil 2’ into the 21st century. The gameplay is smooth, the graphics are stunning, and the story feels as fresh as it did in 1998. It’s a remake that respects the original but isn’t afraid to innovate. A must-play for any series fan!'),
+       ('2023-10-30T18:16:17.633882315', 2, 2, 8, 7, 'High-Definition Horror',
+        'Resident Evil 2 Remake’ kept me on the edge of my seat from start to finish. The tension is constant, and the scares are well-executed. While some puzzles feel a bit dated, the overall experience is exceptional.'),
+       ('2023-11-30T18:16:17.633882315', 1, 2, 9, 8, 'A Horror Masterpiece',
+        'This game redefines what a remake should be. With an immersive narrative and sound design that fully immerses you, ‘Resident Evil 2 Remake’ is an experience no genre fan should miss.'),
+       ('2023-12-30T18:16:17.633882315', 3, 2, 7, 9, 'More Than Nostalgia',
+        'At first, I bought ‘Resident Evil 2 Remake’ for the nostalgia, but what I found was a modern masterpiece. The characters are deep, the world is immersive, and every corner of Raccoon City is filled with detail. However, enemy AI can sometimes leave something to be desired.');
 
 
 
