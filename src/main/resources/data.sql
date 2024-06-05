@@ -121,7 +121,7 @@ VALUES (2100, 540, 2, 1, '1', '2', '1', 'Imagen del Resident Evil 2 Remake',
         'Resident Evil 2 Remake” es una versión completamente reimaginada del clásico juego de 1998. Ambientado en la ciudad de Raccoon City, sumida en un apocalipsis zombi, los jugadores controlan a Leon S. Kennedy, un policía novato, y a Claire Redfield, una estudiante universitaria. Ambos buscan sobrevivir y descubrir la verdad detrás del brote que ha transformado a los ciudadanos en muertos vivientes.
 El juego alterna entre ambos personajes, cada uno con su propia perspectiva y áreas de exploración. Leon se encuentra con Ada Wong, una agente federal enigmática, mientras que Claire intenta proteger a Sherry Birkin, la hija de un ejecutivo de Umbrella. Con una jugabilidad mejorada y gráficos actualizados, el remake ofrece tanto a los nuevos jugadores como a los fans del original una experiencia de terror intensa y envolvente.',
         'Resident Evil 2 Remake', 0, 'https://www.youtube.com/watch?v=xtxJtQa6VSw', 1),
-       (2100, 540, 2, 2, '3', '4', '2', 'Imagen del Resident Evil 2 Remake',
+       (2100, 540, 1, 2, '3', '4', '2', 'Imagen del Resident Evil 2 Remake',
         'https://cdn.cloudflare.steamstatic.com/steam/apps/883710/header.jpg?t=1701395502',
         '2019/01/25',
         'Resident Evil 2 Remake” brings players back to the terrifying Raccoon City, reimagined from the 1998 horror classic. In this survival horror adventure, players choose between Leon S. Kennedy, a rookie cop, and Claire Redfield, a college student, as they navigate a city overrun by zombies. Their quest for survival reveals the dark side of a bioweapon disaster while they encounter other survivors and face the monstrous results of the outbreak. With revamped gameplay and stunning graphics, the game offers a modern twist on the original’s chilling narrative.',
@@ -131,7 +131,7 @@ El juego alterna entre ambos personajes, cada uno con su propia perspectiva y á
         '2021/02/11',
         'Little Nightmares II es un juego de plataformas y rompecabezas con elementos de horror. Los jugadores controlan a Mono, un niño atrapado en un mundo distorsionado y oscuro. Junto a Six, la protagonista del primer juego, deben enfrentarse a enemigos aterradores y resolver acertijos para avanzar. La atmósfera inquietante y el estilo artístico único son las señas de identidad del juego.',
         'Little Nightmares II', 0, 'https://www.youtube.com/watch?v=Td9nPbsDV-0', 1),
-       (300, 240, 2, 4, '7', '8', '3', 'Imagen de Little Nightmares II',
+       (300, 240, 1, 4, '7', '8', '3', 'Imagen de Little Nightmares II',
         'https://cdn.cloudflare.steamstatic.com/steam/apps/860510/header.jpg?t=1629372719',
         '2021/02/11',
         'Little Nightmares II is a platformer and puzzle game with horror elements. Players control Mono as he navigates a dark and distorted world, teaming up with Six from the first game to face terrifying enemies and solve puzzles. The game’s eerie atmosphere and unique art style set it apart from other titles in the genre.',
@@ -141,17 +141,17 @@ El juego alterna entre ambos personajes, cada uno con su propia perspectiva y á
         '2021/09/23',
         'Diablo II: Resurrected es una remasterización del clásico juego de rol de acción Diablo II y su expansión, Lord of Destruction. Los jugadores asumen el papel de un héroe que debe enfrentarse a las hordas demoníacas del Señor del Terror, Diablo, y sus hermanos. Con gráficos mejorados, sonido actualizado y jugabilidad clásica, esta versión trae de vuelta la intensa experiencia del original con mejoras modernas.',
         'Diablo II: Resurrected', 0, 'https://www.youtube.com/watch?v=DRP62MGOrU4', 1),
-       (1500, 1200, 2, 6, '11', '12', '4', 'Imagen de Diablo II: Resurrected',
+       (1500, 1200, 1, 6, '11', '12', '4', 'Imagen de Diablo II: Resurrected',
         'https://cdn.cloudflare.steamstatic.com/steam/apps/1406030/header.jpg?t=1632431742',
         '2021/09/23',
         'Diablo II: Resurrected is a remastered version of the classic action RPG Diablo II and its expansion, Lord of Destruction. Players take on the role of a hero who must battle the demonic hordes of the Lord of Terror, Diablo, and his brothers. With enhanced graphics, updated sound, and classic gameplay, this version brings back the intense experience of the original with modern improvements.',
         'Diablo II: Resurrected', 0, 'https://www.youtube.com/watch?v=DRP62MGOrU4', 2),
-       (2500, 2100, 2, 7, '13', '14', '5', 'Imagen de Final Fantasy VII',
+       (2500, 2100, 1, 7, '13', '14', '5', 'Imagen de Final Fantasy VII',
         'https://cdn.cloudflare.steamstatic.com/steam/apps/39140/header.jpg?t=1603128794',
         '2020/10/04',
         'Final Fantasy VII es un clásico juego de rol que sigue la historia de Cloud Strife, un ex-soldado que se une a un grupo de resistencia llamado AVALANCHE para luchar contra la megacorporación Shinra. La historia profundiza en temas de ecoterrorismo, identidad y redención mientras los personajes viajan por un mundo detallado y fascinante. Con su revolucionario sistema de combate y su narrativa épica, Final Fantasy VII ha dejado una marca duradera en la historia de los videojuegos.',
         'Final Fantasy VII', 0, 'https://www.youtube.com/watch?v=I77s1p2r6rY', 1),
-       (2500, 2100, 2, 8, '15', '16', '5', 'Imagen de Final Fantasy VII',
+       (2500, 2100, 1, 8, '15', '16', '5', 'Imagen de Final Fantasy VII',
         'https://cdn.cloudflare.steamstatic.com/steam/apps/39140/header.jpg?t=1603128794',
         '2020/10/04',
         'Final Fantasy VII is a classic role-playing game that follows the story of Cloud Strife, a former soldier who joins a resistance group called AVALANCHE to fight against the megacorporation Shinra. The story delves into themes of eco-terrorism, identity, and redemption as the characters travel through a detailed and fascinating world. With its revolutionary combat system and epic narrative, Final Fantasy VII has left a lasting mark on video game history.',
@@ -224,23 +224,25 @@ VALUES (5, 1), -- Diablo II: Resurrected en PC
        (5, 5), -- Diablo II: Resurrected en Xbox Series X
        (6, 1), -- Diablo II: Resurrected en PC
        (6, 2), -- Diablo II: Resurrected en PS5
-       (6, 5);-- Diablo II: Resurrected en Xbox Series X
+       (6, 5);
+-- Diablo II: Resurrected en Xbox Series X
 
 
-       -- Final Fantasy VII
+-- Final Fantasy VII
 INSERT INTO `game_platform` (`game_id`, `platform_id`)
 VALUES (7, 1), -- Final Fantasy VII en PC
        (7, 2), -- Final Fantasy VII en PS5
        (7, 5), -- Final Fantasy VII en Xbox Series X
        (8, 1), -- Final Fantasy VII en PC
        (8, 2), -- Final Fantasy VII en PS5
-       (8, 5);-- Final Fantasy VII en Xbox Series X
+       (8, 5);
+-- Final Fantasy VII en Xbox Series X
 
-       -- Alan Wake 2
+-- Alan Wake 2
 INSERT INTO `game_platform` (`game_id`, `platform_id`)
-VALUES (9, 1), -- Alan Wake 2 en PC
-       (9, 2), -- Alan Wake 2 en PS5
-       (9, 5), -- Alan Wake 2 en Xbox Series X
+VALUES (9, 1),  -- Alan Wake 2 en PC
+       (9, 2),  -- Alan Wake 2 en PS5
+       (9, 5),  -- Alan Wake 2 en Xbox Series X
        (10, 1), -- Alan Wake 2 en PC
        (10, 2), -- Alan Wake 2 en PS5
        (10, 5);-- Alan Wake 2 en Xbox Series X
@@ -312,6 +314,16 @@ INSERT INTO game_developer (game_id, developer_id)
 VALUES (5, 11),
        (6, 11);
 
+-- Final Fantasy VII
+INSERT INTO game_developer (game_id, developer_id)
+VALUES (7, 4),
+       (8, 4);
+
+-- Alan Wake 2
+INSERT INTO game_developer (game_id, developer_id)
+VALUES (9, 2),
+       (10, 2);
+
 INSERT INTO distributor (name)
 VALUES ('Capcom'),
        ('Epic Games'),
@@ -349,6 +361,16 @@ INSERT INTO game_distributor (game_id, distributor_id)
 VALUES (5, 17),
        (6, 17);
 
+-- Final Fantasy VII
+INSERT INTO game_distributor (game_id, distributor_id)
+VALUES (7, 4),
+       (8, 4);
+
+-- Alan Wake 2
+INSERT INTO game_distributor (game_id, distributor_id)
+VALUES (9, 2),
+       (10, 2);
+
 -- Resident Evil 2 Remake
 INSERT INTO dlc (game_id, name, date, sinopsis, alt, image)
 VALUES (1, 'Extra DLC Pack', '2019/02/15',
@@ -370,11 +392,29 @@ VALUES (3, 'Secrets of the Maw Expansion Pass', '2021/02/11',
 -- Diablo II: Resurrected
 INSERT INTO dlc (game_id, name, date, sinopsis, alt, image)
 VALUES (5, 'Lord of Destruction Expansion', '2021/09/23',
-        'An expansion pack that adds new content to the base game, including new character classes, items, and areas to explore.',
+        'Un paquete de expansión que agrega nuevo contenido al juego base, incluyendo nuevas clases de personajes, objetos y áreas por explorar.',
         'DLC Image', 'https://cdn.cloudflare.steamstatic.com/steam/apps/1406030/header.jpg?t=1632431742'),
        (6, 'Lord of Destruction Expansion', '2021/09/23',
         'An expansion pack that adds new content to the base game, including new character classes, items, and areas to explore.',
         'DLC Image', 'https://cdn.cloudflare.steamstatic.com/steam/apps/1406030/header.jpg?t=1632431742');
+
+-- Final Fantasy VII
+INSERT INTO dlc (game_id, name, date, sinopsis, alt, image)
+VALUES (7, 'Remake Intergrade', '2020/10/04',
+        'Un paquete de contenido descargable que incluye los siguientes elementos: Episodio de Yuffie, Mini-juego de Fort Condor, Nueva Materia de Invocación, Nuevas Armas',
+        'DLC Image', 'https://cdn.cloudflare.steamstatic.com/steam/apps/39140/header.jpg?t=1603128794'),
+       (8, 'Remake Intergrade', '2020/10/04',
+        'A downloadable content pack that includes the following items: Yuffie Episode, Fort Condor Mini-Game, New Summon Materia, New Weapons',
+        'DLC Image', 'https://cdn.cloudflare.steamstatic.com/steam/apps/39140/header.jpg?t=1603128794');
+
+-- Alan Wake 2
+INSERT INTO dlc (game_id, name, date, sinopsis, alt, image)
+VALUES (9, 'AWE Expansion', '2023/10/17',
+        'Un paquete de expansión que continúa la historia de Alan Wake, introduciendo nuevos personajes, ubicaciones y misterios por resolver.',
+        'DLC Image', 'https://cdn.alanwake2.com/header.jpg'),
+       (10, 'AWE Expansion', '2023/10/17',
+        'An expansion pack that continues the story of Alan Wake, introducing new characters, locations, and mysteries to solve.',
+        'DLC Image', 'https://cdn.alanwake2.com/header.jpg');
 
 
 INSERT INTO language (name)
@@ -450,7 +490,35 @@ VALUES (5, 1, true, true, true),  -- Español
        (6, 12, true, true, true), -- Francés
        (6, 13, true, true, true), -- Alemán
        (6, 14, true, true, true), -- Italiano
-       (6, 15, true, true, false); -- Portugués
+       (6, 15, true, true, false);
+-- Portugués
+
+
+-- Final Fantasy VII
+INSERT INTO availability (game_id, language_id, interface_language, subtitle_language, audio_language)
+VALUES (7, 1, true, true, false),  -- Español
+       (7, 2, true, true, true),   -- Inglés
+       (7, 4, true, true, false),  -- Alemán
+       (7, 5, true, true, false),  -- Italiano
+       (8, 10, true, true, false), -- Español
+       (8, 11, true, true, true),  -- Inglés
+       (8, 13, true, true, false), -- Alemán
+       (8, 14, true, true, false); -- Italiano
+
+       -- Alan Wake 2
+INSERT INTO availability (game_id, language_id, interface_language, subtitle_language, audio_language)
+VALUES (9, 1, true, true, true),  -- Español
+       (9, 2, true, true, true),  -- Inglés
+       (9, 3, true, true, true),  -- Francés
+       (9, 4, true, true, true),  -- Alemán
+       (9, 5, true, true, true),  -- Italiano
+       (9, 6, true, true, false), -- Portugués
+       (10, 10, true, true, true), -- Español
+       (10, 11, true, true, true), -- Inglés
+       (10, 12, true, true, true), -- Francés
+       (10, 13, true, true, true), -- Alemán
+       (10, 14, true, true, true), -- Italiano
+       (10, 15, true, true, false);
 
 
 INSERT INTO `news_author` (`id`, `name`, `surname`, `image`, `alt`)
@@ -554,7 +622,64 @@ With special events scheduled throughout the season and the chance to climb the 
         'The latest season brings renewed challenges and exclusive rewards for the bravest players of Sanctuary.',
         '2024-05-01T18:16:17.633882315', 'Diablo II: Resurrected Launches Season 7 with New Surprises',
         'https://miro.medium.com/v2/resize:fit:933/1*w4DxUy0PMoqeq25UXfyL0g@2x.jpeg',
-        'Imagen de portada', 1);
+        'Imagen de portada', 2);
+
+-- Final Fantasy VII
+INSERT INTO `news` (`game_id`, `id`, `news_author_id`, `content`, `subtitle`, `date`, `headline`, `image`, `alt`,
+                    `translation_id`)
+VALUES (7, 7, 1,
+        'Mientras el mundo aún celebra el lanzamiento de Final Fantasy VII Rebirth, Square Enix ya está preparando el terreno para la tercera y última parte de la trilogía del remake. Con el compromiso de ofrecer “aún más libertad” en el combate y una jugabilidad renovada, la próxima entrega se perfila como la más ambiciosa de la serie.
+
+La historia de Cloud y sus compañeros llegará a su clímax en una aventura que promete no solo cerrar la trama con broche de oro, sino también introducir elementos de juego que sorprenderán incluso a los fans más acérrimos del título original. La expectativa es alta, y el equipo de desarrollo está decidido a superarla.
+
+Con una fecha de lanzamiento tentativa para 2027, la tercera parte de Final Fantasy VII Remake se está desarrollando con la promesa de mantener la calidad y la integridad que han caracterizado a la serie hasta ahora. Los jugadores pueden esperar un mundo más expansivo, con localizaciones detalladas y sin tiempos de carga, gracias a la exclusividad en la plataforma PlayStation.
+
+El legado de Final Fantasy VII es indiscutible, y su influencia en la cultura de los videojuegos es incuestionable. Con esta nueva entrega, Square Enix no solo busca honrar ese legado, sino también llevarlo a nuevas alturas, asegurando que la saga continúe siendo relevante para las nuevas generaciones de jugadores.',
+        'La tercera entrega del remake promete una libertad sin precedentes en el combate y una narrativa que concluirá la épica saga.',
+        '2024-05-01T18:16:17.633882315', 'Final Fantasy VII: El Legado Continúa con Innovaciones Revolucionarias',
+        'https://miro.medium.com/v2/resize:fit:933/1*w4DxUy0PMoqeq25UXfyL0g@2x.jpeg',
+        'Imagen de portada', 1),
+       (8, 8, 2,
+        'As the world still celebrates the release of Final Fantasy VII Rebirth, Square Enix is already laying the groundwork for the third and final part of the remake trilogy. Committed to offering “even more freedom” in combat and revamped gameplay, the upcoming installment is shaping up to be the most ambitious in the series.
+
+The story of Cloud and his companions will reach its climax in an adventure that promises not only to close the plot with a golden clasp but also to introduce gameplay elements that will surprise even the most die-hard fans of the original title. Expectations are high, and the development team is determined to exceed them.
+
+With a tentative release date set for 2027, the third part of Final Fantasy VII Remake is being developed with the promise of maintaining the quality and integrity that have characterized the series so far. Players can expect a more expansive world, with detailed locations and no loading times, thanks to its exclusivity on the PlayStation platform.
+
+The legacy of Final Fantasy VII is undeniable, and its influence on video game culture is unquestionable. With this new installment, Square Enix seeks not only to honor that legacy but also to elevate it to new heights, ensuring that the saga continues to be relevant for new generations of players.',
+        'The third installment of the remake promises unprecedented freedom in combat and a narrative that will conclude the epic saga.',
+        '2024-05-01T18:16:17.633882315', 'Final Fantasy VII: The Legacy Continues with Groundbreaking Innovations',
+        'https://miro.medium.com/v2/resize:fit:933/1*w4DxUy0PMoqeq25UXfyL0g@2x.jpeg',
+        'Imagen de portada', 2);
+
+
+-- Alan Wake 2
+INSERT INTO `news` (`game_id`, `id`, `news_author_id`, `content`, `subtitle`, `date`, `headline`, `image`, `alt`,
+                    `translation_id`)
+VALUES (9, 9, 1,
+        'Los fanáticos de Alan Wake 2 están de enhorabuena, ya que Remedy Entertainment ha anunciado el lanzamiento del primer DLC para el juego, titulado “Night Springs”. Este nuevo contenido, que se espera sea presentado en detalle durante el Summer Game Fest 20241, promete llevar a los jugadores a una nueva aventura llena de misterio y suspense.
+
+Desde su lanzamiento, Alan Wake 2 ha cautivado a los jugadores con su combinación única de narrativa de terror psicológico y acción trepidante. El juego ha sido un éxito comercial, alcanzando 1,3 millones de ventas y convirtiéndose en el título más rápidamente vendido de Remedy2. Con “Night Springs”, la compañía busca no solo continuar el éxito del juego sino también ofrecer a los jugadores una experiencia aún más rica y profunda.
+
+El DLC llevará a Alan Wake a explorar los confines de la realidad y la ficción, enfrentándose a nuevos enemigos y descubriendo secretos que cambiarán su percepción del mundo que lo rodea. Además, se espera que “Night Springs” introduzca nuevos elementos de juego y mecánicas que enriquecerán la jugabilidad ya de por sí sólida del título principal.
+
+La comunidad de Alan Wake 2 está llena de especulaciones y teorías sobre lo que este nuevo contenido traerá. Lo que es seguro es que la oscuridad nunca ha sido tan atractiva, y los jugadores están ansiosos por sumergirse una vez más en el universo de Alan Wake.',
+        'El esperado contenido descargable “Night Springs” promete expandir el universo de Alan Wake con nuevas historias y desafíos.',
+        '2024-01-06T18:16:17.633882315', 'Alan Wake 2: La Oscuridad se Ilumina con el Anuncio del Nuevo DLC',
+        'https://miro.medium.com/v2/resize:fit:933/1*w4DxUy0PMoqeq25UXfyL0g@2x.jpeg',
+        'Imagen de portada', 1),
+       (10, 10, 2,
+        'Fans of Alan Wake 2 are in for a treat, as Remedy Entertainment has announced the release of the first DLC for the game, titled “Night Springs”. This new content, expected to be detailed during the Summer Game Fest 2024, promises to take players on a new adventure filled with mystery and suspense.
+
+Since its release, Alan Wake 2 has captivated players with its unique blend of psychological horror narrative and thrilling action. The game has been a commercial success, reaching 1.3 million sales and becoming Remedy’s fastest-selling title. With “Night Springs”, the company aims not only to continue the game’s success but also to offer players an even richer and deeper experience.
+
+The DLC will take Alan Wake to explore the boundaries of reality and fiction, facing new enemies and uncovering secrets that will change his perception of the world around him. Additionally, “Night Springs” is expected to introduce new gameplay elements and mechanics that will enrich the already solid gameplay of the main title.
+
+The Alan Wake 2 community is filled with speculation and theories about what this new content will bring. What is certain is that darkness has never been so appealing, and players are eager to dive once again into the universe of Alan Wake.',
+        'The anticipated downloadable content “Night Springs” promises to expand the Alan Wake universe with new stories and challenges.',
+        '2024-01-06T18:16:17.633882315', 'Alan Wake 2: The Darkness Shines with the Announcement of New DLC',
+        'https://miro.medium.com/v2/resize:fit:933/1*w4DxUy0PMoqeq25UXfyL0g@2x.jpeg',
+        'Imagen de portada', 2);
 
 -- Little Nightmares II
 INSERT INTO `news_comment` (`id`, `news_id`, `user_id`, `content`, `date`)
@@ -598,6 +723,49 @@ VALUES (NULL, '5', '2',
        (NULL, '6', '7',
         'As a Diablo fan since the first game, I must say that the Diablo II: Resurrected season 7 has exceeded my expectations. The new challenges and rewards keep the experience fresh and exciting. I hope Blizzard continues to support the game with more content!',
         '2024-05-15T18:16:17.633882315');
+
+
+-- Final Fantasy VII
+INSERT INTO `news_comment` (`id`, `news_id`, `user_id`, `content`, `date`)
+VALUES (NULL, '7', '2',
+        '¡Estoy emocionado de Final Fantasy VII Remake! La historia y los personajes son tan cautivadores que no puedo esperar a ver cómo se desarrolla la trama. ¡Square Enix nunca deja de sorprenderme!',
+        '2024-05-05T15:16:17.633882315'),
+       (NULL, '7', '3',
+        'Final Fantasy VII fue un juego increíble, y estoy seguro de que la tercera parte será aún mejor. La narrativa y el mundo de juego son tan ricos y detallados que es fácil perderse en ellos. ¡Estoy ansioso por ver qué más tiene Square Enix en la tienda!',
+        '2024-05-15T18:16:17.633882315'),
+       (NULL, '7', '4',
+        'Como fan de Final Fantasy desde hace años, no puedo esperar a ver cómo se desarrolla la trama del remake. La calidad y la atención al detalle de Square Enix son incomparables. ¡Estoy seguro de que la tercera parte será un éxito rotundo!',
+        '2024-06-01T20:16:17.633882315'),
+       (NULL, '8', '5',
+        'I’m excited for Final Fantasy VII Remake! The story and characters are so captivating that I can’t wait to see how the plot unfolds. Square Enix never ceases to amaze me!',
+        '2024-05-05T15:16:17.633882315'),
+       (NULL, '8', '6',
+        'Final Fantasy VII was an amazing game, and I’m sure the third part will be even better. The narrative and game world are so rich and detailed that it’s easy to get lost in them. I’m eager to see what else Square Enix has in store!',
+        '2024-05-15T18:16:17.633882315'),
+       (NULL, '8', '7',
+        'As a longtime Final Fantasy fan, I can’t wait to see how the plot unfolds in the second part of the remake. Square Enix’s quality and attention to detail are unmatched. I’m sure the third part will   be a resounding success!',
+        '2024-06-01T20:16:17.633882315');
+
+-- Alan Wake 2
+INSERT INTO `news_comment` (`id`, `news_id`, `user_id`, `content`, `date`)
+VALUES (NULL, '9', '2',
+        '¡El DLC de Alan Wake 2 suena increíble! Estoy emocionado de ver a dónde llevará la historia y qué nuevos desafíos enfrentará Alan. ¡Remedy Entertainment nunca deja de sorprenderme con sus juegos!',
+        '2024-02-06T18:16:17.633882315'),
+       (NULL, '9', '3',
+        'Alan Wake 2 ha sido una experiencia increíble desde el principio, y el anuncio del DLC solo aumenta mi emoción. La narrativa y el mundo del juego son tan envolventes que es difícil dejar de jugar. ¡Espero que el DLC sea tan bueno como el juego principal!',
+        '2024-03-06T18:16:17.633882315'),
+       (NULL, '9', '4',
+        'Como fan de Alan Wake desde el primer juego, no puedo esperar a sumergirme en el DLC. La atmósfera y el misterio que rodean a Alan son simplemente fascinantes. ¡Espero que el DLC ofrezca más de lo que hace que la serie sea tan especial!',
+        '2024-04-06T18:16:17.633882315'),
+       (NULL, '10', '5',
+        'The Alan Wake 2 DLC sounds amazing! I’m excited to see where the story will go and what new challenges Alan will face. Remedy Entertainment never ceases to amaze me with their games!',
+        '2024-02-06T18:16:17.633882315'),
+       (NULL, '10', '6',
+        'Alan Wake 2 has been an incredible experience from the start, and the DLC announcement only increases my excitement. The narrative and game world are so immersive that it’s hard to stop playing. I hope the DLC is as good as the main game!',
+        '2024-03-06T18:16:17.633882315'),
+       (NULL, '10', '7',
+        'As a fan of Alan Wake since the first game, I can’t wait to dive into the DLC. The atmosphere and mystery surrounding Alan are simply fascinating. I hope the DLC offers more of what makes the series so special!',
+        '2024-04-06T18:16:17.633882315');
 
 
 INSERT INTO `feature` (`name`, `image`, `alt`)
@@ -650,6 +818,20 @@ VALUES (5, 1, NULL), -- Asociar el juego con ID 5 con la característica con ID 
        (6, 9, NULL),
        (6, 11, 8);
 
+-- Final Fantasy VII
+INSERT INTO `game_feature` (`game_id`, `feature_id`, `number_player_id`)
+VALUES (7, 1, NULL), -- Asociar el juego con ID 7 con la característica con ID 1 y sin NumberPlayer
+       (7, 3, NULL), -- Asociar el juego con ID 7 con la característica con ID 2 y NumberPlayer con ID 1
+       (8, 7, NULL), -- Asociar el juego con ID 7 con la característica con ID 1 y sin NumberPlayer
+       (8, 9, NULL);
+
+-- Alan Wake 2
+INSERT INTO `game_feature` (`game_id`, `feature_id`, `number_player_id`)
+VALUES (9, 1, NULL), -- Asociar el juego con ID 9 con la característica con ID 1 y sin NumberPlayer
+       (9, 3, NULL), -- Asociar el juego con ID 9 con la característica con ID 2 y NumberPlayer con ID 1
+       (10, 7, NULL), -- Asociar el juego con ID 9 con la característica con ID 1 y sin NumberPlayer
+       (10, 9, NULL);
+
 -- Residet Evil 2 Remake
 INSERT INTO `review` (`date`, `dislike`, `game_id`, `like`, `user_id`, `title`, `content`)
 VALUES ('2023-01-30T18:16:17.633882315', 0, 1, 10, 2, 'Un Clásico Reinventado',
@@ -701,6 +883,38 @@ VALUES ('2024-05-01T18:16:17.633882315', 1, 5, 15, 2, 'Un Clásico Reimaginado',
         'Diablo II: Resurrected remains one of the greatest ARPGs of all time. Season 7 has been a resounding success, and Blizzard has once again shown why it is one of the genre leaders.');
 
 
+-- Final Fantasy VII
+INSERT INTO `review` (`date`, `dislike`, `game_id`, `like`, `user_id`, `title`, `content`)
+VALUES ('2024-05-01T18:16:17.633882315', 1, 7, 15, 2, 'Un Regreso Épico',
+        'Final Fantasy VII es un triunfo de la narrativa y el diseño de juego. La tercera parte promete cerrar la trilogía con broche de oro, y los fans están ansiosos por ver cómo se desarrolla la historia. ¡Square Enix ha superado todas las expectativas con este remake!'),
+       ('2024-05-01T18:16:17.633882315', 0, 7, 12, 3, 'Una Aventura Inolvidable',
+        'Final Fantasy VII Remake promete ser un hito en la historia de los videojuegos. Con una jugabilidad renovada y una narrativa épica, este título se perfila como uno de los mejores de la serie. ¡Los fans no pueden esperar a sumergirse en el mundo de Midgar una vez más!'),
+       ('2024-05-01T18:16:17.633882315', 2, 7, 13, 4, 'Un Clásico que se Reinventa',
+        'Final Fantasy VII es un remake que supera al original en todos los aspectos. La segunda parte promete ser un viaje emocionante y lleno de sorpresas. ¡Square Enix ha demostrado una vez más por qué es uno de los mejores estudios de desarrollo de videojuegos!'),
+       ('2024-05-01T18:16:17.633882315', 1, 8, 15, 6, 'An Epic Return',
+        'Final Fantasy VII is a triumph of narrative and game design. The third part promises to close the trilogy with a golden clasp, and fans are eager to see how the story unfolds. Square Enix has exceeded all expectations with this remake!'),
+       ('2024-05-01T18:16:17.633882315', 0, 8, 12, 7, 'An Unforgettable Adventure',
+        'Final Fantasy VII Remake promises to be a milestone in video game history. With revamped gameplay and an epic narrative, this title is shaping up to be one of the best in the series. Fans can’t wait to dive back into the world of Midgar once more!'),
+       ('2024-05-01T18:16:17.633882315', 2, 8, 13, 8, 'A Classic Reinvented',
+        'Final Fantasy VII is a remake that surpasses the original in every aspect. The third part promises to be an exciting journey full of surprises. Square Enix has once again shown why it is one of the best game development studios!');
+
+-- Alan Wake 2
+INSERT INTO `review` (`date`, `dislike`, `game_id`, `like`, `user_id`, `title`, `content`)
+VALUES ('2024-01-06T18:16:17.633882315', 1, 9, 15, 2, 'Un Regreso Triunfal',
+        'Alan Wake 2 ha superado todas las expectativas. La narrativa es tan envolvente como siempre, y el nuevo contenido promete expandir el universo de Alan de formas inimaginables. ¡Remedy Entertainment ha creado una obra maestra del terror psicológico!'),
+       ('2024-01-06T18:16:17.633882315', 0, 9, 12, 3, 'Una Aventura Inolvidable',
+        'El DLC de Alan Wake 2 es una adición bienvenida a un juego ya excepcional. La historia es intrigante, los personajes son profundos y la atmósfera es inquietante. ¡Espero que este sea solo el comienzo de una nueva era para la franquicia!'),
+       ('2024-01-06T18:16:17.633882315', 2, 9, 13, 4, 'Un Clásico que se Reinventa',
+        'Alan Wake 2 es un regreso triunfal para Remedy Entertainment. La narrativa es tan cautivadora como siempre, y el nuevo contenido promete llevar a los jugadores a lugares nunca antes vistos. ¡Este es un juego que ningún fan del terror psicológico debería perderse!'),
+       ('2024-01-06T18:16:17.633882315', 1, 10, 15, 6, 'A Triumphant Return',
+        'Alan Wake 2 has exceeded all expectations. The narrative is as immersive as ever, and the new content promises to expand Alan’s universe in unimaginable ways. Remedy Entertainment has created a masterpiece of psychological horror!'),
+       ('2024-01-06T18:16:17.633882315', 0, 10, 12, 7, 'An Unforgettable Adventure',
+        'Alan Wake 2’s DLC is a welcome addition to an already exceptional game. The story is intriguing, the characters are deep, and the atmosphere is haunting. I hope this is just the beginning of a new era for the franchise!'),
+       ('2024-01-06T18:16:17.633882315', 2, 10, 13, 8, 'A Classic Reinvented',
+        'Alan Wake 2 is a triumphant return for Remedy Entertainment. The narrative is as captivating as ever, and the new content promises to take players to places never before seen. This is a game no psychological horror fan should miss!');
+
+
+
 -- Resident Evil 2 Remake
 INSERT INTO `game_score` (`score`, `date`, `game_id`, `id`, `user_id`)
 VALUES ('7', '2023-01-30T18:16:17.633882315', '1', NULL, '2'),
@@ -714,21 +928,37 @@ VALUES ('7', '2023-01-30T18:16:17.633882315', '1', NULL, '2'),
 
 -- Little Nightmares II
 INSERT INTO `game_score` (`score`, `date`, `game_id`, `id`, `user_id`)
-VALUES ('9', '2024-06-05T08:40:57.000000', '4', NULL, '2'),
-       ('8', '2024-06-05T08:40:57.000000', '4', NULL, '3'),
-       ('8', '2024-06-05T08:40:57.000000', '4', NULL, '4'),
-       ('9', '2024-06-05T08:40:57.000000', '5', NULL, '6'),
-       ('8', '2024-06-05T08:40:57.000000', '5', NULL, '7'),
-       ('8', '2024-06-05T08:40:57.000000', '5', NULL, '8');
+VALUES ('9', '2024-06-05T08:40:57.000000', '3', NULL, '2'),
+       ('8', '2024-06-05T08:40:57.000000', '3', NULL, '3'),
+       ('8', '2024-06-05T08:40:57.000000', '3', NULL, '4'),
+       ('9', '2024-06-05T08:40:57.000000', '4', NULL, '6'),
+       ('8', '2024-06-05T08:40:57.000000', '4', NULL, '7'),
+       ('8', '2024-06-05T08:40:57.000000', '4', NULL, '8');
 
 
 -- Diablo II: Resurrected
 INSERT INTO `game_score` (`score`, `date`, `game_id`, `id`, `user_id`)
-VALUES ('9', '2024-05-01T18:16:17.633882315', '6', NULL, '2'),
-       ('8', '2024-05-01T18:16:17.633882315', '6', NULL, '3'),
-       ('9', '2024-05-01T18:16:17.633882315', '7', NULL, '6'),
-       ('8', '2024-05-01T18:16:17.633882315', '7', NULL, '7');
+VALUES ('9', '2024-05-01T18:16:17.633882315', '5', NULL, '2'),
+       ('8', '2024-05-01T18:16:17.633882315', '5', NULL, '3'),
+       ('9', '2024-05-01T18:16:17.633882315', '6', NULL, '6'),
+       ('8', '2024-05-01T18:16:17.633882315', '6', NULL, '7');
 
+
+-- Final Fantasy VII
+INSERT INTO `game_score` (`score`, `date`, `game_id`, `id`, `user_id`)
+VALUES ('9', '2024-05-01T18:16:17.633882315', '7', NULL, '2'),
+       ('8', '2024-05-01T18:16:17.633882315', '7', NULL, '3'),
+       ('9', '2024-05-01T18:16:17.633882315', '8', NULL, '6'),
+       ('8', '2024-05-01T18:16:17.633882315', '8', NULL, '7'),
+       ('2', '2024-05-01T18:16:17.633882315', '8', NULL, '8'),
+       ('4', '2024-05-01T18:16:17.633882315', '8', NULL, '9');
+
+-- Alan Wake 2
+INSERT INTO `game_score` (`score`, `date`, `game_id`, `id`, `user_id`)
+VALUES ('9', '2024-01-06T18:16:17.633882315', '9', NULL, '2'),
+       ('10', '2024-01-06T18:16:17.633882315', '9', NULL, '3'),
+       ('10', '2024-01-06T18:16:17.633882315', '10', NULL, '6'),
+       ('10', '2024-01-06T18:16:17.633882315', '10', NULL, '7');
 
 
 -- Inserta una edición
@@ -871,5 +1101,64 @@ VALUES ('13.99', '1', '5', NULL, '1', '1', '1', '1',
         '#'),
        ('29.99', '5', '6', NULL, '5', '1', '2', '5',
         '#');
+
+
+-- Final Fantasy VII
+INSERT INTO `product` (`price`, `edition_product_id`, `game_id`, `id`, `keys_product_id`,
+                       `platform_product_id`, `region_product_id`, `vendor_product_id`, `link`)
+VALUES ('20.99', '1', '7', NULL, '1', '1', '1', '1',
+        '#'),
+       ('30.99', '2', '7', NULL, '2', '2', '2', '2',
+        '#'),
+       ('45.99', '3', '7', NULL, '3', '3', '3', '3',
+        '#'),
+       ('20.99', '4', '7', NULL, '1', '4', '1', '4',
+        '#'),
+       ('30.99', '1', '7', NULL, '2', '1', '2', '5',
+        '#'),
+       ('39.99', '2', '7', NULL, '2', '2', '1', '1',
+        '#'),
+       ('65.99', '3', '7', NULL, '1', '3', '2', '2',
+        '#'),
+       ('52.99', '5', '8', NULL, '4', '1', '1', '1',
+        '#'),
+       ('72.99', '6', '8', NULL, '5', '2', '2', '2',
+        '#'),
+       ('45.99', '7', '8', NULL, '6', '3', '3', '3',
+        '#'),
+       ('34.99', '8', '8', NULL, '4', '4', '1', '4',
+        '#'),
+       ('29.99', '5', '8', NULL, '5', '1', '2', '5',
+        '#');
+
+
+-- Alan Wake 2
+INSERT INTO `product` (`price`, `edition_product_id`, `game_id`, `id`, `keys_product_id`,
+                       `platform_product_id`, `region_product_id`, `vendor_product_id`, `link`)
+VALUES ('30.99', '1', '9', NULL, '1', '1', '1', '1',
+        '#'),
+       ('30.99', '2', '9', NULL, '2', '2', '2', '2',
+        '#'),
+       ('45.99', '3', '9', NULL, '3', '3', '3', '3',
+        '#'),
+       ('27.99', '4', '9', NULL, '1', '4', '1', '4',
+        '#'),
+       ('30.99', '1', '9', NULL, '2', '1', '2', '5',
+        '#'),
+       ('39.99', '2', '9', NULL, '2', '2', '1', '1',
+        '#'),
+       ('65.99', '3', '9', NULL, '1', '3', '2', '2',
+        '#'),
+       ('52.99', '5', '10', NULL, '4', '1', '1', '1',
+        '#'),
+       ('72.99', '6', '10', NULL, '5', '2', '2', '2',
+        '#'),
+       ('45.99', '7', '10', NULL, '6', '3', '3', '3',
+        '#'),
+       ('34.99', '8', '10', NULL, '4', '4', '1', '4',
+        '#'),
+       ('29.99', '5', '10', NULL, '5', '1', '2', '5',
+        '#');
+
 
 

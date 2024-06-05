@@ -28,12 +28,12 @@ public interface NewsRepository extends JpaRepository<News, Long> {
    * @return Lista de noticias de los juegos seguidos por el usuario.
    */
   @Query(
-      "SELECT n FROM News n WHERE n.game IN (SELECT f.game FROM FollowGame f WHERE f.user.id = :userId AND f.isFollowing = 1) AND n.translation.id = :translationId")
+      "SELECT n FROM News n WHERE n.game IN (SELECT f.game FROM FollowGame f WHERE f.user.id = :userId AND f.isFollowing = 1) AND n.translation.id = :translationId ORDER BY n.date DESC")
   List<News> findNewsFromFollowedGamesAndTranslationId(
       @Param("userId") Long userId, @Param("translationId") Long translationId);
 
   @Query(
-      "SELECT n FROM News n WHERE n.game IS NULL OR (n.game NOT IN (SELECT f.game FROM FollowGame f WHERE f.user.id = :userId AND f.isFollowing = -1)) AND n.translation.id = :translationId")
+      "SELECT n FROM News n WHERE (n.game IS NULL OR n.game NOT IN (SELECT f.game FROM FollowGame f WHERE f.user.id = :userId AND f.isFollowing = -1)) AND n.translation.id = :translationId ORDER BY n.date DESC")
   List<News> findNewsExceptUnfollowedGamesAndTranslationId(
       @Param("userId") Long userId, @Param("translationId") Long translationId);
 
@@ -49,7 +49,7 @@ public interface NewsRepository extends JpaRepository<News, Long> {
   List<NewsDTO> findLatestNewsWithSelectedFieldsAndTranslationId(
       Pageable pageable, @Param("translationId") Long translationId);
 
-  List<News> findByTranslationId(Long translationId);
+  List<News> findByTranslationIdOrderByDateDesc(Long translationId);
 
   @Query(
       "SELECT new com.winningstation.dto.NewsAdminDTO(n.id, n.headline) FROM News n WHERE lower(n.headline) LIKE lower(concat('%', :title, '%'))")

@@ -119,7 +119,7 @@ public class NewsService implements INewsService {
   @Override
   public Iterable<News> findAll(Long translationId) {
     LOG.info("Finding all news with translation id: {}", translationId);
-    return newsRepository.findByTranslationId(translationId);
+    return newsRepository.findByTranslationIdOrderByDateDesc(translationId);
   }
 
   @Override
