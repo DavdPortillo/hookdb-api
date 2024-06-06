@@ -870,7 +870,7 @@ VALUES (NULL, '11', '2',
 
 
 INSERT INTO `feature` (`name`, `image`, `alt`)
-VALUES ('Un Jugador', 'dassa', 'asdsadas'),
+VALUES ('Un Jugador', 'dassa', 'asdsad2as'),
        ('Multijugador', 'dassa', 'asdsadas'),
        ('Jugadores vs Entorno', 'dassa', 'asdsadas'),
        ('Jugador vs Jugador', 'dassa', 'asdsadas'),
