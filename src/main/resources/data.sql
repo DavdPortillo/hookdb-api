@@ -131,41 +131,51 @@ El juego alterna entre ambos personajes, cada uno con su propia perspectiva y á
         '2021/02/11',
         'Little Nightmares II es un juego de plataformas y rompecabezas con elementos de horror. Los jugadores controlan a Mono, un niño atrapado en un mundo distorsionado y oscuro. Junto a Six, la protagonista del primer juego, deben enfrentarse a enemigos aterradores y resolver acertijos para avanzar. La atmósfera inquietante y el estilo artístico único son las señas de identidad del juego.',
         'Little Nightmares II', 0, 'https://www.youtube.com/watch?v=Td9nPbsDV-0', 1),
-       (300, 240, 1, 4, '7', '8', '3', 'Imagen de Little Nightmares II',
+       (300, 240, 1, 4, '7', '8', '4', 'Imagen de Little Nightmares II',
         'https://cdn.cloudflare.steamstatic.com/steam/apps/860510/header.jpg?t=1629372719',
         '2021/02/11',
         'Little Nightmares II is a platformer and puzzle game with horror elements. Players control Mono as he navigates a dark and distorted world, teaming up with Six from the first game to face terrifying enemies and solve puzzles. The game’s eerie atmosphere and unique art style set it apart from other titles in the genre.',
         'Little Nightmares II', 0, 'https://www.youtube.com/watch?v=Td9nPbsDV-0', 2),
-       (1500, 1200, 2, 5, '9', '10', '4', 'Imagen de Diablo II: Resurrected',
+       (1500, 1200, 2, 5, '9', '10', '5', 'Imagen de Diablo II: Resurrected',
         'https://cdn.cloudflare.steamstatic.com/steam/apps/1406030/header.jpg?t=1632431742',
         '2021/09/23',
         'Diablo II: Resurrected es una remasterización del clásico juego de rol de acción Diablo II y su expansión, Lord of Destruction. Los jugadores asumen el papel de un héroe que debe enfrentarse a las hordas demoníacas del Señor del Terror, Diablo, y sus hermanos. Con gráficos mejorados, sonido actualizado y jugabilidad clásica, esta versión trae de vuelta la intensa experiencia del original con mejoras modernas.',
         'Diablo II: Resurrected', 0, 'https://www.youtube.com/watch?v=DRP62MGOrU4', 1),
-       (1500, 1200, 1, 6, '11', '12', '4', 'Imagen de Diablo II: Resurrected',
+       (1500, 1200, 1, 6, '11', '12', '6', 'Imagen de Diablo II: Resurrected',
         'https://cdn.cloudflare.steamstatic.com/steam/apps/1406030/header.jpg?t=1632431742',
         '2021/09/23',
         'Diablo II: Resurrected is a remastered version of the classic action RPG Diablo II and its expansion, Lord of Destruction. Players take on the role of a hero who must battle the demonic hordes of the Lord of Terror, Diablo, and his brothers. With enhanced graphics, updated sound, and classic gameplay, this version brings back the intense experience of the original with modern improvements.',
         'Diablo II: Resurrected', 0, 'https://www.youtube.com/watch?v=DRP62MGOrU4', 2),
-       (2500, 2100, 1, 7, '13', '14', '5', 'Imagen de Final Fantasy VII',
+       (2500, 2100, 1, 7, '13', '14', '7', 'Imagen de Final Fantasy VII',
         'https://cdn.cloudflare.steamstatic.com/steam/apps/39140/header.jpg?t=1603128794',
         '2020/10/04',
         'Final Fantasy VII es un clásico juego de rol que sigue la historia de Cloud Strife, un ex-soldado que se une a un grupo de resistencia llamado AVALANCHE para luchar contra la megacorporación Shinra. La historia profundiza en temas de ecoterrorismo, identidad y redención mientras los personajes viajan por un mundo detallado y fascinante. Con su revolucionario sistema de combate y su narrativa épica, Final Fantasy VII ha dejado una marca duradera en la historia de los videojuegos.',
         'Final Fantasy VII', 0, 'https://www.youtube.com/watch?v=I77s1p2r6rY', 1),
-       (2500, 2100, 1, 8, '15', '16', '5', 'Imagen de Final Fantasy VII',
+       (2500, 2100, 1, 8, '15', '16', '8', 'Imagen de Final Fantasy VII',
         'https://cdn.cloudflare.steamstatic.com/steam/apps/39140/header.jpg?t=1603128794',
         '2020/10/04',
         'Final Fantasy VII is a classic role-playing game that follows the story of Cloud Strife, a former soldier who joins a resistance group called AVALANCHE to fight against the megacorporation Shinra. The story delves into themes of eco-terrorism, identity, and redemption as the characters travel through a detailed and fascinating world. With its revolutionary combat system and epic narrative, Final Fantasy VII has left a lasting mark on video game history.',
         'Final Fantasy VII', 0, 'https://www.youtube.com/watch?v=I77s1p2r6rY', 2),
-       (2500, 900, 2, 9, '17', '18', '6', 'Imagen de Alan Wake 2',
+       (2500, 900, 2, 9, '17', '18', '9', 'Imagen de Alan Wake 2',
         'https://cdn.alanwake2.com/header.jpg',
         '2023/10/17',
         'Alan Wake 2 es la secuela del aclamado juego de acción y horror psicológico Alan Wake. La historia sigue a Alan Wake, un escritor de novelas de terror, mientras lucha por escapar de una realidad distorsionada y descubrir la verdad detrás de los eventos sobrenaturales que lo rodean. Con gráficos impresionantes, una narrativa envolvente y una jugabilidad que combina acción y misterio, Alan Wake 2 ofrece una experiencia única y aterradora.',
         'Alan Wake 2', 0, 'https://www.youtube.com/watch?v=8yDO9dDfrLg', 1),
-       (2500, 900, 2, 10, '19', '20', '6', 'Imagen de Alan Wake 2',
+       (2500, 900, 2, 10, '19', '20', '10', 'Imagen de Alan Wake 2',
         'https://cdn.alanwake2.com/header.jpg',
         '2023/10/17',
         'Alan Wake 2 is the sequel to the acclaimed action and psychological horror game Alan Wake. The story follows Alan Wake, a horror novelist, as he struggles to escape a distorted reality and uncover the truth behind the supernatural events surrounding him. With stunning graphics, an immersive narrative, and gameplay that blends action and mystery, Alan Wake 2 offers a unique and terrifying experience.',
-        'Alan Wake 2', 0, 'https://www.youtube.com/watch?v=8yDO9dDfrLg', 2);
+        'Alan Wake 2', 0, 'https://www.youtube.com/watch?v=8yDO9dDfrLg', 2),
+       (2500, 900, 2, 11, '21', '22', '1', 'Imagen de Resident Evil 4',
+        'https://cdn.alanwake2.com/header.jpg',
+        '2024/07/17',
+        'Resident Evil 4 es un juego de acción y terror que sigue a Leon S. Kennedy en una misión para rescatar a la hija del presidente de los Estados Unidos. En un pueblo remoto de Europa, Leon se enfrenta a una horda de infectados por un parásito y descubre una conspiración que amenaza con desatar una nueva amenaza biológica. Con su innovador sistema de combate y su atmósfera inquietante, Resident Evil 4 es un clásico moderno del género de los survival horror.',
+        'Resident Evil 4 Remake', 0, 'https://www.youtube.com/watch?v=8yDO9dDfrLg', 1),
+       (2500, 900, 2, 12, '23', '24', '2', 'Imagen de Resident Evil 4',
+        'https://image.api.playstation.com/vulcan/ap/rnd/202210/0712/BiS5QP6h4506JHyJlZlVzK9D.jpg',
+        '2024/07/17',
+        'Resident Evil 4 is an action-packed horror game that follows Leon S. Kennedy on a mission to rescue the President of the United States’ daughter. In a remote village in Europe, Leon faces off against a horde of parasite-infected enemies and uncovers a conspiracy that threatens to unleash a new biological threat. With its innovative combat system and eerie atmosphere, Resident Evil 4 is a modern classic in the survival horror genre',
+        'Resident Evil 4 Remake', 0, 'https://www.youtube.com/watch?v=8yDO9dDfrLg', 2);
 
 
 INSERT INTO `platform` (`name`)
@@ -245,7 +255,20 @@ VALUES (9, 1),  -- Alan Wake 2 en PC
        (9, 5),  -- Alan Wake 2 en Xbox Series X
        (10, 1), -- Alan Wake 2 en PC
        (10, 2), -- Alan Wake 2 en PS5
-       (10, 5);-- Alan Wake 2 en Xbox Series X
+       (10, 5);
+-- Alan Wake 2 en Xbox Series X
+
+
+-- Resident Evil 4 Remake
+INSERT INTO `game_platform` (`game_id`, `platform_id`)
+VALUES (11, 1), -- Resident Evil 4 Remake en PC
+       (11, 2), -- Resident Evil 4 Remake en PS5
+       (11, 5), -- Resident Evil 4 Remake en Xbox Series X
+       (11, 6),
+       (12, 1), -- Resident Evil 4 Remake en PC
+       (12, 2), -- Resident Evil 4 Remake en PS5
+       (12, 5),-- Resident Evil 4 Remake en Xbox Series X
+       (12, 6);
 
 
 INSERT INTO genre (name)
@@ -304,6 +327,11 @@ INSERT INTO game_developer (game_id, developer_id)
 VALUES (1, 1),
        (2, 1);
 
+-- Resident Evil 4 Remake
+INSERT INTO game_developer (game_id, developer_id)
+VALUES (11, 1),
+       (12, 1);
+
 -- Little Nightmares II
 INSERT INTO game_developer (game_id, developer_id)
 VALUES (3, 3),
@@ -351,6 +379,11 @@ INSERT INTO game_distributor (game_id, distributor_id)
 VALUES (1, 1),
        (2, 1);
 
+-- Resident Evil 4 Remake
+INSERT INTO game_distributor (game_id, distributor_id)
+VALUES (11, 1),
+       (12, 1);
+
 -- Little Nightmares II
 INSERT INTO game_distributor (game_id, distributor_id)
 VALUES (3, 3),
@@ -379,6 +412,7 @@ VALUES (1, 'Extra DLC Pack', '2019/02/15',
        (2, 'Extra DLC Pack', '2019/02/15',
         'A downloadable content pack that includes the following items: The 4th Survivor, The Tofu Survivor, Claire Costume: Elza Walker, Claire Costume: Military, Claire Costume: Noir, Leon Costume: Arklay Sheriff, Leon Costume: Noir, Weapon Model: Samurai Edge',
         'DLC Image', 'https://cdn.cloudflare.steamstatic.com/steam/apps/883710/header.jpg?t=1701395502');
+
 
 -- Little Nightmares II
 INSERT INTO dlc (game_id, name, date, sinopsis, alt, image)
@@ -414,6 +448,15 @@ VALUES (9, 'AWE Expansion', '2023/10/17',
         'DLC Image', 'https://cdn.alanwake2.com/header.jpg'),
        (10, 'AWE Expansion', '2023/10/17',
         'An expansion pack that continues the story of Alan Wake, introducing new characters, locations, and mysteries to solve.',
+        'DLC Image', 'https://cdn.alanwake2.com/header.jpg');
+
+-- Resident Evil 4 Remake
+INSERT INTO dlc (game_id, name, date, sinopsis, alt, image)
+VALUES (11, 'Separate Ways', '2024/08/17',
+        'Un paquete de expansión que añade una nueva campaña jugable centrada en Ada Wong, un personaje secundario de la historia principal. Los jugadores controlan a Ada mientras se adentra en la misteriosa organización detrás de los eventos de Resident Evil 4.',
+        'Imagen de DLC', 'https://cdn.alanwake2.com/header.jpg'),
+       (12, 'Separate Ways', '2024/08/17',
+        'An expansion pack that adds a new playable campaign centered on Ada Wong, a secondary character from the main story. Players control Ada as she delves into the mysterious organization behind the events of Resident Evil 4.',
         'DLC Image', 'https://cdn.alanwake2.com/header.jpg');
 
 
@@ -460,6 +503,27 @@ VALUES (1, 1, true, true, true),   -- Español
        (2, 18, true, true, false);
 -- Japonés
 
+-- Resident Evil 4 Remake
+INSERT INTO availability (game_id, language_id, interface_language, subtitle_language, audio_language)
+VALUES (11, 1, true, true, true),   -- Español
+       (11, 2, true, true, true),   -- Inglés
+       (11, 3, true, true, true),   -- Francés
+       (11, 4, true, true, true),   -- Alemán
+       (11, 5, true, true, true),   -- Italiano
+       (11, 6, true, true, false),  -- Portugués
+       (11, 7, true, true, false),  -- Ruso
+       (11, 8, true, true, false),  -- Chino
+       (11, 9, true, true, false),  -- Japonés
+       (12, 10, true, true, true),  -- Español
+       (12, 11, true, true, true),  -- Inglés
+       (12, 12, true, true, true),  -- Francés
+       (12, 13, true, true, true),  -- Alemán
+       (12, 14, true, true, true),  -- Italiano
+       (12, 15, true, true, false), -- Portugués
+       (12, 16, true, true, false), -- Ruso
+       (12, 17, true, true, false), -- Chino
+       (12, 18, true, true, false);
+
 -- Little Nightmares II
 INSERT INTO availability (game_id, language_id, interface_language, subtitle_language, audio_language)
 VALUES (3, 1, true, true, false),  -- Español
@@ -503,16 +567,17 @@ VALUES (7, 1, true, true, false),  -- Español
        (8, 10, true, true, false), -- Español
        (8, 11, true, true, true),  -- Inglés
        (8, 13, true, true, false), -- Alemán
-       (8, 14, true, true, false); -- Italiano
+       (8, 14, true, true, false);
+-- Italiano
 
-       -- Alan Wake 2
+-- Alan Wake 2
 INSERT INTO availability (game_id, language_id, interface_language, subtitle_language, audio_language)
-VALUES (9, 1, true, true, true),  -- Español
-       (9, 2, true, true, true),  -- Inglés
-       (9, 3, true, true, true),  -- Francés
-       (9, 4, true, true, true),  -- Alemán
-       (9, 5, true, true, true),  -- Italiano
-       (9, 6, true, true, false), -- Portugués
+VALUES (9, 1, true, true, true),   -- Español
+       (9, 2, true, true, true),   -- Inglés
+       (9, 3, true, true, true),   -- Francés
+       (9, 4, true, true, true),   -- Alemán
+       (9, 5, true, true, true),   -- Italiano
+       (9, 6, true, true, false),  -- Portugués
        (10, 10, true, true, true), -- Español
        (10, 11, true, true, true), -- Inglés
        (10, 12, true, true, true), -- Francés
@@ -681,6 +746,20 @@ The Alan Wake 2 community is filled with speculation and theories about what thi
         'https://miro.medium.com/v2/resize:fit:933/1*w4DxUy0PMoqeq25UXfyL0g@2x.jpeg',
         'Imagen de portada', 2);
 
+-- Resident Evil 4 Remake
+INSERT INTO `news` (`game_id`, `id`, `news_author_id`, `content`, `subtitle`, `date`, `headline`, `image`, `alt`,
+                    `translation_id`)
+VALUES (11, 11, 3, 'Resident Evil 4 Remake es un juego de acción y terror que sigue a Leon S. Kennedy en una misión para rescatar a la hija del presidente de los Estados Unidos. En un pueblo remoto de Europa, Leon se enfrenta a una horda de infectados por un parásito y descubre una conspiración que amenaza con desatar una nueva amenaza biológica. Con su innovador sistema de combate y su atmósfera inquietante, Resident Evil 4 es un clásico moderno del género de los survival horror.
+                   El juego ha sido aclamado por su narrativa envolvente, su diseño de niveles ingenioso y su capacidad para mantener a los jugadores en vilo desde el principio hasta el final. Con su lanzamiento previsto para el 17 de julio de 2024, Resident Evil 4 Remake promete ofrecer una experiencia de juego inolvidable que cautivará a los fanáticos de la serie y a los nuevos jugadores por igual. ',
+        'Resident Evil 4 Remake', '2024-06-07T18:16:17.633882315',
+        'Resident Evil 4 Remake: Un Clásico Moderno del Terror y la Acción',
+        'https://cdn.alanwake2.com/header.jpg', 'alt', 1),
+       (12, 12, 3, 'Resident Evil 4 is an action-packed horror game that follows Leon S. Kennedy on a mission to rescue the President of the United States’ daughter. In a remote village in Europe, Leon faces off against a horde of parasite-infected enemies and uncovers a conspiracy that threatens to unleash a new biological threat. With its innovative combat system and eerie atmosphere, Resident Evil 4 is a modern classic in the survival horror genre.
+                   The game has been praised for its enveloping narrative, clever level design, and ability to keep players on the edge of their seats from start to finish. With its release scheduled for July 17, 2024, Resident Evil 4 Remake promises to deliver an unforgettable gaming experience that will captivate fans of the series and newcomers alike. ',
+        'Resident Evil 4 Remake', '2024-06-07T18:16:17.633882315',
+        'Resident Evil 4 Remake: A Modern Classic of Horror and Action',
+        'https://cdn.alanwake2.com/header.jpg', 'alt', 2);
+
 -- Little Nightmares II
 INSERT INTO `news_comment` (`id`, `news_id`, `user_id`, `content`, `date`)
 VALUES (NULL, '3', '2',
@@ -768,6 +847,28 @@ VALUES (NULL, '9', '2',
         '2024-04-06T18:16:17.633882315');
 
 
+-- Resident Evil 4 Remake
+INSERT INTO `news_comment` (`id`, `news_id`, `user_id`, `content`, `date`)
+VALUES (NULL, '11', '2',
+        '¡Resident Evil 4 Remake es uno de los juegos más esperados del año! La combinación de acción y terror es simplemente perfecta. ¡No puedo esperar a ver cómo se compara con el original!',
+        '2024-06-07T15:16:17.633882315'),
+       (NULL, '11', '3',
+        'Resident Evil 4 es uno de mis juegos favoritos de todos los tiempos, y estoy emocionado de ver cómo se reinventa en el remake. La historia y los personajes son tan icónicos que es difícil no emocionarse. ¡Estoy ansioso por jugarlo!',
+        '2024-06-07T18:16:17.633882315'),
+       (NULL, '11', '4',
+        'Como fan de Resident Evil desde hace años, no puedo esperar a ver cómo se actualiza el clásico en el remake. La jugabilidad y la atmósfera del original son inolvidables, y espero que el remake capture esa magia. ¡Estoy seguro de que será un éxito!',
+        '2024-06-08T20:16:17.633882315'),
+       (NULL, '12', '5',
+        'Resident Evil 4 Remake is one of the most anticipated games of the year! The combination of action and horror is simply perfect. I can’t wait to see how it compares to the original!',
+        '2024-06-08T15:16:17.633882315'),
+       (NULL, '12', '6',
+        'Resident Evil 4 is one of my all-time favorite games, and I’m excited to see how it’s reinvented in the remake. The story and characters are so iconic that it’s hard not to get excited. I’m eager to play it!',
+        '2024-06-09T18:16:17.633882315'),
+       (NULL, '12', '7',
+        'As a longtime Resident Evil fan, I can’t wait to see how the classic is updated in the remake. The gameplay and atmosphere of the original are unforgettable, and I hope the remake captures that magic. I’m sure it will be a hit!',
+        '2024-06-10T18:16:17.633882315');
+
+
 INSERT INTO `feature` (`name`, `image`, `alt`)
 VALUES ('Un Jugador', 'dassa', 'asdsadas'),
        ('Multijugador', 'dassa', 'asdsadas'),
@@ -827,10 +928,19 @@ VALUES (7, 1, NULL), -- Asociar el juego con ID 7 con la característica con ID 
 
 -- Alan Wake 2
 INSERT INTO `game_feature` (`game_id`, `feature_id`, `number_player_id`)
-VALUES (9, 1, NULL), -- Asociar el juego con ID 9 con la característica con ID 1 y sin NumberPlayer
-       (9, 3, NULL), -- Asociar el juego con ID 9 con la característica con ID 2 y NumberPlayer con ID 1
+VALUES (9, 1, NULL),  -- Asociar el juego con ID 9 con la característica con ID 1 y sin NumberPlayer
+       (9, 3, NULL),  -- Asociar el juego con ID 9 con la característica con ID 2 y NumberPlayer con ID 1
        (10, 7, NULL), -- Asociar el juego con ID 9 con la característica con ID 1 y sin NumberPlayer
        (10, 9, NULL);
+
+-- Resident Evil 4 Remake
+INSERT INTO `game_feature` (`game_id`, `feature_id`, `number_player_id`)
+VALUES (11, 1, NULL), -- Asociar el juego con ID 11 con la característica con ID 1 y sin NumberPlayer
+       (11, 3, NULL), -- Asociar el juego con ID 11 con la característica con ID 2 y NumberPlayer con ID 1
+       (11, 5, 4),
+       (12, 7, NULL), -- Asociar el juego con ID 11 con la característica con ID 1 y sin NumberPlayer
+       (12, 9, NULL),
+       (12, 11, 4);
 
 -- Residet Evil 2 Remake
 INSERT INTO `review` (`date`, `dislike`, `game_id`, `like`, `user_id`, `title`, `content`)
@@ -914,6 +1024,21 @@ VALUES ('2024-01-06T18:16:17.633882315', 1, 9, 15, 2, 'Un Regreso Triunfal',
         'Alan Wake 2 is a triumphant return for Remedy Entertainment. The narrative is as captivating as ever, and the new content promises to take players to places never before seen. This is a game no psychological horror fan should miss!');
 
 
+-- Resident Evil 4 Remake
+INSERT INTO `review` (`date`, `dislike`, `game_id`, `like`, `user_id`, `title`, `content`)
+VALUES ('2024-06-07T15:16:17.633882315', 1, 11, 15, 2, 'Un Clásico Reimaginado',
+        'Resident Evil 4 Remake es una carta de amor a los fans del original. La jugabilidad es tan adictiva como siempre, y los gráficos remasterizados son impresionantes. Aunque algunos problemas técnicos pueden entorpecer la experiencia, el juego sigue siendo una joya del género.'),
+       ('2024-06-07T18:16:17.633882315', 0, 11, 12, 3, 'Un Regreso Triunfal al Infierno',
+        'La temporada 7 de Resident Evil 4 Remake ha sido una montaña rusa de emociones. Los nuevos desafíos y recompensas mantienen la experiencia fresca y emocionante. ¡No puedo esperar a ver qué más tiene preparado Capcom para los jugadores!'),
+       ('2024-06-08T20:16:17.633882315', 2, 11, 13, 4, 'Un Clásico que se Mantiene Vigente',
+        'Resident Evil 4 Remake sigue siendo uno de los mejores juegos de terror de todos los tiempos. La temporada 7 ha sido un éxito rotundo, y Capcom ha demostrado una vez más por qué es uno de los líderes del género.'),
+       ('2024-06-08T15:16:17.633882315', 1, 12, 15, 6, 'A Classic Reimagined',
+        'Resident Evil 4 Remake is a love letter to fans of the original. The gameplay is as addictive as ever, and the remastered graphics are stunning. While some technical issues may hinder the experience, the game remains a genre gem.'),
+       ('2024-06-09T18:16:17.633882315', 0, 12, 12, 7, 'A Triumphant Return to Hell',
+        'Resident Evil 4 Remake season 7 has been a rollercoaster of emotions. The new challenges and rewards keep the experience fresh and exciting. I can’t wait to see what else Capcom has in store for players!'),
+       ('2024-06-10T18:16:17.633882315', 2, 12, 13, 8, 'A Classic That Stands the Test of Time',
+        'Resident Evil 4 Remake remains one of the greatest horror games of all time. Season 7 has been a resounding success, and Capcom has once again shown why it is one of the genre leaders.');
+
 
 -- Resident Evil 2 Remake
 INSERT INTO `game_score` (`score`, `date`, `game_id`, `id`, `user_id`)
@@ -959,6 +1084,15 @@ VALUES ('9', '2024-01-06T18:16:17.633882315', '9', NULL, '2'),
        ('10', '2024-01-06T18:16:17.633882315', '9', NULL, '3'),
        ('10', '2024-01-06T18:16:17.633882315', '10', NULL, '6'),
        ('10', '2024-01-06T18:16:17.633882315', '10', NULL, '7');
+
+-- Resident Evil 4 Remake
+INSERT INTO `game_score` (`score`, `date`, `game_id`, `id`, `user_id`)
+VALUES ('9', '2024-06-07T15:16:17.633882315', '11', NULL, '2'),
+       ('8', '2024-06-07T18:16:17.633882315', '11', NULL, '3'),
+       ('8', '2024-06-08T20:16:17.633882315', '11', NULL, '4'),
+       ('9', '2024-06-08T15:16:17.633882315', '12', NULL, '6'),
+       ('8', '2024-06-09T18:16:17.633882315', '12', NULL, '7'),
+       ('8', '2024-06-10T18:16:17.633882315', '12', NULL, '8');
 
 
 -- Inserta una edición
@@ -1160,5 +1294,33 @@ VALUES ('30.99', '1', '9', NULL, '1', '1', '1', '1',
        ('29.99', '5', '10', NULL, '5', '1', '2', '5',
         '#');
 
+
+-- Resident Evil 4 Remake
+INSERT INTO `product` (`price`, `edition_product_id`, `game_id`, `id`, `keys_product_id`,
+                       `platform_product_id`, `region_product_id`, `vendor_product_id`, `link`)
+VALUES ('35.99', '1', '11', NULL, '1', '1', '1', '1',
+        '#'),
+       ('30.99', '2', '11', NULL, '2', '2', '2', '2',
+        '#'),
+       ('45.99', '3', '11', NULL, '3', '3', '3', '3',
+        '#'),
+       ('37.99', '4', '11', NULL, '1', '4', '1', '4',
+        '#'),
+       ('30.99', '1', '11', NULL, '2', '1', '2', '5',
+        '#'),
+       ('39.99', '2', '11', NULL, '2', '2', '1', '1',
+        '#'),
+       ('65.99', '3', '11', NULL, '1', '3', '2', '2',
+        '#'),
+       ('52.99', '5', '12', NULL, '4', '1', '1', '1',
+        '#'),
+       ('72.99', '6', '12', NULL, '5', '2', '2', '2',
+        '#'),
+       ('45.99', '7', '12', NULL, '6', '3', '3', '3',
+        '#'),
+       ('34.99', '8', '12', NULL, '4', '4', '1', '4',
+        '#'),
+       ('49.99', '5', '12', NULL, '5', '1', '2', '5',
+        '#');
 
 
