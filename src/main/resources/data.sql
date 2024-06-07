@@ -1,6 +1,6 @@
 INSERT INTO `translation` (`id`, `language`)
-VALUES (NULL, 'Español'),
-       (NULL, 'Inglés');
+VALUES (1, 'Español'),
+       (2, 'Inglés');
 
 INSERT INTO `role` (`id`, `name`)
 VALUES (1, 'ROLE_ADMIN'),
@@ -58,7 +58,51 @@ VALUES ('11', 'NVIDIA GeForce GTX 760 o AMD Radeon R7 260x con 2GB VRAM', 'WINDO
        ('12', 'GeForce RTX 2060 / Radeon RX 6600', 'Windows 10/11 64-bit', 'Intel i5-7600K', '16 GB',
         '90 GB SSD'),
        ('12', 'GeForce RTX 3060 / Radeon RX 6600 XT', 'Windows 10/11 64-bit', 'Ryzen 7 3700X',
-        '16 GB', '90 GB SSD');
+        '16 GB', '90 GB SSD'),
+       ('11', 'NVIDIA GeForce GTX 760 o AMD Radeon R7 260x con 2GB VRAM', 'WINDOWS 7, 8.1, 10 (64-BIT Required)',
+        'Intel Core i5-4460 o AMD FX-6300', '8 GB', '26 GB'),
+       ('11', 'NVIDIA GeForce GTX 1060 o AMD Radeon RX 480 con 3GB VRAM', 'WINDOWS 7, 8.1, 10 (64-BIT Required)',
+        'Intel Core i7-3770 o AMD FX-9590', '8 GB', '26 GB'),
+       ('11', 'NVIDIA GeForce GTX 760 o AMD Radeon R7 260x con 2GB VRAM', 'WINDOWS 7, 8.1, 10 (64-BIT Required)',
+        'Intel Core i5-4460 o AMD FX-6300', '8 GB', '26 GB'),
+       ('11', 'NVIDIA GeForce GTX 1060 o AMD Radeon RX 480 con 3GB VRAM', 'WINDOWS 7, 8.1, 10 (64-BIT Required)',
+        'Intel Core i7-3770 o AMD FX-9590', '8 GB', '26 GB'),
+       ('11', 'Nvidia GeForce GTX 570, 1 GB | AMD Radeon HD 7850, 2 GB', 'Windows 10, 64-bit',
+        'Intel Core i5-2300 | AMD FX-4350', '4 GB RAM', '10 GB'),
+       ('11', 'Nvidia GeForce GTX 760, 2 GB | AMD Radeon HD 7870, 2 GB', 'Windows 10, 64-bit',
+        'Intel Core i7-3770 | AMD FX-9590', '8 GB RAM', '10 GB'),
+       ('11', 'Nvidia GTX 660 o AMD Radeon HD 7850', 'Windows 10', 'Intel Core i3-3250/AMD FX-4350', '8 GB RAM',
+        '30 GB'),
+       ('11', 'Nvidia GTX 1060 o AMD Radeon RX 5500 XT', 'Windows 10', 'Intel Core i5-9600k/AMD Ryzen 5 2600',
+        '16 GB RAM', '30 GB'),
+       ('12', 'GeForce GTX 780 / Radeon RX 480 (3GB VRAM)', 'Windows 10 64 bit',
+        'Intel Core i5-3330 / AMD FX-8350', '8 GB', '100 GB'),
+       ('12', 'GeForce GTX 1080 / Radeon RX 5700 (8GB VRAM)', 'Windows 10 64 bit',
+        'Intel Core i7-3770 / AMD Ryzen 3 3100', '12 GB', '100 GB'),
+       ('12', 'GeForce RTX 2060 / Radeon RX 6600', 'Windows 10/11 64-bit', 'Intel i5-7600K', '16 GB',
+        '90 GB SSD'),
+       ('12', 'GeForce RTX 3060 / Radeon RX 6600 XT', 'Windows 10/11 64-bit', 'Ryzen 7 3700X',
+        '16 GB', '90 GB SSD'),
+       ('11', 'NVIDIA GeForce GTX 760 o AMD Radeon R7 260x con 2GB VRAM', 'WINDOWS 7, 8.1, 10',
+        'Intel Core i5-4460 o AMD FX-6300', '8 GB', '26 GB'),
+       ('11', 'NVIDIA GeForce GTX 1060 o AMD Radeon RX 480 con 3GB VRAM', 'WINDOWS 7, 8.1, 10',
+        'Intel Core i7-3770 o AMD FX-9590', '8 GB', '26 GB'),
+       ('11', 'NVIDIA GeForce GTX 760 o AMD Radeon R7 260x con 2GB VRAM', 'WINDOWS 7, 8.1, 10',
+        'Intel Core i5-4460 o AMD FX-6300', '8 GB', '26 GB'),
+       ('11', 'NVIDIA GeForce GTX 1060 o AMD Radeon RX 480 con 3GB VRAM', 'WINDOWS 7, 8.1, 10',
+        'Intel Core i7-3770 o AMD FX-9590', '8 GB', '26 GB'),
+       ('11', 'Nvidia GeForce GTX 570, 1 GB | AMD Radeon HD 7850, 2 GB', 'Windows 10, 64-bit',
+        'Intel Core i5-2300 | AMD FX-4350', '4 GB RAM', '10 GB'),
+       ('11', 'Nvidia GeForce GTX 760, 2 GB | AMD Radeon HD 7870, 2 GB', 'Windows 10, 64-bit',
+        'Intel Core i7-3770 | AMD FX-9590', '8 GB RAM', '10 GB'),
+       ('11', 'Nvidia GTX 660 o AMD Radeon HD 7850', 'Windows 10', 'Intel Core i3-3250/AMD FX-4350', '8 GB RAM',
+        '30 GB'),
+       ('11', 'Nvidia GTX 1060 o AMD Radeon RX 5500 XT', 'Windows 10', 'Intel Core i5-9600k/AMD Ryzen 5 2600',
+        '16 GB RAM', '30 GB'),
+       ('12', 'GeForce GTX 780 / Radeon RX 480 (3GB VRAM)', 'Windows 10 64 bit ',
+        'Intel Core i5-3330 / AMD FX-8350', '8 GB', '100 GB'),
+       ('12', 'GeForce GTX 1080 / Radeon RX 5700 (8GB VRAM)', 'Windows 10 64 bit ',
+        'Intel Core i7-3770 / AMD Ryzen 3 3100', '12 GB', '100 GB');
 
 
 -- a123456. -> Contraseña encriptada con Bcrypt
@@ -107,7 +151,18 @@ VALUES ('1', 'Resident Evil'),
        ('7', 'Final Fantasy'),
        ('8', 'Final Fantasy'),
        ('9', 'Alan Wake'),
-       ('10', 'Alan Wake');
+       ('10', 'Alan Wake'),
+       ('11', 'Zelda'),
+       ('12', 'Zelda'),
+       ('13', 'World of Warcraft'),
+       ('14', 'World of Warcraft'),
+       ('15', 'Diablo 2'),
+       ('16', 'Diablo 2'),
+       ('17', 'Kingdom Hearts'),
+       ('18', 'Kingdom Hearts'),
+       ('19', 'The Last of Us'),
+       ('20', 'The Last of Us');
+
 
 
 
@@ -175,7 +230,47 @@ El juego alterna entre ambos personajes, cada uno con su propia perspectiva y á
         'https://image.api.playstation.com/vulcan/ap/rnd/202210/0712/BiS5QP6h4506JHyJlZlVzK9D.jpg',
         '2024/07/17',
         'Resident Evil 4 is an action-packed horror game that follows Leon S. Kennedy on a mission to rescue the President of the United States’ daughter. In a remote village in Europe, Leon faces off against a horde of parasite-infected enemies and uncovers a conspiracy that threatens to unleash a new biological threat. With its innovative combat system and eerie atmosphere, Resident Evil 4 is a modern classic in the survival horror genre',
-        'Resident Evil 4 Remake', 0, 'https://www.youtube.com/watch?v=8yDO9dDfrLg', 2);
+        'Resident Evil 4 Remake', 0, 'https://www.youtube.com/watch?v=8yDO9dDfrLg', 2),
+       (2000, 1000, 2, 13, '25', '26', '11', 'Imagen de Zelda: Breath of the Wild',
+        'https://image.api.playstation.com/vulcan/ap/rnd/202210/0712/BiS5QP6h4506JHyJlZlVzK9D.jpg',
+        '2024/08/17',
+        'The Legend of Zelda: Breath of the Wild es un juego de aventuras y acción que sigue a Link en su misión para derrotar a Ganon y salvar el reino de Hyrule. Con un vasto mundo abierto y una jugabilidad no lineal, los jugadores pueden explorar libremente el paisaje y descubrir secretos ocultos mientras se enfrentan a enemigos y resuelven acertijos. Con su estilo artístico único y su narrativa envolvente, Breath of the Wild es un hito en la historia de la franquicia de Zelda.',
+        'Zelda: Breath of the Wild', 0, 'https://www.youtube.com/watch?v=8yDO9dDfrLg', 1),
+       (2000, 1000, 2, 14, '27', '28', '12', 'Imagen de Zelda: Breath of the Wild',
+        'https://image.api.playstation.com/vulcan/ap/rnd/202210/0712/BiS5QP6h4506JHyJlZlVzK9D.jpg',
+        '2024/08/17',
+        'The Legend of Zelda: Breath of the Wild is an action-adventure game that follows Link on his quest to defeat Ganon and save the kingdom of Hyrule. With a vast open world and non-linear gameplay, players can freely explore the landscape and uncover hidden secrets while battling enemies and solving puzzles. With its unique art style and immersive narrative, Breath of the Wild is a milestone in the Zelda franchise’s history.',
+        'Zelda: Breath of the Wild', 0, 'https://www.youtube.com/watch?v=8yDO9dDfrLg', 2),
+       (7000, 5000, 2, 15, '29', '30', '13', 'Imagen de World of Warcraft',
+        'https://image.api.playstation.com/vulcan/ap/rnd/202210/0712/BiS5QP6h4506JHyJlZlVzK9D.jpg',
+        '2024/11/23',
+        'World of Warcraft es un juego de rol multijugador masivo en línea que se desarrolla en el mundo de Azeroth. Los jugadores pueden elegir entre varias razas y clases para crear su propio personaje y embarcarse en aventuras épicas con otros jugadores. Con un vasto mundo abierto, misiones desafiantes y un sistema de combate estratégico, World of Warcraft ofrece una experiencia de juego inmersiva y social.',
+        'World of Warcraft', 0, 'https://www.youtube.com/watch?v=8yDO9dDfrLg', 1),
+       (7000, 5000, 2, 16, '31', '32', '14', 'Imagen de World of Warcraft',
+        'https://image.api.playstation.com/vulcan/ap/rnd/202210/0712/BiS5QP6h4506JHyJlZlVzK9D.jpg',
+        '2024/11/23',
+        'World of Warcraft is a massively multiplayer online role-playing game set in the world of Azeroth. Players can choose from various races and classes to create their own character and embark on epic adventures with other players. With a vast open world, challenging quests, and strategic combat system, World of Warcraft offers an immersive and social gaming experience.',
+        'World of Warcraft', 0, 'https://www.youtube.com/watch?v=8yDO9dDfrLg', 2),
+       (5000, 4000, 1, 17, '37', '38', '17', 'Imagen de Kingdom Hearts',
+        'https://image.api.playstation.com/vulcan/ap/rnd/202210/0712/BiS5QP6h4506JHyJlZlVzK9D.jpg',
+        '2025/01/23',
+        'Kingdom Hearts es una serie de juegos de rol de acción que combina personajes y mundos de Disney con la narrativa de Square Enix. Los jugadores controlan a Sora, un joven que viaja a través de diferentes mundos para detener la invasión de los sincorazón y salvar a sus amigos. Con su mezcla única de elementos de Disney y Final Fantasy, Kingdom Hearts ofrece una experiencia de juego mágica y emocionante.',
+        'Kingdom Hearts', 0, 'https://www.youtube.com/watch?v=8yDO9dDfrLg', 1),
+       (5000, 4000, 1, 18, '39', '40', '18', 'Imagen de Kingdom Hearts',
+        'https://image.api.playstation.com/vulcan/ap/rnd/202210/0712/BiS5QP6h4506JHyJlZlVzK9D.jpg',
+        '2025/01/23',
+        'Kingdom Hearts is an action role-playing game series that combines Disney characters and worlds with Square Enix’s narrative. Players control Sora as he travels through different worlds to stop the invasion of the Heartless and save his friends. With its unique blend of Disney and Final Fantasy elements, Kingdom Hearts offers a magical and exciting gaming experience.',
+        'Kingdom Hearts', 0, 'https://www.youtube.com/watch?v=8yDO9dDfrLg', 2),
+         (3000, 2000, 2, 19, '41', '42', '19', 'Imagen de The Last of Us',
+        'https://image.api.playstation.com/vulcan/ap/rnd/202210/0712/BiS5QP6h4506JHyJlZlVzK9D.jpg',
+        '2025/01/23',
+        'The Last of Us es un juego de acción y aventuras que sigue a Joel y Ellie en un viaje a través de un mundo postapocalíptico. Los jugadores deben enfrentarse a enemigos humanos y mutantes mientras luchan por sobrevivir en un mundo devastado por una infección fúngica. Con su narrativa emotiva y su jugabilidad intensa, The Last of Us es un clásico moderno del género de los videojuegos.',
+        'The Last of Us', 0, 'https://www.youtube.com/watch?v=8yDO9dDfrLg', 1),
+         (3000, 2000, 2, 20, '43', '44', '20', 'Imagen de The Last of Us',
+        'https://image.api.playstation.com/vulcan/ap/rnd/202210/0712/BiS5QP6h4506JHyJlZlVzK9D.jpg',
+        '2025/01/23',
+        'The Last of Us is an action-adventure game that follows Joel and Ellie on a journey through a post-apocalyptic world. Players must face human and mutant enemies as they fight to survive in a world ravaged by a fungal infection. With its emotional narrative and intense gameplay, The Last of Us is a modern classic in the video game genre.',
+        'The Last of Us', 0, 'https://www.youtube.com/watch?v=8yDO9dDfrLg', 2);
 
 
 INSERT INTO `platform` (`name`)
@@ -270,6 +365,37 @@ VALUES (11, 1), -- Resident Evil 4 Remake en PC
        (12, 5),-- Resident Evil 4 Remake en Xbox Series X
        (12, 6);
 
+-- Zelda: Breath of the Wild
+INSERT INTO `game_platform` (`game_id`, `platform_id`)
+VALUES (13, 6), -- Zelda: Breath of the Wild en PS5
+       (14, 6);
+
+-- World of Warcraft
+INSERT INTO `game_platform` (`game_id`, `platform_id`)
+VALUES (15, 1), -- World of Warcraft en PC
+       (16, 1);
+-- World of Warcraft en PC
+
+
+-- Kingdom Hearts
+INSERT INTO `game_platform` (`game_id`, `platform_id`)
+VALUES (17, 1), -- Resident Evil 4 Remake en PC
+       (17, 2), -- Resident Evil 4 Remake en PS5
+       (17, 5), -- Resident Evil 4 Remake en Xbox Series X
+       (17, 6),
+       (18, 1), -- Resident Evil 4 Remake en PC
+       (18, 2), -- Resident Evil 4 Remake en PS5
+       (18, 5),-- Resident Evil 4 Remake en Xbox Series X
+       (18, 6);
+
+-- The Last of Us
+INSERT INTO `game_platform` (`game_id`, `platform_id`)
+VALUES (19, 1), -- Resident Evil 4 Remake en PC
+       (19, 2), -- Resident Evil 4 Remake en PS5
+       (20, 1), -- Resident Evil 4 Remake en PC
+       (20, 2); -- Resident Evil 4 Remake en PS5
+
+
 
 INSERT INTO genre (name)
 VALUES ('Acción'),
@@ -352,6 +478,26 @@ INSERT INTO game_developer (game_id, developer_id)
 VALUES (9, 2),
        (10, 2);
 
+-- Zelda: Breath of the Wild
+INSERT INTO game_developer (game_id, developer_id)
+VALUES (13, 12),
+       (14, 12);
+
+-- World of Warcraft
+INSERT INTO game_developer (game_id, developer_id)
+VALUES (15, 11),
+       (16, 11);
+
+-- Kingdom Hearts
+INSERT INTO game_developer (game_id, developer_id)
+VALUES (17, 4),
+       (18, 4);
+
+-- The Last of Us
+INSERT INTO game_developer (game_id, developer_id)
+VALUES (19, 5),
+       (20, 5);
+
 INSERT INTO distributor (name)
 VALUES ('Capcom'),
        ('Epic Games'),
@@ -403,6 +549,26 @@ VALUES (7, 4),
 INSERT INTO game_distributor (game_id, distributor_id)
 VALUES (9, 2),
        (10, 2);
+
+-- Zelda: Breath of the Wild
+INSERT INTO game_distributor (game_id, distributor_id)
+VALUES (13, 8),
+       (14, 8);
+
+-- World of Warcraft
+INSERT INTO game_distributor (game_id, distributor_id)
+VALUES (15, 17),
+       (16, 17);
+
+-- Kingdom Hearts
+INSERT INTO game_distributor (game_id, distributor_id)
+VALUES (17, 4),
+       (18, 4);
+
+-- The Last of Us
+    INSERT INTO game_distributor (game_id, distributor_id)
+VALUES (19, 11),
+       (20, 11);
 
 -- Resident Evil 2 Remake
 INSERT INTO dlc (game_id, name, date, sinopsis, alt, image)
@@ -457,6 +623,44 @@ VALUES (11, 'Separate Ways', '2024/08/17',
         'Imagen de DLC', 'https://cdn.alanwake2.com/header.jpg'),
        (12, 'Separate Ways', '2024/08/17',
         'An expansion pack that adds a new playable campaign centered on Ada Wong, a secondary character from the main story. Players control Ada as she delves into the mysterious organization behind the events of Resident Evil 4.',
+        'DLC Image', 'https://cdn.alanwake2.com/header.jpg');
+
+-- Zelda: Breath of the Wild
+INSERT INTO dlc (game_id, name, date, sinopsis, alt, image)
+VALUES (13, 'Expansion Pass', '2024/11/23',
+        'Un pase de expansión que incluye dos paquetes de contenido descargable: The Master Trials y The Champions’ Ballad. Los jugadores pueden acceder a nuevas misiones, desafíos y equipo para mejorar su experiencia de juego.',
+        'Imagen de DLC', 'https://cdn.alanwake2.com/header.jpg'),
+       (14, 'Expansion Pass', '2024/11/23',
+        'An expansion pass that includes two downloadable content packs: The Master Trials and The Champions’ Ballad. Players can access new quests, challenges, and gear to enhance their gaming experience.',
+        'DLC Image', 'https://cdn.alanwake2.com/header.jpg');
+
+
+-- World of Warcraft
+INSERT INTO dlc (game_id, name, date, sinopsis, alt, image)
+VALUES (15, 'Shadowlands Expansion', '2024/10/23',
+        'Un paquete de expansión que añade una nueva región, mazmorras, incursiones y características al juego base. Los jugadores pueden explorar el reino de las sombras y enfrentarse a enemigos poderosos en su búsqueda de aventuras y tesoros.',
+        'Imagen de DLC', 'https://cdn.alanwake2.com/header.jpg'),
+       (16, 'Shadowlands Expansion', '2024/10/23',
+        'An expansion pack that adds a new region, dungeons, raids, and features to the base game. Players can explore the realm of shadows and face powerful enemies in their quest for adventure and treasure.',
+        'DLC Image', 'https://cdn.alanwake2.com/header.jpg');
+
+
+-- Kingdom Hearts
+INSERT INTO dlc (game_id, name, date, sinopsis, alt, image)
+VALUES (17, 'Re:Mind', '2025/01/23',
+        'Un paquete de contenido descargable que amplía la historia principal del juego, añadiendo nuevos episodios, jefes y desafíos para los jugadores. Los fans de la serie pueden descubrir más sobre los personajes y el mundo de Kingdom Hearts en esta expansión.',
+        'Imagen de DLC', 'https://cdn.alanwake2.com/header.jpg'),
+       (18, 'Re:Mind', '2025/01/23',
+        'A downloadable content pack that expands the game’s main story, adding new episodes, bosses, and challenges for players. Fans of the series can discover more about the characters and world of Kingdom Hearts in this expansion.',
+        'DLC Image', 'https://cdn.alanwake2.com/header.jpg');
+
+-- The Last of Us
+INSERT INTO dlc (game_id, name, date, sinopsis, alt, image)
+VALUES (19, 'Left Behind', '2025/01/23',
+        'Un paquete de expansión que narra la historia de Ellie antes de los eventos de The Last of Us. Los jugadores controlan a Ellie mientras se embarca en una aventura con su amiga Riley, explorando un centro comercial abandonado y enfrentándose a peligrosos enemigos.',
+        'Imagen de DLC', 'https://cdn.alanwake2.com/header.jpg'),
+       (20, 'Left Behind', '2025/01/23',
+        'An expansion pack that tells the story of Ellie before the events of The Last of Us. Players control Ellie as she embarks on an adventure with her friend Riley, exploring an abandoned mall and facing dangerous enemies.',
         'DLC Image', 'https://cdn.alanwake2.com/header.jpg');
 
 
@@ -584,6 +788,58 @@ VALUES (9, 1, true, true, true),   -- Español
        (10, 13, true, true, true), -- Alemán
        (10, 14, true, true, true), -- Italiano
        (10, 15, true, true, false);
+
+-- Zelda: Breath of the Wild
+INSERT INTO availability (game_id, language_id, interface_language, subtitle_language, audio_language)
+VALUES (13, 1, true, true, true),  -- Español
+       (13, 2, true, true, true),  -- Inglés
+       (13, 3, true, true, true),  -- Francés
+       (13, 9, true, true, false), -- Japonés
+       (14, 10, true, true, true), -- Español
+       (14, 11, true, true, true), -- Inglés
+       (14, 12, true, true, true);
+-- Francés
+
+
+-- World of Warcraft
+INSERT INTO availability (game_id, language_id, interface_language, subtitle_language, audio_language)
+VALUES (15, 1, true, true, true),   -- Español
+       (15, 2, true, true, true),   -- Inglés
+       (15, 3, true, true, true),   -- Francés
+       (15, 4, true, true, true),   -- Alemán
+       (15, 5, true, true, true),   -- Italiano
+       (15, 6, true, true, false),  -- Portugués
+       (15, 7, true, true, false),  -- Ruso
+       (15, 8, true, true, false),  -- Chino
+       (15, 9, true, true, false),  -- Japonés
+       (16, 10, true, true, true),  -- Español
+       (16, 11, true, true, true),  -- Inglés
+       (16, 12, true, true, true),  -- Francés
+       (16, 13, true, true, true),  -- Alemán
+       (16, 14, true, true, true),  -- Italiano
+       (16, 15, true, true, false), -- Portugués
+       (16, 16, true, true, false), -- Ruso
+       (16, 17, true, true, false), -- Chino
+       (16, 18, true, true, false);
+
+-- Kingdom Hearts
+INSERT INTO availability (game_id, language_id, interface_language, subtitle_language, audio_language)
+VALUES (17, 1, true, true, true),  -- Español
+       (17, 2, true, true, true),  -- Inglés
+       (17, 3, true, true, true),  -- Francés
+       (17, 4, true, true, true),  -- Alemán
+       (18, 10, true, true, true), -- Español
+       (18, 11, true, true, true), -- Inglés
+       (18, 12, true, true, true), -- Francés
+       (18, 13, true, true, true); -- Alemán
+
+
+-- The Last of Us
+INSERT INTO availability (game_id, language_id, interface_language, subtitle_language, audio_language)
+VALUES (19, 1, true, true, true),  -- Español
+       (19, 2, true, true, true),  -- Inglés
+       (20, 10, true, true, true), -- Español
+       (20, 11, true, true, true); -- Inglés
 
 
 INSERT INTO `news_author` (`id`, `name`, `surname`, `image`, `alt`)
@@ -746,6 +1002,7 @@ The Alan Wake 2 community is filled with speculation and theories about what thi
         'https://miro.medium.com/v2/resize:fit:933/1*w4DxUy0PMoqeq25UXfyL0g@2x.jpeg',
         'Imagen de portada', 2);
 
+
 -- Resident Evil 4 Remake
 INSERT INTO `news` (`game_id`, `id`, `news_author_id`, `content`, `subtitle`, `date`, `headline`, `image`, `alt`,
                     `translation_id`)
@@ -759,6 +1016,66 @@ VALUES (11, 11, 3, 'Resident Evil 4 Remake es un juego de acción y terror que s
         'Resident Evil 4 Remake', '2024-06-07T18:16:17.633882315',
         'Resident Evil 4 Remake: A Modern Classic of Horror and Action',
         'https://cdn.alanwake2.com/header.jpg', 'alt', 2);
+
+
+-- Zelda: Breath of the Wild
+INSERT INTO `news` (`game_id`, `id`, `news_author_id`, `content`, `subtitle`, `date`, `headline`, `image`, `alt`,
+                    `translation_id`)
+VALUES (13, 13, 1, 'The Legend of Zelda: Breath of the Wild es un juego de acción y aventuras que sigue a Link en su misión para derrotar a Ganon y salvar el reino de Hyrule. Con un vasto mundo abierto lleno de misterios y peligros, Breath of the Wild ofrece a los jugadores la libertad de explorar a su propio ritmo y descubrir secretos ocultos en cada rincón.
+                   El juego ha sido elogiado por su diseño de niveles ingenioso, su narrativa envolvente y su capacidad para sumergir a los jugadores en un mundo mágico lleno de personajes memorables. Con su lanzamiento previsto para el 17 de julio de 2024, The Legend of Zelda: Breath of the Wild promete ofrecer una experiencia de juego inolvidable que cautivará a los fanáticos de la serie y a los nuevos jugadores por igual. ',
+        'The Legend of Zelda: Breath of the Wild', '2024-06-07T19:16:17.633882315',
+        'The Legend of Zelda: Breath of the Wild: Un Clásico Moderno de la Acción y la Aventura',
+        'https://cdn.alanwake2.com/header.jpg', 'alt', 1),
+       (14, 14, 3, 'The Legend of Zelda: Breath of the Wild is an action-adventure game that follows Link on his quest to defeat Ganon and save the kingdom of Hyrule. With a vast open world full of mysteries and dangers, Breath of the Wild offers players the freedom to explore at their own pace and discover hidden secrets around every corner.
+                   The game has been praised for its clever level design, engaging narrative, and ability to immerse players in a magical world full of memorable characters. With its release scheduled for July 17, 2024, The Legend of Zelda: Breath of the Wild promises to deliver an unforgettable gaming experience that will captivate fans of the series and newcomers alike. ',
+        'The Legend of Zelda: Breath of the Wild', '2024-06-07T19:16:17.633882315',
+        'The Legend of Zelda: Breath of the Wild: A Modern Classic of Action and Adventure',
+        'https://cdn.alanwake2.com/header.jpg', 'alt', 2);
+
+
+-- World of Warcraft
+INSERT INTO `news` (`game_id`, `id`, `news_author_id`, `content`, `subtitle`, `date`, `headline`, `image`, `alt`,
+                    `translation_id`)
+VALUES (15, 15, 1, 'World of Warcraft es un juego de rol multijugador masivo en línea que ha cautivado a millones de jugadores en todo el mundo. Con un vasto mundo lleno de aventuras, misterios y desafíos, World of Warcraft ofrece a los jugadores la oportunidad de explorar un universo épico lleno de personajes memorables y lugares icónicos.
+                   El juego ha sido elogiado por su narrativa envolvente, su diseño de niveles ingenioso y su capacidad para sumergir a los jugadores en un mundo mágico lleno de personajes memorables. Con su lanzamiento previsto para el 17 de julio de 2024, World of Warcraft promete ofrecer una experiencia de juego inolvidable que cautivará a los fanáticos de la serie y a los nuevos jugadores por igual. ',
+        'World of Warcraft', '2024-06-07T19:16:17.633882315',
+        'World of Warcraft: Un Clásico Moderno de la Acción y la Aventura',
+        'https://cdn.alanwake2.com/header.jpg', 'alt', 1),
+       (16, 16, 3, 'World of Warcraft is a massively multiplayer online role-playing game that has captivated millions of players worldwide. With a vast world full of adventures, mysteries, and challenges, World of Warcraft offers players the chance to explore an epic universe filled with memorable characters and iconic locations.
+                     The game has been praised for its engaging narrative, clever level design, and ability to immerse players in a magical world full of memorable characters. With its release scheduled for July 17, 2024, World of Warcraft promises to deliver an unforgettable gaming experience that will captivate fans of the series and newcomers alike. ',
+        'World of Warcraft', '2024-06-07T19:16:17.633882315',
+        'World of Warcraft: A Modern Classic of Action and Adventure',
+        'https://cdn.alanwake2.com/header.jpg', 'alt', 2);
+
+
+-- Kingdom Hearts
+INSERT INTO `news` (`game_id`, `id`, `news_author_id`, `content`, `subtitle`, `date`, `headline`, `image`, `alt`,
+                    `translation_id`)
+VALUES (17, 17, 1, 'Kingdom Hearts es una serie de juegos de rol de acción que combina personajes y mundos de Disney con los de Square Enix. Con una narrativa épica que abarca múltiples mundos y personajes, Kingdom Hearts ofrece a los jugadores la oportunidad de explorar un universo mágico lleno de aventuras y desafíos.
+                       El juego ha sido elogiado por su narrativa envolvente, su diseño de niveles ingenioso y su capacidad para sumergir a los jugadores en un mundo mágico lleno de personajes memorables. Con su lanzamiento previsto para el 17 de julio de 2024, Kingdom Hearts promete ofrecer una experiencia de juego inolvidable que cautivará a los fanáticos de la serie y a los nuevos jugadores por igual. ',
+        'Kingdom Hearts', '2024-06-08T19:16:17.633882315',
+        'Kingdom Hearts: Una Aventura Épica en el Universo de Disney y Square Enix',
+        'https://cdn.alanwake2.com/header.jpg', 'alt', 1),
+         (18, 18, 3, 'Kingdom Hearts is an action role-playing game series that combines Disney characters and worlds with those of Square Enix. With an epic narrative spanning multiple worlds and characters, Kingdom Hearts offers players the chance to explore a magical universe full of adventures and challenges.
+                          The game has been praised for its engaging narrative, clever level design, and ability to immerse players in a magical world full of memorable characters. With its release scheduled for July 17, 2024, Kingdom Hearts promises to deliver an unforgettable gaming experience that will captivate fans of the series and newcomers alike. ',
+        'Kingdom Hearts', '2024-06-08T19:16:17.633882315',
+        'Kingdom Hearts: An Epic Adventure in the Disney and Square Enix Universe',
+        'https://cdn.alanwake2.com/header.jpg', 'alt', 2);
+
+
+-- The Last of Us
+    INSERT INTO `news` (`game_id`, `id`, `news_author_id`, `content`, `subtitle`, `date`, `headline`, `image`, `alt`,
+                        `translation_id`)
+    VALUES (19, 19, 1, 'The Last of Us es un juego de acción y aventuras que sigue a Joel y Ellie en un viaje a través de un mundo postapocalíptico. Con una narrativa emotiva y personajes complejos, The Last of Us ofrece a los jugadores una experiencia inolvidable llena de emociones y desafíos.
+                       El juego ha sido elogiado por su narrativa envolvente, su diseño de niveles ingenioso y su capacidad para sumergir a los jugadores en un mundo mágico lleno de personajes memorables. Con su lanzamiento previsto para el 17 de julio de 2024, The Last of Us promete ofrecer una experiencia de juego inolvidable que cautivará a los fanáticos de la serie y a los nuevos jugadores por igual. ',
+            'The Last of Us', '2024-06-08T20:16:17.633882315',
+            'The Last of Us: Un Viaje Emotivo en un Mundo Postapocalíptico',
+            'https://cdn.alanwake2.com/header.jpg', 'alt', 1),
+              (20, 20, 3, 'The Last of Us is an action-adventure game that follows Joel and Ellie on a journey through a post-apocalyptic world. With an emotive narrative and complex characters, The Last of Us offers players an unforgettable experience full of emotions and challenges.
+                              The game has been praised for its engaging narrative, clever level design, and ability to immerse players in a magical world full of memorable characters. With its release scheduled for July 17, 2024, The Last of Us promises to deliver an unforgettable gaming experience that will captivate fans of the series and newcomers alike. ',
+            'The Last of Us', '2024-06-08T20:16:17.633882315',
+            'The Last of Us: An Emotional Journey in a Post-Apocalyptic World',
+            'https://cdn.alanwake2.com/header.jpg', 'alt', 2);
 
 -- Little Nightmares II
 INSERT INTO `news_comment` (`id`, `news_id`, `user_id`, `content`, `date`)
@@ -825,6 +1142,7 @@ VALUES (NULL, '7', '2',
         'As a longtime Final Fantasy fan, I can’t wait to see how the plot unfolds in the second part of the remake. Square Enix’s quality and attention to detail are unmatched. I’m sure the third part will   be a resounding success!',
         '2024-06-01T20:16:17.633882315');
 
+
 -- Alan Wake 2
 INSERT INTO `news_comment` (`id`, `news_id`, `user_id`, `content`, `date`)
 VALUES (NULL, '9', '2',
@@ -867,6 +1185,87 @@ VALUES (NULL, '11', '2',
        (NULL, '12', '7',
         'As a longtime Resident Evil fan, I can’t wait to see how the classic is updated in the remake. The gameplay and atmosphere of the original are unforgettable, and I hope the remake captures that magic. I’m sure it will be a hit!',
         '2024-06-10T18:16:17.633882315');
+
+
+-- Zelda: Breath of the Wild
+INSERT INTO `news_comment` (`id`, `news_id`, `user_id`, `content`, `date`)
+VALUES (NULL, '13', '2',
+        '¡The Legend of Zelda: Breath of the Wild es uno de los juegos más esperados del año! La combinación de acción y aventura es simplemente perfecta. ¡No puedo esperar a ver cómo se compara con los títulos anteriores!',
+        '2024-06-07T15:16:17.633882315'),
+       (NULL, '13', '3',
+        'The Legend of Zelda: Breath of the Wild es uno de los juegos más innovadores de la serie, y estoy emocionado de ver cómo se reinventa en esta entrega. La exploración y la libertad de juego son simplemente increíbles. ¡Estoy ansioso por jugarlo!',
+        '2024-06-07T18:16:17.633882315'),
+       (NULL, '13', '4',
+        'Como fan de Zelda desde hace años, no puedo esperar a ver cómo se actualiza la franquicia en Breath of the Wild. La narrativa y el mundo del juego son tan ricos y detallados que es fácil perderse en ellos. ¡Estoy seguro de que será un éxito!',
+        '2024-06-08T20:16:17.633882315'),
+       (NULL, '14', '5',
+        'The Legend of Zelda: Breath of the Wild is one of the most anticipated games of the year! The combination of action and adventure is simply perfect. I can’t wait to see how it compares to previous titles!',
+        '2024-06-08T15:16:17.633882315'),
+       (NULL, '14', '6',
+        'The Legend of Zelda: Breath of the Wild is one of the most innovative games in the series, and I’m excited to see how it’s reinvented in this installment. The exploration and gameplay freedom are simply amazing. I’m eager to play it!',
+        '2024-06-09T18:16:17.633882315'),
+       (NULL, '14', '7',
+        'As a longtime Zelda fan, I can’t wait to see how the franchise is updated in Breath of the Wild. The narrative and game world are so rich and detailed that it’s easy to get lost in them. I’m sure it will be a hit!',
+        '2024-06-09T18:17:17.633882315');
+
+
+-- World of Warcraft
+INSERT INTO `news_comment` (`id`, `news_id`, `user_id`, `content`, `date`)
+VALUES (NULL, '15', '2',
+        '¡World of Warcraft es uno de los juegos más icónicos de la historia! La combinación de rol y multijugador es simplemente perfecta. ¡No puedo esperar a ver qué más tiene preparado Blizzard para los jugadores!',
+        '2024-06-07T15:16:17.633882315'),
+       (NULL, '15', '3',
+        'World of Warcraft sigue siendo uno de los juegos más populares del mundo, y estoy emocionado de ver cómo se reinventa en las próximas expansiones. La narrativa y el mundo del juego son tan ricos y detallados que es fácil perderse en ellos. ¡Estoy ansioso por jugarlo!',
+        '2024-06-07T18:16:17.633882315'),
+       (NULL, '15', '4',
+        'Como fan de World of Warcraft desde hace años, no puedo esperar a ver cómo se actualiza el juego en las próximas expansiones. La jugabilidad y la atmósfera del original son inolvidables, y espero que las nuevas expansiones capturen esa magia. ¡Estoy seguro de que será un éxito!',
+        '2024-06-08T20:16:17.633882315'),
+       (NULL, '16', '5',
+        'World of Warcraft is one of the most iconic games in history! The combination of role-playing and multiplayer is simply perfect. I can’t wait to see what else Blizzard has in store for players!',
+        '2024-06-08T15:16:17.633882315'),
+       (NULL, '16', '6',
+        'World of Warcraft remains one of the most popular games in the world, and I’m excited to see how it’s reinvented in the upcoming expansions. The narrative and game world are so rich and detailed that it’s easy to get lost in them. I’m eager to play it!',
+        '2024-06-09T18:16:17.633882315'),
+       (NULL, '16', '7',
+        'As a longtime World of Warcraft fan, I can’t wait to see how the game is updated in the upcoming expansions. The gameplay and atmosphere of the original are unforgettable, and I hope the new expansions capture that magic. I’m sure it will be a hit!',
+        '2024-06-09T18:17:17.633882315');
+
+-- Kingdom Hearts
+INSERT INTO `news_comment` (`id`, `news_id`, `user_id`, `content`, `date`)
+VALUES (NULL, '17', '2',
+        '¡Kingdom Hearts es una de las sagas más queridas de la historia! La combinación de personajes de Disney y Square Enix es simplemente perfecta. ¡No puedo esperar a ver qué más tiene preparado la franquicia para los jugadores!',
+        '2024-06-07T15:16:17.633882315'),
+       (NULL, '17', '3',
+        'Kingdom Hearts sigue siendo una de las sagas más innovadoras del mundo de los videojuegos, y estoy emocionado de ver cómo se reinventa en los próximos títulos. La narrativa y el mundo del juego son tan ricos y detallados que es fácil perderse en ellos. ¡Estoy ansioso por jugarlo!',
+        '2024-06-07T18:16:17.633882315'),
+       (NULL, '17', '4',
+        'Como fan de Kingdom Hearts desde hace años, no puedo esperar a ver cómo se actualiza la franquicia en los próximos títulos. La jugabilidad y la atmósfera de los juegos son inolvidables, y espero que los nuevos títulos capturen esa magia. ¡Estoy seguro de que será un éxito!',
+        '2024-06-08T20:16:17.633882315'),
+       (NULL, '18', '5',
+        'Kingdom Hearts is one of the most beloved franchises in history! The combination of Disney and Square Enix characters is simply perfect. I can’t wait to see what else the franchise has in store for players!',
+        '2024-06-08T15:16:17.633882315');
+
+-- The Last of Us
+INSERT INTO `news_comment` (`id`, `news_id`, `user_id`, `content`, `date`)
+VALUES (NULL, '19', '2',
+        '¡The Last of Us es uno de los juegos más emocionantes de la historia! La combinación de acción y aventura es simplemente perfecta. ¡No puedo esperar a ver qué más tiene preparado Naughty Dog para los jugadores!',
+        '2024-06-07T15:16:17.633882315'),
+       (NULL, '19', '3',
+        'The Last of Us sigue siendo uno de los juegos más aclamados del mundo, y estoy emocionado de ver cómo se reinventa en la próxima entrega. La narrativa y el mundo del juego son tan ricos y detallados que es fácil perderse en ellos. ¡Estoy ansioso por jugarlo!',
+        '2024-06-07T18:16:17.633882315'),
+       (NULL, '19', '4',
+        'Como fan de The Last of Us desde hace años, no puedo esperar a ver cómo se actualiza la franquicia en la próxima entrega. La jugabilidad y la atmósfera del original son inolvidables, y espero que la nueva entrega capture esa magia. ¡Estoy seguro de que será un éxito!',
+        '2024-06-08T20:16:17.633882315'),
+       (NULL, '20', '5',
+        'The Last of Us is one of the most thrilling games in history! The combination of action and adventure is simply perfect. I can’t wait to see what else Naughty Dog has in store for players!',
+        '2024-06-08T15:16:17.633882315'),
+       (NULL, '20', '6',
+        'The Last of Us remains one of the most acclaimed games in the world, and I’m excited to see how it’s reinvented in the next installment. The narrative and game world are so rich and detailed that it’s easy to get lost in them. I’m eager to play it!',
+        '2024-06-09T18:16:17.633882315'),
+       (NULL, '20', '7',
+        'As a longtime The Last of Us fan, I can’t wait to see how the franchise is updated in the next installment. The gameplay and atmosphere of the original are unforgettable, and I hope the new installment captures that magic. I’m sure it will be a hit!',
+        '2024-06-09T18:17:17.633882315');
+
 
 
 INSERT INTO `feature` (`name`, `image`, `alt`)
@@ -941,6 +1340,45 @@ VALUES (11, 1, NULL), -- Asociar el juego con ID 11 con la característica con I
        (12, 7, NULL), -- Asociar el juego con ID 11 con la característica con ID 1 y sin NumberPlayer
        (12, 9, NULL),
        (12, 11, 4);
+
+-- Zelda: Breath of the Wild
+INSERT INTO `game_feature` (`game_id`, `feature_id`, `number_player_id`)
+VALUES (13, 1, NULL), -- Asociar el juego con ID 13 con la característica con ID 1 y sin NumberPlayer
+       (13, 3, NULL), -- Asociar el juego con ID 13 con la característica con ID 2 y NumberPlayer con ID 1
+       (14, 7, NULL), -- Asociar el juego con ID 13 con la característica con ID 1 y sin NumberPlayer
+       (14, 9, NULL);
+
+
+-- World of Warcraft
+INSERT INTO `game_feature` (`game_id`, `feature_id`, `number_player_id`)
+VALUES (15, 1, NULL), -- Asociar el juego con ID 15 con la característica con ID 1 y sin NumberPlayer
+       (15, 3, NULL), -- Asociar el juego con ID 15 con la característica con ID 2 y NumberPlayer con ID 1
+       (15, 4, NULL),
+       (15, 5, 8),
+       (16, 7, NULL), -- Asociar el juego con ID 15 con la característica con ID 1 y sin NumberPlayer
+       (16, 9, NULL),
+       (16, 11, 8);
+
+-- Kingdom Hearts
+INSERT INTO `game_feature` (`game_id`, `feature_id`, `number_player_id`)
+VALUES (17, 1, NULL), -- Asociar el juego con ID 17 con la característica con ID 1 y sin NumberPlayer
+       (17, 3, NULL), -- Asociar el juego con ID 17 con la característica con ID 2 y NumberPlayer con ID 1
+       (17, 4, NULL),
+       (17, 5, 8),
+       (18, 7, NULL), -- Asociar el juego con ID 17 con la característica con ID 1 y sin NumberPlayer
+       (18, 9, NULL),
+       (18, 11, 8);
+
+-- The Last of Us
+    INSERT INTO `game_feature` (`game_id`, `feature_id`, `number_player_id`)
+    VALUES (19, 1, NULL), -- Asociar el juego con ID 19 con la característica con ID 1 y sin NumberPlayer
+           (19, 3, NULL), -- Asociar el juego con ID 19 con la característica con ID 2 y NumberPlayer con ID 1
+           (19, 4, NULL),
+           (19, 5, 8),
+           (20, 7, NULL), -- Asociar el juego con ID 19 con la característica con ID 1 y sin NumberPlayer
+           (20, 9, NULL),
+           (20, 11, 8);
+
 
 -- Residet Evil 2 Remake
 INSERT INTO `review` (`date`, `dislike`, `game_id`, `like`, `user_id`, `title`, `content`)
@@ -1040,6 +1478,70 @@ VALUES ('2024-06-07T15:16:17.633882315', 1, 11, 15, 2, 'Un Clásico Reimaginado'
         'Resident Evil 4 Remake remains one of the greatest horror games of all time. Season 7 has been a resounding success, and Capcom has once again shown why it is one of the genre leaders.');
 
 
+-- Zelda: Breath of the Wild
+INSERT INTO `review` (`date`, `dislike`, `game_id`, `like`, `user_id`, `title`, `content`)
+VALUES ('2024-06-07T15:16:17.633882315', 1, 13, 15, 2, 'Un Clásico Reimaginado',
+        'Zelda: Breath of the Wild es una carta de amor a los fans del original. La jugabilidad es tan adictiva como siempre, y los gráficos remasterizados son impresionantes. Aunque algunos problemas técnicos pueden entorpecer la experiencia, el juego sigue siendo una joya del género.'),
+       ('2024-06-07T18:16:17.633882315', 0, 13, 12, 3, 'Un Regreso Triunfal al Infierno',
+        'La temporada 7 de Zelda: Breath of the Wild ha sido una montaña rusa de emociones. Los nuevos desafíos y recompensas mantienen la experiencia fresca y emocionante. ¡No puedo esperar a ver qué más tiene preparado Nintendo para los jugadores!'),
+       ('2024-06-08T20:16:17.633882315', 2, 13, 13, 4, 'Un Clásico que se Mantiene Vigente',
+        'Zelda: Breath of the Wild sigue siendo uno de los mejores juegos de aventura de todos los tiempos. La temporada 7 ha sido un éxito rotundo, y Nintendo ha demostrado una vez más por qué es uno de los líderes del género.'),
+       ('2024-06-08T15:16:17.633882315', 1, 14, 15, 6, 'A Classic Reimagined',
+        'Zelda: Breath of the Wild is a love letter to fans of the original. The gameplay is as addictive as ever, and the remastered graphics are stunning. While some technical issues may hinder the experience, the game remains a genre gem.'),
+       ('2024-06-09T18:16:17.633882315', 0, 14, 12, 7, 'A Triumphant Return to Hell',
+        'Zelda: Breath of the Wild season 7 has been a rollercoaster of emotions. The new challenges and rewards keep the experience fresh and exciting. I can’t wait to see what else Nintendo has in store for players!'),
+       ('2024-06-10T18:16:17.633882315', 2, 14, 13, 8, 'A Classic That Stands the Test of Time',
+        'Zelda: Breath of the Wild remains one of the greatest adventure games of all time. Season 7 has been a resounding success, and Nintendo has once again shown why it is one of the genre leaders.');
+
+
+-- World of Warcraft
+INSERT INTO `review` (`date`, `dislike`, `game_id`, `like`, `user_id`, `title`, `content`)
+VALUES ('2024-06-07T15:16:17.633882315', 1, 15, 15, 2, 'Un Clásico Reimaginado',
+        'World of Warcraft es una carta de amor a los fans del original. La jugabilidad es tan adictiva como siempre, y los gráficos remasterizados son impresionantes. Aunque algunos problemas técnicos pueden entorpecer la experiencia, el juego sigue siendo una joya del género.'),
+       ('2024-06-07T18:16:17.633882315', 0, 15, 12, 3, 'Un Regreso Triunfal al Infierno',
+        'La temporada 7 de World of Warcraft ha sido una montaña rusa de emociones. Los nuevos desafíos y recompensas mantienen la experiencia fresca y emocionante. ¡No puedo esperar a ver qué más tiene preparado Blizzard para los jugadores!'),
+       ('2024-06-08T20:16:17.633882315', 2, 15, 13, 4, 'Un Clásico que se Mantiene Vigente',
+        'World of Warcraft sigue siendo uno de los mejores juegos de aventura de todos los tiempos. La temporada 7 ha sido un éxito rotundo, y Blizzard ha demostrado una vez más por qué es uno de los líderes del género.'),
+       ('2024-06-08T15:16:17.633882315', 1, 16, 15, 6, 'A Classic Reimagined',
+        'World of Warcraft is a love letter to fans of the original. The gameplay is as addictive as ever, and the remastered graphics are stunning. While some technical issues may hinder the experience, the game remains a genre gem.'),
+       ('2024-06-09T18:16:17.633882315', 0, 16, 12, 7, 'A Triumphant Return to Hell',
+        'World of Warcraft season 7 has been a rollercoaster of emotions. The new challenges and rewards keep the experience fresh and exciting. I can’t wait to see what else Blizzard has in store for players!'),
+       ('2024-06-10T18:16:17.633882315', 2, 16, 13, 8, 'A Classic That Stands the Test of Time',
+        'World of Warcraft remains one of the greatest adventure games of all time. Season 7 has been a resounding success, and Blizzard has once again shown why it is one of the genre leaders.');
+
+
+-- Kingdom Hearts
+INSERT INTO `review` (`date`, `dislike`, `game_id`, `like`, `user_id`, `title`, `content`)
+VALUES ('2024-06-07T15:16:17.633882315', 1, 17, 15, 2, 'Un Clásico Reimaginado',
+        'Kingdom Hearts es una carta de amor a los fans del original. La jugabilidad es tan adictiva como siempre, y los gráficos remasterizados son impresionantes. Aunque algunos problemas técnicos pueden entorpecer la experiencia, el juego sigue siendo una joya del género.'),
+       ('2024-06-07T18:16:17.633882315', 0, 17, 12, 3, 'Un Regreso Triunfal al Infierno',
+        'La temporada 7 de Kingdom Hearts ha sido una montaña rusa de emociones. Los nuevos desafíos y recompensas mantienen la experiencia fresca y emocionante. ¡No puedo esperar a ver qué más tiene preparado Square Enix para los jugadores!'),
+       ('2024-06-08T20:16:17.633882315', 2, 17, 13, 4, 'Un Clásico que se Mantiene Vigente',
+        'Kingdom Hearts sigue siendo uno de los mejores juegos de aventura de todos los tiempos. La temporada 7 ha sido un éxito rotundo, y Square Enix ha demostrado una vez más por qué es uno de los líderes del género.'),
+       ('2024-06-08T15:16:17.633882315', 1, 18, 15, 6, 'A Classic Reimagined',
+        'Kingdom Hearts is a love letter to fans of the original. The gameplay is as addictive as ever, and the remastered graphics are stunning. While some technical issues may hinder the experience, the game remains a genre gem.'),
+       ('2024-06-09T18:16:17.633882315', 0, 18, 12, 7, 'A Triumphant Return to Hell',
+        'Kingdom Hearts season 7 has been a rollercoaster of emotions. The new challenges and rewards keep the experience fresh and exciting. I can’t wait to see what else Square Enix has in store for players!'),
+       ('2024-06-10T18:16:17.633882315', 2, 18, 13, 8, 'A Classic That Stands the Test of Time',
+        'Kingdom Hearts remains one of the greatest adventure games of all time. Season 7 has been a resounding success, and Square Enix has once again shown why it is one of the genre leaders.');
+
+
+-- The Last of Us
+    INSERT INTO `review` (`date`, `dislike`, `game_id`, `like`, `user_id`, `title`, `content`)
+    VALUES ('2024-06-07T15:16:17.633882315', 1, 19, 15, 2, 'Un Clásico Reimaginado',
+            'The Last of Us es una carta de amor a los fans del original. La jugabilidad es tan adictiva como siempre, y los gráficos remasterizados son impresionantes. Aunque algunos problemas técnicos pueden entorpecer la experiencia, el juego sigue siendo una joya del género.'),
+           ('2024-06-07T18:16:17.633882315', 0, 19, 12, 3, 'Un Regreso Triunfal al Infierno',
+            'La temporada 7 de The Last of Us ha sido una montaña rusa de emociones. Los nuevos desafíos y recompensas mantienen la experiencia fresca y emocionante. ¡No puedo esperar a ver qué más tiene preparado Naughty Dog para los jugadores!'),
+           ('2024-06-08T20:16:17.633882315', 2, 19, 13, 4, 'Un Clásico que se Mantiene Vigente',
+            'The Last of Us sigue siendo uno de los mejores juegos de aventura de todos los tiempos. La temporada 7 ha sido un éxito rotundo, y Naughty Dog ha demostrado una vez más por qué es uno de los líderes del género.'),
+           ('2024-06-08T15:16:17.633882315', 1, 20, 15, 6, 'A Classic Reimagined',
+            'The Last of Us is a love letter to fans of the original. The gameplay is as addictive as ever, and the remastered graphics are stunning. While some technical issues may hinder the experience, the game remains a genre gem.'),
+           ('2024-06-09T18:16:17.633882315', 0, 20, 12, 7, 'A Triumphant Return to Hell',
+            'The Last of Us season 7 has been a rollercoaster of emotions. The new challenges and rewards keep the experience fresh and exciting. I can’t wait to see what else Naughty Dog has in store for players!'),
+           ('2024-06-10T18:16:17.633882315', 2, 20, 13, 8, 'A Classic That Stands the Test of Time',
+            'The Last of Us remains one of the greatest adventure games of all time. Season 7 has been a resounding success, and Naughty Dog has once again shown why it is one of the genre leaders.');
+
+
 -- Resident Evil 2 Remake
 INSERT INTO `game_score` (`score`, `date`, `game_id`, `id`, `user_id`)
 VALUES ('7', '2023-01-30T18:16:17.633882315', '1', NULL, '2'),
@@ -1093,6 +1595,33 @@ VALUES ('9', '2024-06-07T15:16:17.633882315', '11', NULL, '2'),
        ('9', '2024-06-08T15:16:17.633882315', '12', NULL, '6'),
        ('8', '2024-06-09T18:16:17.633882315', '12', NULL, '7'),
        ('8', '2024-06-10T18:16:17.633882315', '12', NULL, '8');
+
+-- Zelda: Breath of the Wild
+INSERT INTO `game_score` (`score`, `date`, `game_id`, `id`, `user_id`)
+VALUES ('5', '2024-06-07T15:16:17.633882315', '13', NULL, '2'),
+       ('10', '2024-06-07T18:16:17.633882315', '13', NULL, '3'),
+       ('10', '2024-06-08T20:16:17.633882315', '13', NULL, '4'),
+       ('9', '2024-06-08T15:16:17.633882315', '14', NULL, '6'),
+       ('8', '2024-06-09T18:16:17.633882315', '14', NULL, '7'),
+       ('8', '2024-06-10T18:16:17.633882315', '14', NULL, '8');
+
+-- World of Warcraft
+INSERT INTO `game_score` (`score`, `date`, `game_id`, `id`, `user_id`)
+VALUES ('9', '2024-06-07T15:16:17.633882315', '15', NULL, '2'),
+       ('8', '2024-06-07T18:16:17.633882315', '15', NULL, '3'),
+       ('8', '2024-06-08T20:16:17.633882315', '15', NULL, '4'),
+       ('1', '2024-06-08T15:16:17.633882315', '16', NULL, '6'),
+       ('8', '2024-06-09T18:16:17.633882315', '16', NULL, '7'),
+       ('8', '2024-06-10T18:16:17.633882315', '16', NULL, '8');
+
+-- Kingdom Hearts
+INSERT INTO `game_score` (`score`, `date`, `game_id`, `id`, `user_id`)
+VALUES ('9', '2024-06-07T15:16:17.633882315', '17', NULL, '2'),
+       ('8', '2024-06-07T18:16:17.633882315', '17', NULL, '3'),
+       ('10', '2024-06-08T20:16:17.633882315', '17', NULL, '4'),
+       ('9', '2024-06-08T15:16:17.633882315', '18', NULL, '6'),
+       ('1', '2024-06-09T18:16:17.633882315', '18', NULL, '7'),
+       ('10', '2024-06-10T18:16:17.633882315', '18', NULL, '8');
 
 
 -- Inserta una edición
@@ -1323,4 +1852,117 @@ VALUES ('35.99', '1', '11', NULL, '1', '1', '1', '1',
        ('49.99', '5', '12', NULL, '5', '1', '2', '5',
         '#');
 
+-- Zelda: Breath of the Wild
+INSERT INTO `product` (`price`, `edition_product_id`, `game_id`, `id`, `keys_product_id`,
+                       `platform_product_id`, `region_product_id`, `vendor_product_id`, `link`)
+VALUES ('45.99', '1', '13', NULL, '1', '1', '1', '1',
+        '#'),
+       ('40.99', '2', '13', NULL, '2', '2', '2', '2',
+        '#'),
+       ('45.99', '3', '13', NULL, '3', '3', '3', '3',
+        '#'),
+       ('37.99', '4', '13', NULL, '1', '4', '1', '4',
+        '#'),
+       ('35.99', '1', '13', NULL, '2', '1', '2', '5',
+        '#'),
+       ('39.99', '2', '13', NULL, '2', '2', '1', '1',
+        '#'),
+       ('65.99', '3', '13', NULL, '1', '3', '2', '2',
+        '#'),
+       ('52.99', '5', '14', NULL, '4', '1', '1', '1',
+        '#'),
+       ('72.99', '6', '14', NULL, '5', '2', '2', '2',
+        '#'),
+       ('45.99', '7', '14', NULL, '6', '3', '3', '3',
+        '#'),
+       ('34.99', '8', '14', NULL, '4', '4', '1', '4',
+        '#'),
+       ('49.99', '5', '14', NULL, '5', '1', '2', '5',
+        '#');
+
+-- World of Warcraft
+INSERT INTO `product` (`price`, `edition_product_id`, `game_id`, `id`, `keys_product_id`,
+                       `platform_product_id`, `region_product_id`, `vendor_product_id`, `link`)
+VALUES ('45.99', '1', '15', NULL, '1', '1', '1', '1',
+        '#'),
+       ('40.99', '2', '15', NULL, '2', '2', '2', '2',
+        '#'),
+       ('45.99', '3', '15', NULL, '3', '3', '3', '3',
+        '#'),
+       ('27.99', '4', '15', NULL, '1', '4', '1', '4',
+        '#'),
+       ('35.99', '1', '15', NULL, '2', '1', '2', '5',
+        '#'),
+       ('39.99', '2', '15', NULL, '2', '2', '1', '1',
+        '#'),
+       ('65.99', '3', '15', NULL, '1', '3', '2', '2',
+        '#'),
+       ('52.99', '5', '16', NULL, '4', '1', '1', '1',
+        '#'),
+       ('72.99', '6', '16', NULL, '5', '2', '2', '2',
+        '#'),
+       ('45.99', '7', '16', NULL, '6', '3', '3', '3',
+        '#'),
+       ('34.99', '8', '16', NULL, '4', '4', '1', '4',
+        '#'),
+       ('49.99', '5', '16', NULL, '5', '1', '2', '5',
+        '#');
+
+
+-- Kingdom Hearts
+INSERT INTO `product` (`price`, `edition_product_id`, `game_id`, `id`, `keys_product_id`,
+                       `platform_product_id`, `region_product_id`, `vendor_product_id`, `link`)
+VALUES ('45.99', '1', '17', NULL, '1', '1', '1', '1',
+        '#'),
+       ('40.99', '2', '17', NULL, '2', '2', '2', '2',
+        '#'),
+       ('45.99', '3', '17', NULL, '3', '3', '3', '3',
+        '#'),
+       ('27.99', '4', '17', NULL, '1', '4', '1', '4',
+        '#'),
+       ('38.99', '1', '17', NULL, '2', '1', '2', '5',
+        '#'),
+       ('39.99', '2', '17', NULL, '2', '2', '1', '1',
+        '#'),
+       ('65.99', '3', '17', NULL, '1', '3', '2', '2',
+        '#'),
+       ('52.99', '5', '18', NULL, '4', '1', '1', '1',
+        '#'),
+       ('72.99', '6', '18', NULL, '5', '2', '2', '2',
+        '#'),
+       ('45.99', '7', '18', NULL, '6', '3', '3', '3',
+        '#'),
+       ('34.99', '8', '18', NULL, '4', '4', '1', '4',
+        '#'),
+       ('49.99', '5', '18', NULL, '5', '1', '2', '5',
+        '#');
+
+
+-- The Last of Us
+INSERT INTO `product` (`price`, `edition_product_id`, `game_id`, `id`, `keys_product_id`,
+                       `platform_product_id`, `region_product_id`, `vendor_product_id`, `link`)
+VALUES ('45.99', '1', '19', NULL, '1', '1', '1', '1',
+        '#'),
+       ('40.99', '2', '19', NULL, '2', '2', '2', '2',
+        '#'),
+       ('45.99', '3', '19', NULL, '3', '3', '3', '3',
+        '#'),
+       ('27.99', '4', '19', NULL, '1', '4', '1', '4',
+        '#'),
+       ('42.99', '1', '19', NULL, '2', '1', '2', '5',
+        '#'),
+       ('39.99', '2', '19', NULL, '2', '2', '1', '1',
+        '#'),
+       ('65.99', '3', '19', NULL, '1', '3', '2', '2',
+        '#'),
+       ('52.99', '5', '20', NULL, '4', '1', '1', '1',
+        '#'),
+       ('72.99', '6', '20', NULL, '5', '2', '2', '2',
+        '#'),
+       ('45.99', '7', '20', NULL, '6', '3', '3', '3',
+        '#'),
+       ('34.99', '8', '20', NULL, '4', '4', '1', '4',
+        '#'),
+       ('49.99', '5', '20', NULL, '5', '1', '2', '5',
+        '#');
 
